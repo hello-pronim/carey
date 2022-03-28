@@ -1,11 +1,15 @@
 import React from "react";
-import { Heading } from "./styles";
+import { Container, Text } from "@components/common";
 
 const Homepage = () => {
   return (
-    <div>
-      <Heading>Traffic Next.js Starter</Heading>
-    </div>
+    <>
+      <Container>
+        <div style={{ gridColumn: "1 / span 5" }}>
+          <Text>Carey Typography test</Text>
+        </div>
+      </Container>
+    </>
   );
 };
 

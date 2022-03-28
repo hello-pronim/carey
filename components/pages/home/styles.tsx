@@ -1,10 +1,5 @@
-import { css } from "@styled-system/css";
-import styled from "@emotion/styled";
+import { styled } from "@styles/stitches";
 
-const Heading = styled("h1")(
-  css({
-    color: "#1a1a1a",
-  })
-);
+const Example = styled("div", {});
 
-export { Heading };
+export { Example };

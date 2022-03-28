@@ -1,1 +1,56 @@
-/* Insert local font type faces here */
+@font-face {
+  font-family: "poppins";
+  src: url("../public/fonts/poppins-regular-webfont.woff2") format("woff2"),
+    url("../public/fonts/poppins-regular-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../public/fonts/poppins-italic-webfont.woff2") format("woff2"),
+    url("../public/fonts/poppins-italic-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../public/fonts/poppins-medium-webfont.woff2") format("woff2"),
+    url("../public/fonts/poppins-medium-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "poppinsMediumItalic";
+  src: url("../public/fonts/poppins-mediumitalic-webfont.woff2") format("woff2"),
+    url("../public/fonts/poppins-mediumitalic-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../public/fonts/poppins-semibold-webfont.woff2") format("woff2"),
+    url("../public/fonts/poppins-semibold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../public/fonts/poppins-semibolditalic-webfont.woff2") format("woff2"),
+    url("../public/fonts/poppins-semibolditalic-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'avallon';
+  src: url('../public/fonts/avallon-webfont.woff2') format('woff2'),
+       url('../public/fonts/avallon-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+
+}
