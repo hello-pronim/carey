@@ -2,17 +2,26 @@ import Head from "next/head";
 import { Layout } from "@components/common";
 import { Home } from "@components/pages";
 
-const Homepage = () => {
+export default function Homepage() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>Home | Traffic Next.js</title>
         <meta name="description" content="Traffic Next.js Starter" />
         <meta name="robots" content="index, follow" />
       </Head>
       <Home />
-    </Layout>
+    </>
   );
+}
+Homepage.getLayout = function getLayout(Page) {
+  return <Layout {...Page.props}>{Page}</Layout>;
 };
 
-export default Homepage;
+export async function getStaticProps() {
+  return {
+    props: {
+      navigation: ["home", "contact", "about"],
+    },
+  };
+}
