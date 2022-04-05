@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "types": ["@emotion/react/types/css-prop"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -22,7 +21,8 @@
       "@contexts/*": ["contexts/*"],
       "@gql/*": ["gql/*"],
       "@hoc/*": ["hoc/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@styles/stitches": ["styles/stitches.config"]
     },
     "incremental": true
   },
