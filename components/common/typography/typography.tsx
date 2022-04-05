@@ -5,6 +5,7 @@ const Text = styled("span", {
   //consistent Styles
   color: "$navy",
   fontFeatureSettings: "'pnum' on, 'lnum' on",
+  textDecoration: "none",
   //Variants
   variants: {
     variant: {
@@ -71,10 +72,13 @@ const Text = styled("span", {
       },
       "Button-Regular-Med": {
         fontWeight: "$medium",
-        fontSize: "$buttonRegular",
+        fontSize: "$bodySmall",
         lineHeight: "$large",
         letterSpacing: "$regular",
         textTransform: "uppercase",
+        "@min1200": {
+          fontSize: "$buttonRegular",
+        },
       },
       "Body-xxLarge": {
         fontWeight: "$medium",

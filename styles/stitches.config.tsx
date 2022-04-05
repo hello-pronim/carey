@@ -110,6 +110,7 @@ export const {
     min600: "(min-width: 600px)",
     min768: "(min-width: 768px)",
     min1024: "(min-width: 1024px)",
+    min1200: "(min-width: 1200px)",
     min1440: "(min-width: 1440px)",
     min1660: "(min-width: 1660px)",
     min1920: "(min-width: 1920px)",

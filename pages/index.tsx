@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Layout } from "@components/common";
-import { Home } from "@components/pages";
+import Home from "@components/pages/home";
+import navigationMockData from "@utils/mockdata/navigation";
 
 export default function Homepage() {
   return (
@@ -14,6 +15,7 @@ export default function Homepage() {
     </>
   );
 }
+
 Homepage.getLayout = function getLayout(Page) {
   return <Layout {...Page.props}>{Page}</Layout>;
 };
@@ -21,7 +23,7 @@ Homepage.getLayout = function getLayout(Page) {
 export async function getStaticProps() {
   return {
     props: {
-      navigation: ["home", "contact", "about"],
+      navigation: navigationMockData,
     },
   };
 }
