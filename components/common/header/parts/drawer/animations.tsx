@@ -15,22 +15,48 @@ export const drawer = {
   },
 };
 
-export const innerDrawers = {
-  hidden: (i) => ({
+export const primaryDrawer = {
+  // hidden: {
+  //   x: "-100%",
+  //   transition: {
+  //     type: "linear",
+  //     duration: 0.4,
+  //   },
+  // },
+  // visible: {
+  //   x: 0,
+  //   transition: {
+  //     type: "linear",
+  //     duration: 0.4,
+  //   },
+  // },
+};
+
+export const conditionalDrawer = {
+  hidden: {
     x: "-100%",
-    opacity: i * 0,
+    opacity: 0,
     transition: {
       type: "linear",
       duration: 0.4,
     },
-  }),
-  visible: (i) => ({
+  },
+  visible: {
     x: 0,
-    opacity: i * 1,
+    opacity: 1,
     transition: {
       type: "linear",
       duration: 0.4,
-      delay: i * 0.4,
+      opacity: {
+        duration: 0,
+      },
     },
-  }),
+  },
+  exit: {
+    x: "-100%",
+    transition: {
+      type: "linear",
+      duration: 0.4,
+    },
+  },
 };
