@@ -25,6 +25,7 @@ const DrawerWrapper = styled(motion.div, {
 });
 
 const Primary = styled(motion.div, {
+  position: "relative",
   py: 20,
   pr: 8,
   width: 380,
@@ -64,16 +65,32 @@ const NavItems = styled("ul", {
 });
 
 const PrimaryItem = styled("li", {
+  position: "relative",
   display: "flex",
   pl: 80,
   pr: 40,
   py: 20,
+  zIndex: 2,
   justifyContent: "space-between",
   variants: {
     active: {
-      true: { bg: "$crestBlue100" },
+      true: {},
     },
   },
 });
 
-export { DrawerWrapper, Primary, Secondary, Tertiary, PrimaryItem, NavItems };
+const ActiveIndicator = styled(motion.div, {
+  position: "absolute",
+  background: "$crestBlue100",
+  zIndex: 0,
+});
+
+export {
+  DrawerWrapper,
+  Primary,
+  Secondary,
+  Tertiary,
+  PrimaryItem,
+  NavItems,
+  ActiveIndicator,
+};
