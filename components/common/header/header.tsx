@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { useMedia, useClickAway } from "react-use";
+import { useState, useRef, useEffect } from "react";
+import { useMedia, useClickAway, useWindowScroll } from "react-use";
 import { AnimatePresence } from "framer-motion";
 import { Text } from "@components/common";
 import Link from "next/link";
@@ -25,7 +25,19 @@ import {
 import Image from "next/image";
 
 const Header = ({ navigation }) => {
+  const [hasStuck, setHasStuck] = useState(false);
+
   const header = useRef(null);
+  const yPos = useWindowScroll().y;
+
+  useEffect(() => {
+    if (yPos >= 30) {
+      setHasStuck(true);
+    }
+    if (yPos === 0) {
+      setHasStuck(false);
+    }
+  }, [yPos]);
 
   useClickAway(header, () => {
     setDrawerOpen(false);
@@ -34,7 +46,7 @@ const Header = ({ navigation }) => {
   const isMobile = useMedia("(max-width: 768px)");
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-    <Wrapper ref={header}>
+    <Wrapper ref={header} stuck={hasStuck}>
       <HeaderLeft>
         <DrawerToggleCompact>
           <DrawerToggleIcon
@@ -88,7 +100,9 @@ const Header = ({ navigation }) => {
         </IconContainer>
       </HeaderRight>
       <AnimatePresence>
-        {drawerOpen && <Drawer navigation={navigation.NavItemsDrawer} />}
+        {drawerOpen && (
+          <Drawer stuck={hasStuck} navigation={navigation.NavItemsDrawer} />
+        )}
       </AnimatePresence>
     </Wrapper>
   );

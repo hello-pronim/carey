@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import { Text } from "@components/common";
+import ActiveIndicator from "./activeIndicator";
 import {
-  ActiveIndicator,
   DrawerWrapper,
   NavItems,
   Primary,
@@ -15,7 +15,7 @@ import { conditionalDrawer, drawer, primaryDrawer } from "./animations";
 import Chevron from "@components/common/icons/chevron";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 
-const Drawer = ({ navigation }) => {
+const Drawer = ({ navigation, stuck }) => {
   const [secondaryNavigation, setSecondaryNavigation] = useState(null);
   const [tertiaryNavigation, setTertiaryNavigation] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -25,7 +25,7 @@ const Drawer = ({ navigation }) => {
 
   const [activePriProps, setActivePriProps] = useState(null);
   const [activeScndProps, setActiveScndProps] = useState(null);
-  // const [activeTrtProps, setActiveTrtProps] = useState(null);
+  const [activeTrtProps, setActiveTrtProps] = useState(null);
 
   const prevPrimary = usePrevious(activePrimary);
   const prevSecondary = usePrevious(activeSecondary);
@@ -57,6 +57,18 @@ const Drawer = ({ navigation }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [secondaryRef.current]);
+
+  useEffect(() => {
+    if (tertiaryRef.current !== null) {
+      setActiveTrtProps({
+        top: tertiaryRef.current.offsetTop,
+        left: tertiaryRef.current.offsetLeft,
+        height: tertiaryRef.current.offsetHeight,
+        width: tertiaryRef.current.offsetWidth,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTertiary]);
 
   useEffect(() => {
     const hasSubItems = (navItems, activeItem) => {
@@ -105,19 +117,13 @@ const Drawer = ({ navigation }) => {
     }
   }, [activePrimary, activeSecondary, prevPrimary, prevSecondary]);
 
-  const handleRefs = (id, active, ref) => {
-    if (id === active) {
-      return ref;
-    }
-    return null;
-  };
-
   return (
     <DrawerWrapper
       variants={drawer}
       initial="hidden"
       animate="visible"
       exit="hidden"
+      stuck={stuck}
       onAnimationComplete={() => {
         setIsVisible(true);
       }}
@@ -128,34 +134,22 @@ const Drawer = ({ navigation }) => {
             {navigation.map((item) => {
               return (
                 <PrimaryItem
-                  ref={handleRefs(item.id, activePrimary, primaryRef)}
+                  ref={item.id === activePrimary ? primaryRef : null}
                   key={`primary-${item.id}`}
                   active={item.id === activePrimary}
-                  onMouseOver={() => setActivePrimary(item.id)}
+                  onMouseOver={(el) => (
+                    setActivePrimary(item.id),
+                    (primaryRef.current = el.currentTarget)
+                  )}
                 >
-                  <Text variant="Button-Large">{item.label}</Text>
+                  <Text variant="Button-Regular">{item.label}</Text>
                   {item.subItems && <Chevron />}
                 </PrimaryItem>
               );
             })}
           </NavItems>
-          {activePriProps && (
-            <ActiveIndicator
-              initial={{
-                opacity: 0,
-                top: activePriProps.top,
-                width: activePriProps.width,
-                height: activePriProps.height,
-              }}
-              animate={
-                isVisible && {
-                  opacity: 1,
-                  top: activePriProps.top,
-                  width: activePriProps.width,
-                  height: activePriProps.height,
-                }
-              }
-            />
+          {activePrimary && activePriProps && (
+            <ActiveIndicator target={activePriProps} />
           )}
         </Primary>
         <AnimatePresence>
@@ -167,36 +161,26 @@ const Drawer = ({ navigation }) => {
               animate={isVisible && "visible"}
               exit="exit"
             >
-              {secondaryNavigation.map((item) => {
-                return (
-                  <PrimaryItem
-                    ref={handleRefs(item.id, activeSecondary, secondaryRef)}
-                    key={`secondary-${item.id}`}
-                    active={item.id === activeSecondary}
-                    onMouseOver={() => setActiveSecondary(item.id)}
-                  >
-                    <Text variant="Button-Large">{item.label}</Text>
-                    {item.subItems && <Chevron />}
-                  </PrimaryItem>
-                );
-              })}
-              {activeScndProps && (
-                <ActiveIndicator
-                  initial={{
-                    opacity: 0,
-                    top: activeScndProps.top,
-                    width: activeScndProps.width,
-                    height: activeScndProps.height,
-                  }}
-                  animate={
-                    activeSecondary && {
-                      opacity: 1,
-                      top: activeScndProps.top,
-                      width: activeScndProps.width,
-                      height: activeScndProps.height,
-                    }
-                  }
-                />
+              <NavItems>
+                {secondaryNavigation.map((item) => {
+                  return (
+                    <PrimaryItem
+                      ref={item.id === activeSecondary ? secondaryRef : null}
+                      key={`secondary-${item.id}`}
+                      active={item.id === activeSecondary}
+                      onMouseOver={(el) => (
+                        setActiveSecondary(item.id),
+                        (secondaryRef.current = el.currentTarget)
+                      )}
+                    >
+                      <Text variant="Button-Regular">{item.label}</Text>
+                      {item.subItems && <Chevron />}
+                    </PrimaryItem>
+                  );
+                })}
+              </NavItems>
+              {activeSecondary && activeScndProps && (
+                <ActiveIndicator target={activeScndProps} />
               )}
             </Secondary>
           )}
@@ -209,19 +193,27 @@ const Drawer = ({ navigation }) => {
               animate={isVisible && "visible"}
               exit="exit"
             >
-              {tertiaryNavigation.map((item) => {
-                return (
-                  <PrimaryItem
-                    key={`tertiary-${item.id}`}
-                    ref={handleRefs(item.id, activeTertiary, tertiaryRef)}
-                    active={item.id === activeTertiary}
-                    onMouseOver={() => setActiveTertiary(item.id)}
-                  >
-                    <Text variant="Button-Large">{item.label}</Text>
-                    {item.subItems && <Chevron />}
-                  </PrimaryItem>
-                );
-              })}
+              <NavItems>
+                {tertiaryNavigation.map((item) => {
+                  return (
+                    <PrimaryItem
+                      key={`tertiary-${item.id}`}
+                      ref={item.id === activeTertiary ? tertiaryRef : null}
+                      active={item.id === activeTertiary}
+                      onMouseOver={(el) => (
+                        setActiveTertiary(item.id),
+                        (tertiaryRef.current = el.currentTarget)
+                      )}
+                    >
+                      <Text variant="Button-Regular">{item.label}</Text>
+                      {item.subItems && <Chevron />}
+                    </PrimaryItem>
+                  );
+                })}
+              </NavItems>
+              {activeTertiary && activeTrtProps && (
+                <ActiveIndicator target={activeTrtProps} />
+              )}
             </Tertiary>
           )}
         </AnimatePresence>

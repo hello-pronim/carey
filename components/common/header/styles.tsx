@@ -2,6 +2,17 @@ import { styled } from "@styles/stitches";
 import rem from "@utils/pxRem";
 import Text from "../typography/typography";
 
+const LogoWrapper = styled("div", {
+  transition: "width ease 0.2s",
+  width: "122.96px",
+  "> span": {
+    width: "100%",
+  },
+  "@min768": {
+    width: "180.33px",
+  },
+});
+
 const Wrapper = styled("div", {
   display: "flex",
   top: 0,
@@ -15,6 +26,7 @@ const Wrapper = styled("div", {
   height: 80,
   px: "16px",
   zIndex: 100,
+  transition: "height ease 0.3s",
   "@min600": {
     px: "27px",
   },
@@ -22,16 +34,42 @@ const Wrapper = styled("div", {
     px: "43px",
   },
   "@min1024": {
-    height: 120,
     px: "56px",
   },
-  "@min1440": {
-    height: 144,
-    // px: "80px",
-  },
+  "@min1440": {},
   "@min1920": {
-    height: 160,
     px: "96px",
+  },
+  variants: {
+    stuck: {
+      true: {
+        "@min1024": {
+          height: 104,
+          px: "56px",
+        },
+        "@min1920": {
+          px: "96px",
+        },
+      },
+      false: {
+        "@min1024": {
+          height: 120,
+          px: "56px",
+        },
+        [`& ${LogoWrapper}`]: {
+          "@min1200": {
+            width: "257.43px",
+          },
+        },
+        "@min1440": {
+          height: 144,
+        },
+        "@min1920": {
+          height: 160,
+          px: "96px",
+        },
+      },
+    },
   },
 });
 
@@ -59,19 +97,6 @@ const IconContainer = styled("ul", {
   margin: 0,
   padding: 0,
   columnGap: rem("25px"),
-});
-
-const LogoWrapper = styled("div", {
-  width: "122.96px",
-  "> span": {
-    width: "100%",
-  },
-  "@min768": {
-    width: "180.33px",
-  },
-  "@min1200": {
-    width: "257.43px",
-  },
 });
 
 const IconWrapper = styled("li", {

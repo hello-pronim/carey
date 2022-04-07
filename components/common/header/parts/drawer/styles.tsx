@@ -10,17 +10,30 @@ const DrawerWrapper = styled(motion.div, {
   left: 0,
   top: 80,
   borderLeft: "20px solid #fff",
-  "@min1024": {
-    height: "calc(100vh - 120px)",
-    top: 120,
-  },
-  "@min1440": {
-    height: "calc(100vh - 144px)",
-    top: 144,
-  },
-  "@min1920": {
-    height: "calc(100vh - 160px)",
-    top: 160,
+  transition: "height, top ease 0.3s",
+  variants: {
+    stuck: {
+      true: {
+        "@min1024": {
+          height: "calc(100vh - 104px)",
+          top: 104,
+        },
+      },
+      false: {
+        "@min1024": {
+          height: "calc(100vh - 120px)",
+          top: 120,
+        },
+        "@min1440": {
+          height: "calc(100vh - 144px)",
+          top: 144,
+        },
+        "@min1920": {
+          height: "calc(100vh - 160px)",
+          top: 160,
+        },
+      },
+    },
   },
 });
 
@@ -62,15 +75,17 @@ const NavItems = styled("ul", {
   listStyleType: "none",
   margin: 0,
   padding: 0,
+  cursor: "pointer",
 });
 
-const PrimaryItem = styled("li", {
+const PrimaryItem = styled(motion.li, {
   position: "relative",
   display: "flex",
   pl: 80,
   pr: 40,
   py: 20,
   zIndex: 2,
+  cursor: "pointer",
   justifyContent: "space-between",
   variants: {
     active: {
@@ -79,7 +94,7 @@ const PrimaryItem = styled("li", {
   },
 });
 
-const ActiveIndicator = styled(motion.div, {
+const ActvIndicator = styled(motion.div, {
   position: "absolute",
   background: "$crestBlue100",
   zIndex: 0,
@@ -92,5 +107,5 @@ export {
   Tertiary,
   PrimaryItem,
   NavItems,
-  ActiveIndicator,
+  ActvIndicator,
 };
