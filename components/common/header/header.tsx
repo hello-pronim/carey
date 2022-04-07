@@ -43,7 +43,7 @@ const Header = ({ navigation }) => {
     setDrawerOpen(false);
   });
 
-  const isMobile = useMedia("(max-width: 768px)");
+  const isMobile = useMedia("(max-width: 768px)", false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <Wrapper ref={header} stuck={hasStuck}>
