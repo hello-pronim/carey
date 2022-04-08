@@ -71,16 +71,20 @@ const Tertiary = styled(motion.div, {
     "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
 });
 
-const NavItems = styled("ul", {
+const NavItems = styled(motion.nav, {
   listStyleType: "none",
   margin: 0,
   padding: 0,
   cursor: "pointer",
 });
 
-const PrimaryItem = styled(motion.li, {
+const PrimaryItem = styled("a", {
+  textDecoration: "none",
   position: "relative",
   display: "flex",
+  "&:focus-visible": {
+    outline: "none",
+  },
   pl: 80,
   pr: 40,
   py: 20,

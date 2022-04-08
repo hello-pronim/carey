@@ -65,7 +65,7 @@ const Header = ({ navigation }) => {
           />
         </LogoWrapper>
         <DrawerToggleWrapper onClick={() => setDrawerOpen(!drawerOpen)}>
-          <DrawerToggleIcon isOpen={drawerOpen} />
+          <DrawerToggleIcon as="div" isOpen={drawerOpen} />
           <Text variant="Button-Regular-Med">Menu</Text>
         </DrawerToggleWrapper>
       </HeaderLeft>

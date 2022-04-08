@@ -132,11 +132,13 @@ const NavItem = styled("li", {
   },
 });
 
-const DrawerToggleWrapper = styled("div", {
+const DrawerToggleWrapper = styled("button", {
   display: "none",
   alignItems: "center",
   columnGap: 8,
   cursor: "pointer",
+  border: 0,
+  bg: "transparent",
   [`& ${Text}`]: {
     mt: 4,
   },
