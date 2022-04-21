@@ -1,11 +1,13 @@
 import React, { SetStateAction } from "react";
+import { useHover } from "@react-aria/interactions";
 import Link from "next/link";
 import { Text } from "@components/common";
-import { PrimaryItem } from "./styles";
+import { NavItem as NavItemCore } from "./styles";
 import Chevron from "@components/common/icons/chevron";
 
 interface itemTypes {
   href?: string;
+  variants?: {};
   item: {
     id: string;
     label: string;
@@ -18,23 +20,24 @@ interface itemTypes {
 }
 
 const Core = React.forwardRef(
-  ({ item, href, activeItem, setActiveItem }: itemTypes, ref) => {
+  ({ item, href, activeItem, setActiveItem, variants }: itemTypes, ref) => {
+    const { hoverProps } = useHover({
+      onHoverStart: (el) => setActiveItem(el.target),
+    });
     return (
-      <PrimaryItem
+      <NavItemCore
         {...ref}
         href={href}
         tabIndex={0}
         data-key={item.id}
         active={item.id === activeItem?.dataset?.key}
         onFocus={(el) => setActiveItem(el.currentTarget)}
-        onMouseOver={(el) => setActiveItem(el.currentTarget)}
-        onClick={(e) => {
-          e.preventDefault(), console.log("yeet");
-        }}
+        {...hoverProps}
+        {...variants}
       >
         <Text variant="Button-Regular">{item.label}</Text>
         {item.subItems && <Chevron />}
-      </PrimaryItem>
+      </NavItemCore>
     );
   }
 );

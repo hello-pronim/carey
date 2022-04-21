@@ -152,7 +152,7 @@ export const {
       paddingRight: value,
     }),
     pb: (value) => ({
-      padding: value,
+      paddingBottom: value,
     }),
     pl: (value) => ({
       paddingLeft: value,

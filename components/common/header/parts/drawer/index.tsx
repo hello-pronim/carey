@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavItem from "./navItem";
+import { useWindowSize } from "react-use";
 import { usePrevious } from "react-use";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 import ActiveIndicator from "./activeIndicator";
@@ -12,6 +13,7 @@ import {
   Secondary,
   Tertiary,
 } from "./styles";
+import MobileDrawer from "./mobile";
 
 const Drawer = ({ navigation, stuck }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,6 +27,9 @@ const Drawer = ({ navigation, stuck }) => {
 
   const prevPrimary = usePrevious(activePrimary);
   const prevSecondary = usePrevious(activeSecondary);
+
+  //makes the indicator resize on breakpoints
+  useWindowSize();
 
   useEffect(() => {
     const initActiveItem = document?.querySelector("[data-key='about-carey']");
@@ -77,7 +82,7 @@ const Drawer = ({ navigation, stuck }) => {
               );
             })}
           </NavItems>
-          {activePrimary && (
+          {getActiveProps(activePrimary) && (
             <ActiveIndicator target={getActiveProps(activePrimary)} />
           )}
         </Primary>
@@ -99,11 +104,12 @@ const Drawer = ({ navigation, stuck }) => {
                       item={item}
                       activeItem={activeSecondary}
                       setActiveItem={setActiveSecondary}
+                      variants={{ subItem: true }}
                     />
                   );
                 })}
               </NavItems>
-              {activeSecondary && (
+              {getActiveProps(activeSecondary) && (
                 <ActiveIndicator target={getActiveProps(activeSecondary)} />
               )}
             </Secondary>
@@ -126,17 +132,19 @@ const Drawer = ({ navigation, stuck }) => {
                       item={item}
                       activeItem={activeTertiary}
                       setActiveItem={setActiveTertiary}
+                      variants={{ subItem: true }}
                     />
                   );
                 })}
               </NavItems>
-              {activeTertiary && (
+              {getActiveProps(activeTertiary) && (
                 <ActiveIndicator target={getActiveProps(activeTertiary)} />
               )}
             </Tertiary>
           )}
         </AnimatePresence>
       </LayoutGroup>
+      <MobileDrawer navigation={navigation} />
     </DrawerWrapper>
   );
 };

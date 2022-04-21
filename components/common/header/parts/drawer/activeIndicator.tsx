@@ -4,6 +4,7 @@ import { ActvIndicator } from "./styles";
 interface indicatorProps {
   target: {
     top: number;
+    left: number;
     width: number;
     height: number;
   };
@@ -16,13 +17,15 @@ const ActiveIndicator = ({ target }: indicatorProps) => {
         initial={{
           opacity: 0,
           top: target.top,
-          width: target.width,
+          left: 0,
+          width: "calc(100% - 8px)",
           height: target.height,
         }}
         animate={
           target && {
             opacity: 1,
             top: target.top,
+            left: target.left,
             width: target.width,
             height: target.height,
           }

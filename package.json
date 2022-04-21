@@ -10,6 +10,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^0.1.6",
+    "@react-aria/interactions": "^3.8.3",
     "@stitches/react": "^1.2.7",
     "@types/react": "^17.0.40",
     "framer-motion": "^6.2.8",
