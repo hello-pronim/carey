@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { forwardRef } from "react";
 import { styled } from "@styles/stitches";
 
 const Chev = styled("svg", {
@@ -28,11 +28,11 @@ const Chev = styled("svg", {
   },
 });
 
-const Chevron = ({ width = 8, ...props }) => (
+const Chevron = forwardRef(({ width = 8, ...props }: ChevronTypes, ref) => (
   <Chev
+    {...ref}
     viewBox="0 0 8 13"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     style={{ width: width, height: "auto" }}
     {...props}
   >
@@ -41,6 +41,14 @@ const Chevron = ({ width = 8, ...props }) => (
       fill="#051B3F"
     />
   </Chev>
-);
+));
+
+Chevron.displayName = "Chevron";
+
+type ChevronTypes = {
+  direction?: "up" | "down" | "left" | "right";
+  width?: number;
+  props?: any;
+};
 
 export default Chevron;

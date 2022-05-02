@@ -1,3 +1,5 @@
+//@ts-nocheck - THIS IS ONLY HERE AS REACT 18 HAS BROKEN DEPENDENCIES ON SOME PACKAGES AND SCREWS UP THE BUILD
+
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";

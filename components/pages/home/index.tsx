@@ -6,11 +6,17 @@ const Home = () => {
     <>
       <Container
         style={{
-          background:
-            "linear-gradient(90deg, hsla(312, 66%, 76%, 1) 0%, hsla(234, 93%, 67%, 1) 100%)",
+          background: "#fefefe",
         }}
       >
-        <div style={{ height: "150vh", gridColumn: "1 / span 12" }}></div>
+        <div
+          style={{
+            minHeight: "150vh",
+            gridColumn: "1 / span 12",
+            paddingTop: 120,
+            paddingBottom: 120,
+          }}
+        ></div>
       </Container>
     </>
   );
