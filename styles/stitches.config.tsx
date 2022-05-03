@@ -63,6 +63,7 @@ export const {
       sandMid: "#F3EAE1",
       sand: "#EDE6D5",
       sandDark: "#D6C9A9",
+      link: "#0000E5",
       info: "#FDC035",
       success: "#008000",
       warning: "#FF4731",
