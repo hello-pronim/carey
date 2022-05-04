@@ -22,7 +22,33 @@ const Chev = styled("svg", {
         "[data-state=open] > &": { transform: "rotate(180deg)" },
       },
     },
+    toggleState: {
+      true: {},
+      false: {},
+    },
   },
+  compoundVariants: [
+    {
+      direction: "up",
+      toggleState: true,
+      css: { transform: "rotate(90deg)" },
+    },
+    {
+      direction: "down",
+      toggleState: true,
+      css: { transform: "rotate(-90deg)" },
+    },
+    {
+      direction: "left",
+      toggleState: true,
+      css: { transform: "rotate(0deg)" },
+    },
+    {
+      direction: "right",
+      toggleState: true,
+      css: { transform: "rotate(180deg)" },
+    },
+  ],
   defaultVariants: {
     direction: "right",
   },
@@ -47,6 +73,8 @@ Chevron.displayName = "Chevron";
 
 type ChevronTypes = {
   direction?: "up" | "down" | "left" | "right";
+  toggleState?: boolean;
+  state?: any;
   width?: number;
   props?: any;
 };

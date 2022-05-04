@@ -104,8 +104,10 @@ AccordionTrigger.displayName = "Accordion Trigger";
 AccordionContent.displayName = "Accordion Content";
 
 const Wrapper = styled("div", {
-  p: 20,
+  pb: 16,
   gridColumn: "10 / span 3",
+  bg: "$white",
+  height: "max-content",
 });
 
 const NavHeader = styled("div", {
