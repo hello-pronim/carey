@@ -62,6 +62,7 @@ Here is a few components that illustrate the use of the tech stack for the proje
 The largest of our core components (so far). When a component has a few parts needed for its core functionality, do your best to separate out the individual functionality into a parts folder, this will help us keep our code clean as well as limit risks involved with updating or overhauling a specific part of the component, e.g. if we need to swap out the drawer for whatever reason, none of its functionality lives inside the header itself so it's safe to swap it out for a new component without any knock-on effects throughout the site.
 
 File Structure;
+
 - header.tsx
 - styles.tsx
 - parts
