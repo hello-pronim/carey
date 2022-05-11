@@ -16,8 +16,8 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      DarkerYellow: "#FFBF00",
-      LightYellow: "FFDB4D",
+      darkerYellow: "#FFBF00",
+      lightYellow: "FFDB4D",
       background: "#F6F6F6",
       black: "#000000",
       crestBlue100: "#E6EEF4",
@@ -63,6 +63,7 @@ export const {
       sandMid: "#F3EAE1",
       sand: "#EDE6D5",
       sandDark: "#D6C9A9",
+      link: "#0000E5",
       info: "#FDC035",
       success: "#008000",
       warning: "#FF4731",

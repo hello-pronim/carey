@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { forwardRef } from "react";
 import { styled } from "@styles/stitches";
 
 const Chev = styled("svg", {
@@ -22,17 +22,43 @@ const Chev = styled("svg", {
         "[data-state=open] > &": { transform: "rotate(180deg)" },
       },
     },
+    toggleState: {
+      true: {},
+      false: {},
+    },
   },
+  compoundVariants: [
+    {
+      direction: "up",
+      toggleState: true,
+      css: { transform: "rotate(90deg)" },
+    },
+    {
+      direction: "down",
+      toggleState: true,
+      css: { transform: "rotate(-90deg)" },
+    },
+    {
+      direction: "left",
+      toggleState: true,
+      css: { transform: "rotate(0deg)" },
+    },
+    {
+      direction: "right",
+      toggleState: true,
+      css: { transform: "rotate(180deg)" },
+    },
+  ],
   defaultVariants: {
     direction: "right",
   },
 });
 
-const Chevron = ({ width = 8, ...props }) => (
+const Chevron = forwardRef(({ width = 8, ...props }: ChevronTypes, ref) => (
   <Chev
+    {...ref}
     viewBox="0 0 8 13"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     style={{ width: width, height: "auto" }}
     {...props}
   >
@@ -41,6 +67,16 @@ const Chevron = ({ width = 8, ...props }) => (
       fill="#051B3F"
     />
   </Chev>
-);
+));
+
+Chevron.displayName = "Chevron";
+
+type ChevronTypes = {
+  direction?: "up" | "down" | "left" | "right";
+  toggleState?: boolean;
+  state?: any;
+  width?: number;
+  props?: any;
+};
 
 export default Chevron;
