@@ -29,9 +29,21 @@ const Text = styled("span", {
       },
       "Heading-xLarge": {
         fontWeight: "$medium",
-        fontSize: "$headingXLarge",
-        lineHeight: "$large",
+        fontSize: "$headingLarge",
+        lineHeight: "$small",
         letterSpacing: "$tight",
+        "@min768": {
+          fontWeight: "$medium",
+          fontSize: "$headingXLarge",
+          lineHeight: "$large",
+          letterSpacing: "$tight",
+        },
+      },
+      "Heading-Large": {
+        fontWeight: "$medium",
+        fontSize: "$headingSmall",
+        lineHeight: "$large",
+        letterSpacing: "$regular",
         "@min768": {
           fontWeight: "$medium",
           fontSize: "$headingLarge",
@@ -39,11 +51,12 @@ const Text = styled("span", {
           letterSpacing: "$tight",
         },
       },
-      "Heading-Large": {
-        fontWeight: "$medium",
-        fontSize: "$headingLarge",
-        lineHeight: "$small",
+      "Heading-Small": {
+        fontWeight: "$regular",
+        fontSize: "$headingXSmall",
         letterSpacing: "$tight",
+        lineHeight: "$large",
+
         "@min768": {
           fontWeight: "$medium",
           fontSize: "$headingSmall",
@@ -51,9 +64,9 @@ const Text = styled("span", {
           letterSpacing: "$regular",
         },
       },
-      "Heading-Small": {
-        fontWeight: "$medium",
-        fontSize: "$headingSmall",
+      "Heading-xSmall": {
+        fontWeight: "$regular",
+        fontSize: rem("16px"),
         lineHeight: "$large",
         letterSpacing: "$regular",
         "@min768": {
@@ -61,18 +74,6 @@ const Text = styled("span", {
           fontSize: "$headingXSmall",
           lineHeight: "$small",
           letterSpacing: "$tight",
-        },
-      },
-      "Heading-xSmall": {
-        fontWeight: "$regular",
-        fontSize: "$headingXSmall",
-        lineHeight: "$small",
-        letterSpacing: "$tight",
-        "@min768": {
-          fontWeight: "$regular",
-          fontSize: rem("16px"),
-          lineHeight: "$large",
-          letterSpacing: "$regular",
         },
       },
       "Heading-Overline": {
@@ -111,10 +112,33 @@ const Text = styled("span", {
         },
       },
       "Body-xxLarge": {
-        fontWeight: "$medium",
-        fontSize: "$bodyXXLarge",
+        fontWeight: "$regular",
+        fontSize: "$bodyXLarge",
         lineHeight: "$large",
-        letterSpacing: "$tight",
+        letterSpacing: "$regular",
+        "@min768": {
+          fontWeight: "$medium",
+          fontSize: "$bodyXXLarge",
+          lineHeight: "$large",
+          letterSpacing: "$tight",
+        },
+      },
+      "Body-xLarge-Bold": {
+        fontWeight: "$semiBold",
+        fontSize: "$bodyLarge",
+        lineHeight: "$large",
+        "@min768": {
+          fontWeight: "$semiBold",
+          fontSize: "$bodyXLarge",
+          lineHeight: "$large",
+          letterSpacing: "$regular",
+        },
+      },
+      "Body-xLarge": {
+        fontWeight: "$regular",
+        fontSize: "$bodyLarge",
+        lineHeight: "$large",
+        letterSpacing: "$regular",
         "@min768": {
           fontWeight: "$regular",
           fontSize: "$bodyXLarge",
@@ -122,55 +146,55 @@ const Text = styled("span", {
           letterSpacing: "$regular",
         },
       },
-      "Body-xLarge-Bold": {
-        fontWeight: "$semiBold",
-        fontSize: "$bodyXLarge",
-        lineHeight: "$large",
-        letterSpacing: "$regular",
-        "@min768": {
-          fontWeight: "$semiBold",
-          fontSize: "$bodyLarge",
-          lineHeight: "$large",
-        },
-      },
-      "Body-xLarge": {
-        fontWeight: "$regular",
-        fontSize: "$bodyXLarge",
-        lineHeight: "$large",
-        letterSpacing: "$regular",
-        "@min768": {
-          fontWeight: "$regular",
-          fontSize: "$bodyLarge",
-          lineHeight: "$large",
-          letterSpacing: "$regular",
-        },
-      },
       "Body-Large-Bold": {
         fontWeight: "$semiBold",
-        fontSize: "$bodyLarge",
+        fontSize: "$bodyRegular",
         lineHeight: "$large",
+        letterSpacing: "$regular",
         "@min768": {
           fontWeight: "$semiBold",
-          fontSize: "$bodyRegular",
+          fontSize: "$bodyLarge",
           lineHeight: "$large",
-          letterSpacing: "$regular",
         },
       },
       "Body-Large": {
         fontWeight: "$regular",
-        fontSize: "$bodyLarge",
+        fontSize: "$bodyRegular",
         lineHeight: "$large",
         letterSpacing: "$regular",
         "@min768": {
           fontWeight: "$regular",
-          fontSize: "$bodyRegular",
+          fontSize: "$bodyLarge",
           lineHeight: "$large",
           letterSpacing: "$regular",
         },
       },
       "Body-Regular-Bold": {
         fontWeight: "$semiBold",
-        fontSize: "$bodyRegular",
+        fontSize: "$bodySmall",
+        lineHeight: "$medium",
+        "@min768": {
+          fontWeight: "$semiBold",
+          fontSize: "$bodyRegular",
+          lineHeight: "$large",
+          letterSpacing: "$regular",
+        },
+      },
+      "Body-Regular": {
+        fontWeight: "$regular",
+        fontSize: "$bodySmall",
+        lineHeight: "$large",
+        letterSpacing: "$regular",
+        "@min768": {
+          fontWeight: "$regular",
+          fontSize: "$bodyRegular",
+          lineHeight: "$large",
+          letterSpacing: "$regular",
+        },
+      },
+      "Body-Small-Bold": {
+        fontWeight: "$semiBold",
+        fontSize: "$bodyXSmall",
         lineHeight: "$large",
         letterSpacing: "$regular",
         "@min768": {
@@ -179,37 +203,14 @@ const Text = styled("span", {
           lineHeight: "$medium",
         },
       },
-      "Body-Regular": {
+      "Body-Small": {
         fontWeight: "$regular",
-        fontSize: "$bodyRegular",
+        fontSize: "$bodyXSmall",
         lineHeight: "$large",
         letterSpacing: "$regular",
         "@min768": {
           fontWeight: "$regular",
           fontSize: "$bodySmall",
-          lineHeight: "$large",
-          letterSpacing: "$regular",
-        },
-      },
-      "Body-Small-Bold": {
-        fontWeight: "$semiBold",
-        fontSize: "$bodySmall",
-        lineHeight: "$medium",
-        "@min768": {
-          fontWeight: "$semiBold",
-          fontSize: "$bodyXSmall",
-          lineHeight: "$large",
-          letterSpacing: "$regular",
-        },
-      },
-      "Body-Small": {
-        fontWeight: "$regular",
-        fontSize: "$bodySmall",
-        lineHeight: "$large",
-        letterSpacing: "$regular",
-        "@min768": {
-          fontWeight: "$regular",
-          fontSize: "$bodyXSmall",
           lineHeight: "$large",
           letterSpacing: "$regular",
         },
