@@ -4,7 +4,9 @@ import { Container } from "@components/common";
 const Home = () => {
   return (
     <>
-      <Container outerCSS={{ bg: "$background", height: "100vh" }}></Container>
+      <Container outerCSS={{ bg: "$background", height: "100vh" }}>
+        <p>Carey</p>
+      </Container>
     </>
   );
 };
