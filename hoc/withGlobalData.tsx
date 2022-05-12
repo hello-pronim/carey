@@ -13,7 +13,7 @@ export const withGlobalData = (gssp: any) => {
       ...gsspData,
       props: {
         ...gsspData.props,
-        navigation: navigation?.data,
+        navigationNodes: navigation?.data,
       },
     };
   };

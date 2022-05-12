@@ -33,7 +33,9 @@ HomePage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = withGlobalData(async () => {
   return {
-    props: {},
+    props: {
+      navigation: navigationMockData,
+    },
     revalidate: parseInt(process.env.NEXT_PAGE_REVALIDATE),
   };
 });
