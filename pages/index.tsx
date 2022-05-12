@@ -14,7 +14,7 @@ interface HomePageProps {
 }
 
 const HomePage: NextPage<HomePageProps> = ({ navigation }) => {
-  console.log(navigation);
+  // console.log(navigation);
   return (
     <>
       <Head>
