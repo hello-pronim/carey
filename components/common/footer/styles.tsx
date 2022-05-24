@@ -1,20 +1,17 @@
 import { styled } from "@styles/stitches";
 import rem from "@utils/pxRem";
+import { Text } from "@components/common";
 
 const Wrapper = styled("div", {
-  display: "flex",
   bottom: 0,
-  position: "sticky",
+  position: "absolute",
   width: "100%",
-  background: "$crestBlue",
+  background: "$navy",
   margin: "0 auto",
   boxSizing: "border-box",
   maxWidth: 2560,
-  justifyContent: "space-between",
-  height: 80,
   px: "16px",
   zIndex: 100,
-  transition: "height ease 0.3s",
   "@min600": {
     px: "27px",
   },
@@ -28,32 +25,29 @@ const Wrapper = styled("div", {
   "@min1920": {
     px: "96px",
   },
-  variants: {
-    stuck: {
-      true: {
-        "@min1024": {
-          height: 104,
-          px: "56px",
-        },
-        "@min1920": {
-          px: "96px",
-        },
-      },
-      false: {
-        "@min1024": {
-          height: 120,
-          px: "56px",
-        },
-        "@min1440": {
-          height: 144,
-        },
-        "@min1920": {
-          height: 160,
-          px: "96px",
-        },
-      },
-    },
+});
+
+const DrawerToggleWrapper = styled("button", {
+  display: "none",
+  alignItems: "center",
+  columnGap: 8,
+  cursor: "pointer",
+  border: 0,
+  bg: "transparent",
+  [`& ${Text}`]: {
+    mt: 4,
   },
+  "@min1200": {
+    display: "flex",
+  },
+});
+
+const FooterNav = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  height: 120,
+  borderBottom: `1px solid $crestBlue`,
 });
 
 const FooterLeft = styled("ul", {
@@ -62,7 +56,7 @@ const FooterLeft = styled("ul", {
   alignItems: "center",
   margin: 0,
   padding: 0,
-  columnGap: "40px",
+  columnGap: "120px",
 });
 
 const FooterRight = styled("div", {
@@ -115,11 +109,18 @@ const NavItem = styled("li", {
   },
 });
 
+const NavItemText = styled(Text, {
+  color: "$white",
+});
+
 export {
   Wrapper,
+  DrawerToggleWrapper,
+  FooterNav,
   FooterRight,
   FooterLeft,
   IconContainer,
   IconWrapper,
   NavItem,
+  NavItemText,
 };
