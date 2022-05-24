@@ -4,14 +4,17 @@ import Head from "next/head";
 import { Layout } from "@components/common";
 import Home from "@components/pages/home";
 import { withGlobalData } from "@hoc/withGlobalData";
-import navigationMockData from "@utils/mockdata/navigation";
 
 interface HomePageProps {
   pageData: any;
   navigation: Array<any>;
 }
 
-export default function HomePage({ navigation, pageData }: HomePageProps) {
+export default function HomePage({
+  navigation,
+  pageData,
+  ...props
+}: HomePageProps) {
   return (
     <>
       <Head>
@@ -31,7 +34,6 @@ HomePage.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps: GetStaticProps = withGlobalData(async () => {
   return {
     props: {
-      navigation: navigationMockData,
       pageData: {},
     },
     revalidate: parseInt(process.env.NEXT_PAGE_REVALIDATE),

@@ -88,7 +88,7 @@ const Drawer = ({ navigation, stuck }) => {
         </Primary>
 
         <AnimatePresence>
-          {secondaryNavigation && (
+          {secondaryNavigation?.length > 0 && (
             <Secondary
               custom={1}
               variants={conditionalDrawer}
@@ -117,7 +117,7 @@ const Drawer = ({ navigation, stuck }) => {
         </AnimatePresence>
 
         <AnimatePresence>
-          {tertiaryNavigation && (
+          {tertiaryNavigation?.length > 0 && (
             <Tertiary
               variants={conditionalDrawer}
               initial="hidden"

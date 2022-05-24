@@ -24,7 +24,9 @@ const ParentItem = ({ item, level }) => {
       <Accordion.Trigger asChild>
         <ItemHeader as="button" level={level}>
           <Text variant="Button-Regular">{item.label}</Text>
-          {item.subItems && <Chevron aria-hidden direction="down" />}
+          {item.subItems?.length > 0 && (
+            <Chevron aria-hidden direction="down" />
+          )}
         </ItemHeader>
       </Accordion.Trigger>
     </Accordion.Header>

@@ -14,8 +14,7 @@ const getSubItems = (navItems, activeItem) => {
   if (activeItem?.dataset?.key) {
     const items = navItems?.find(
       (item) => item.id === activeItem.dataset?.key
-    ).subItems;
-
+    )?.subItems;
     return items;
   }
   return null;

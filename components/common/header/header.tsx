@@ -26,10 +26,8 @@ import Image from "next/image";
 
 const Header = ({ navigation }) => {
   const [hasStuck, setHasStuck] = useState(false);
-
   const header = useRef(null);
   const yPos = useWindowScroll().y;
-
   useEffect(() => {
     if (yPos >= 30) {
       setHasStuck(true);
@@ -55,14 +53,16 @@ const Header = ({ navigation }) => {
           />
         </DrawerToggleCompact>
         <LogoWrapper>
-          <Image
-            alt="Carey Baptist Grammar School"
-            src={isMobile ? CareyCompact : CareyPrimary}
-            width={isMobile ? 122.96 : 257.43}
-            height={isMobile ? 56 : 80}
-            layout="responsive"
-            priority
-          />
+          <Link href="/" passHref>
+            <Image
+              alt="Carey Baptist Grammar School"
+              src={isMobile ? CareyCompact : CareyPrimary}
+              width={isMobile ? 122.96 : 257.43}
+              height={isMobile ? 56 : 80}
+              layout="responsive"
+              priority
+            />
+          </Link>
         </LogoWrapper>
         <DrawerToggleWrapper onClick={() => setDrawerOpen(!drawerOpen)}>
           <DrawerToggleIcon as="div" isOpen={drawerOpen} />
@@ -100,9 +100,7 @@ const Header = ({ navigation }) => {
         </IconContainer>
       </HeaderRight>
       <AnimatePresence>
-        {drawerOpen && (
-          <Drawer stuck={hasStuck} navigation={navigation.NavItemsDrawer} />
-        )}
+        {drawerOpen && <Drawer stuck={hasStuck} navigation={navigation} />}
       </AnimatePresence>
     </Wrapper>
   );

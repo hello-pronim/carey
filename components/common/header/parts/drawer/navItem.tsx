@@ -36,7 +36,7 @@ const Core = React.forwardRef(
         {...variants}
       >
         <Text variant="Button-Regular">{item.label}</Text>
-        {item.subItems && <Chevron />}
+        {item.subItems?.length > 0 && <Chevron />}
       </NavItemCore>
     );
   }

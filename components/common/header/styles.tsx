@@ -3,6 +3,7 @@ import rem from "@utils/pxRem";
 import Text from "../typography/typography";
 
 const LogoWrapper = styled("div", {
+  cursor: "pointer",
   transition: "width ease 0.2s",
   width: "122.96px",
   "> span": {

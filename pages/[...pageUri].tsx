@@ -6,7 +6,6 @@ import General from "@components/pages/general";
 import { GeneralPageQuery } from "@gql/pageGQL";
 import { withGlobalData } from "@hoc/withGlobalData";
 import { initializeApollo } from "@utils/apolloClient";
-import navigationMockData from "@utils/mockdata/navigation";
 
 interface PageProps {
   pageData: any;
@@ -42,10 +41,8 @@ export const getStaticProps: GetStaticProps = withGlobalData(
         slug: params.pageUri[0],
       },
     });
-    console.log(pageData);
     return {
       props: {
-        navigation: navigationMockData,
         pageData,
       },
       revalidate: parseInt(process.env.NEXT_PAGE_REVALIDATE),
