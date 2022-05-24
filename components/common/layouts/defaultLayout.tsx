@@ -1,10 +1,11 @@
-import { Header } from "@components/common";
+import { Header, Footer } from "@components/common";
 
 const Layout = ({ children, ...props }) => {
   return (
     <>
       <Header navigation={props.navigation} />
       {children}
+      <Footer />
     </>
   );
 };
