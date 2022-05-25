@@ -3,8 +3,6 @@ import rem from "@utils/pxRem";
 import { Text } from "@components/common";
 
 const Wrapper = styled("div", {
-  // bottom: 0,
-  // position: "absolute",
   width: "100%",
   background: "$navy",
   margin: "0 auto",
@@ -41,6 +39,8 @@ const ExtraFooter = styled("div", {
   flexDirection: "column",
   gap: 48,
   padding: "48px 0",
+  borderTop: `1px solid $crestBlue`,
+  marginTop: -1,
 });
 
 const ExtraFooterBottom = styled("div", {
@@ -107,6 +107,7 @@ const ExtraFooterTopLeft = styled("div", {
   },
   "@min1440": {
     flexDirection: "row",
+    gap: 40,
   },
 });
 
@@ -126,8 +127,8 @@ const FooterNav = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  borderBottom: `1px solid $crestBlue`,
   padding: "48px 0",
+  borderBottom: `1px solid $crestBlue`,
 });
 
 const FooterLeft = styled("ul", {
@@ -210,6 +211,7 @@ const NavItem = styled("li", {
 
 const NavItemText = styled(Text, {
   color: "$white",
+  fontWeight: "bold",
   textDecoration: "none",
 });
 

@@ -76,6 +76,7 @@ export const {
       headingSmall: rem("24px"),
       headingXSmall: rem("18px"),
       headingOverline: rem("14px"),
+      headingXXSmall: rem("12px"),
       buttonLarge: rem("20px"),
       buttonRegular: "$headingXSmall",
       bodyXXLarge: "$headingLarge",
@@ -84,6 +85,7 @@ export const {
       bodyRegular: "$headingXSmall",
       bodySmall: rem("16px"),
       bodyXSmall: "$headingOverline",
+      bodyXXSmall: "$headingXXSmall",
     },
     fontWeights: {
       regular: 400,
