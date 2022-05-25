@@ -133,21 +133,19 @@ const FooterNav = styled("div", {
 
 const FooterLeft = styled("ul", {
   display: "flex",
-  listStyleType: "none",
   alignItems: "center",
+  justifyContent: "space-between",
+  flex: 4,
+  listStyleType: "none",
   margin: 0,
   padding: 0,
-  "@min1024": {
-    columnGap: "20px",
-  },
-  "@min1440": {
-    columnGap: "120px",
-  },
 });
 
 const FooterRight = styled("div", {
   display: "flex",
   alignItems: "center",
+  justifyContent: "flex-end",
+  flex: 1,
   columnGap: 10,
   "@min1200": {
     columnGap: 44,

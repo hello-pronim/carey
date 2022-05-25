@@ -3,10 +3,20 @@ import { styled } from "@styles/stitches";
 import { Text } from "@components/common";
 
 const Column = styled("div", {
+  width: "100%",
+  "@min768": {
+    flex: "0 0 33.3%",
+  },
+  "@min1024": {
+    flex: 1,
+  },
+});
+
+const ColumnContainer = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: 20,
-  flex: 1,
+  padding: "10px 20px",
 });
 
 const Container = styled(motion.div, {
@@ -49,12 +59,14 @@ const ListItem = styled("li", {
 
 const Wrapper = styled(motion.div, {
   display: "flex",
-  gap: 40,
+  flexWrap: "wrap",
   padding: "48px 0",
+  rowGap: 40,
 });
 
 export {
   Column,
+  ColumnContainer,
   Container,
   HeadingText,
   List,
