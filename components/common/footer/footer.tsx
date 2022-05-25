@@ -46,42 +46,42 @@ const Footer = () => {
       <FooterNav>
         <FooterLeft>
           <NavItem hiddenUnder={1024}>
-            <Link href="/why-carey" passHref>
+            <Link href="/#" passHref>
               <NavItemText as="a" variant="Button-Regular-Med">
                 ABOUT CAREY
               </NavItemText>
             </Link>
           </NavItem>
           <NavItem hiddenUnder={1024}>
-            <Link href="/life-at-carey" passHref>
+            <Link href="/#" passHref>
               <NavItemText as="a" variant="Button-Regular-Med">
                 OUR SCHOOL
               </NavItemText>
             </Link>
           </NavItem>
           <NavItem hiddenUnder={1024}>
-            <Link href="/life-at-carey" passHref>
+            <Link href="/#" passHref>
               <NavItemText as="a" variant="Button-Regular-Med">
                 ENROLMENT
               </NavItemText>
             </Link>
           </NavItem>
           <NavItem hiddenUnder={1024}>
-            <Link href="/life-at-carey" passHref>
+            <Link href="/#" passHref>
               <NavItemText as="a" variant="Button-Regular-Med">
                 NEWS AND EVENTS
               </NavItemText>
             </Link>
           </NavItem>
           <NavItem hiddenUnder={1024}>
-            <Link href="/life-at-carey" passHref>
+            <Link href="/#" passHref>
               <NavItemText as="a" variant="Button-Regular-Med">
                 CONTACT
               </NavItemText>
             </Link>
           </NavItem>
           <NavItem>
-            <Link href="/life-at-carey" passHref>
+            <Link href="/#" passHref>
               <IconLinkWrapper as="a">
                 <CareyLink fill={theme.colors.white.value} />
                 <NavItemText as="span" variant="Button-Regular-Med">
@@ -136,7 +136,7 @@ const Footer = () => {
           <ExtraFooterTopRight>
             <TextWrapper>
               <NavItem>
-                <Link href="/life-at-carey" passHref>
+                <Link href="/#" passHref>
                   <NavItemText
                     as="a"
                     variant="Body-Small"
@@ -147,7 +147,7 @@ const Footer = () => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="/life-at-carey" passHref>
+                <Link href="/#" passHref>
                   <NavItemText
                     as="a"
                     variant="Body-Small"
@@ -159,7 +159,7 @@ const Footer = () => {
               </NavItem>
             </TextWrapper>
             <NavItem>
-              <Link href="/life-at-carey" passHref>
+              <Link href="/#" passHref>
                 <IconLinkWrapper as="a">
                   <NavItemText
                     as="span"
@@ -208,7 +208,7 @@ const Footer = () => {
                   <Instagram fill={theme.colors.white.value} />
                 </IconWrapper>
               </Link>
-              <Link href="" passHref>
+              <Link href="/#" passHref>
                 <IconWrapper as="a">
                   <Twitter fill={theme.colors.white.value} />
                 </IconWrapper>
@@ -218,7 +218,7 @@ const Footer = () => {
                   <Youtube fill={theme.colors.white.value} />
                 </IconWrapper>
               </Link>
-              <Link href="" passHref>
+              <Link href="/#" passHref>
                 <IconWrapper as="a">
                   <WeChat fill={theme.colors.white.value} />
                 </IconWrapper>
