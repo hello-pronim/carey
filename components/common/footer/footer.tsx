@@ -1,7 +1,4 @@
-//@ts-nocheck - THIS IS ONLY HERE AS REACT 18 HAS BROKEN DEPENDENCIES ON SOME PACKAGES AND SCREWS UP THE BUILD
-
-import { useState, useRef, useEffect } from "react";
-import { useMedia } from "react-use";
+import { useState, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { theme } from "@styles/stitches";
@@ -15,6 +12,7 @@ import Instagram from "@components/common/icons/instagram";
 import Twitter from "@components/common/icons/twitter";
 import Youtube from "@components/common/icons/youtube";
 import WeChat from "@components/common/icons/wechat";
+import Collapse from "./collapse";
 import {
   DrawerToggleWrapper,
   ExtraFooter,
@@ -30,7 +28,6 @@ import {
   IconContainer,
   IconLinkWrapper,
   IconWrapper,
-  LogoWrapper,
   NavItem,
   NavItemText,
   TextWrapper,
@@ -93,22 +90,20 @@ const Footer = () => {
         </FooterLeft>
         <FooterRight>
           <NavItem>
-            <DrawerToggleWrapper onClick={() => setDrawerOpen(!drawerOpen)}>
+            <DrawerToggleWrapper
+              onClick={() => setSitemapDrawerOpen(!sitemapDrawerOpen)}
+            >
               <NavItemText variant="Button-Regular-Med">Sitemap</NavItemText>
               <Chevron
                 aria-hidden
-                direction="down"
+                direction={sitemapDrawerOpen ? "up" : "down"}
                 fill={theme.colors.white.value}
               />
             </DrawerToggleWrapper>
           </NavItem>
         </FooterRight>
       </FooterNav>
-      <AnimatePresence>
-        {/* {sitemapDrawerOpen && (
-          <Collapse/>
-        )} */}
-      </AnimatePresence>
+      <AnimatePresence>{sitemapDrawerOpen && <Collapse />}</AnimatePresence>
       <ExtraFooter>
         <ExtraFooterTop>
           <ExtraFooterTopLeft>
@@ -137,37 +132,37 @@ const Footer = () => {
             <TextWrapper>
               <NavItem>
                 <Link href="/#" passHref>
-                  <NavItemText
+                  <Text
                     as="a"
                     variant="Body-Small"
                     css={{ color: theme.colors.crestBlue300.value }}
                   >
                     Privacy Policy
-                  </NavItemText>
+                  </Text>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link href="/#" passHref>
-                  <NavItemText
+                  <Text
                     as="a"
                     variant="Body-Small"
                     css={{ color: theme.colors.crestBlue300.value }}
                   >
                     Terms of Use
-                  </NavItemText>
+                  </Text>
                 </Link>
               </NavItem>
             </TextWrapper>
             <NavItem>
               <Link href="/#" passHref>
                 <IconLinkWrapper as="a">
-                  <NavItemText
+                  <Text
                     as="span"
                     variant="Body-Small"
                     css={{ color: theme.colors.crestYellow.value }}
                   >
                     Subscribe to Carey News
-                  </NavItemText>
+                  </Text>
                   <ArrowRight fill={theme.colors.crestYellow.value} />
                 </IconLinkWrapper>
               </Link>

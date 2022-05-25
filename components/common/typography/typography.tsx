@@ -227,6 +227,18 @@ const Text = styled("span", {
         lineHeight: "$large",
         letterSpacing: "$regular",
       },
+      "Body-xxSmall-Bold": {
+        fontWeight: "$semiBold",
+        fontSize: "$bodyXXSmall",
+        lineHeight: "$small",
+        letterSpacing: "$regular",
+      },
+      "Body-xxSmall": {
+        fontWeight: "$regular",
+        fontSize: "$bodyXXSmall",
+        lineHeight: "$small",
+        letterSpacing: "$regular",
+      },
     },
     font: {
       poppins: { fontFamily: "$poppins" },
