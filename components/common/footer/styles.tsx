@@ -9,7 +9,7 @@ const Wrapper = styled("div", {
   boxSizing: "border-box",
   maxWidth: 2560,
   px: "16px",
-  zIndex: 100,
+  zIndex: 90,
   "@min600": {
     px: "27px",
   },
