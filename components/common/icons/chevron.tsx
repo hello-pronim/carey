@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { styled } from "@styles/stitches";
+import { styled, theme } from "@styles/stitches";
 
 const Chev = styled("svg", {
   transition: "transform 300ms",
@@ -54,20 +54,25 @@ const Chev = styled("svg", {
   },
 });
 
-const Chevron = forwardRef(({ width = 8, ...props }: ChevronTypes, ref) => (
-  <Chev
-    {...ref}
-    viewBox="0 0 8 13"
-    fill="none"
-    style={{ width: width, height: "auto" }}
-    {...props}
-  >
-    <path
-      d="M1.41.815 0 2.225l4.58 4.59L0 11.405l1.41 1.41 6-6-6-6Z"
-      fill="#051B3F"
-    />
-  </Chev>
-));
+const Chevron = forwardRef(
+  (
+    { width = 8, fill = theme.colors.navy.value, ...props }: ChevronTypes,
+    ref
+  ) => (
+    <Chev
+      {...ref}
+      viewBox="0 0 8 13"
+      fill="none"
+      style={{ width: width, height: "auto" }}
+      {...props}
+    >
+      <path
+        d="M1.41.815 0 2.225l4.58 4.59L0 11.405l1.41 1.41 6-6-6-6Z"
+        fill={fill}
+      />
+    </Chev>
+  )
+);
 
 Chevron.displayName = "Chevron";
 
@@ -76,6 +81,7 @@ type ChevronTypes = {
   toggleState?: boolean;
   state?: any;
   width?: number;
+  fill?: string;
   props?: any;
 };
 
