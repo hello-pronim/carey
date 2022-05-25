@@ -3,8 +3,8 @@ import rem from "@utils/pxRem";
 import { Text } from "@components/common";
 
 const Wrapper = styled("div", {
-  bottom: 0,
-  position: "absolute",
+  // bottom: 0,
+  // position: "absolute",
   width: "100%",
   background: "$navy",
   margin: "0 auto",
@@ -28,17 +28,81 @@ const Wrapper = styled("div", {
 });
 
 const DrawerToggleWrapper = styled("button", {
-  display: "none",
+  display: "flex",
   alignItems: "center",
-  columnGap: 8,
+  gap: 24,
   cursor: "pointer",
   border: 0,
   bg: "transparent",
-  [`& ${Text}`]: {
-    mt: 4,
+});
+
+const ExtraFooter = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: 48,
+  padding: "48px 0",
+});
+
+const ExtraFooterBottom = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: 24,
+  "@min768": {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
   },
-  "@min1200": {
-    display: "flex",
+});
+
+const ExtraFooterBottomLeft = styled("div", {
+  flex: 1,
+});
+
+const ExtraFooterBottomRight = styled("div", {
+  flex: 1,
+  display: "flex",
+  justifyContent: "flex-end",
+});
+
+const ExtraFooterTop = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: 24,
+  "@min1024": {
+    flexDirection: "row",
+    alignItems: "baseline",
+    justifyContent: "space-between",
+  },
+});
+
+const ExtraFooterTopLeft = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: 24,
+  "@min768": {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 40,
+  },
+  "@min1024": {
+    flexDirection: "column",
+    gap: 24,
+  },
+  "@min1440": {
+    flexDirection: "row",
+  },
+});
+
+const ExtraFooterTopRight = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: 24,
+  "@min768": {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 32,
   },
 });
 
@@ -46,8 +110,8 @@ const FooterNav = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  height: 120,
   borderBottom: `1px solid $crestBlue`,
+  padding: "48px 0",
 });
 
 const FooterLeft = styled("ul", {
@@ -56,7 +120,12 @@ const FooterLeft = styled("ul", {
   alignItems: "center",
   margin: 0,
   padding: 0,
-  columnGap: "120px",
+  "@min1024": {
+    columnGap: "20px",
+  },
+  "@min1440": {
+    columnGap: "120px",
+  },
 });
 
 const FooterRight = styled("div", {
@@ -76,6 +145,13 @@ const IconContainer = styled("ul", {
   columnGap: rem("25px"),
 });
 
+const IconLinkWrapper = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  gap: "16px",
+  textDecoration: "none",
+});
+
 const IconWrapper = styled("li", {
   listStyle: "none",
   variants: {
@@ -91,6 +167,7 @@ const IconWrapper = styled("li", {
 });
 
 const NavItem = styled("li", {
+  listStyle: "none",
   variants: {
     hiddenUnder: {
       600: {
@@ -105,22 +182,48 @@ const NavItem = styled("li", {
           display: "list-item",
         },
       },
+      1024: {
+        display: "none",
+        "@min1024": {
+          display: "list-item",
+        },
+      },
     },
   },
 });
 
 const NavItemText = styled(Text, {
   color: "$white",
+  textDecoration: "none",
+});
+
+const TextWrapper = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 40,
+  "@min1024": {
+    justifyContent: "flex-start",
+  },
 });
 
 export {
   Wrapper,
   DrawerToggleWrapper,
+  ExtraFooter,
+  ExtraFooterBottom,
+  ExtraFooterBottomLeft,
+  ExtraFooterBottomRight,
+  ExtraFooterTop,
+  ExtraFooterTopLeft,
+  ExtraFooterTopRight,
   FooterNav,
   FooterRight,
   FooterLeft,
   IconContainer,
+  IconLinkWrapper,
   IconWrapper,
   NavItem,
   NavItemText,
+  TextWrapper,
 };
