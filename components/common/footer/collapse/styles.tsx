@@ -11,8 +11,7 @@ const Column = styled("div", {
 
 const Container = styled(motion.div, {
   boxSizing: "border-box",
-  transition: "height, top ease 0.3s",
-  padding: "48px 0",
+  overflow: "hidden",
 });
 
 const HeadingText = styled(Text, {
@@ -48,9 +47,10 @@ const ListItem = styled("li", {
   },
 });
 
-const Wrapper = styled("div", {
+const Wrapper = styled(motion.div, {
   display: "flex",
   gap: 40,
+  padding: "48px 0",
 });
 
 export {

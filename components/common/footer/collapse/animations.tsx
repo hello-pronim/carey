@@ -1,16 +1,27 @@
 export const collapse = {
   hidden: {
-    y: "-100%",
+    height: 0,
     transition: {
-      type: "linear",
-      duration: 0.4,
+      when: "after-children",
+      ease: "easeInOut",
+      duration: 0.7,
     },
   },
   visible: {
-    y: 0,
+    height: "auto",
     transition: {
-      type: "spring",
-      duration: 0.75,
+      when: "before-children",
+      ease: "easeInOut",
+      duration: 0.7,
     },
+  },
+};
+
+export const collapseInner = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
   },
 };
