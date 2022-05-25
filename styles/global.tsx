@@ -13,6 +13,12 @@ const globalStyles = globalCss({
       'poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Verdana, sans-serif',
   },
 
+  "body, #__next": {
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
+
   main: {
     display: "block",
   },

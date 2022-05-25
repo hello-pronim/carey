@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { styled } from "@styles/stitches";
+import { styled, theme } from "@styles/stitches";
 
 const Chev = styled("svg", {
   transition: "transform 300ms",
@@ -55,7 +55,10 @@ const Chev = styled("svg", {
 });
 
 const Chevron = forwardRef(
-  ({ width = 8, fill = "$navy", ...props }: ChevronTypes, ref) => (
+  (
+    { width = 8, fill = theme.colors.navy.value, ...props }: ChevronTypes,
+    ref
+  ) => (
     <Chev
       {...ref}
       viewBox="0 0 8 13"

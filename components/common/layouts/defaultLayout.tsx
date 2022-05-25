@@ -1,10 +1,16 @@
 import { Header, Footer } from "@components/common";
+import { styled } from "@styles/stitches";
+
+const Content = styled("div", {
+  flex: 1,
+  bg: "$background",
+});
 
 const Layout = ({ children, ...props }) => {
   return (
     <>
       <Header navigation={props.navigation} />
-      {children}
+      <Content>{children}</Content>
       <Footer />
     </>
   );

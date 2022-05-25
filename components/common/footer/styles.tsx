@@ -55,13 +55,29 @@ const ExtraFooterBottom = styled("div", {
 });
 
 const ExtraFooterBottomLeft = styled("div", {
-  flex: 1,
+  "@min768": {
+    flex: 2,
+  },
+  "@min1024": {
+    flex: 2,
+  },
+  "@min1200": {
+    flex: 1,
+  },
 });
 
 const ExtraFooterBottomRight = styled("div", {
-  flex: 1,
   display: "flex",
   justifyContent: "flex-end",
+  "@min768": {
+    flex: 2,
+  },
+  "@min1024": {
+    flex: 1,
+  },
+  "@min1200": {
+    flex: 1,
+  },
 });
 
 const ExtraFooterTop = styled("div", {
