@@ -7,15 +7,13 @@ const Root = styled("button", {
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
-  span: { lineHeight: "inherit" },
+  justifyContent: "space-between",
   columnGap: 18,
   "&:disabled": {
     pointerEvents: "none",
     cursor: "initial",
   },
-  svg: {
-    mt: -3,
-  },
+  span: { lineHeight: "inherit" },
   variants: {
     scale: {
       xl: {
@@ -42,7 +40,12 @@ const Root = styled("button", {
         lineHeight: "40px",
         px: 16,
       },
-      xs: {},
+      xs: {
+        borderRadius: 32,
+        height: 32,
+        lineHeight: "32px",
+        px: 24,
+      },
     },
     type: {
       solid: {},
@@ -54,6 +57,12 @@ const Root = styled("button", {
     theme: {
       light: {},
       dark: {},
+      transparent: {},
+    },
+    fullWidth: {
+      true: {
+        width: "100%",
+      },
     },
   },
   compoundVariants: [
@@ -62,6 +71,22 @@ const Root = styled("button", {
       scale: "xl",
       css: {
         borderWidth: 2,
+      },
+    },
+    {
+      type: "outline",
+      theme: "transparent",
+      css: {
+        borderColor: "$crestYellow",
+        bg: "transparent",
+        span: {
+          color: "$white",
+        },
+        svg: {
+          path: {
+            fill: "$white",
+          },
+        },
       },
     },
     {

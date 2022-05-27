@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@components/common";
+import { Container, PreFooter } from "@components/common";
 
 const Home = () => {
   return (
@@ -7,6 +7,7 @@ const Home = () => {
       <Container>
         <p>Carey</p>
       </Container>
+      <PreFooter />
     </>
   );
 };
