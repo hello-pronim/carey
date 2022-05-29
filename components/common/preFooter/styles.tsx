@@ -1,4 +1,5 @@
 import { styled } from "@styles/stitches";
+import { Text } from "@components/common";
 
 const ActionItem = styled("div", {
   display: "flex",
