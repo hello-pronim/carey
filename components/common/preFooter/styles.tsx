@@ -7,6 +7,12 @@ const ActionItem = styled("div", {
   "@min480": {
     width: "auto",
   },
+  "@min768": {
+    width: "100%",
+  },
+  "@min1024": {
+    width: "auto",
+  },
   [`${Text}`]: {
     color: "$white",
   },
@@ -25,6 +31,12 @@ const ActionsWrapper = styled("div", {
   justifyContent: "space-between",
   gap: 24,
   "@min480": {
+    flexDirection: "row",
+  },
+  "@min768": {
+    flexDirection: "column",
+  },
+  "@min1024": {
     flexDirection: "row",
   },
 });
@@ -91,6 +103,10 @@ const LinkWrapper = styled("div", {
   "@min480": {
     justifyContent: "flex-start",
     px: 0,
+  },
+  "@min768": {
+    justifyContent: "flex-start",
+    px: 24,
   },
   a: {
     color: "$white",
