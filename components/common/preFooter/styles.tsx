@@ -152,6 +152,7 @@ const LinkWrapper = styled("div", {
   },
   "@min1800": {
     justifyContent: "flex-start",
+    px: 0,
   },
   a: {
     color: "$white",
