@@ -1,12 +1,13 @@
 import React from "react";
-import { Container } from "@components/common";
+import { Container, PreFooter } from "@components/common";
 
 const Home = () => {
   return (
     <>
-      <Container outerCSS={{ bg: "$background", height: "100vh" }}>
+      <Container>
         <p>Carey</p>
       </Container>
+      <PreFooter />
     </>
   );
 };

@@ -2,8 +2,8 @@ import { useMemo, useState, Fragment } from "react";
 import Link from "next/link";
 import Root from "./styles";
 import { Text } from "@components/common";
-import MorphArrow from "../icons/morphArrow";
-import Plus from "../icons/plus";
+import MorphArrow from "@components/common/icons/morphArrow";
+import Plus from "@components/common/icons/plus";
 
 const Button = ({
   label,
@@ -13,6 +13,7 @@ const Button = ({
   arrow = false,
   plus = false,
   disabled,
+  fullWidth = false,
   href,
   onClick,
 }: buttonTypes) => {
@@ -23,6 +24,7 @@ const Button = ({
     if (scale === "lg") return "Button-Regular";
     if (scale === "md") return "Button-Regular";
     if (scale === "sm") return "Body-Small";
+    if (scale === "xs") return "Body-Small";
   }, [scale]);
 
   const Wrapper = useMemo(() => {
@@ -41,6 +43,7 @@ const Button = ({
         onMouseLeave={() => setHovered(false)}
         onClick={onClick}
         disabled={disabled}
+        fullWidth={fullWidth}
       >
         {plus && <Plus />}
         <Text variant={labelType}>{label}</Text>
@@ -54,10 +57,11 @@ type buttonTypes = {
   label: string;
   scale?: "xl" | "lg" | "md" | "sm" | "xs";
   type?: "solid" | "outline" | "ghost";
-  theme?: "light" | "dark";
+  theme?: "light" | "dark" | "transparent";
   plus?: boolean;
   arrow?: boolean;
   disabled?: boolean;
+  fullWidth?: boolean;
   href?: string | Object;
   onClick?: any;
 };

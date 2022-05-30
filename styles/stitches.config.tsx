@@ -41,7 +41,7 @@ export const {
       darkBlue700: "#647289",
       darkBlue800: "#4D5E78",
       darkBlue900: "#374A67",
-      darkBlue: "#213656",
+      darkBlue: "#213565",
       grey: "#F0F0F0",
       navy100: "E6E8EC",
       navy200: "#CDD1D9",
@@ -76,6 +76,7 @@ export const {
       headingSmall: rem("24px"),
       headingXSmall: rem("18px"),
       headingOverline: rem("14px"),
+      headingXXSmall: rem("12px"),
       buttonLarge: rem("20px"),
       buttonRegular: "$headingXSmall",
       bodyXXLarge: "$headingLarge",
@@ -84,6 +85,7 @@ export const {
       bodyRegular: "$headingXSmall",
       bodySmall: rem("16px"),
       bodyXSmall: "$headingOverline",
+      bodyXXSmall: "$headingXXSmall",
     },
     fontWeights: {
       regular: 400,
@@ -108,6 +110,8 @@ export const {
     },
   },
   media: {
+    min375: "(min-width: 375px)",
+    min480: "(min-width: 480px)",
     min600: "(min-width: 600px)",
     min768: "(min-width: 768px)",
     min1024: "(min-width: 1024px)",
@@ -115,6 +119,14 @@ export const {
     min1440: "(min-width: 1440px)",
     min1660: "(min-width: 1660px)",
     min1920: "(min-width: 1920px)",
+    max480: "(max-width: 480px)",
+    max600: "(max-width: 600px)",
+    max768: "(max-width: 768px)",
+    max1024: "(max-width: 1024px)",
+    max1200: "(max-width: 1200px)",
+    max1440: "(max-width: 1440px)",
+    max1660: "(max-width: 1660px)",
+    max1920: "(max-width: 1920px)",
   },
   utils: {
     bg: (value) => ({
