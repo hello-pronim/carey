@@ -80,7 +80,7 @@ const Footer = () => {
           <NavItem>
             <Link href="/#" passHref>
               <IconLinkWrapper as="a">
-                <CareyLink fill={theme.colors.white.value} />
+                <CareyLink fill={theme.colors.white.value} css={{ mt: -3 }} />
                 <NavItemText as="span" variant="Button-Regular-Med">
                   CAREYLINK
                 </NavItemText>
@@ -130,7 +130,7 @@ const Footer = () => {
           </ExtraFooterTopLeft>
           <ExtraFooterTopRight>
             <TextWrapper>
-              <NavItem>
+              <NavItem decoration={false}>
                 <Link href="/#" passHref>
                   <Text
                     as="a"
@@ -141,7 +141,7 @@ const Footer = () => {
                   </Text>
                 </Link>
               </NavItem>
-              <NavItem>
+              <NavItem decoration={false}>
                 <Link href="/#" passHref>
                   <Text
                     as="a"
