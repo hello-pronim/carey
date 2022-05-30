@@ -13,6 +13,12 @@ const ActionItem = styled("div", {
   "@min1024": {
     width: "auto",
   },
+  "@min1440": {
+    width: "100%",
+  },
+  "@min1800": {
+    width: "auto",
+  },
   [`${Text}`]: {
     color: "$white",
   },
@@ -39,11 +45,18 @@ const ActionsWrapper = styled("div", {
   "@min1024": {
     flexDirection: "row",
   },
+  "@min1440": {
+    flexDirection: "column",
+  },
+  "@min1800": {
+    flexDirection: "row",
+  },
 });
 
 const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
+  justifyContent: "space-between",
   gap: 24,
   flex: 1,
   padding: "48px 24px",
@@ -60,15 +73,36 @@ const Container = styled("div", {
   },
 });
 
+const Content = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  "@min1024": {
+    gap: 24,
+  },
+  "@min1440": {
+    gap: 28,
+  },
+  "@min1920": {
+    gap: 40,
+  },
+});
+
 const Heading = styled("div", {
   display: "flex",
   justifyContent: "space-between",
+  position: "relative",
 });
 
 const IconsWrapper = styled("div", {
+  position: "absolute",
+  right: 0,
   display: "flex",
   alignItems: "center",
   gap: 18,
+  a: {
+    lineHeight: 1,
+    cursor: "pointer",
+  },
   svg: {
     path: {
       fill: "$white",
@@ -107,6 +141,17 @@ const LinkWrapper = styled("div", {
   "@min768": {
     justifyContent: "flex-start",
     px: 24,
+  },
+  "@min1024": {
+    justifyContent: "flex-start",
+    px: 0,
+  },
+  "@min1440": {
+    justifyContent: "flex-start",
+    px: 24,
+  },
+  "@min1800": {
+    justifyContent: "flex-start",
   },
   a: {
     color: "$white",
@@ -169,6 +214,7 @@ export {
   ActionItem,
   ActionsWrapper,
   Container,
+  Content,
   Description,
   Heading,
   IconsWrapper,

@@ -10,6 +10,7 @@ import {
   ActionItem,
   ActionsWrapper,
   Container,
+  Content,
   Description,
   Heading,
   IconsWrapper,
@@ -27,18 +28,20 @@ const PreFooter = () => {
       <Left>
         <PreFooterWidget position="left">
           <Container>
-            <Heading>
-              <Text
-                variant="Body-xSmall"
-                css={{ color: theme.colors.white.value }}
-              >
-                LATEST NEWS
-              </Text>
-            </Heading>
-            <Description>
-              Student agency at its most creative and critical: The Virtual
-              Carey Art and Design...
-            </Description>
+            <Content>
+              <Heading>
+                <Text
+                  variant="Body-xSmall"
+                  css={{ color: theme.colors.white.value }}
+                >
+                  LATEST NEWS
+                </Text>
+              </Heading>
+              <Description>
+                Student agency at its most creative and critical: The Virtual
+                Carey Art and Design...
+              </Description>
+            </Content>
             <ActionsWrapper>
               <ActionItem>
                 <Button
@@ -77,24 +80,26 @@ const PreFooter = () => {
       <Right>
         <PreFooterWidget position="right">
           <Container>
-            <Heading>
-              <Text
-                variant="Body-xSmall"
-                css={{ color: theme.colors.white.value }}
-              >
-                KEEPING UP WITH CAREY
-              </Text>
-              <IconsWrapper>
-                <Link href="#" passHref>
-                  <Text as="a">
-                    <Instagram width={34} />
-                  </Text>
-                </Link>
-              </IconsWrapper>
-            </Heading>
-            <Description>
-              Follow us on Instagram for regular updates about Carey life.
-            </Description>
+            <Content>
+              <Heading>
+                <Text
+                  variant="Body-xSmall"
+                  css={{ color: theme.colors.white.value }}
+                >
+                  KEEPING UP WITH CAREY
+                </Text>
+                <IconsWrapper>
+                  <Link href="#" passHref>
+                    <Text as="a">
+                      <Instagram width={34} />
+                    </Text>
+                  </Link>
+                </IconsWrapper>
+              </Heading>
+              <Description>
+                Follow us on Instagram for regular updates about Carey life.
+              </Description>
+            </Content>
             <ActionsWrapper>
               <ActionItem>
                 <Button
