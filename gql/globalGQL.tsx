@@ -5,20 +5,17 @@ export const navigationQuery = gql`
     nodes(navHandle: "mainNav", level: 1) {
       id
       label: title
-      nodeUri
-      url
+      url: nodeUri
       newWindow
       subItems: children(level: 2) {
         id
         label: title
-        nodeUri
-        url
+        url: nodeUri
         newWindow
         subItems: children(level: 3) {
           id
           label: title
-          nodeUri
-          url
+          url: nodeUri
           newWindow
         }
       }
