@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useMedia, useClickAway, useWindowScroll } from "react-use";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import { AnimatePresence } from "framer-motion";
 import { Text } from "@components/common";
 import Link from "next/link";
@@ -25,6 +26,7 @@ import {
 import Image from "next/image";
 
 const Header = ({ navigation, headerNav, headerGlobals }) => {
+  console.log("headerGlobals", headerGlobals);
   const { headerRightLinks } = headerGlobals;
   const [hasStuck, setHasStuck] = useState(false);
   const header = useRef(null);
@@ -96,18 +98,30 @@ const Header = ({ navigation, headerNav, headerGlobals }) => {
                 >
                   <Link href={item.itemlink ? item.itemlink : "/"}>
                     <a>
-                      {item.icon.toLowerCase() === "heartbox" ? (
-                        <HeartBox />
-                      ) : (
-                        ""
-                      )}
-                      {item.icon.toLowerCase() === "phone" ? <Phone /> : ""}
-                      {item.icon.toLowerCase() === "careylink" ? (
-                        <CareyLink />
-                      ) : (
-                        ""
-                      )}
-                      {item.icon.toLowerCase() === "search" ? <Search /> : ""}
+                      <Tooltip.Root
+                        delayDuration={200}
+                        defaultOpen={item.toolTipActiveByDefault}
+                      >
+                        <Tooltip.Trigger>
+                          {item.icon.toLowerCase() === "heartbox" ? (
+                            <HeartBox />
+                          ) : (
+                            ""
+                          )}
+                          {item.icon.toLowerCase() === "phone" ? <Phone /> : ""}
+                          {item.icon.toLowerCase() === "careylink" ? (
+                            <CareyLink />
+                          ) : (
+                            ""
+                          )}
+                          {item.icon.toLowerCase() === "search" ? (
+                            <Search />
+                          ) : (
+                            ""
+                          )}
+                        </Tooltip.Trigger>
+                        <Tooltip.Content>{item.tooltip}</Tooltip.Content>
+                      </Tooltip.Root>
                     </a>
                   </Link>
                 </IconWrapper>
