@@ -30,7 +30,7 @@ const CollapseBody = ({ data }) => {
             return (
               <Column key={`sitemap-${item.id}`}>
                 <ColumnContainer>
-                  <HeadingText variant="Body-xxSmall-Bold">
+                  <HeadingText variant="Body-xSmall-Bold">
                     {item.label}
                   </HeadingText>
                   {item?.subItems?.length > 0 && (
@@ -38,17 +38,15 @@ const CollapseBody = ({ data }) => {
                       {item.subItems.map((subItem) => {
                         return (
                           <ListItem key={`sitemap-sub-${subItem.id}`}>
-                            <ListItemText variant="Body-xxSmall">
-                              <Link href={`/${subItem.url}`} passHref>
-                                <a
-                                  target={
-                                    subItem.newWindow ? "_blank" : "_self"
-                                  }
-                                >
+                            <Link href={`/${subItem.url || ""}`} passHref>
+                              <a
+                                target={subItem.newWindow ? "_blank" : "_self"}
+                              >
+                                <ListItemText variant="Body-xxSmall">
                                   {subItem.label}
-                                </a>
-                              </Link>
-                            </ListItemText>
+                                </ListItemText>
+                              </a>
+                            </Link>
                             {subItem?.subItems?.length > 0 && (
                               <List>
                                 {subItem.subItems.map((item) => {
@@ -57,7 +55,10 @@ const CollapseBody = ({ data }) => {
                                       key={`sitemap-sub-sub-${item.id}`}
                                     >
                                       <ListItemText variant="Body-xxSmall">
-                                        <Link href={`/${item.url}`} passHref>
+                                        <Link
+                                          href={`/${item.url || ""}`}
+                                          passHref
+                                        >
                                           <a
                                             target={
                                               item.newWindow
