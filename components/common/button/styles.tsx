@@ -13,7 +13,6 @@ const Root = styled("button", {
     pointerEvents: "none",
     cursor: "initial",
   },
-  span: { lineHeight: "inherit" },
   variants: {
     scale: {
       xl: {
@@ -92,6 +91,9 @@ const Root = styled("button", {
         borderColor: "$crestYellow",
         bg: "transparent",
         boxSizing: "border-box",
+        "&:hover": {
+          bg: "$darkBlue",
+        },
         span: {
           color: "$white",
         },
