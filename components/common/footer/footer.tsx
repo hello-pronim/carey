@@ -34,59 +34,53 @@ import {
   Wrapper,
 } from "./styles";
 
-const Footer = () => {
+const Footer = ({ footerGlobals, footerNav, sitemap }) => {
+  const {
+    abn,
+    copyrightText,
+    cricos,
+    firstNationStatement,
+    legalLinks,
+    socialLinks,
+  } = footerGlobals;
   const footer = useRef(null);
   const [sitemapDrawerOpen, setSitemapDrawerOpen] = useState(false);
-
   return (
     <Wrapper ref={footer}>
       <FooterNav>
         <FooterLeft>
-          <NavItem hiddenUnder={1024}>
-            <Link href="/#" passHref>
-              <NavItemText as="a" variant="Button-Regular-Med">
-                ABOUT CAREY
-              </NavItemText>
-            </Link>
-          </NavItem>
-          <NavItem hiddenUnder={1024}>
-            <Link href="/#" passHref>
-              <NavItemText as="a" variant="Button-Regular-Med">
-                OUR SCHOOL
-              </NavItemText>
-            </Link>
-          </NavItem>
-          <NavItem hiddenUnder={1024}>
-            <Link href="/#" passHref>
-              <NavItemText as="a" variant="Button-Regular-Med">
-                ENROLMENT
-              </NavItemText>
-            </Link>
-          </NavItem>
-          <NavItem hiddenUnder={1024}>
-            <Link href="/#" passHref>
-              <NavItemText as="a" variant="Button-Regular-Med">
-                NEWS AND EVENTS
-              </NavItemText>
-            </Link>
-          </NavItem>
-          <NavItem hiddenUnder={1024}>
-            <Link href="/#" passHref>
-              <NavItemText as="a" variant="Button-Regular-Med">
-                CONTACT
-              </NavItemText>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/#" passHref>
-              <IconLinkWrapper as="a">
-                <CareyLink fill={theme.colors.white.value} css={{ mt: -3 }} />
-                <NavItemText as="span" variant="Button-Regular-Med">
-                  CAREYLINK
-                </NavItemText>
-              </IconLinkWrapper>
-            </Link>
-          </NavItem>
+          {footerNav?.length > 0 &&
+            footerNav.map((item, index) => {
+              if (index < footerNav.length - 1) {
+                return (
+                  <NavItem
+                    key={`footer-nav-item-${item.id}`}
+                    hiddenUnder={1024}
+                  >
+                    <Link href={item.url ? item.url : "/"} passHref>
+                      <NavItemText as="a" variant="Button-Regular-Med">
+                        {item.label}
+                      </NavItemText>
+                    </Link>
+                  </NavItem>
+                );
+              }
+              return (
+                <NavItem key={`footer-nav-item-${item.id}`}>
+                  <Link href={item.url ? item.url : "/"} passHref>
+                    <IconLinkWrapper as="a">
+                      <CareyLink
+                        fill={theme.colors.white.value}
+                        css={{ mt: -3 }}
+                      />
+                      <NavItemText as="span" variant="Button-Regular-Med">
+                        {item.label}
+                      </NavItemText>
+                    </IconLinkWrapper>
+                  </Link>
+                </NavItem>
+              );
+            })}
         </FooterLeft>
         <FooterRight>
           <NavItem>
@@ -103,55 +97,57 @@ const Footer = () => {
           </NavItem>
         </FooterRight>
       </FooterNav>
-      <AnimatePresence>{sitemapDrawerOpen && <Collapse />}</AnimatePresence>
+      <AnimatePresence>
+        {sitemapDrawerOpen && <Collapse data={sitemap} />}
+      </AnimatePresence>
       <ExtraFooter>
         <ExtraFooterTop>
           <ExtraFooterTopLeft>
-            <Text
-              variant="Body-xSmall"
-              css={{ color: theme.colors.crestBlue300.value }}
-            >
-              © Carey Baptist Grammar School Limited
-            </Text>
+            {copyrightText && (
+              <Text
+                variant="Body-xSmall"
+                css={{ color: theme.colors.crestBlue300.value }}
+              >
+                {copyrightText}
+              </Text>
+            )}
             <TextWrapper>
-              <Text
-                variant="Body-xSmall"
-                css={{ color: theme.colors.crestBlue300.value }}
-              >
-                ABN 83 051 576 062
-              </Text>
-              <Text
-                variant="Body-xSmall"
-                css={{ color: theme.colors.crestBlue300.value }}
-              >
-                CRICOS #00135G
-              </Text>
+              {abn && (
+                <Text
+                  variant="Body-xSmall"
+                  css={{ color: theme.colors.crestBlue300.value }}
+                >
+                  {abn}
+                </Text>
+              )}
+              {cricos && (
+                <Text
+                  variant="Body-xSmall"
+                  css={{ color: theme.colors.crestBlue300.value }}
+                >
+                  {cricos}
+                </Text>
+              )}
             </TextWrapper>
           </ExtraFooterTopLeft>
           <ExtraFooterTopRight>
             <TextWrapper>
-              <NavItem decoration={false}>
-                <Link href="/#" passHref>
-                  <Text
-                    as="a"
-                    variant="Body-Small"
-                    css={{ color: theme.colors.crestBlue300.value }}
-                  >
-                    Privacy Policy
-                  </Text>
-                </Link>
-              </NavItem>
-              <NavItem decoration={false}>
-                <Link href="/#" passHref>
-                  <Text
-                    as="a"
-                    variant="Body-Small"
-                    css={{ color: theme.colors.crestBlue300.value }}
-                  >
-                    Terms of Use
-                  </Text>
-                </Link>
-              </NavItem>
+              {legalLinks?.length > 0 &&
+                legalLinks.map((item) => {
+                  return (
+                    <NavItem key={`legal-item-${item.id}`} decoration={false}>
+                      <Link href={item?.entry[0]?.uri} passHref>
+                        <Text
+                          as="a"
+                          variant="Body-Small"
+                          css={{ color: theme.colors.crestBlue300.value }}
+                        >
+                          {item.label}
+                        </Text>
+                      </Link>
+                    </NavItem>
+                  );
+                })}
             </TextWrapper>
             <NavItem>
               <Link href="/#" passHref>
@@ -171,53 +167,63 @@ const Footer = () => {
         </ExtraFooterTop>
         <ExtraFooterBottom>
           <ExtraFooterBottomLeft>
-            <Text
-              variant="Body-xSmall"
-              css={{ color: theme.colors.crestBlue300.value }}
-            >
-              First Nations acknowledgment statement. In the spirit of
-              reconciliation Carey Baptist Grammar School acknowledges the
-              Traditional Custodians of country throughout Australia and their
-              connections to land, sea and community. We pay our respect to
-              their elders past and present and extend that respect to all
-              Aboriginal and Torres Strait Islander peoples today.
-            </Text>
+            {firstNationStatement && (
+              <Text
+                variant="Body-xSmall"
+                css={{ color: theme.colors.crestBlue300.value }}
+              >
+                {firstNationStatement}
+              </Text>
+            )}
           </ExtraFooterBottomLeft>
           <ExtraFooterBottomRight>
             <IconContainer>
-              <Link href="https://www.facebook.com/CareyBaptist" passHref>
-                <IconWrapper as="a">
-                  <Facebook fill={theme.colors.white.value} />
-                </IconWrapper>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/school/careygrammar/"
-                passHref
-              >
-                <IconWrapper as="a">
-                  <LinkedIn fill={theme.colors.white.value} />
-                </IconWrapper>
-              </Link>
-              <Link href="https://www.instagram.com/careygrammar/" passHref>
-                <IconWrapper as="a">
-                  <Instagram fill={theme.colors.white.value} />
-                </IconWrapper>
-              </Link>
-              <Link href="/#" passHref>
-                <IconWrapper as="a">
-                  <Twitter fill={theme.colors.white.value} />
-                </IconWrapper>
-              </Link>
-              <Link href="https://www.youtube.com/user/CareyGrammar" passHref>
-                <IconWrapper as="a">
-                  <Youtube fill={theme.colors.white.value} />
-                </IconWrapper>
-              </Link>
-              <Link href="/#" passHref>
-                <IconWrapper as="a">
-                  <WeChat fill={theme.colors.white.value} />
-                </IconWrapper>
-              </Link>
+              {socialLinks?.length > 0 &&
+                socialLinks.map((item) => {
+                  return (
+                    <Link
+                      key={`social-${item.id}`}
+                      href={item.socialLink ? item.socialLink : "/"}
+                      passHref
+                    >
+                      <IconWrapper
+                        target={item.openInNewTab ? "_blank" : "_self"}
+                        as="a"
+                      >
+                        {item.icon.toLowerCase() === "facebook" ? (
+                          <Facebook fill={theme.colors.white.value} />
+                        ) : (
+                          ""
+                        )}
+                        {item.icon.toLowerCase() === "linkedin" ? (
+                          <LinkedIn fill={theme.colors.white.value} />
+                        ) : (
+                          ""
+                        )}
+                        {item.icon.toLowerCase() === "instagram" ? (
+                          <Instagram fill={theme.colors.white.value} />
+                        ) : (
+                          ""
+                        )}
+                        {item.icon.toLowerCase() === "twitter" ? (
+                          <Twitter fill={theme.colors.white.value} />
+                        ) : (
+                          ""
+                        )}
+                        {item.icon.toLowerCase() === "youtube" ? (
+                          <Youtube fill={theme.colors.white.value} />
+                        ) : (
+                          ""
+                        )}
+                        {item.icon.toLowerCase() === "wechat" ? (
+                          <WeChat fill={theme.colors.white.value} />
+                        ) : (
+                          ""
+                        )}
+                      </IconWrapper>
+                    </Link>
+                  );
+                })}
             </IconContainer>
           </ExtraFooterBottomRight>
         </ExtraFooterBottom>
