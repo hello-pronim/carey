@@ -9,9 +9,17 @@ const Content = styled("div", {
 const Layout = ({ children, ...props }) => {
   return (
     <>
-      <Header navigation={props.navigation} />
+      <Header
+        navigation={props.navigation}
+        headerNav={props.headerNav}
+        headerGlobals={props.headerGlobals}
+      />
       <Content>{children}</Content>
-      <Footer />
+      <Footer
+        footerNav={props.footerNav}
+        footerGlobals={props.footerGlobals}
+        sitemap={props.sitemap}
+      />
     </>
   );
 };

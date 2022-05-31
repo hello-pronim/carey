@@ -110,6 +110,9 @@ const IconWrapper = styled("li", {
           display: "list-item",
         },
       },
+      0: {
+        display: "list-item",
+      },
     },
   },
 });

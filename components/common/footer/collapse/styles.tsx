@@ -55,6 +55,10 @@ const ListItem = styled("li", {
       color: "$white",
     },
   },
+  a: {
+    color: "$white",
+    textDecoration: "none",
+  },
 });
 
 const Wrapper = styled(motion.div, {

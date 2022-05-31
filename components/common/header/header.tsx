@@ -24,7 +24,8 @@ import {
 } from "./styles";
 import Image from "next/image";
 
-const Header = ({ navigation }) => {
+const Header = ({ navigation, headerNav, headerGlobals }) => {
+  const { headerRightLinks } = headerGlobals;
   const [hasStuck, setHasStuck] = useState(false);
   const header = useRef(null);
   const yPos = useWindowScroll().y;
@@ -70,33 +71,48 @@ const Header = ({ navigation }) => {
         </DrawerToggleWrapper>
       </HeaderLeft>
       <HeaderRight>
-        <NavItem hiddenUnder={600}>
-          <Link href="/why-carey" passHref>
-            <Text as="a" variant="Button-Regular-Med">
-              Why Carey
-            </Text>
-          </Link>
-        </NavItem>
-        <NavItem hiddenUnder={768}>
-          <Link href="/life-at-carey" passHref>
-            <Text as="a" variant="Button-Regular-Med">
-              Life at carey
-            </Text>
-          </Link>
-        </NavItem>
+        {headerNav?.length > 0 &&
+          headerNav.map((navItem: any, index: number) => {
+            return (
+              <NavItem
+                hiddenUnder={index === 0 ? 600 : 768}
+                key={`item-${navItem.id}`}
+              >
+                <Link href={`/${navItem.url}`} passHref>
+                  <Text as="a" variant="Button-Regular-Med">
+                    {navItem.label}
+                  </Text>
+                </Link>
+              </NavItem>
+            );
+          })}
         <IconContainer>
-          <IconWrapper hiddenUnder={400}>
-            <HeartBox />
-          </IconWrapper>
-          <IconWrapper>
-            <Phone />
-          </IconWrapper>
-          <IconWrapper>
-            <CareyLink />
-          </IconWrapper>
-          <IconWrapper hiddenUnder={400}>
-            <Search />
-          </IconWrapper>
+          {headerRightLinks?.length > 0 &&
+            headerRightLinks.map((item: any, index: number) => {
+              return (
+                <IconWrapper
+                  key={`rightItem-${item.id}`}
+                  hiddenUnder={index === 0 || index === 3 ? 400 : 0}
+                >
+                  <Link href={item.itemlink}>
+                    <a>
+                      {item.icon.toLowerCase() === "heartbox" ? (
+                        <HeartBox />
+                      ) : (
+                        ""
+                      )}
+                      {item.icon.toLowerCase() === "phone" ? <Phone /> : ""}
+                      {item.icon.toLowerCase() === "careylink" ? (
+                        <CareyLink />
+                      ) : (
+                        ""
+                      )}
+                      {item.icon.toLowerCase() === "search" ? <Search /> : ""}
+                    </a>
+                  </Link>
+                </IconWrapper>
+              );
+            })}
         </IconContainer>
       </HeaderRight>
       <AnimatePresence>
