@@ -136,7 +136,7 @@ const Footer = ({ footerGlobals, footerNav, sitemap }) => {
                 legalLinks.map((item) => {
                   return (
                     <NavItem key={`legal-item-${item.id}`} decoration={false}>
-                      <Link href={item?.entry[0]?.uri} passHref>
+                      <Link href={item?.entry[0]?.uri || "/"} passHref>
                         <Text
                           as="a"
                           variant="Body-Small"

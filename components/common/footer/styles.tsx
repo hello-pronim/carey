@@ -32,6 +32,10 @@ const DrawerToggleWrapper = styled("button", {
   cursor: "pointer",
   border: 0,
   bg: "transparent",
+  span: {
+    textTransform: "none",
+    letterSpacing: "$regular",
+  },
   "&:hover": {
     span: {
       fontSize: "18px",
@@ -245,8 +249,10 @@ const NavItem = styled("li", {
 
 const NavItemText = styled(Text, {
   color: "$white",
-  fontWeight: "bold",
+  fontWeight: "$medium",
   textDecoration: "none",
+  textTransform: "uppercase",
+  letterSpacing: "0.02em",
 });
 
 const TextWrapper = styled("div", {

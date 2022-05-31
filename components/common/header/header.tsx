@@ -78,7 +78,7 @@ const Header = ({ navigation, headerNav, headerGlobals }) => {
                 hiddenUnder={index === 0 ? 600 : 768}
                 key={`item-${navItem.id}`}
               >
-                <Link href={`/${navItem.url}`} passHref>
+                <Link href={`/${navItem.url || ""}`} passHref>
                   <Text as="a" variant="Button-Regular-Med">
                     {navItem.label}
                   </Text>
@@ -94,7 +94,7 @@ const Header = ({ navigation, headerNav, headerGlobals }) => {
                   key={`rightItem-${item.id}`}
                   hiddenUnder={index === 0 || index === 3 ? 400 : 0}
                 >
-                  <Link href={item.itemlink}>
+                  <Link href={item.itemlink || "/"}>
                     <a>
                       {item.icon.toLowerCase() === "heartbox" ? (
                         <HeartBox />

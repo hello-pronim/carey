@@ -26,6 +26,10 @@ const Container = styled(motion.div, {
 
 const HeadingText = styled(Text, {
   color: "$white",
+  cursor: "pointer",
+  "&:hover": {
+    color: "$crestBlue400",
+  },
 });
 
 const List = styled("ul", {
@@ -49,14 +53,25 @@ const ListItem = styled("li", {
   margin: 0,
   padding: 0,
   gap: 20,
-  [`& ${List}`]: {
+  "&:hover": {
+    span: {
+      color: "$crestBlue400",
+    },
+  },
+  ul: {
     paddingLeft: 8,
-    [`& ${ListItemText}`]: {
-      color: "$white",
+    li: {
+      ":hover": {
+        a: {
+          color: "$crest400",
+        },
+      },
+      a: {
+        color: "$white",
+      },
     },
   },
   a: {
-    color: "$white",
     textDecoration: "none",
   },
 });

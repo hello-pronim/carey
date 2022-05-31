@@ -31,8 +31,20 @@ const Root = styled("button", {
       md: {
         borderRadius: 44,
         height: 44,
-        lineHeight: "44px",
-        px: 16,
+        lineHeight: 44,
+        px: 24,
+        "@min375": {
+          borderRadius: 40,
+          height: 40,
+          lineHeight: 40,
+          px: 20,
+        },
+        "@min1440": {
+          borderRadius: 44,
+          height: 44,
+          lineHeight: 44,
+          px: 24,
+        },
       },
       sm: {
         borderRadius: 40,
@@ -79,6 +91,7 @@ const Root = styled("button", {
       css: {
         borderColor: "$crestYellow",
         bg: "transparent",
+        boxSizing: "border-box",
         span: {
           color: "$white",
         },
