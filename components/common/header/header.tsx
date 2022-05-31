@@ -94,7 +94,7 @@ const Header = ({ navigation, headerNav, headerGlobals }) => {
                   key={`rightItem-${item.id}`}
                   hiddenUnder={index === 0 || index === 3 ? 400 : 0}
                 >
-                  <Link href={item.itemlink}>
+                  <Link href={item.itemlink ? item.itemlink : "/"}>
                     <a>
                       {item.icon.toLowerCase() === "heartbox" ? (
                         <HeartBox />
