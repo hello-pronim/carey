@@ -93,6 +93,14 @@ const Heading = styled("div", {
   position: "relative",
 });
 
+const HeadingText = styled(Text, {
+  color: "$white",
+  fontSize: "$headingOverline",
+  lineHeight: "$medium",
+  fontWeight: "$semiBold",
+  letterSpacing: "$spaced",
+});
+
 const IconsWrapper = styled("div", {
   position: "absolute",
   right: 0,
@@ -140,7 +148,7 @@ const LinkWrapper = styled("div", {
   },
   "@min768": {
     justifyContent: "flex-start",
-    px: 24,
+    px: 20,
   },
   "@min1024": {
     justifyContent: "flex-start",
@@ -218,6 +226,7 @@ export {
   Content,
   Description,
   Heading,
+  HeadingText,
   IconsWrapper,
   ImageWrapper,
   Left,

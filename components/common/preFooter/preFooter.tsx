@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { theme } from "@styles/stitches";
 import { Button, Text } from "@components/common";
 import ArrowRight from "@components/common/icons/arrowRight";
 import Instagram from "@components/common/icons/instagram";
@@ -13,6 +12,7 @@ import {
   Content,
   Description,
   Heading,
+  HeadingText,
   IconsWrapper,
   ImageWrapper,
   Left,
@@ -30,12 +30,7 @@ const PreFooter = () => {
           <Container>
             <Content>
               <Heading>
-                <Text
-                  variant="Body-xSmall"
-                  css={{ color: theme.colors.white.value }}
-                >
-                  LATEST NEWS
-                </Text>
+                <HeadingText>LATEST NEWS</HeadingText>
               </Heading>
               <Description>
                 Student agency at its most creative and critical: The Virtual
@@ -49,7 +44,7 @@ const PreFooter = () => {
                   label="Read more"
                   type="outline"
                   theme="transparent"
-                  scale="xs"
+                  scale="md"
                   href="#"
                 />
               </ActionItem>
@@ -82,12 +77,7 @@ const PreFooter = () => {
           <Container>
             <Content>
               <Heading>
-                <Text
-                  variant="Body-xSmall"
-                  css={{ color: theme.colors.white.value }}
-                >
-                  KEEPING UP WITH CAREY
-                </Text>
+                <HeadingText>KEEPING UP WITH CAREY</HeadingText>
                 <IconsWrapper>
                   <Link href="#" passHref>
                     <Text as="a">
@@ -107,7 +97,7 @@ const PreFooter = () => {
                   label="Follow us"
                   type="outline"
                   theme="transparent"
-                  scale="xs"
+                  scale="md"
                   href="#"
                 />
               </ActionItem>

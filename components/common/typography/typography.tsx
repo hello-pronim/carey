@@ -100,6 +100,12 @@ const Text = styled("span", {
         fontSize: "$buttonRegular",
         lineHeight: "$large",
         letterSpacing: "$regular",
+        "@min375": {
+          fontSize: "$bodySmall",
+        },
+        "@min1440": {
+          fontSize: "$buttonRegular",
+        },
       },
       "Button-Regular-Med": {
         fontWeight: "$medium",
