@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { theme } from "@styles/stitches";
 import { Button, Text } from "@components/common";
 import ArrowRight from "@components/common/icons/arrowRight";
 import Instagram from "@components/common/icons/instagram";
@@ -10,8 +9,10 @@ import {
   ActionItem,
   ActionsWrapper,
   Container,
+  Content,
   Description,
   Heading,
+  HeadingText,
   IconsWrapper,
   ImageWrapper,
   Left,
@@ -27,18 +28,15 @@ const PreFooter = () => {
       <Left>
         <PreFooterWidget position="left">
           <Container>
-            <Heading>
-              <Text
-                variant="Body-xSmall"
-                css={{ color: theme.colors.white.value }}
-              >
-                LATEST NEWS
-              </Text>
-            </Heading>
-            <Description>
-              Student agency at its most creative and critical: The Virtual
-              Carey Art and Design...
-            </Description>
+            <Content>
+              <Heading>
+                <HeadingText>LATEST NEWS</HeadingText>
+              </Heading>
+              <Description>
+                Student agency at its most creative and critical: The Virtual
+                Carey Art and Design...
+              </Description>
+            </Content>
             <ActionsWrapper>
               <ActionItem>
                 <Button
@@ -46,7 +44,7 @@ const PreFooter = () => {
                   label="Read more"
                   type="outline"
                   theme="transparent"
-                  scale="xs"
+                  scale="md"
                   href="#"
                 />
               </ActionItem>
@@ -77,24 +75,21 @@ const PreFooter = () => {
       <Right>
         <PreFooterWidget position="right">
           <Container>
-            <Heading>
-              <Text
-                variant="Body-xSmall"
-                css={{ color: theme.colors.white.value }}
-              >
-                KEEPING UP WITH CAREY
-              </Text>
-              <IconsWrapper>
-                <Link href="#" passHref>
-                  <Text as="a">
-                    <Instagram width={34} />
-                  </Text>
-                </Link>
-              </IconsWrapper>
-            </Heading>
-            <Description>
-              Follow us on Instagram for regular updates about Carey life.
-            </Description>
+            <Content>
+              <Heading>
+                <HeadingText>KEEPING UP WITH CAREY</HeadingText>
+                <IconsWrapper>
+                  <Link href="#" passHref>
+                    <Text as="a">
+                      <Instagram width={34} />
+                    </Text>
+                  </Link>
+                </IconsWrapper>
+              </Heading>
+              <Description>
+                Follow us on Instagram for regular updates about Carey life.
+              </Description>
+            </Content>
             <ActionsWrapper>
               <ActionItem>
                 <Button
@@ -102,7 +97,7 @@ const PreFooter = () => {
                   label="Follow us"
                   type="outline"
                   theme="transparent"
-                  scale="xs"
+                  scale="md"
                   href="#"
                 />
               </ActionItem>

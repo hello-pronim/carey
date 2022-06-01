@@ -118,6 +118,7 @@ export const {
     min1200: "(min-width: 1200px)",
     min1440: "(min-width: 1440px)",
     min1660: "(min-width: 1660px)",
+    min1800: "(min-width: 1800px)",
     min1920: "(min-width: 1920px)",
     max480: "(max-width: 480px)",
     max600: "(max-width: 600px)",
@@ -126,6 +127,7 @@ export const {
     max1200: "(max-width: 1200px)",
     max1440: "(max-width: 1440px)",
     max1660: "(max-width: 1660px)",
+    max1800: "(max-width: 1800px)",
     max1920: "(max-width: 1920px)",
   },
   utils: {

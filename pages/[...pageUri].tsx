@@ -10,6 +10,11 @@ import { initializeApollo } from "@utils/apolloClient";
 interface PageProps {
   pageData: any;
   navigation: Array<any>;
+  headerNav: Array<any>;
+  headerGlobals: Array<any>;
+  footerGlobals: Array<any>;
+  footerNav: Array<any>;
+  sitemap: Array<any>;
 }
 
 export default function Page({ pageData }: PageProps) {

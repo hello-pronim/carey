@@ -32,6 +32,16 @@ const DrawerToggleWrapper = styled("button", {
   cursor: "pointer",
   border: 0,
   bg: "transparent",
+  span: {
+    textTransform: "none",
+    letterSpacing: "$regular",
+  },
+  "&:hover": {
+    span: {
+      fontSize: "18px",
+      textDecoration: "underline",
+    },
+  },
 });
 
 const ExtraFooter = styled("div", {
@@ -184,6 +194,28 @@ const IconWrapper = styled("li", {
 const NavItem = styled("li", {
   listStyle: "none",
   variants: {
+    decoration: {
+      false: {
+        "&:hover": {
+          a: {
+            textDecoration: "none",
+            span: {
+              textDecoration: "none",
+            },
+          },
+        },
+      },
+      true: {
+        "&:hover": {
+          a: {
+            textDecoration: "underline",
+            span: {
+              textDecoration: "underline",
+            },
+          },
+        },
+      },
+    },
     hiddenUnder: {
       600: {
         display: "none",
@@ -205,12 +237,22 @@ const NavItem = styled("li", {
       },
     },
   },
+  "&:hover": {
+    a: {
+      textDecoration: "underline",
+      span: {
+        textDecoration: "underline",
+      },
+    },
+  },
 });
 
 const NavItemText = styled(Text, {
   color: "$white",
-  fontWeight: "bold",
+  fontWeight: "$medium",
   textDecoration: "none",
+  textTransform: "uppercase",
+  letterSpacing: "0.02em",
 });
 
 const TextWrapper = styled("div", {
