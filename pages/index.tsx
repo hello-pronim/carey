@@ -18,7 +18,7 @@ export default function HomePage({
   return (
     <>
       <Head>
-        <title>Home | Traffic Next.js</title>
+        <title>Home | Carey Grammar</title>
         <meta name="description" content="Traffic Next.js Starter" />
         <meta name="robots" content="index, follow" />
       </Head>

@@ -16,11 +16,11 @@ export default function Page({ pageData }: PageProps) {
   return (
     <>
       <Head>
-        <title>Home | Traffic Next.js</title>
+        <title>{pageData?.title} | Carey Grammar</title>
         <meta name="description" content="Traffic Next.js Starter" />
         <meta name="robots" content="index, follow" />
       </Head>
-      <General pageData={pageData} />
+      <General pageData={pageData?.generalComponents} />
     </>
   );
 }
@@ -31,14 +31,13 @@ Page.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = withGlobalData(
   async ({ params }) => {
-    console.log(params.pageUri[0]);
     const client = initializeApollo();
     const {
       data: { entry: pageData },
     } = await client.query({
       query: GeneralPageQuery,
       variables: {
-        slug: params.pageUri[0],
+        slug: params.pageUri[params.pageUri?.length - 1],
       },
     });
     return {
