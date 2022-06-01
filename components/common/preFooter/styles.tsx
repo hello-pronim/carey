@@ -125,7 +125,7 @@ const ImageWrapper = styled("div", {
   "@min768": { display: "none" },
   "@min1440": { display: "block" },
   "& img": {
-    transition: "transform 0.2s ease-out 0.2s",
+    transition: "transform 0.4s ease-out 0.4s",
     "&:hover": {
       transform: "scale(1.1)",
     },
