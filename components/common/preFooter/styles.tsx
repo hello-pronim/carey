@@ -93,16 +93,26 @@ const IconsWrapper = styled("div", {
 });
 
 const ImageWrapper = styled("div", {
+  position: "relative",
   display: "block",
-  width: "100%",
   flex: 1,
   "@min768": { display: "none" },
   "@min1440": { display: "block" },
+  "> span": {
+    width: "100% !important",
+    height: "100% !important",
+    position: "absolute !important",
+  },
   "& img": {
-    transition: "transform 0.4s ease-out 0.4s",
+    transition: "transform 0.2s ease-out 0.2s",
     "&:hover": {
       transform: "scale(1.1)",
     },
+  },
+  "&:after": {
+    content: "' '",
+    display: "block",
+    paddingBottom: "100%",
   },
 });
 
