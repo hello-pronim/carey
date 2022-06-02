@@ -38,7 +38,7 @@ const Root = styled("button", {
           lineHeight: 40,
           px: 20,
         },
-        "@min1440": {
+        "@min1920": {
           borderRadius: 44,
           height: 44,
           lineHeight: 44,

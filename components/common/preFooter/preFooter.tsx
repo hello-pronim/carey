@@ -8,7 +8,6 @@ import PreFooterImage2 from "public/assets/img/prefooter_img_2.png";
 import {
   ActionItem,
   ActionsWrapper,
-  Container,
   Content,
   Description,
   Heading,
@@ -19,6 +18,7 @@ import {
   LinkWrapper,
   PreFooterWidget,
   Right,
+  WidgetContainer,
   Wrapper,
 } from "./styles";
 
@@ -27,7 +27,7 @@ const PreFooter = () => {
     <Wrapper>
       <Left>
         <PreFooterWidget position="left">
-          <Container>
+          <WidgetContainer>
             <Content>
               <Heading>
                 <HeadingText>LATEST NEWS</HeadingText>
@@ -59,7 +59,7 @@ const PreFooter = () => {
                 </LinkWrapper>
               </ActionItem>
             </ActionsWrapper>
-          </Container>
+          </WidgetContainer>
           <ImageWrapper>
             <Image
               alt="PreFooter Image"
@@ -74,7 +74,7 @@ const PreFooter = () => {
       </Left>
       <Right>
         <PreFooterWidget position="right">
-          <Container>
+          <WidgetContainer>
             <Content>
               <Heading>
                 <HeadingText>KEEPING UP WITH CAREY</HeadingText>
@@ -112,7 +112,7 @@ const PreFooter = () => {
                 </LinkWrapper>
               </ActionItem>
             </ActionsWrapper>
-          </Container>
+          </WidgetContainer>
           <ImageWrapper>
             <Image
               alt="PreFooter Image"
