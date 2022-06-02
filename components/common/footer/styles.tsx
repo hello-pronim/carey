@@ -35,10 +35,12 @@ const DrawerToggleWrapper = styled("button", {
   span: {
     textTransform: "none",
     letterSpacing: "$regular",
+    transition: "transform ease-in-out 100ms",
   },
   "&:hover": {
     span: {
-      fontSize: "18px",
+      transform: "scale(1.1)",
+      display: "block",
       textDecoration: "underline",
     },
   },
