@@ -6,6 +6,9 @@ const Text = styled("span", {
   color: "$navy",
   fontFeatureSettings: "'pnum' on, 'lnum' on",
   textDecoration: "none",
+  a: {
+    color: "$link",
+  },
   //Variants
   variants: {
     variant: {

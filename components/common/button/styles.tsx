@@ -13,6 +13,10 @@ const Root = styled("button", {
     pointerEvents: "none",
     cursor: "initial",
   },
+  "> span": {
+    position: "relative",
+    top: "0.1em",
+  },
   variants: {
     scale: {
       xl: {
