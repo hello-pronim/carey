@@ -106,7 +106,7 @@ const Text = styled("span", {
         "@min375": {
           fontSize: "$bodySmall",
         },
-        "@min1440": {
+        "@min1920": {
           fontSize: "$buttonRegular",
         },
       },

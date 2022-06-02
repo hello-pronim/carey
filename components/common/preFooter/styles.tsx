@@ -52,36 +52,10 @@ const ActionsWrapper = styled("div", {
     flexDirection: "row",
   },
 });
-
-const Container = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  gap: 24,
-  flex: 1,
-  padding: "48px 24px",
-  "@min1024": {
-    padding: 40,
-  },
-  "@min1440": {
-    padding: "56px 24px 56px 56px",
-    gap: 28,
-  },
-  "@min1920": {
-    padding: 80,
-    gap: 40,
-  },
-});
-
 const Content = styled("div", {
   display: "flex",
   flexDirection: "column",
-  "@min1024": {
-    gap: 24,
-  },
-  "@min1440": {
-    gap: 28,
-  },
+  gap: 24,
   "@min1920": {
     gap: 40,
   },
@@ -119,16 +93,26 @@ const IconsWrapper = styled("div", {
 });
 
 const ImageWrapper = styled("div", {
+  position: "relative",
   display: "block",
-  width: "100%",
   flex: 1,
   "@min768": { display: "none" },
   "@min1440": { display: "block" },
+  "> span": {
+    width: "100% !important",
+    height: "100% !important",
+    position: "absolute !important",
+  },
   "& img": {
     transition: "transform 0.2s ease-out 0.2s",
     "&:hover": {
       transform: "scale(1.1)",
     },
+  },
+  "&:after": {
+    content: "' '",
+    display: "block",
+    paddingBottom: "100%",
   },
 });
 
@@ -156,7 +140,7 @@ const LinkWrapper = styled("div", {
   },
   "@min1440": {
     justifyContent: "flex-start",
-    px: 24,
+    px: 20,
   },
   "@min1800": {
     justifyContent: "flex-start",
@@ -205,8 +189,28 @@ const Description = styled("div", {
   fontSize: 18,
   lineHeight: 1.6,
   color: "$white",
-  "@min1440": {
+  "@min1920": {
     fontSize: 22,
+  },
+});
+
+const WidgetContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  gap: 24,
+  flex: 1,
+  padding: "48px 24px",
+  "@min1024": {
+    padding: 40,
+  },
+  "@min1440": {
+    padding: "56px 24px 56px 56px",
+    gap: 28,
+  },
+  "@min1920": {
+    padding: 80,
+    gap: 40,
   },
 });
 
@@ -222,7 +226,7 @@ const Wrapper = styled("div", {
 export {
   ActionItem,
   ActionsWrapper,
-  Container,
+  WidgetContainer,
   Content,
   Description,
   Heading,
