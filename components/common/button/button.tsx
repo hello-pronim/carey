@@ -7,6 +7,7 @@ import Plus from "@components/common/icons/plus";
 
 const Button = ({
   label,
+  color,
   scale,
   type,
   theme,
@@ -44,6 +45,7 @@ const Button = ({
         onClick={onClick}
         disabled={disabled}
         fullWidth={fullWidth}
+        style={{ backgroundColor: color }}
       >
         {plus && <Plus />}
         <Text variant={labelType}>{label}</Text>
@@ -58,6 +60,7 @@ type buttonTypes = {
   scale?: "xl" | "lg" | "md" | "sm" | "xs";
   type?: "solid" | "outline" | "ghost";
   theme?: "light" | "dark" | "transparent";
+  color?: string;
   plus?: boolean;
   arrow?: boolean;
   disabled?: boolean;

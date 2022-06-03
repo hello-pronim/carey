@@ -3,11 +3,7 @@ import { styled, theme } from "@styles/stitches";
 import { motion } from "framer-motion";
 import Button from "@components/common/button/button";
 import { AnimatePresence } from "framer-motion";
-import { v4 as uuid } from "uuid";
-
-const AccordionItem = styled("div", {
-  width: "100%",
-});
+import OperatorIcon from "@components/common/icons/operatorIcon";
 
 const accordion = {
   hidden: {
@@ -38,64 +34,84 @@ const accordionInner = {
   },
 };
 
-const Div = styled(motion.div, {});
-
+const AccordionItem = styled("div", {
+  width: "100%",
+});
+const Div = styled("span", {
+  display: "flex",
+  alignItems: "center",
+});
+const ContentWrraper = styled(motion.div, {});
+const SVGWrraper = styled("div", {});
 const Title = styled("div", {
-  fontSize: "$headingSmall",
+  fontSize: "22px",
   fontWeight: 500,
   "@media screen and (max-width: 1440px)": {
-    fontSize: "$headingXSmall",
+    fontSize: "18px",
   },
-  marginLeft: "24px",
 });
-
 const ContentBlock = styled("div");
-
 const ContentSecondBlock = styled("div", {
   padding: "2.5rem",
   background: "#FFFFFF",
-  marginTop: "56px",
+  marginTop: "16px",
 });
-
 const Number = styled("span", {
-  padding: "10px 16px 6px 16px",
+  width: "36px",
+  height: "36px",
+  "@media screen and (max-width: 1440px)": {
+    width: "26px",
+    height: "26px",
+  },
   borderRadius: "100%",
   border: "1px solid #051B3F",
+  display: "flex",
+  marginRight: "24px",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "transparent",
 });
-
-// const Dot = styled("div", {
-//     padding: "3px",
-//     borderRadius: "100%",
-//     border: "1px solid",
-//     backgroundColor: "#051B3F",
-// });
-
+const Dot = styled("div", {
+  padding: "3px",
+  borderRadius: "100%",
+  border: "1px solid",
+  backgroundColor: "#051B3F",
+});
 const TitleWrraper = styled("div", {
   display: "flex",
+  width: "100%",
   alignItems: "center",
   "&:hover": {
     span: {
+      transition: "0.3s all",
       backgroundColor: "#051B3F",
       color: "white",
     },
   },
 });
-
 const ButtonWrapper = styled("div", {
   paddingTop: "2rem",
 });
-
 const AccordionTitle = styled("div", {
   color: "#051B3F",
   display: "flex",
+  borderBottom: "1px solid #B3CBDE",
   fontFamily: `${theme.fonts.poppins}`,
   flexDirection: "row",
   justifyContent: "space-between",
   cursor: "pointer",
   backgroundColor: "transparent",
-  padding: "1rem",
+  padding: "1rem .5rem",
+  transition: "0.3s all",
+  "&:hover": {
+    div: {
+      svg: {
+        backgroundColor: "#FFFF",
+        borderRadius: "100%",
+      },
+    },
+  },
 });
-
 const AccordionContent = styled(motion.div, {
   fontFamily: "$poppins",
   fontWeight: "400px",
@@ -111,25 +127,49 @@ const AccordionContent = styled(motion.div, {
 });
 
 const Accordions = (props) => {
-  const [isActive, setIsActive] = useState(false);
+  const [accordions, setAccordions] = useState<any>(props?.accordions);
+
+  const changeActiveAccordion = (index) => {
+    const changedAccordions = [...accordions];
+    changedAccordions[index].isOpened = !changedAccordions[index].isOpened;
+    setAccordions(changedAccordions);
+  };
 
   return (
     <div style={{ gridColumn: "2 / span 6" }}>
-      {props?.accordions?.length
-        ? props?.accordions?.map((item, index) => {
+      {accordions?.length
+        ? accordions?.map((item, index) => {
             return (
-              <AccordionItem key={uuid}>
-                <AccordionTitle onClick={() => setIsActive(!isActive)}>
+              <AccordionItem key={item.index}>
+                <AccordionTitle onClick={() => changeActiveAccordion(index)}>
                   <TitleWrraper>
-                    <Number>{index + 1}</Number>
-                    {/* <Dot /> */}
+                    {props.accordionSetType === "numbered" && (
+                      <Number>{index + 1}</Number>
+                    )}
+                    {props.accordionSetType === "ticked" && <Dot />}
                     <Title>{item.headline}</Title>
                   </TitleWrraper>
-                  <Div>{isActive ? "-" : "+"}</Div>
+                  {props.accordionSetType === "plain" ? (
+                    <SVGWrraper>
+                      {item.isOpened ? (
+                        <OperatorIcon type="minus" />
+                      ) : (
+                        <OperatorIcon type="plus" />
+                      )}
+                    </SVGWrraper>
+                  ) : (
+                    <Div>
+                      {item.isOpened ? (
+                        <OperatorIcon type="minus" />
+                      ) : (
+                        <OperatorIcon type="plus" />
+                      )}
+                    </Div>
+                  )}
                 </AccordionTitle>
                 <AnimatePresence>
-                  {isActive && (
-                    <Div
+                  {item.isOpened && (
+                    <ContentWrraper
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
@@ -155,18 +195,24 @@ const Accordions = (props) => {
                             }}
                           ></ContentSecondBlock>
                         )}
-                        <ButtonWrapper>
-                          <Button
-                            arrow
-                            label="Apply online"
-                            type="solid"
-                            theme="light"
-                            scale="sm"
-                            href="#"
-                          />
-                        </ButtonWrapper>
+                        {item.buttonText &&
+                          (item.buttonEntry || item.buttonURL) && (
+                            <ButtonWrapper>
+                              <Button
+                                arrow={item.buttonArrow}
+                                label={item.buttonText}
+                                color={item.buttonColor}
+                                type="solid"
+                                theme="light"
+                                scale="sm"
+                                href={
+                                  item.buttonEntry?.[0]?.uri || item.buttonUrl
+                                }
+                              />
+                            </ButtonWrapper>
+                          )}
                       </AccordionContent>
-                    </Div>
+                    </ContentWrraper>
                   )}
                 </AnimatePresence>
               </AccordionItem>

@@ -28,6 +28,7 @@ export const GeneralPageQuery = gql`
             accordionSetType
             accordions {
               ... on accordions_BlockType {
+                isOpened
                 headline
                 contentBlock
                 breakOutBlock
