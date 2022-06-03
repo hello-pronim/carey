@@ -5,6 +5,7 @@ import { Container } from "@components/common";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
 import ELCTable from "./components/ELCTable";
+import Accordion from "./components/Accordion";
 
 const General = ({ pageData }) => {
   // Mostly just to make the Module Map look cleaner.
@@ -14,13 +15,14 @@ const General = ({ pageData }) => {
   const Modules = new Map([
     [ModuleType("learningCentre"), ELCTable],
     [ModuleType("contentBlock"), Content],
+    [ModuleType("accordionsSet"), Accordion],
   ]);
 
   return (
     <>
       <Hero type="general" />
       <Container innerCSS={{ rowGap: 56, py: 56 }}>
-        {pageData.map((module) => (
+        {pageData?.map((module) => (
           <InvokeElement
             key={uuid()}
             el={module}

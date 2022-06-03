@@ -24,6 +24,23 @@ export const GeneralPageQuery = gql`
             bodyText
             bgColor: backgroundColor
           }
+          ... on generalComponents_accordionsSet_BlockType {
+            accordionSetType
+            accordions {
+              ... on accordions_BlockType {
+                headline
+                contentBlock
+                breakOutBlock
+                buttonText
+                buttonEntry {
+                  uri
+                }
+                buttonColor
+                buttonArrow
+                buttonUrl
+              }
+            }
+          }
         }
       }
     }
