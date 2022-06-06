@@ -28,16 +28,29 @@ export const GeneralPageQuery = gql`
             accordionSetType
             accordions {
               ... on accordions_BlockType {
-                headline
-                contentBlock
-                breakOutBlock
-                buttonText
-                buttonEntry {
-                  uri
+                accordionLayout {
+                  ... on accordionLayout_Heading_BlockType {
+                    isOpened
+                    headline
+                  }
+                  ... on accordionLayout_content_BlockType {
+                    contentBlock
+                  }
+                  ... on accordionLayout_breakOut_BlockType {
+                    breakOutBlock
+                  }
+                  ... on accordionLayout_button_BlockType {
+                    buttonText
+                    buttonUrl
+                    buttonType
+                    buttonSize
+                    buttonTheme
+                    arrowed
+                    buttonEntry {
+                      uri
+                    }
+                  }
                 }
-                buttonColor
-                buttonArrow
-                buttonUrl
               }
             }
           }

@@ -1,39 +1,9 @@
 import React, { useState } from "react";
 import { styled, theme } from "@styles/stitches";
 import { motion } from "framer-motion";
-import { v4 as uuid } from "uuid";
 import { Text, Button } from "@components/common";
 import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
-
-const accordion = {
-  hidden: {
-    height: 0,
-    overflow: "hidden",
-    transition: {
-      when: "after-children",
-      ease: "easeInOut",
-      duration: 0.6,
-    },
-  },
-  visible: {
-    height: "auto",
-    transition: {
-      when: "before-children",
-      ease: "easeInOut",
-      duration: 0.6,
-    },
-  },
-};
-
-const accordionInner = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-  },
-};
 
 const AccordionItem = styled("div", {
   width: "100%",
@@ -46,16 +16,11 @@ const Div = styled("span", {
 
 const ContentWrapper = styled(motion.div, {});
 
-const SVGWrapper = styled("div", {});
-
-const Title = styled("div", {
-  fontSize: "22px",
-  fontWeight: 500,
-  "@media screen and (max-width: 1440px)": {
-    fontSize: "18px",
+const SVGWrapper = styled("div", {
+  "> svg": {
+    transition: "0.5s all",
   },
 });
-const ContentBlock = styled("div");
 
 const ContentSecondBlock = styled("div", {
   padding: "2.5rem",
@@ -77,10 +42,11 @@ const Number = styled("span", {
   borderRadius: "100%",
   border: "1px solid #051B3F",
   display: "flex",
-  marginRight: "24px",
+  marginRight: "10px",
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: "transparent",
+  transition: "0.5s all",
 });
 
 const Dot = styled("div", {
@@ -88,6 +54,7 @@ const Dot = styled("div", {
   borderRadius: "100%",
   border: "1px solid",
   backgroundColor: "#051B3F",
+  marginRight: "40px",
 });
 
 const TitleWrapper = styled("div", {
@@ -96,7 +63,6 @@ const TitleWrapper = styled("div", {
   alignItems: "center",
   "&:hover": {
     "> span": {
-      transition: "0.3s all",
       backgroundColor: "#051B3F",
       "> span": { color: "white" },
     },
@@ -117,7 +83,7 @@ const AccordionTitle = styled("div", {
   cursor: "pointer",
   backgroundColor: "transparent",
   padding: "1rem .5rem",
-  transition: "0.3s all",
+  alignItems: "center",
   "&:hover": {
     div: {
       svg: {
@@ -139,7 +105,7 @@ const AccordionContent = styled(motion.div, {
   letterSpacing: "0.01em",
   color: "#051B3F",
   padding: "1rem",
-  marginLeft: "60px",
+  marginLeft: "40px",
 });
 
 const Accordions = (props) => {
@@ -147,8 +113,27 @@ const Accordions = (props) => {
 
   const changeActiveAccordion = (index) => {
     const changedAccordions = [...accordions];
-    changedAccordions[index].isOpened = !changedAccordions[index].isOpened;
+    const layout = changedAccordions?.[index]?.accordionLayout;
+    const blockIndex = layout.findIndex(
+      (el) => el.__typename === blockType("Heading")
+    );
+    layout[blockIndex].isOpened = !layout?.[blockIndex].isOpened;
     setAccordions(changedAccordions);
+  };
+
+  const blockType = (type) => {
+    return `accordionLayout_${type}_BlockType`;
+  };
+
+  const getAttr = (index, key, type) => {
+    const layout = accordions?.[index]?.accordionLayout;
+    if (layout) {
+      const blockIndex = layout.findIndex(
+        (el) => el.__typename === blockType(type)
+      );
+      return layout[blockIndex]?.[key];
+    }
+    return false;
   };
 
   return (
@@ -156,7 +141,7 @@ const Accordions = (props) => {
       {accordions?.length
         ? accordions?.map((item, index) => {
             return (
-              <AccordionItem key={uuid()}>
+              <AccordionItem key={index}>
                 <AccordionTitle onClick={() => changeActiveAccordion(index)}>
                   <TitleWrapper>
                     {props.accordionSetType === "numbered" && (
@@ -165,11 +150,13 @@ const Accordions = (props) => {
                       </Number>
                     )}
                     {props.accordionSetType === "ticked" && <Dot />}
-                    <Title>{item.headline}</Title>
+                    <Text as="h2" variant="Heading-Small">
+                      {getAttr(index, "headline", "Heading")}
+                    </Text>
                   </TitleWrapper>
                   {props.accordionSetType === "plain" ? (
                     <SVGWrapper>
-                      {item.isOpened ? (
+                      {getAttr(index, "isOpened", "Heading") ? (
                         <OperatorIcon type="minus" />
                       ) : (
                         <OperatorIcon type="plus" />
@@ -177,7 +164,7 @@ const Accordions = (props) => {
                     </SVGWrapper>
                   ) : (
                     <Div>
-                      {item.isOpened ? (
+                      {getAttr(index, "isOpened", "Heading") ? (
                         <OperatorIcon type="minus" />
                       ) : (
                         <OperatorIcon type="plus" />
@@ -186,45 +173,57 @@ const Accordions = (props) => {
                   )}
                 </AccordionTitle>
                 <AnimatePresence>
-                  {item.isOpened && (
+                  {getAttr(index, "isOpened", "Heading") && (
                     <ContentWrapper
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      variants={accordion}
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { opacity: 1, height: "auto" },
+                        collapsed: { opacity: 0, height: 0 },
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        ease: [0.04, 0.62, 0.23, 0.98],
+                      }}
                     >
-                      <AccordionContent
-                        variants={accordionInner}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                      >
-                        {item.contentBlock && (
-                          <ContentBlock
+                      <AccordionContent>
+                        {getAttr(index, "contentBlock", "content") && (
+                          <Text
                             dangerouslySetInnerHTML={{
-                              __html: item.contentBlock,
+                              __html: getAttr(index, "contentBlock", "content"),
                             }}
-                          ></ContentBlock>
+                            variant={"Body-Regular"}
+                          />
                         )}
-                        {item.breakOutBlock && (
-                          <ContentSecondBlock
-                            dangerouslySetInnerHTML={{
-                              __html: item.breakOutBlock,
-                            }}
-                          ></ContentSecondBlock>
+                        {getAttr(index, "breakOutBlock", "breakOut") && (
+                          <ContentSecondBlock>
+                            <Text
+                              dangerouslySetInnerHTML={{
+                                __html: getAttr(
+                                  index,
+                                  "contentBlock",
+                                  "content"
+                                ),
+                              }}
+                              variant={"Body-Regular"}
+                            />
+                          </ContentSecondBlock>
                         )}
-                        {item.buttonText &&
-                          (item.buttonEntry || item.buttonURL) && (
+                        {getAttr(index, "buttonText", "button") &&
+                          (getAttr(index, "buttonEntry", "button") ||
+                            getAttr(index, "buttonUrl", "button")) && (
                             <ButtonWrapper>
                               <Button
-                                arrow={item.buttonArrow}
-                                label={item.buttonText}
-                                color={item.buttonColor}
-                                type="solid"
-                                theme="light"
-                                scale="sm"
+                                arrow={getAttr(index, "arrowed", "button")}
+                                label={getAttr(index, "buttonText", "button")}
+                                theme={getAttr(index, "buttonTheme", "button")}
+                                type={getAttr(index, "buttonType", "button")}
+                                scale={getAttr(index, "buttonSize", "button")}
                                 href={
-                                  item.buttonEntry?.[0]?.uri || item.buttonUrl
+                                  getAttr(index, "buttonEntry", "button")?.[0]
+                                    ?.uri ||
+                                  getAttr(index, "buttonUrl", "button")
                                 }
                               />
                             </ButtonWrapper>
