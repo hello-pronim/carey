@@ -1,9 +1,22 @@
 import { parseDocument } from "htmlparser2";
+import getTextColor from "@utils/contrastAwareColors";
 import Link from "next/link";
 import { styled } from "@styles/stitches";
 import { v4 as uuid } from "uuid";
 import { Text } from "@components/common";
 import InvokeElement from "../utils/invokeElement";
+
+const ContentWrapper = styled("div", {
+  gridColumn: "2 / span 6",
+  variants: {
+    hasBG: {
+      true: {
+        p: 44,
+        borderRadius: 4,
+      },
+    },
+  },
+});
 
 const Unordered = styled("ul", {
   display: "block",
@@ -144,9 +157,14 @@ const filterChildren = (children) =>
 const Content = (props) => {
   // Converts HTML string into digestible object.
   const parsedHTML = parseDocument(props.bodyText);
-
   return (
-    <div style={{ gridColumn: "2 / span 6" }}>
+    <ContentWrapper
+      css={{
+        bg: !!props.bgColor && props.bgColor,
+        "*": { color: !!props.bgColor && getTextColor(props.bgColor) },
+      }}
+      hasBG={!!props.bgColor}
+    >
       {parsedHTML.children.map((component: any) => (
         <InvokeElement
           key={uuid()}
@@ -155,7 +173,7 @@ const Content = (props) => {
           map={Elements}
         />
       ))}
-    </div>
+    </ContentWrapper>
   );
 };
 

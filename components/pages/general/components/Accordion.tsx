@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled, theme } from "@styles/stitches";
 import { motion } from "framer-motion";
+import { v4 as uuid } from "uuid";
 import Button from "@components/common/button/button";
 import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
@@ -37,12 +38,16 @@ const accordionInner = {
 const AccordionItem = styled("div", {
   width: "100%",
 });
+
 const Div = styled("span", {
   display: "flex",
   alignItems: "center",
 });
-const ContentWrraper = styled(motion.div, {});
-const SVGWrraper = styled("div", {});
+
+const ContentWrapper = styled(motion.div, {});
+
+const SVGWrapper = styled("div", {});
+
 const Title = styled("div", {
   fontSize: "22px",
   fontWeight: 500,
@@ -51,11 +56,13 @@ const Title = styled("div", {
   },
 });
 const ContentBlock = styled("div");
+
 const ContentSecondBlock = styled("div", {
   padding: "2.5rem",
   background: "#FFFFFF",
   marginTop: "16px",
 });
+
 const Number = styled("span", {
   width: "36px",
   height: "36px",
@@ -71,13 +78,15 @@ const Number = styled("span", {
   alignItems: "center",
   backgroundColor: "transparent",
 });
+
 const Dot = styled("div", {
   padding: "3px",
   borderRadius: "100%",
   border: "1px solid",
   backgroundColor: "#051B3F",
 });
-const TitleWrraper = styled("div", {
+
+const TitleWrapper = styled("div", {
   display: "flex",
   width: "100%",
   alignItems: "center",
@@ -89,9 +98,11 @@ const TitleWrraper = styled("div", {
     },
   },
 });
+
 const ButtonWrapper = styled("div", {
   paddingTop: "2rem",
 });
+
 const AccordionTitle = styled("div", {
   color: "#051B3F",
   display: "flex",
@@ -112,6 +123,7 @@ const AccordionTitle = styled("div", {
     },
   },
 });
+
 const AccordionContent = styled(motion.div, {
   fontFamily: "$poppins",
   fontWeight: "400px",
@@ -140,23 +152,23 @@ const Accordions = (props) => {
       {accordions?.length
         ? accordions?.map((item, index) => {
             return (
-              <AccordionItem key={item.index}>
+              <AccordionItem key={uuid()}>
                 <AccordionTitle onClick={() => changeActiveAccordion(index)}>
-                  <TitleWrraper>
+                  <TitleWrapper>
                     {props.accordionSetType === "numbered" && (
                       <Number>{index + 1}</Number>
                     )}
                     {props.accordionSetType === "ticked" && <Dot />}
                     <Title>{item.headline}</Title>
-                  </TitleWrraper>
+                  </TitleWrapper>
                   {props.accordionSetType === "plain" ? (
-                    <SVGWrraper>
+                    <SVGWrapper>
                       {item.isOpened ? (
                         <OperatorIcon type="minus" />
                       ) : (
                         <OperatorIcon type="plus" />
                       )}
-                    </SVGWrraper>
+                    </SVGWrapper>
                   ) : (
                     <Div>
                       {item.isOpened ? (
@@ -169,7 +181,7 @@ const Accordions = (props) => {
                 </AccordionTitle>
                 <AnimatePresence>
                   {item.isOpened && (
-                    <ContentWrraper
+                    <ContentWrapper
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
@@ -212,7 +224,7 @@ const Accordions = (props) => {
                             </ButtonWrapper>
                           )}
                       </AccordionContent>
-                    </ContentWrraper>
+                    </ContentWrapper>
                   )}
                 </AnimatePresence>
               </AccordionItem>

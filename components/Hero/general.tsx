@@ -35,6 +35,7 @@ const General = (props) => {
             height={598}
             layout="responsive"
             objectFit="cover"
+            priority
           />
         </ImageWrapper>
       </InnerGrid>
