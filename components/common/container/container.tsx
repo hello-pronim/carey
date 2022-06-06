@@ -1,5 +1,5 @@
 import { styled } from "@styles/stitches";
-import React, { Fragment, useMemo } from "react";
+import React, { useMemo } from "react";
 import type * as Stitches from "@stitches/react";
 
 const Wrapper = styled("div", {
@@ -67,6 +67,10 @@ const Flex = styled("div", {
   },
 });
 
+const Unbound = styled("div", {
+  width: "100%",
+});
+
 export const container = {
   outer: Wrapper,
   grid: Grid,
@@ -82,7 +86,7 @@ const Container = ({
   const Inner = useMemo(() => {
     if (type === "flex") return Flex;
     if (type === "grid") return Grid;
-    if (type === "unbound") return Fragment;
+    if (type === "unbound") return Unbound;
     return Grid;
   }, [type]);
 
