@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled, theme } from "@styles/stitches";
 import { motion } from "framer-motion";
 import { v4 as uuid } from "uuid";
-import Button from "@components/common/button/button";
+import { Text, Button } from "@components/common";
 import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
 
@@ -66,6 +66,10 @@ const ContentSecondBlock = styled("div", {
 const Number = styled("span", {
   width: "36px",
   height: "36px",
+  "> span": {
+    position: "relative",
+    top: "0.1em",
+  },
   "@media screen and (max-width: 1440px)": {
     width: "26px",
     height: "26px",
@@ -91,10 +95,10 @@ const TitleWrapper = styled("div", {
   width: "100%",
   alignItems: "center",
   "&:hover": {
-    span: {
+    "> span": {
       transition: "0.3s all",
       backgroundColor: "#051B3F",
-      color: "white",
+      "> span": { color: "white" },
     },
   },
 });
@@ -156,7 +160,9 @@ const Accordions = (props) => {
                 <AccordionTitle onClick={() => changeActiveAccordion(index)}>
                   <TitleWrapper>
                     {props.accordionSetType === "numbered" && (
-                      <Number>{index + 1}</Number>
+                      <Number>
+                        <Text variant="Body-Large">{index + 1}</Text>
+                      </Number>
                     )}
                     {props.accordionSetType === "ticked" && <Dot />}
                     <Title>{item.headline}</Title>
