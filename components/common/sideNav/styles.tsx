@@ -104,8 +104,11 @@ AccordionTrigger.displayName = "Accordion Trigger";
 AccordionContent.displayName = "Accordion Content";
 
 const Wrapper = styled("div", {
+  position: "sticky",
+  top: 152,
   pb: 16,
   gridColumn: "10 / span 3",
+  gridRow: 1,
   bg: "$white",
   height: "max-content",
 });

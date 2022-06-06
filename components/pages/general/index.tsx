@@ -2,6 +2,7 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 import InvokeElement from "./utils/invokeElement";
 import { Container } from "@components/common";
+import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
 import ELCTable from "./components/ELCTable";
@@ -30,6 +31,7 @@ const General = ({ pageData }) => {
             map={Modules}
           />
         ))}
+        <SideNav />
       </Container>
     </>
   );
