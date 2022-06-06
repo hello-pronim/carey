@@ -55,14 +55,16 @@ const Header = ({ navigation, headerNav, headerGlobals }) => {
         </DrawerToggleCompact>
         <LogoWrapper>
           <Link href="/" passHref>
-            <Image
-              alt="Carey Baptist Grammar School"
-              src={isMobile ? CareyCompact : CareyPrimary}
-              width={isMobile ? 122.96 : 257.43}
-              height={isMobile ? 56 : 80}
-              layout="responsive"
-              priority
-            />
+            <a>
+              <Image
+                alt="Carey Baptist Grammar School"
+                src={isMobile ? CareyCompact : CareyPrimary}
+                width={isMobile ? 122.96 : 257.43}
+                height={isMobile ? 56 : 80}
+                layout="responsive"
+                priority
+              />
+            </a>
           </Link>
         </LogoWrapper>
         <DrawerToggleWrapper onClick={() => setDrawerOpen(!drawerOpen)}>
