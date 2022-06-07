@@ -14,7 +14,9 @@ const Div = styled("span", {
   alignItems: "center",
 });
 
-const ContentWrapper = styled(motion.div, {});
+const ContentWrapper = styled(motion.div, {
+  overflow: "hidden",
+});
 
 const SVGWrapper = styled("div", {
   "> svg": {
