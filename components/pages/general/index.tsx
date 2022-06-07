@@ -8,9 +8,9 @@ import Content from "./components/Content";
 // import ELCTable from "./components/ELCTable";
 import Accordion from "./components/Accordion";
 
-const General = ({ pageData }) => {
+const General = ({ pageData, slug, navigation }) => {
   // Mostly just to make the Module Map look cleaner.
-  const ModuleType = (type) => `generalComponents_${type}_BlockType`;
+  const ModuleType = (type: string) => `generalComponents_${type}_BlockType`;
 
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
@@ -23,7 +23,7 @@ const General = ({ pageData }) => {
     <>
       <Hero type="general" />
       <Container innerCSS={{ rowGap: 56, py: 56 }}>
-        {pageData?.map((module) => (
+        {pageData?.map((module: any) => (
           <InvokeElement
             key={uuid()}
             el={module}
@@ -31,7 +31,7 @@ const General = ({ pageData }) => {
             map={Modules}
           />
         ))}
-        <SideNav />
+        <SideNav activeSlug={slug} navigation={navigation} />
       </Container>
     </>
   );
