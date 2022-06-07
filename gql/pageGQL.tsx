@@ -24,6 +24,28 @@ export const GeneralPageQuery = gql`
             bodyText
             bgColor: backgroundColor
           }
+          ... on generalComponents_featuredPanel_BlockType {
+            panelVariant
+            featuredPanel {
+              ... on featurePanels_featurePanels_Entry {
+                title
+                panelContent
+                buttonLabel
+                buttonLink {
+                  uri
+                }
+                imageOfStudent {
+                  url
+                }
+                facilityCampus {
+                  title
+                }
+                facilitySchool {
+                  title
+                }
+              }
+            }
+          }
           ... on generalComponents_accordionsSet_BlockType {
             accordionSetType
             accordions {
