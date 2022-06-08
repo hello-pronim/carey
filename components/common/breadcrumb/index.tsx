@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import Link from "next/link";
 import {
   ActiveLinkText,
@@ -26,7 +27,7 @@ const Breadcrumb = ({ crumbs, pt = 130, pb = 0, pl = 0 }) => {
       {crumbs.map(({ name, path }, index: number) => {
         if (path) {
           return (
-            <LinkWrapper key={`crumb-${index}`}>
+            <LinkWrapper key={uuid()}>
               <Link href={path}>
                 <a>{name}</a>
               </Link>
@@ -35,14 +36,14 @@ const Breadcrumb = ({ crumbs, pt = 130, pb = 0, pl = 0 }) => {
           );
         }
         return (
-          <>
+          <span key={uuid()}>
             <EllipsisDots>•••</EllipsisDots>
-            <LinkWrapper key={`crumb-${index}`}>
+            <LinkWrapper key={uuid()}>
               <ActiveLinkText>
                 {name} {renderCrumbSeparator(crumbs, index)}
               </ActiveLinkText>
             </LinkWrapper>
-          </>
+          </span>
         );
       })}
     </BottomBarInner>
