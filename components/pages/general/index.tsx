@@ -1,12 +1,13 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 import InvokeElement from "./utils/invokeElement";
-import { Container } from "@components/common";
+import { BreadCrumb, Container } from "@components/common";
 import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
 // import ELCTable from "./components/ELCTable";
 import Accordion from "./components/Accordion";
+import { BreadCrumbWrapper } from "./styles";
 
 const General = ({ pageData }) => {
   // Mostly just to make the Module Map look cleaner.
@@ -18,10 +19,16 @@ const General = ({ pageData }) => {
     [ModuleType("contentBlock"), Content],
     [ModuleType("accordionsSet"), Accordion],
   ]);
+  const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
 
   return (
     <>
       <Hero type="general" />
+      <Container type="flex">
+        <BreadCrumbWrapper>
+          <BreadCrumb crumbs={crumbs} pt={0} />
+        </BreadCrumbWrapper>
+      </Container>
       <Container innerCSS={{ rowGap: 56, py: 56 }}>
         {pageData?.map((module) => (
           <InvokeElement
