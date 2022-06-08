@@ -9,6 +9,7 @@ import { initializeApollo } from "@utils/apolloClient";
 
 interface PageProps {
   pageData: any;
+  slug: string;
   navigation: Array<any>;
   headerNav: Array<any>;
   headerGlobals: Array<any>;
@@ -17,7 +18,7 @@ interface PageProps {
   sitemap: Array<any>;
 }
 
-export default function Page({ pageData }: PageProps) {
+export default function Page({ pageData, slug, navigation }: PageProps) {
   return (
     <>
       <Head>
@@ -25,7 +26,11 @@ export default function Page({ pageData }: PageProps) {
         <meta name="description" content="Traffic Next.js Starter" />
         <meta name="robots" content="index, follow" />
       </Head>
-      <General pageData={pageData?.generalComponents} />
+      <General
+        pageData={pageData?.generalComponents}
+        slug={slug}
+        navigation={navigation}
+      />
     </>
   );
 }
@@ -36,18 +41,21 @@ Page.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = withGlobalData(
   async ({ params }) => {
+    const slug = params.pageUri[params.pageUri?.length - 1];
     const client = initializeApollo();
     const {
       data: { entry: pageData },
     } = await client.query({
       query: GeneralPageQuery,
       variables: {
-        slug: params.pageUri[params.pageUri?.length - 1],
+        slug,
       },
     });
+
     return {
       props: {
         pageData,
+        slug,
       },
       revalidate: parseInt(process.env.NEXT_PAGE_REVALIDATE),
     };
@@ -55,6 +63,7 @@ export const getStaticProps: GetStaticProps = withGlobalData(
 );
 
 export function getStaticPaths() {
+  // TODO generate all general static pages
   return {
     paths: [],
     fallback: "blocking",
