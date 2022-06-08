@@ -114,6 +114,7 @@ const Wrapper = styled("div", {
   gridRow: 1,
   bg: "$white",
   height: "max-content",
+  "*": { textDecoration: "none" },
 });
 
 const NavHeader = styled("div", {
