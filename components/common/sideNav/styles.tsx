@@ -40,6 +40,9 @@ const SingleItem = styled("div", {
   cursor: "pointer",
   bg: "$white",
   "&:hover": { bg: "$crestBlue100" },
+  "& a": {
+    textDecoration: "none",
+  },
 });
 
 const StyledTrigger = styled(AccordionPrimitive.Trigger, {

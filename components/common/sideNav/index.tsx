@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Text } from "@components/common";
 import {
   Wrapper,
@@ -33,6 +34,9 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
   };
 
   const activeMenuItem = getActiveParentMenu();
+  if (!activeMenuItem) {
+    return <></>;
+  }
   return (
     <Wrapper>
       <NavHeader>
@@ -46,13 +50,21 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
             return (
               <AccordionItem key={`sidenav-item-1-${i}`} value={item.id}>
                 <AccordionTrigger>
-                  <Text variant="Body-Regular">{item.label}</Text>
+                  <Link href={item.url}>
+                    <a>
+                      <Text variant="Body-Regular">{item.label}</Text>
+                    </a>
+                  </Link>
                 </AccordionTrigger>
                 <AccordionContent>
                   {item.subItems.map((subItem: any, i: number) => {
                     return (
                       <SingleItem key={`sidenav-item-2-${i}`}>
-                        <Text variant="Body-Regular">{subItem.label}</Text>
+                        <Link href={subItem.url}>
+                          <a>
+                            <Text variant="Body-Regular">{subItem.label}</Text>
+                          </a>
+                        </Link>
                       </SingleItem>
                     );
                   })}
@@ -61,8 +73,12 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
             );
           }
           return (
-            <SingleItem key={i}>
-              <Text variant="Body-Regular">{item.label}</Text>
+            <SingleItem key={`side-nav-0-${i}`}>
+              <Link href={item.url}>
+                <a>
+                  <Text variant="Body-Regular">{item.label}</Text>
+                </a>
+              </Link>
             </SingleItem>
           );
         })}
