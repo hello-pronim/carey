@@ -6,20 +6,22 @@ export const GeneralPageQuery = gql`
       title
       ... on generalPage_default_Entry {
         generalComponents {
-          # ... on generalComponents_learningCentre_BlockType {
-          #   tableTitle
-          #   location
-          #   lcTableGroup {
-          #     ... on lcTableGroup_BlockType {
-          #       groupTitle
-          #       pricingTable {
-          #         rowLabel
-          #         fullYear
-          #         perBilling
-          #       }
-          #     }
-          #   }
-          # }
+          ... on generalComponents_threeColumnTable_BlockType {
+            tableTitle
+            colOneLabel
+            colTwoLabel
+            colThreeLabel
+            threeColTable {
+              ... on threeColTable_BlockType {
+                groupTitle
+                tableRow {
+                  col1
+                  col2
+                  col3
+                }
+              }
+            }
+          }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
             bgColor: backgroundColor

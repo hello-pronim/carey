@@ -83,46 +83,48 @@ const Cell = styled("td", {
   },
 });
 
-const ELCTable = (props) => {
+const ThreeColTable = (props) => {
   return (
     <TableWrapper>
-      {props?.tableTitle && (
+      {!!props?.tableTitle && (
         <Text variant="Heading-Small">{props.tableTitle}</Text>
       )}
       <Table>
         <thead>
           <Row css={{ bg: "$crestBlue200" }}>
             <Head>
-              <Text variant="Heading-xSmall">{props?.location}</Text>
+              <Text variant="Heading-xSmall">{props.colOneLabel}</Text>
             </Head>
             <Head alignment="right">
-              <Text variant="Heading-xSmall">Full Year ($)</Text>
+              <Text variant="Heading-xSmall">{props.colTwoLabel}</Text>
             </Head>
             <Head alignment="right">
-              <Text variant="Heading-xSmall">Per Billing ($)</Text>
+              <Text variant="Heading-xSmall">{props.colThreeLabel}</Text>
             </Head>
           </Row>
         </thead>
         <tbody>
-          {props?.lcTableGroup.map((group, i) => {
+          {props?.threeColTable.map((group, i) => {
             return (
               <React.Fragment key={uuid()}>
-                <Row type="Title-Row" css={{ bg: "#FFF6D1" }}>
-                  <Head css={{ gridColumn: "1 / span 3" }}>
-                    <Text variant="Heading-xSmall">{group.groupTitle}</Text>
-                  </Head>
-                </Row>
-                {group?.pricingTable.map((entry) => {
+                {!!group.groupTitle && (
+                  <Row type="Title-Row" css={{ bg: "#FFF6D1" }}>
+                    <Head css={{ gridColumn: "1 / span 3" }}>
+                      <Text variant="Heading-xSmall">{group.groupTitle}</Text>
+                    </Head>
+                  </Row>
+                )}
+                {group.tableRow?.map((entry) => {
                   return (
                     <Row key={uuid()}>
                       <Cell>
-                        <Text>2 full days</Text>
+                        <Text>{entry.col1}</Text>
                       </Cell>
                       <Cell alignment="right">
-                        <Text>$ {entry.fullYear}</Text>
+                        <Text>{entry.col2}</Text>
                       </Cell>
                       <Cell alignment="right">
-                        <Text>$ {entry.perBilling}</Text>
+                        <Text>{entry.col3}</Text>
                       </Cell>
                     </Row>
                   );
@@ -136,4 +138,4 @@ const ELCTable = (props) => {
   );
 };
 
-export default ELCTable;
+export default ThreeColTable;

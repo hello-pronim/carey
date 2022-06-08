@@ -5,7 +5,7 @@ import { Container } from "@components/common";
 import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
-// import ELCTable from "./components/ELCTable";
+import ThreeColTable from "./components/ThreeColTable";
 import Accordion from "./components/Accordion";
 
 const General = ({ pageData }) => {
@@ -14,7 +14,7 @@ const General = ({ pageData }) => {
 
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
-    // [ModuleType("learningCentre"), ELCTable],
+    [ModuleType("threeColumnTable"), ThreeColTable],
     [ModuleType("contentBlock"), Content],
     [ModuleType("accordionsSet"), Accordion],
   ]);
