@@ -192,12 +192,18 @@ const ParseCustomFormatting = (props) => {
     }
   });
 
-  const objectProps = propsArray.map((item) => {
+  const makePropsArray = propsArray.map((item) => {
     // turns hyphenated string into array of individual words
     // then assigns left side of hyphen to object key, and right side to object value
     const dissectProps = item.split("-");
     const [prop, value] = dissectProps;
     return { [prop]: value };
+  });
+
+  // iterates over props array to turn into object
+  let objectProps = {};
+  makePropsArray.forEach((property) => {
+    Object.assign(objectProps, property);
   });
 
   const propsForElement = {
