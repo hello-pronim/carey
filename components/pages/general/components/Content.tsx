@@ -143,19 +143,19 @@ const Elements = new Map([
     ),
   ],
   // div is a stand in for custom elements from craft rich text
-  // from here we do another key map based on the type:* classname
+  // from here we do another key map based on the type_* classname
   ["div", (props) => ParseCustomFormatting(props)],
 ]);
 
 const expandedRichText = new Map([
   [
-    "type:button",
+    "type_button",
     (props) => {
       const { properties } = props;
       let label;
       let link;
 
-      // assigns the inner content of recieved data to label
+      // assigns the inner content of received data to label
       // in the case of the child being an a tag, gets text from inner children
       // if the child is an <a> tag, assigns its href to link which is then passed to button
       props.children.forEach((child) => {
@@ -180,23 +180,23 @@ const ParseCustomFormatting = (props) => {
   // splits string into array at the spaces
   const makeArr = props.attribs.class?.split(" ");
 
-  // recieves type name extracted from propsArray
+  // receives type name extracted from propsArray
   let componentType;
   // creates new array with just prop classes, passes type class to componentName
   const propsArray = makeArr.filter((item) => {
-    if (item.includes("type:")) {
+    if (item.includes("type_")) {
       componentType = item;
     }
-    if (!item.includes("type:")) {
+    if (!item.includes("type_")) {
       return item;
     }
   });
 
   const objectProps = propsArray.map((item) => {
     // turns hyphenated string into array of individual words
-    // then assigns left side of hypen to object key, and right side to object value
-    const disectProps = item.split("-");
-    const [prop, value] = disectProps;
+    // then assigns left side of hyphen to object key, and right side to object value
+    const dissectProps = item.split("-");
+    const [prop, value] = dissectProps;
     return { [prop]: value };
   });
 
