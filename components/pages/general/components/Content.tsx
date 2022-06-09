@@ -3,7 +3,7 @@ import getTextColor from "@utils/contrastAwareColors";
 import Link from "next/link";
 import { styled } from "@styles/stitches";
 import { v4 as uuid } from "uuid";
-import { Text } from "@components/common";
+import { Button, Text } from "@components/common";
 import InvokeElement from "../utils/invokeElement";
 
 const ContentWrapper = styled("div", {
@@ -142,7 +142,78 @@ const Elements = new Map([
       <Ordered {...props.attribs}>{filterChildren(props.children)}</Ordered>
     ),
   ],
+  // div is a stand in for custom elements from craft rich text
+  // from here we do another key map based on the type:* classname
+  ["div", (props) => ParseCustomFormatting(props)],
 ]);
+
+const expandedRichText = new Map([
+  [
+    "type:button",
+    (props) => {
+      const { properties } = props;
+      let label;
+      let link;
+
+      // assigns the inner content of recieved data to label
+      // in the case of the child being an a tag, gets text from inner children
+      // if the child is an <a> tag, assigns its href to link which is then passed to button
+      props.children.forEach((child) => {
+        if (!child.children) {
+          label = child.data;
+        }
+        if (child.children) {
+          child.children.forEach((innerChild) => {
+            label = innerChild.data;
+          });
+        }
+        if (child.name === "a") {
+          link = child.attribs.href;
+        }
+      });
+      return <Button {...properties} label={label} href={link} />;
+    },
+  ],
+]);
+
+const ParseCustomFormatting = (props) => {
+  // splits string into array at the spaces
+  const makeArr = props.attribs.class?.split(" ");
+
+  // recieves type name extracted from propsArray
+  let componentType;
+  // creates new array with just prop classes, passes type class to componentName
+  const propsArray = makeArr.filter((item) => {
+    if (item.includes("type:")) {
+      componentType = item;
+    }
+    if (!item.includes("type:")) {
+      return item;
+    }
+  });
+
+  const objectProps = propsArray.map((item) => {
+    // turns hyphenated string into array of individual words
+    // then assigns left side of hypen to object key, and right side to object value
+    const disectProps = item.split("-");
+    const [prop, value] = disectProps;
+    return { [prop]: value };
+  });
+
+  const propsForElement = {
+    properties: objectProps,
+    parent: props.parent,
+    children: props.children,
+  };
+
+  return (
+    <InvokeElement
+      el={propsForElement}
+      type={componentType}
+      map={expandedRichText}
+    />
+  );
+};
 
 const filterChildren = (children) =>
   children?.map((child) => {
@@ -157,6 +228,7 @@ const filterChildren = (children) =>
 const Content = (props) => {
   // Converts HTML string into digestible object.
   const parsedHTML = parseDocument(props.bodyText);
+
   return (
     <ContentWrapper
       css={{

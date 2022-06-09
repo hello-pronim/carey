@@ -1,3 +1,5 @@
+// QUERIES COMMENTED OUT FOR NOW TILL WE CAN FIX THE CRAFT DB ROLLBACK
+
 import { gql } from "@apollo/client";
 
 export const GeneralPageQuery = gql`
@@ -6,22 +8,22 @@ export const GeneralPageQuery = gql`
       title
       ... on generalPage_default_Entry {
         generalComponents {
-          ... on generalComponents_threeColumnTable_BlockType {
-            tableTitle
-            colOneLabel
-            colTwoLabel
-            colThreeLabel
-            threeColTable {
-              ... on threeColTable_BlockType {
-                groupTitle
-                tableRow {
-                  col1
-                  col2
-                  col3
-                }
-              }
-            }
-          }
+          # ... on generalComponents_threeColumnTable_BlockType {
+          #   tableTitle
+          #   colOneLabel
+          #   colTwoLabel
+          #   colThreeLabel
+          #   threeColTable {
+          #     ... on threeColTable_BlockType {
+          #       groupTitle
+          #       tableRow {
+          #         col1
+          #         col2
+          #         col3
+          #       }
+          #     }
+          #   }
+          # }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
             bgColor: backgroundColor
@@ -78,18 +80,18 @@ export const GeneralPageQuery = gql`
               }
             }
           }
-          ... on generalComponents_sessionTimes_BlockType {
-            title: tableTitle
-            ctaTitle
-            ctaContent
-            sessions: sessionTimeTable {
-              ... on sessionTimeTable_BlockType {
-                date: sessionDate
-                status: sessionStatus
-                link: sessionLink
-              }
-            }
-          }
+          # ... on generalComponents_sessionTimes_BlockType {
+          #   title: tableTitle
+          #   ctaTitle
+          #   ctaContent
+          #   sessions: sessionTimeTable {
+          #     ... on sessionTimeTable_BlockType {
+          #       date: sessionDate
+          #       status: sessionStatus
+          #       link: sessionLink
+          #     }
+          #   }
+          # }
         }
       }
     }
