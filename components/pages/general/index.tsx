@@ -12,6 +12,9 @@ import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
 import TextContent from "./components/FeatureTextContent";
 import CtaButton from "./components/CtaButton";
+import FeatureTextBlock from "./components/FeatureTextBlock";
+import TextImageContent from "./components/TextImageContent";
+
 // import SessionTimes from "./components/SessionTimes";
 
 const General = ({ pageData, slug, navigation }) => {
@@ -22,12 +25,14 @@ const General = ({ pageData, slug, navigation }) => {
   const Modules = new Map([
     // [ModuleType("threeColumnTable"), ThreeColTable],
     [ModuleType("contentBlock"), Content],
-    [ModuleType("breakoutContent"), Content],
+    // [ModuleType("breakoutContent"), Content],
     [ModuleType("accordionsSet"), Accordion],
     [ModuleType("contentTextFeature"), TextContent],
     [ModuleType("ctaButton"), CtaButton],
+    [ModuleType("featureTextBlock"), FeatureTextBlock],
+    [ModuleType("contentTextImage"), TextImageContent],
 
-    // [ModuleType("sessionTimes"), SessionTimes],
+    // [ModuleType("sessionTimes"), SessionTimes]
   ]);
 
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];

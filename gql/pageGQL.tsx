@@ -27,9 +27,13 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_contentBlock_BlockType {
             bodyText
           }
-          ... on generalComponents_breakoutContent_BlockType {
+          ... on generalComponents_contentTextImage_BlockType {
+            layout
+            image {
+              url
+            }
+            imageAspect
             bodyText
-            bgColor: brandColours
           }
           ... on generalComponents_featuredPanel_BlockType {
             panelVariant
@@ -93,6 +97,12 @@ export const GeneralPageQuery = gql`
             buttonLink {
               uri
             }
+          }
+
+          ... on generalComponents_featureTextBlock_BlockType {
+            bodyText
+            featureLayout
+            featureTextAlignment
           }
           ... on generalComponents_contentTextFeature_BlockType {
             layout
