@@ -20,6 +20,7 @@ const General = ({ pageData, slug, navigation }) => {
   const Modules = new Map([
     // [ModuleType("threeColumnTable"), ThreeColTable],
     [ModuleType("contentBlock"), Content],
+    [ModuleType("breakoutContent"), Content],
     [ModuleType("accordionsSet"), Accordion],
     // [ModuleType("sessionTimes"), SessionTimes],
   ]);

@@ -26,6 +26,9 @@ export const GeneralPageQuery = gql`
           # }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
+          }
+          ... on generalComponents_breakoutContent_BlockType {
+            bodyText
             bgColor: brandColours
           }
           ... on generalComponents_featuredPanel_BlockType {
