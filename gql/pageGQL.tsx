@@ -83,6 +83,35 @@ export const GeneralPageQuery = gql`
               }
             }
           }
+          ... on generalComponents_ctaButton_BlockType {
+            buttonLabel
+            buttonUrl
+            buttonType
+            buttonSize
+            buttonTheme
+            buttonArrow
+            buttonLink {
+              uri
+            }
+          }
+          ... on generalComponents_contentTextFeature_BlockType {
+            layout
+            overHeadline
+            headline
+            contentText
+            buttonLabel
+            buttonLink {
+              id
+            }
+            buttonUrl
+            featuredPanel {
+              ... on featurePanels_featurePanels_Entry {
+                imageOfStudent {
+                  url
+                }
+              }
+            }
+          }
           # ... on generalComponents_sessionTimes_BlockType {
           #   title: tableTitle
           #   ctaTitle
