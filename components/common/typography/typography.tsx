@@ -14,12 +14,14 @@ const Text = styled("span", {
   variants: {
     variant: {
       "Display-Large": {
+        fontFamily: "$avallon",
         fontWeight: "$regular",
         fontSize: rem("300px"),
         lineHeight: "80%",
         letterSpacing: "$regular",
       },
       "Display-Regular": {
+        fontFamily: "$avallon",
         fontWeight: "$regular",
         fontSize: rem("112px"),
         lineHeight: "80%",

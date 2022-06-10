@@ -54,6 +54,27 @@ const Content = styled("div", {
   },
 });
 
+const DisplayContent = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  zIndex: 1,
+  p: 44,
+  rowGap: 24,
+  gridRow: 1,
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 6",
+  },
+  "@min1024": {
+    gridColumn: "1 / span 12",
+  },
+  "h6, h1, h2": {
+    margin: "unset",
+    color: "$white",
+  },
+});
+
 const CTAWrapper = styled("div", {
   mt: 24,
 });
@@ -69,6 +90,21 @@ const ImageWrapper = styled("div", {
   },
   "@min1200": {
     gridColumn: "5 / span 8",
+  },
+  span: {
+    height: "100% !important",
+  },
+});
+
+const DisplayImageWrapper = styled("div", {
+  height: "100%",
+  gridColumn: "1 / span 2",
+  gridRow: 1,
+  "@min768": {
+    gridColumn: "1 / span 6",
+  },
+  "@min1024": {
+    gridColumn: "1 / span 12",
   },
   span: {
     height: "100% !important",
@@ -94,4 +130,14 @@ const Crest = styled("div", {
   },
 });
 
-export { Wrapper, InnerGrid, Bumper, Content, CTAWrapper, Crest, ImageWrapper };
+export {
+  Wrapper,
+  InnerGrid,
+  Bumper,
+  Content,
+  CTAWrapper,
+  Crest,
+  ImageWrapper,
+  DisplayContent,
+  DisplayImageWrapper,
+};
