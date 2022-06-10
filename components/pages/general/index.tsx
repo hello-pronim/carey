@@ -2,7 +2,7 @@
 
 import React from "react";
 import { v4 as uuid } from "uuid";
-import InvokeElement from "./utils/invokeElement";
+import InvokeElement from "@utils/invokeElement";
 import { BreadCrumb, Container } from "@components/common";
 import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
