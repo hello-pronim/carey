@@ -10,6 +10,8 @@ import Content from "./components/Content";
 // import ThreeColTable from "./components/ThreeColTable";
 import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
+import TextContent from "./components/FeatureTextContent";
+import CtaButton from "./components/CtaButton";
 // import SessionTimes from "./components/SessionTimes";
 
 const General = ({ pageData, slug, navigation }) => {
@@ -22,8 +24,12 @@ const General = ({ pageData, slug, navigation }) => {
     [ModuleType("contentBlock"), Content],
     [ModuleType("breakoutContent"), Content],
     [ModuleType("accordionsSet"), Accordion],
+    [ModuleType("contentTextFeature"), TextContent],
+    [ModuleType("ctaButton"), CtaButton],
+
     // [ModuleType("sessionTimes"), SessionTimes],
   ]);
+
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
 
   return (

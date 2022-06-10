@@ -101,13 +101,15 @@ export const GeneralPageQuery = gql`
             contentText
             buttonLabel
             buttonLink {
-              id
+              uri
             }
             buttonUrl
             featuredPanel {
               ... on featurePanels_featurePanels_Entry {
                 imageOfStudent {
                   url
+                  width
+                  height
                 }
               }
             }
