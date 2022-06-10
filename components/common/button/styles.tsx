@@ -8,7 +8,7 @@ const Root = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  columnGap: 18,
+  columnGap: 14,
   "&:disabled": {
     pointerEvents: "none",
     cursor: "initial",
@@ -16,32 +16,39 @@ const Root = styled("button", {
   "> span": {
     position: "relative",
     top: "0.1em",
+    margin: "unset",
   },
   variants: {
     scale: {
       xl: {
-        borderRadius: 72,
-        height: 72,
-        lineHeight: "72px",
-        px: 24,
-      },
-      lg: {
         borderRadius: 44,
         height: 56,
         lineHeight: "56px",
         px: 24,
+        "@min1920": {
+          borderRadius: 72,
+          height: 72,
+          lineHeight: "72px",
+          px: 24,
+        },
       },
-      md: {
+      lg: {
         borderRadius: 44,
         height: 44,
         lineHeight: 44,
         px: 24,
-        "@min375": {
-          borderRadius: 40,
-          height: 40,
-          lineHeight: 40,
-          px: 20,
+        "@min1920": {
+          borderRadius: 44,
+          height: 56,
+          lineHeight: "56px",
+          px: 24,
         },
+      },
+      md: {
+        borderRadius: 40,
+        height: 40,
+        lineHeight: 40,
+        px: 20,
         "@min1920": {
           borderRadius: 44,
           height: 44,
@@ -50,10 +57,16 @@ const Root = styled("button", {
         },
       },
       sm: {
-        borderRadius: 40,
-        height: 40,
-        lineHeight: "40px",
-        px: 16,
+        borderRadius: 32,
+        height: 32,
+        lineHeight: "32px",
+        px: 24,
+        "@min1920": {
+          borderRadius: 40,
+          height: 40,
+          lineHeight: "40px",
+          px: 16,
+        },
       },
       xs: {
         borderRadius: 32,
@@ -77,6 +90,16 @@ const Root = styled("button", {
     fullWidth: {
       true: {
         width: "100%",
+      },
+    },
+    arrow: {
+      true: {
+        pr: "14px",
+      },
+    },
+    plus: {
+      true: {
+        pl: "14px",
       },
     },
   },
@@ -113,7 +136,6 @@ const Root = styled("button", {
       theme: "light",
       css: {
         borderColor: "$navy",
-        bg: "$white",
         "&:hover": {
           bg: "$darkBlue100",
         },
@@ -139,7 +161,6 @@ const Root = styled("button", {
       theme: "dark",
       css: {
         borderColor: "$crestYellow",
-        bg: "$navy",
         span: { color: "$white" },
         svg: {
           path: {

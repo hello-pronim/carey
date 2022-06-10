@@ -3,6 +3,7 @@ import rem from "@utils/pxRem";
 
 const Text = styled("span", {
   //consistent Styles
+  margin: "unset",
   color: "$navy",
   fontFeatureSettings: "'pnum' on, 'lnum' on",
   textDecoration: "none",

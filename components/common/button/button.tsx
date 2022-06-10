@@ -17,6 +17,7 @@ const Button = ({
   fullWidth = false,
   href,
   onClick,
+  css,
 }: buttonTypes) => {
   const [hovered, setHovered] = useState(false);
 
@@ -40,12 +41,13 @@ const Button = ({
         scale={scale}
         type={type}
         theme={theme}
+        arrow={arrow}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={onClick}
         disabled={disabled}
         fullWidth={fullWidth}
-        style={{ backgroundColor: color }}
+        css={{ ...css, backgroundColor: color }}
       >
         {plus && <Plus />}
         <Text variant={labelType}>{label}</Text>
@@ -67,5 +69,6 @@ type buttonTypes = {
   fullWidth?: boolean;
   href?: string | Object;
   onClick?: any;
+  css?: any;
 };
 export default Button;

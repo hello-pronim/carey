@@ -8,6 +8,9 @@ import InvokeElement from "../utils/invokeElement";
 
 const ContentWrapper = styled("div", {
   gridColumn: "2 / span 6",
+  "> *:last-child": {
+    mb: "unset !important",
+  },
   variants: {
     hasBG: {
       true: {
@@ -57,7 +60,12 @@ const Elements = new Map([
   [
     "h1",
     (props) => (
-      <Text as="h1" variant="Heading-xLarge" {...props.attribs}>
+      <Text
+        as="h1"
+        variant="Heading-xLarge"
+        {...props.attribs}
+        css={{ mb: 24 }}
+      >
         {filterChildren(props.children)}
       </Text>
     ),
@@ -65,7 +73,7 @@ const Elements = new Map([
   [
     "h2",
     (props) => (
-      <Text as="h2" variant="Heading-Large" {...props.attribs}>
+      <Text as="h2" variant="Heading-Large" {...props.attribs} css={{ mb: 24 }}>
         {filterChildren(props.children)}
       </Text>
     ),
@@ -73,7 +81,7 @@ const Elements = new Map([
   [
     "h3",
     (props) => (
-      <Text as="h3" variant="Heading-Small" {...props.attribs}>
+      <Text as="h3" variant="Heading-Small" {...props.attribs} css={{ mb: 16 }}>
         {filterChildren(props.children)}
       </Text>
     ),
@@ -81,7 +89,12 @@ const Elements = new Map([
   [
     "h4",
     (props) => (
-      <Text as="h4" variant="Heading-xSmall" {...props.attribs}>
+      <Text
+        as="h4"
+        variant="Heading-xSmall"
+        {...props.attribs}
+        css={{ mb: 16 }}
+      >
         {filterChildren(props.children)}
       </Text>
     ),
@@ -89,7 +102,7 @@ const Elements = new Map([
   [
     "h5",
     (props) => (
-      <Text as="h5" variant="Body-Regular" {...props.attribs}>
+      <Text as="h5" variant="Body-Regular" {...props.attribs} css={{ mb: 16 }}>
         {filterChildren(props.children)}
       </Text>
     ),
@@ -97,7 +110,12 @@ const Elements = new Map([
   [
     "h6",
     (props) => (
-      <Text as="h6" variant="Heading-Overline" {...props.attribs}>
+      <Text
+        as="h6"
+        variant="Heading-Overline"
+        {...props.attribs}
+        css={{ mb: 16, textTransform: "uppercase" }}
+      >
         {filterChildren(props.children)}
       </Text>
     ),
@@ -106,7 +124,7 @@ const Elements = new Map([
   [
     "p",
     (props) => (
-      <Text as="p" variant="Body-Small" {...props.attribs}>
+      <Text as="p" variant="Body-Small" {...props.attribs} css={{ mb: 16 }}>
         {filterChildren(props.children)}
       </Text>
     ),
@@ -171,7 +189,9 @@ const expandedRichText = new Map([
           link = child.attribs.href;
         }
       });
-      return <Button {...properties} label={label} href={link} />;
+      return (
+        <Button {...properties} label={label} href={link} css={{ mb: 24 }} />
+      );
     },
   ],
 ]);

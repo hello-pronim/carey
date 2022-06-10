@@ -144,7 +144,7 @@ export const {
       marginRight: value,
     }),
     mb: (value) => ({
-      margin: value,
+      marginBottom: value,
     }),
     ml: (value) => ({
       marginLeft: value,
