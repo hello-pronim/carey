@@ -26,7 +26,7 @@ export const GeneralPageQuery = gql`
           # }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
-            bgColor: backgroundColor
+            bgColor: brandColours
           }
           ... on generalComponents_featuredPanel_BlockType {
             panelVariant
