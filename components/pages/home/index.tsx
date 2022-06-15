@@ -1,7 +1,6 @@
 import React from "react";
 import { Text } from "@components/common";
 import { Container, PreFooter } from "@components/common";
-
 const Home = () => {
   return (
     <>
