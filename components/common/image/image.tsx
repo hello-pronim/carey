@@ -1,6 +1,7 @@
 import React from "react";
 import Image, { ImageProps } from "next/image";
 import { SkeletonLoader } from "./skeletonLoader";
+import { ImageWrapper } from "./styles";
 
 type ImageWithStateProps = ImageProps & {
   fallback: string;
@@ -26,26 +27,33 @@ function ImageWithState({
     }
   }
 
+  //   React.useEffect(() => {
+  //     const timer = setTimeout(() => {
+  //       setLoading(false);
+  //     }, 2000);
+  //     return () => clearTimeout(timer);
+  //   });
+
   return (
     <div style={{ position: "relative", maxWidth: props.width }}>
-      {loading === true && (
-        <SkeletonLoader
-          style={{
-            position: "absolute",
-            zIndex: props.debug === "true" ? 99 : "auto",
-            top: "-2px",
-          }}
-          height={props.height}
-          width={props.width}
-        />
-      )}
-      <Image
-        alt={alt}
-        src={onErrorSrc || src}
-        onLoadingComplete={() => !props.debug && setLoading(false)}
-        onError={(e) => handleOnError(e)}
-        {...props}
+      <SkeletonLoader
+        style={{
+          position: "absolute",
+          zIndex: props.debug === "true" ? 99 : "auto",
+          top: "-2px",
+        }}
+        height={props.height}
+        width={props.width}
       />
+      <ImageWrapper show={!loading}>
+        <Image
+          alt={alt}
+          src={onErrorSrc || src}
+          onLoadingComplete={() => !props.debug && setLoading(false)}
+          onError={(e) => handleOnError(e)}
+          {...props}
+        />
+      </ImageWrapper>
     </div>
   );
 }
