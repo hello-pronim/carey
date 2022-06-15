@@ -45,6 +45,7 @@ const PreFooter = () => {
                     label="Read more"
                     type="outline"
                     theme="transparent"
+                    variant="secondary"
                     scale="md"
                     href="#"
                   />
@@ -99,6 +100,7 @@ const PreFooter = () => {
                     label="Follow us"
                     type="outline"
                     theme="transparent"
+                    variant="secondary"
                     scale="md"
                     href="#"
                   />

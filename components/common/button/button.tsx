@@ -11,6 +11,7 @@ const Button = ({
   scale,
   type,
   theme,
+  variant = "primary",
   arrow = false,
   plus = false,
   disabled,
@@ -42,6 +43,7 @@ const Button = ({
         type={type}
         theme={theme}
         arrow={arrow}
+        variant={variant}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={onClick}
@@ -62,6 +64,7 @@ type buttonTypes = {
   scale?: "xl" | "lg" | "md" | "sm" | "xs";
   type?: "solid" | "outline" | "ghost";
   theme?: "light" | "dark" | "transparent";
+  variant?: "primary" | "secondary";
   color?: string;
   plus?: boolean;
   arrow?: boolean;

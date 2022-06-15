@@ -87,6 +87,10 @@ const Root = styled("button", {
       dark: {},
       transparent: {},
     },
+    variant: {
+      primary: {},
+      secondary: {},
+    },
     fullWidth: {
       true: {
         width: "100%",
@@ -114,6 +118,36 @@ const Root = styled("button", {
     {
       type: "outline",
       theme: "transparent",
+      variant: "primary",
+      css: {
+        borderColor: "$crestYellow",
+        bg: "transparent",
+        boxSizing: "border-box",
+        "&:hover": {
+          bg: "$crestYellow",
+          span: {
+            color: "$navy",
+          },
+          svg: {
+            path: {
+              fill: "$navy",
+            },
+          },
+        },
+        span: {
+          color: "$white",
+        },
+        svg: {
+          path: {
+            fill: "$white",
+          },
+        },
+      },
+    },
+    {
+      type: "outline",
+      theme: "transparent",
+      variant: "secondary",
       css: {
         borderColor: "$crestYellow",
         bg: "transparent",
