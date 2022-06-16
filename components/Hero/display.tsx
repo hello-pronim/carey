@@ -5,11 +5,11 @@ import {
   Bumper,
   DisplayContent,
   DisplayImageWrapper,
+  DisplayVideoWrapper,
   Div,
 } from "./styles";
 import { Text } from "@components/common";
 import Image from "next/image";
-import principal from "public/assets/principal.png";
 import HeroButton from "./HeroButton";
 
 const Display = (props) => {
@@ -24,20 +24,54 @@ const Display = (props) => {
       >
         <DisplayContent>
           <Text as="h1" variant="Display-Large">
-            {props?.props?.scriptTitle}
+            {props?.props?.scriptTitle || props?.props?.[0].bannerText}
           </Text>
         </DisplayContent>
-        <DisplayImageWrapper>
-          <Image
-            alt="principal"
-            src={principal}
-            width={1200}
-            height={598}
-            layout="responsive"
-            objectFit="cover"
-            priority
-          />
-        </DisplayImageWrapper>
+        {(props?.props?.videoUrl || props?.props?.[0].videoUrl) && (
+          <DisplayVideoWrapper>
+            <video
+              preload="auto"
+              loop={true}
+              muted={true}
+              autoPlay={true}
+              playsInline={true}
+            >
+              <source
+                src={props?.props?.videoUrl || props?.props?.[0].videoUrl}
+                type="video/mp4"
+                media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)"
+              />
+            </video>
+          </DisplayVideoWrapper>
+        )}
+
+        {props?.props?.image?.length ? (
+          <DisplayImageWrapper>
+            <Image
+              alt="principal"
+              src={props?.props?.[0].backgroundImage[0]?.url}
+              width={props?.props?.image[0]?.width}
+              height={props?.props?.image[0]?.height}
+              layout="responsive"
+              objectFit="cover"
+              priority
+            />
+          </DisplayImageWrapper>
+        ) : null}
+
+        {props?.props?.[0]?.backgroundImage[0] ? (
+          <DisplayImageWrapper>
+            <Image
+              alt="principal"
+              src={props?.props?.[0].backgroundImage[0]?.url}
+              width={props?.props?.[0].backgroundImage[0]?.width}
+              height={props?.props?.[0].backgroundImage[0]?.height}
+              layout="responsive"
+              objectFit="cover"
+              priority
+            />
+          </DisplayImageWrapper>
+        ) : null}
         <Div
           css={{
             display: "none",

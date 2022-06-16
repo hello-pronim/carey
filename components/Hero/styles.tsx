@@ -97,7 +97,7 @@ const ImageWrapper = styled("div", {
 });
 
 const VideoWrapper = styled("div", {
-  height: "542px",
+  height: "100%",
   gridColumn: "1 / span 2",
   "@min768": {
     gridColumn: "4 / span 3",
@@ -113,7 +113,8 @@ const VideoWrapper = styled("div", {
   },
   video: {
     width: "100%",
-    maxHeight: "100%",
+    maxHeight: "542px",
+    objectFit: "cover",
   },
 });
 
@@ -129,6 +130,27 @@ const DisplayImageWrapper = styled("div", {
   },
   span: {
     height: "100% !important",
+  },
+});
+
+const DisplayVideoWrapper = styled("div", {
+  height: "100%",
+  width: "100%",
+  gridColumn: "1 / span 2",
+  gridRow: 1,
+  "@min768": {
+    gridColumn: "1 / span 6",
+  },
+  "@min1024": {
+    gridColumn: "1 / span 12",
+  },
+  span: {
+    height: "100% !important",
+  },
+  video: {
+    width: "100%",
+    maxHeight: "568px",
+    objectFit: "cover",
   },
 });
 
@@ -164,4 +186,5 @@ export {
   DisplayImageWrapper,
   Div,
   VideoWrapper,
+  DisplayVideoWrapper,
 };
