@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@styles/stitches";
 import React from "react";
 import { Text, Button } from "@components/common";
 import Image from "next/image";
@@ -6,6 +6,9 @@ import Image from "next/image";
 export default function TextContent(props) {
   const ContentWrapper = styled("div", {
     display: "flex",
+    "@max1024": {
+      flexDirection: "column",
+    },
     gridColumn: "2 / span 6",
     gridTemplateColumns: "repeat(12, 1fr)",
     columnGap: 62,
@@ -19,6 +22,9 @@ export default function TextContent(props) {
     span: {
       height: "100% !important",
       width: "100% !important",
+    },
+    "@max1024": {
+      paddingTop: "34px",
     },
   });
 

@@ -171,6 +171,15 @@ export const globalQuery = gql`
         }
       }
     }
+    applyNow: globalSet(handle: "applyNow") {
+      ... on applyNow_GlobalSet {
+        buttonLabel
+        buttonLink {
+          uri
+        }
+        buttonUrl
+      }
+    }
     sitemapColumn6: nodes(navHandle: "sitemapColumn6", level: 1) {
       id
       label: title

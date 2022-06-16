@@ -10,6 +10,7 @@ import {
 import { Button, Text } from "@components/common";
 import cGraphic from "public/assets/c-graphic.svg";
 import Image from "next/image";
+import HeroButton from "./HeroButton";
 
 const Plain = (props) => {
   return (
@@ -18,24 +19,21 @@ const Plain = (props) => {
       <InnerGrid>
         <Content>
           <Text as="h6" variant="Heading-Overline">
-            ENROLMENT
+            {props?.props?.overHeadline}
           </Text>
           <Text as="h1" variant="Heading-Large">
-            Carey Enrolment
+            {props?.props?.headline}
           </Text>
           <Text as="h2" variant="Heading-Small">
-            Applications are accepted for all year levels however our key intake
-            years are as follows: 3 year old ELC, Prep, Year 5, Year 7 and Year
-            10.
+            {props?.props?.contentText}
           </Text>
           <CTAWrapper>
             <Button
-              arrow
-              label="Apply online"
-              type="solid"
-              theme="dark"
-              scale="lg"
-              href="#"
+              href={
+                props?.props?.buttonLink?.[0]?.uri || props?.props?.buttonUrl
+              }
+              label={props?.props?.buttonLabel}
+              arrow={true}
             />
           </CTAWrapper>
         </Content>
@@ -51,7 +49,13 @@ const Plain = (props) => {
           />
         </Crest>
       </InnerGrid>
-      <Bumper css={{ bg: "$darkBlue" }} />
+      <Bumper
+        css={{
+          bg: "$darkBlue",
+        }}
+      >
+        <HeroButton data={props.applyNow} />
+      </Bumper>
     </Wrapper>
   );
 };

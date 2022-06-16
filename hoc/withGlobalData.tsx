@@ -16,7 +16,6 @@ export const withGlobalData = (gssp: any) => {
         sitemap.push(global?.data?.[`sitemapColumn${i}`][0]);
       }
     }
-
     return {
       ...gsspData,
       props: {
@@ -26,6 +25,7 @@ export const withGlobalData = (gssp: any) => {
         headerGlobals: global?.data.headerGlobals,
         footerGlobals: global?.data.footerGlobals,
         footerNav: global?.data.footerNav,
+        applyNow: global?.data.applyNow,
         sitemap,
       },
     };

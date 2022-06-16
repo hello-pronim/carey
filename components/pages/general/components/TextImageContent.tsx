@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@styles/stitches";
 import React from "react";
 import { Text } from "@components/common";
 import Image from "next/image";
@@ -6,6 +6,9 @@ import Image from "next/image";
 export default function TextImageContent(props) {
   const ContentWrapper = styled("div", {
     display: "flex",
+    "@max1024": {
+      flexDirection: "column",
+    },
     gridColumn: "2 / span 6",
     gridTemplateColumns: "repeat(12, 1fr)",
     columnGap: 62,

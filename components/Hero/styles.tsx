@@ -96,6 +96,27 @@ const ImageWrapper = styled("div", {
   },
 });
 
+const VideoWrapper = styled("div", {
+  height: "542px",
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "4 / span 3",
+  },
+  "@min1024": {
+    gridColumn: "6 / span 7",
+  },
+  "@min1200": {
+    gridColumn: "5 / span 8",
+  },
+  span: {
+    height: "100% !important",
+  },
+  video: {
+    width: "100%",
+    maxHeight: "100%",
+  },
+});
+
 const DisplayImageWrapper = styled("div", {
   height: "100%",
   gridColumn: "1 / span 2",
@@ -129,6 +150,7 @@ const Crest = styled("div", {
     height: "100% !important",
   },
 });
+const Div = styled("div", {});
 
 export {
   Wrapper,
@@ -140,4 +162,6 @@ export {
   ImageWrapper,
   DisplayContent,
   DisplayImageWrapper,
+  Div,
+  VideoWrapper,
 };

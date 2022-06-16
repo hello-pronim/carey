@@ -14,32 +14,36 @@ import TextContent from "./components/FeatureTextContent";
 import CtaButton from "./components/CtaButton";
 import FeatureTextBlock from "./components/FeatureTextBlock";
 import TextImageContent from "./components/TextImageContent";
+import MapView from "./components/MapView";
 
 // import SessionTimes from "./components/SessionTimes";
 
-const General = ({ pageData, slug, navigation }) => {
+const General = ({ pageData, slug, navigation, applyNow }) => {
   // Mostly just to make the Module Map look cleaner.
   const ModuleType = (type: string) => `generalComponents_${type}_BlockType`;
 
+  const heroTypes = [
+    "generalComponents_generalSideImage_BlockType",
+    "generalComponents_generalSideCareyBrand_BlockType",
+    "generalComponents_whyCarey_BlockType",
+  ];
+
+  const heroData = pageData.find((item) => heroTypes.includes(item.__typename));
+
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
-    // [ModuleType("threeColumnTable"), ThreeColTable],
     [ModuleType("contentBlock"), Content],
-    // [ModuleType("breakoutContent"), Content],
     [ModuleType("accordionsSet"), Accordion],
     [ModuleType("contentTextFeature"), TextContent],
     [ModuleType("ctaButton"), CtaButton],
     [ModuleType("featureTextBlock"), FeatureTextBlock],
     [ModuleType("contentTextImage"), TextImageContent],
-
-    // [ModuleType("sessionTimes"), SessionTimes]
+    [ModuleType("mapBlock"), MapView],
   ]);
-
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
-
   return (
     <>
-      <Hero type="general" />
+      <Hero type="display" props={heroData} applyNow={applyNow} />
       <Container type="flex">
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />

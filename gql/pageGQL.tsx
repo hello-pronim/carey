@@ -98,6 +98,51 @@ export const GeneralPageQuery = gql`
               uri
             }
           }
+          ... on generalComponents_mapBlock_BlockType {
+            latitude
+            longitude
+          }
+          ... on generalComponents_generalSideImage_BlockType {
+            headline
+            overHeadline
+            videoUrl
+            contentText
+            image {
+              url
+              width
+              height
+            }
+          }
+          ... on generalComponents_generalSideCareyBrand_BlockType {
+            overHeadline
+            headline
+            contentText
+            buttonLabel
+            buttonLink {
+              uri
+            }
+            buttonUrl
+          }
+          ... on generalComponents_whyCarey_BlockType {
+            image {
+              url
+            }
+            videoUrl
+            scriptTitle
+            headline
+            contentText
+            buttonLabel
+            buttonLink {
+              uri
+            }
+            buttonUrl
+            featureVideoTitle
+            featureVideoUrl
+            featureDownloadLinkTitle
+            featureDownloadAsset {
+              url
+            }
+          }
 
           ... on generalComponents_featureTextBlock_BlockType {
             bodyText

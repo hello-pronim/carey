@@ -5,10 +5,12 @@ import {
   Bumper,
   DisplayContent,
   DisplayImageWrapper,
+  Div,
 } from "./styles";
 import { Text } from "@components/common";
 import Image from "next/image";
 import principal from "public/assets/principal.png";
+import HeroButton from "./HeroButton";
 
 const Display = (props) => {
   return (
@@ -21,11 +23,8 @@ const Display = (props) => {
         }}
       >
         <DisplayContent>
-          <Text as="h3" variant="Display-Regular" css={{ color: "$white" }}>
-            carey
-          </Text>
           <Text as="h1" variant="Display-Large">
-            News&nbsp;+&nbsp;Events
+            {props?.props?.scriptTitle}
           </Text>
         </DisplayContent>
         <DisplayImageWrapper>
@@ -39,14 +38,24 @@ const Display = (props) => {
             priority
           />
         </DisplayImageWrapper>
+        <Div
+          css={{
+            display: "none",
+            "@max1024": { display: "flex" },
+          }}
+        >
+          <HeroButton data={props.applyNow} />
+        </Div>
       </InnerGrid>
       <Bumper
         css={{
           bg: "$darkBlue",
-          display: "none",
-          "@min768": { display: "flex" },
+          display: "flex",
+          "@max1024": { display: "none" },
         }}
-      />
+      >
+        <HeroButton data={props.applyNow} />
+      </Bumper>
     </Wrapper>
   );
 };
