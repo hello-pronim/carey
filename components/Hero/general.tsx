@@ -1,8 +1,16 @@
 import React from "react";
-import { Wrapper, InnerGrid, Bumper, Content, ImageWrapper } from "./styles";
+import {
+  Wrapper,
+  InnerGrid,
+  Bumper,
+  Content,
+  ImageWrapper,
+  Div,
+  VideoWrapper,
+} from "./styles";
 import { Text } from "@components/common";
 import Image from "next/image";
-import principal from "public/assets/principal.png";
+import HeroButton from "./HeroButton";
 
 const General = (props) => {
   return (
@@ -16,36 +24,63 @@ const General = (props) => {
       >
         <Content>
           <Text as="h6" variant="Heading-Overline">
-            LEADERSHIP
+            {props?.props?.headline}
           </Text>
           <Text as="h1" variant="Heading-xLarge">
-            Meet our Principal <br /> Jonathan Walter
+            {props?.props?.contentText}
           </Text>
           <Text as="h2" variant="Heading-Small">
-            Applications are accepted for all year levels however our key intake
-            years are as follows: 3 year old ELC, Prep, Year 5, Year 7 and Year
-            10.
+            {props?.props?.overHeadline}
           </Text>
         </Content>
-        <ImageWrapper>
-          <Image
-            alt="principal"
-            src={principal}
-            width={1200}
-            height={598}
-            layout="responsive"
-            objectFit="cover"
-            priority
-          />
-        </ImageWrapper>
+
+        <VideoWrapper>
+          <video
+            preload="auto"
+            loop={true}
+            muted={true}
+            autoPlay={true}
+            playsInline={true}
+          >
+            <source
+              src={props?.props?.videoUrl}
+              type="video/mp4"
+              media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)"
+            />
+          </video>
+        </VideoWrapper>
+
+        {props.props.image.length ? (
+          <ImageWrapper>
+            <Image
+              alt="principal"
+              src={props?.props?.image[0]?.url}
+              width={props?.props?.image[0]?.width}
+              height={props?.props?.image[0]?.height}
+              layout="responsive"
+              objectFit="cover"
+              priority
+            />
+          </ImageWrapper>
+        ) : null}
+        <Div
+          css={{
+            display: "none",
+            "@max1024": { display: "flex" },
+          }}
+        >
+          <HeroButton data={props.applyNow} />
+        </Div>
       </InnerGrid>
       <Bumper
         css={{
           bg: "$darkBlue",
-          display: "none",
-          "@min768": { display: "flex" },
+          display: "flex",
+          "@max1024": { display: "none" },
         }}
-      />
+      >
+        <HeroButton data={props.applyNow} />
+      </Bumper>
     </Wrapper>
   );
 };

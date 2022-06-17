@@ -8,6 +8,7 @@ const Hero = ({ type, ...props }) => {
     if (type === "plain") return Plain;
     if (type === "general") return General;
     if (type === "display") return Display;
+
     return null;
   }, [type]);
 

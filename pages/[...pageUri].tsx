@@ -16,9 +16,15 @@ interface PageProps {
   footerGlobals: Array<any>;
   footerNav: Array<any>;
   sitemap: Array<any>;
+  applyNow: Array<any>;
 }
 
-export default function Page({ pageData, slug, navigation }: PageProps) {
+export default function Page({
+  pageData,
+  slug,
+  navigation,
+  applyNow,
+}: PageProps) {
   return (
     <>
       <Head>
@@ -30,6 +36,7 @@ export default function Page({ pageData, slug, navigation }: PageProps) {
         pageData={pageData?.generalComponents}
         slug={slug}
         navigation={navigation}
+        applyNow={applyNow}
       />
     </>
   );

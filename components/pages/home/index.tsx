@@ -1,9 +1,15 @@
 import React from "react";
 import { Text } from "@components/common";
 import { Container, PreFooter } from "@components/common";
-const Home = () => {
+import Hero from "@components/Hero";
+const Home = ({ heroData, applyNow }) => {
   return (
     <>
+      <Hero
+        type="display"
+        props={heroData?.homePageBanner}
+        applyNow={applyNow}
+      />
       <Container outerCSS={{ py: 120 }}>
         <Text variant="Heading-Small">Home</Text>
       </Container>
