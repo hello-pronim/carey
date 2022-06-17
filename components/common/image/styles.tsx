@@ -1,6 +1,7 @@
 import { styled } from "@styles/stitches";
 
 const ImageWrapper = styled("div", {
+  position: "relative",
   transition: "opacity 0.4s ease-in",
   variants: {
     show: {
@@ -13,5 +14,8 @@ const ImageWrapper = styled("div", {
     },
   },
 });
+const Wrapper = styled("div", {
+  position: "relative",
+});
 
-export { ImageWrapper };
+export { ImageWrapper, Wrapper };

@@ -98,22 +98,37 @@ const ImageWrapper = styled("div", {
   flex: 1,
   "@min768": { display: "none" },
   "@min1440": { display: "block" },
-  "> span": {
-    width: "100% !important",
-    height: "100% !important",
-    position: "absolute !important",
-  },
   "& img": {
     transition: "transform 0.2s ease-out 0.2s",
     "&:hover": {
       transform: "scale(1.1)",
     },
   },
+  /* start: style for image with skeleton */
+  // "& >div >div >span": {
+  //   width: "100% !important",
+  //   height: "100% !important",
+  //   position: "absolute !important",
+  // },
+  // "& >div >div:after": {
+  //   content: "' '",
+  //   display: "block",
+  //   paddingBottom: "100%",
+  // },
+  /* end: style for image with skeleton */
+
+  /* start: style for default next image*/
+  "& >span": {
+    width: "100% !important",
+    height: "100% !important",
+    position: "absolute !important",
+  },
   "&:after": {
     content: "' '",
     display: "block",
     paddingBottom: "100%",
   },
+  /* end: style for default next image */
 });
 
 const Left = styled("div", {

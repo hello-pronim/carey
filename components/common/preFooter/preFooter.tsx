@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Button, Container, Text } from "@components/common";
+import { Button, Container, Image, Text } from "@components/common";
 import ArrowRight from "@components/common/icons/arrowRight";
 import Instagram from "@components/common/icons/instagram";
 import PreFooterImage1 from "public/assets/img/prefooter_img_1.png";
@@ -68,9 +67,12 @@ const PreFooter = () => {
                 src={PreFooterImage1}
                 width={375}
                 height={375}
+                placeholder="empty"
                 layout="responsive"
+                fallback="random thing"
                 objectFit="cover"
                 priority
+                unoptimized
               />
             </ImageWrapper>
           </PreFooterWidget>
@@ -123,9 +125,12 @@ const PreFooter = () => {
                 src={PreFooterImage2}
                 width={375}
                 height={375}
+                placeholder="empty"
                 layout="responsive"
+                fallback="random thing"
                 objectFit="cover"
                 priority
+                unoptimized
               />
             </ImageWrapper>
           </PreFooterWidget>
