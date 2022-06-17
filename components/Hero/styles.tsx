@@ -57,10 +57,11 @@ const Content = styled("div", {
 const DisplayContent = styled("div", {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-end",
+  justifyContent: "center",
   zIndex: 1,
   p: 44,
   rowGap: 24,
+  width: "60%",
   gridRow: 1,
   gridColumn: "1 / span 2",
   "@min768": {
@@ -173,6 +174,34 @@ const Crest = styled("div", {
   },
 });
 const Div = styled("div", {});
+const ContentBox = styled("div", {
+  position: "absolute",
+  right: "0",
+  bottom: "0",
+  zIndex: 2,
+});
+const QuickLinks = styled("div", {
+  minWidth: "380px",
+  backgroundColor: "#FFFFFF",
+  p: 44,
+});
+const QuickLinksList = styled("ul", {
+  mt: 24,
+  mb: 0,
+  listStyle: "none",
+  pl: 0,
+});
+const QuickLinksListItem = styled("li", {
+  borderBottom: "1px solid #B3CBDE",
+  py: 16,
+  "> a, > button": {
+    flexDirection: "row-reverse",
+    px: 0,
+  },
+  "&:last-of-type": {
+    borderBottom: "none",
+  },
+});
 
 export {
   Wrapper,
@@ -187,4 +216,8 @@ export {
   Div,
   VideoWrapper,
   DisplayVideoWrapper,
+  ContentBox,
+  QuickLinks,
+  QuickLinksList,
+  QuickLinksListItem,
 };

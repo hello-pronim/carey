@@ -7,8 +7,12 @@ import {
   DisplayImageWrapper,
   DisplayVideoWrapper,
   Div,
+  ContentBox,
+  QuickLinks,
+  QuickLinksList,
+  QuickLinksListItem,
 } from "./styles";
-import { Text } from "@components/common";
+import { Text, Button } from "@components/common";
 import Image from "next/image";
 import HeroButton from "./HeroButton";
 
@@ -90,6 +94,33 @@ const Display = (props) => {
       >
         <HeroButton data={props.applyNow} />
       </Bumper>
+      <ContentBox>
+        {props?.props?.[0]?.quicklinks &&
+        props?.props?.[0]?.quicklinks?.length ? (
+          <QuickLinks>
+            <Text as="h3" variant="Body-Regular">
+              Quicklinks
+            </Text>
+            <QuickLinksList>
+              {props?.props?.[0]?.quicklinks.map((item, index) => {
+                return (
+                  <QuickLinksListItem key={index}>
+                    <Button
+                      arrow
+                      theme="transparent"
+                      type="ghost"
+                      label={item.linkTitle}
+                      href={item?.linkEntry?.[0]?.uri || item?.linkUrl}
+                    />
+                  </QuickLinksListItem>
+                );
+              })}
+            </QuickLinksList>
+          </QuickLinks>
+        ) : (
+          ""
+        )}
+      </ContentBox>
     </Wrapper>
   );
 };

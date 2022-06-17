@@ -13,7 +13,7 @@ export default function HeroButton({ data }) {
     justifyContent: "center",
     alignItems: "center",
     flexGrow: 1,
-    height: "70%",
+    height: "50%",
     width: "24px",
     transition: "1s",
     "@min768": {
