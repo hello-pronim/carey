@@ -28,6 +28,8 @@ export const HomePageQuery = gql`
             featurePanelUrl
             featurePanelImage {
               url
+              width
+              height
             }
             featurePanelLink {
               uri

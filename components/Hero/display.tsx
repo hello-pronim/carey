@@ -11,10 +11,21 @@ import {
   QuickLinks,
   QuickLinksList,
   QuickLinksListItem,
+  ImageWrapper,
+  DownloadButton,
+  VideoButton,
+  HeadingWrapper,
+  Heading,
+  FooterWrapper,
+  DescriptionWrapper,
+  Description,
+  ActionWrapper,
+  ContentWrapper,
 } from "./styles";
 import { Text, Button } from "@components/common";
 import Image from "next/image";
 import HeroButton from "./HeroButton";
+import HeroIcons from "@components/common/icons/heroIcons";
 
 const Display = (props) => {
   return (
@@ -97,28 +108,79 @@ const Display = (props) => {
       <ContentBox>
         {props?.props?.[0]?.quicklinks &&
         props?.props?.[0]?.quicklinks?.length ? (
-          <QuickLinks>
-            <Text as="h3" variant="Body-Regular">
-              Quicklinks
-            </Text>
-            <QuickLinksList>
-              {props?.props?.[0]?.quicklinks.map((item, index) => {
-                return (
-                  <QuickLinksListItem key={index}>
-                    <Button
-                      arrow
-                      theme="transparent"
-                      type="ghost"
-                      label={item.linkTitle}
-                      href={item?.linkEntry?.[0]?.uri || item?.linkUrl}
-                    />
-                  </QuickLinksListItem>
-                );
-              })}
-            </QuickLinksList>
-          </QuickLinks>
+          <>
+            <QuickLinks>
+              <Text as="h3" variant="Body-Regular">
+                Quicklinks
+              </Text>
+              <QuickLinksList>
+                {props?.props?.[0]?.quicklinks.map((item, index) => {
+                  return (
+                    <QuickLinksListItem key={index}>
+                      <Button
+                        arrow
+                        theme="transparent"
+                        type="ghost"
+                        label={item.linkTitle}
+                        href={item?.linkEntry?.[0]?.uri || item?.linkUrl}
+                      />
+                    </QuickLinksListItem>
+                  );
+                })}
+              </QuickLinksList>
+            </QuickLinks>
+            <ImageWrapper>
+              <Image
+                alt="main image"
+                src={props?.props?.[0]?.featurePanelImage?.[0]?.url}
+                width={props?.props?.[0]?.featurePanelImage?.[0]?.width}
+                height={props?.props?.[0]?.featurePanelImage?.[0]?.height}
+                layout="responsive"
+                objectFit="cover"
+                objectPosition="top"
+                priority
+              />
+            </ImageWrapper>
+          </>
         ) : (
-          ""
+          <>
+            <ContentWrapper size={"small"}>
+              <HeadingWrapper size={"small"}>
+                <Heading>{"Open Mornings"}</Heading>
+                <DescriptionWrapper>
+                  <Description>
+                    {
+                      "We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+                    }
+                  </Description>
+                </DescriptionWrapper>
+              </HeadingWrapper>
+              <ActionWrapper>
+                <Button
+                  href={
+                    props?.props?.buttonLink?.[0]?.uri ||
+                    props?.props?.buttonUrl
+                  }
+                  label={props?.props?.buttonLabel}
+                  arrow={true}
+                  theme="dark"
+                  variant="primary"
+                />
+              </ActionWrapper>
+            </ContentWrapper>
+            <FooterWrapper>
+              <VideoButton href={props?.props?.featureVideoUrl}>
+                <Text>{props?.props?.featureVideoTitle}</Text>
+                <HeroIcons type={"video"} />
+              </VideoButton>
+              <DownloadButton
+                href={props?.props?.featureDownloadAsset?.[0]?.url}
+              >
+                <Text>{props?.props?.featureDownloadLinkTitle}</Text>
+                <HeroIcons type={"download"} />
+              </DownloadButton>
+            </FooterWrapper>
+          </>
         )}
       </ContentBox>
     </Wrapper>
