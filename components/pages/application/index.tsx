@@ -1,25 +1,32 @@
 import React from "react";
-import { styled } from "@stitches/react";
-import { blackA } from "@radix-ui/colors";
+// import { styled } from "@stitches/react";
+// import { blackA } from "@radix-ui/colors";
+import Hero from "@components/ApplyOnlineHero";
 // import { Wrapper } from "./styles";
-// import { Container } from "@components/common";
+import { Container } from "@components/common";
 //import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 
 //export const AspectRatio = AspectRatioPrimitive;
 
-const Box = styled("div", {});
-
 const Application = ({}) => {
   return (
     <>
-      <Box
-        css={{
-          width: 300,
-          borderRadius: 6,
-          overflow: "hidden",
-          color: `red${blackA.blackA7}`,
+      <Hero
+        overHeadline="APPLY ONLINE"
+        headline="Carey Baptist Grammar SchoolApplication for Admission"
+        contentText="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
+        startApplication={{
+          buttonLink: "test",
+          buttonLabel: "Start Application",
+          buttonUrl: "url",
         }}
-      ></Box>
+        resumeApplication={{
+          buttonLink: "test",
+          buttonLabel: "Resume Application",
+          buttonUrl: "url",
+        }}
+      />
+      <Container>asdfadsfsaf</Container>
     </>
   );
 };
