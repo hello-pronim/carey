@@ -57,10 +57,11 @@ const Content = styled("div", {
 const DisplayContent = styled("div", {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-end",
+  justifyContent: "center",
   zIndex: 1,
   p: 44,
   rowGap: 24,
+  width: "60%",
   gridRow: 1,
   gridColumn: "1 / span 2",
   "@min768": {
@@ -149,7 +150,7 @@ const DisplayVideoWrapper = styled("div", {
   },
   video: {
     width: "100%",
-    maxHeight: "568px",
+    maxHeight: "808px",
     objectFit: "cover",
   },
 });
@@ -173,6 +174,187 @@ const Crest = styled("div", {
   },
 });
 const Div = styled("div", {});
+const ContentBox = styled("div", {
+  position: "absolute",
+  right: "0",
+  bottom: "0",
+  zIndex: 2,
+});
+const QuickLinks = styled("div", {
+  width: "380px",
+  "@max1440": {
+    width: "340px",
+  },
+  "@max1024": {
+    width: "300px",
+  },
+  "@max768": {
+    width: "270px",
+  },
+  backgroundColor: "#FFFFFF",
+  p: 44,
+});
+const QuickLinksList = styled("ul", {
+  mt: 24,
+  mb: 0,
+  listStyle: "none",
+  pl: 0,
+});
+const QuickLinksListItem = styled("li", {
+  borderBottom: "1px solid #B3CBDE",
+  py: 16,
+  "> a, > button": {
+    flexDirection: "row-reverse",
+    px: 0,
+  },
+  "&:last-of-type": {
+    borderBottom: "none",
+  },
+});
+
+const Description = styled("span", {
+  gridColumn: "1 / span 12",
+  fontSize: "$bodySmall",
+  fontWeight: "$regular",
+  lineHeight: "$large",
+  letterSpacing: "$regular",
+  "@min1024": {
+    gridColumn: "1 / span 9",
+    fontSize: "$bodySmall",
+    letterSpacing: "$tight",
+  },
+  variants: {
+    size: {
+      small: {
+        "@min1024": {
+          fontSize: "$bodySmall",
+          gridColumn: "1 / span 9",
+          letterSpacing: "$regular",
+        },
+      },
+      large: {
+        "@min1024": {
+          fontSize: "$bodySmall",
+          gridColumn: "1 / span 9",
+          letterSpacing: "$tight",
+        },
+      },
+    },
+  },
+});
+const DescriptionWrapper = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(12, 1fr)",
+});
+const FooterWrapper = styled("div", {
+  position: "relative",
+});
+const Heading = styled("span", {
+  color: "$black",
+  fontSize: "$headingSmall",
+  lineHeight: "$large",
+  letterSpacing: "$regular",
+  fontWeight: "$medium",
+  "@min1024": {
+    fontSize: "$headingSmall",
+    fontWeight: "medium",
+  },
+});
+const HeadingWrapper = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  variants: {
+    size: {
+      small: {
+        gap: 18,
+        "@min1024": {
+          gap: 24,
+        },
+      },
+      large: {
+        gap: 18,
+        "@min1024": {
+          gap: 32,
+        },
+      },
+    },
+  },
+});
+
+const VideoButton = styled("a", {
+  display: "flex",
+  textDecoration: "none",
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: "30px",
+  "@max1440": {
+    padding: "20px",
+  },
+  backgroundColor: "$navy",
+  "> span": {
+    color: "$white",
+  },
+});
+const DownloadButton = styled("a", {
+  textDecoration: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: "30px",
+  "@max1440": {
+    padding: "26px",
+  },
+  backgroundColor: "#213565",
+  "> span": {
+    color: "$white",
+  },
+});
+const ContentWrapper = styled("div", {
+  width: "380px",
+  "@max1440": {
+    width: "340px",
+  },
+  "@max1024": {
+    width: "300px",
+  },
+  backgroundColor: "#FFFFFF",
+  p: 24,
+  display: "flex",
+  flexDirection: "column",
+  variants: {
+    size: {
+      small: {
+        padding: 24,
+        paddingBottom: 0,
+        gap: 50,
+        "@min1024": {
+          // padding: 48,
+          paddingBottom: 0,
+          gap: 50,
+        },
+      },
+      large: {
+        padding: 24,
+        paddingBottom: 0,
+        gap: 24,
+        "@min1024": {
+          // padding: 48,
+          paddingBottom: 0,
+          gap: 80,
+        },
+      },
+    },
+    type: {
+      default: {},
+      landscape: { flex: 1 },
+    },
+  },
+});
+
+const IconWrapper = styled("div", {});
+const ActionWrapper = styled("div", {
+  paddingBottom: "63px",
+});
 
 export {
   Wrapper,
@@ -187,4 +369,18 @@ export {
   Div,
   VideoWrapper,
   DisplayVideoWrapper,
+  ContentBox,
+  QuickLinks,
+  QuickLinksList,
+  QuickLinksListItem,
+  IconWrapper,
+  HeadingWrapper,
+  Heading,
+  FooterWrapper,
+  DescriptionWrapper,
+  Description,
+  ActionWrapper,
+  ContentWrapper,
+  DownloadButton,
+  VideoButton,
 };

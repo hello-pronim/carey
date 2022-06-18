@@ -1,24 +1,57 @@
 import React from "react";
-import { Image } from "@components/common";
+import { Container, Image } from "@components/common";
 import { PreFooter } from "@components/common";
+import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 
-import { Wrapper } from "./styles";
+import { ImageWrapper, Wrapper } from "./styles";
 
 const Test = () => {
   return (
     <Wrapper>
-      <Image
-        src="https://images.unsplash.com/photo-1629363447922-1f421b470828"
-        alt="Image by Tim Schmidbauer on Unsplash"
-        width={500}
-        height={275}
-        placeholder="empty"
-        layout="responsive"
-        fallback="random thing"
-        objectFit="cover"
-        priority
-        unoptimized
-      />
+      <Container>
+        <OpenMorningsCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          background="assets/img/bg_card.png"
+          href="#"
+          size="small"
+        />
+        <OpenMorningsCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          background="assets/img/bg_card.png"
+          href="#"
+          size="small"
+          type="landscape"
+        />
+      </Container>
+      <Container>
+        <OpenMorningsCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          background="assets/img/bg_card.png"
+          href="#"
+          size="large"
+        />
+      </Container>
+      <Container>
+        <ImageWrapper>
+          <Image
+            src="https://images.unsplash.com/photo-1629363447922-1f421b470828"
+            alt="Image by Tim Schmidbauer on Unsplash"
+            width={500}
+            height={275}
+            placeholder="empty"
+            layout="responsive"
+            fallback="random thing"
+            objectFit="cover"
+            enableSkeleton={true}
+            priority
+            unoptimized
+            // debug="true"
+          />
+        </ImageWrapper>
+      </Container>
       <PreFooter />
     </Wrapper>
   );

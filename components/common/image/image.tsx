@@ -1,16 +1,18 @@
 import React from "react";
-import Image, { ImageProps } from "next/image";
+import { default as NextImage, ImageProps } from "next/image";
 import { SkeletonLoader } from "./skeletonLoader";
-import { ImageWrapper } from "./styles";
+import { ImageWrapper, Wrapper } from "./styles";
 
 type ImageWithStateProps = ImageProps & {
   fallback: string;
+  enableSkeleton?: boolean;
   debug?: string;
 };
 
-function ImageWithState({
+function Image({
   alt,
   src,
+  enableSkeleton = false, // if false, next/image, if true, image with skeleton lader
   ...props
 }: ImageWithStateProps): JSX.Element {
   const [loading, setLoading] = React.useState(true);
@@ -27,8 +29,8 @@ function ImageWithState({
     }
   }
 
-  return (
-    <div style={{ position: "relative", maxWidth: props.width }}>
+  return enableSkeleton ? (
+    <Wrapper>
       <SkeletonLoader
         style={{
           position: "absolute",
@@ -39,7 +41,7 @@ function ImageWithState({
         width={props.width}
       />
       <ImageWrapper show={!loading}>
-        <Image
+        <NextImage
           alt={alt}
           src={onErrorSrc || src}
           onLoadingComplete={() => !props.debug && setLoading(false)}
@@ -47,8 +49,10 @@ function ImageWithState({
           {...props}
         />
       </ImageWrapper>
-    </div>
+    </Wrapper>
+  ) : (
+    <NextImage alt={alt} src={src} {...props} />
   );
 }
 
-export default ImageWithState;
+export default Image;
