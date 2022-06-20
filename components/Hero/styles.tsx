@@ -150,7 +150,7 @@ const DisplayVideoWrapper = styled("div", {
   },
   video: {
     width: "100%",
-    maxHeight: "808px",
+    maxHeight: "920px",
     objectFit: "cover",
   },
 });

@@ -28,6 +28,19 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     "generalComponents_whyCarey_BlockType",
   ];
 
+  const getHeroType = (type) => {
+    switch (type) {
+      case "generalComponents_generalSideImage_BlockType":
+        return "general";
+      case "generalComponents_generalSideCareyBrand_BlockType":
+        return "plain";
+      case "generalComponents_whyCarey_BlockType":
+        return "display";
+      default:
+        return null;
+    }
+  };
+
   const heroData = pageData.find((item) => heroTypes.includes(item.__typename));
 
   //Assigns type name from content data to appropriate modules.
@@ -43,7 +56,13 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (
     <>
-      <Hero type="display" props={heroData} applyNow={applyNow} />
+      {getHeroType(heroData.__typename) && (
+        <Hero
+          type={getHeroType(heroData.__typename)}
+          props={heroData}
+          applyNow={applyNow}
+        />
+      )}
       <Container type="flex">
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />

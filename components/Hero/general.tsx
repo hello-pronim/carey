@@ -34,21 +34,23 @@ const General = (props) => {
           </Text>
         </Content>
 
-        <VideoWrapper>
-          <video
-            preload="auto"
-            loop={true}
-            muted={true}
-            autoPlay={true}
-            playsInline={true}
-          >
-            <source
-              src={props?.props?.videoUrl}
-              type="video/mp4"
-              media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)"
-            />
-          </video>
-        </VideoWrapper>
+        {props?.props?.videoUrl && !props.props.image.length ? (
+          <VideoWrapper>
+            <video
+              preload="auto"
+              loop={true}
+              muted={true}
+              autoPlay={true}
+              playsInline={true}
+            >
+              <source
+                src={props?.props?.videoUrl}
+                type="video/mp4"
+                media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)"
+              />
+            </video>
+          </VideoWrapper>
+        ) : null}
 
         {props.props.image.length ? (
           <ImageWrapper>

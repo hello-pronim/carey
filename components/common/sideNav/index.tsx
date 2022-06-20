@@ -29,7 +29,6 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
       }
       return false;
     });
-    console.log("Herer", findActiveNavItem);
     return findActiveNavItem;
   };
 
