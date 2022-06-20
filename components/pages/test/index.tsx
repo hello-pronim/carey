@@ -12,16 +12,24 @@ const Test = () => {
         <OpenMorningsCard
           title="Open Mornings"
           description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          background="assets/img/bg_card.png"
           href="#"
           size="small"
         />
+      </Container>
+      <Container>
         <OpenMorningsCard
           title="Open Mornings"
           description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          background="assets/img/bg_card.png"
           href="#"
-          size="small"
+          size="large"
+        />
+      </Container>
+      <Container>
+        <OpenMorningsCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          href="#"
+          size="large"
           type="landscape"
         />
       </Container>
@@ -29,9 +37,9 @@ const Test = () => {
         <OpenMorningsCard
           title="Open Mornings"
           description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          background="assets/img/bg_card.png"
           href="#"
           size="large"
+          type="application-form"
         />
       </Container>
       <Container>

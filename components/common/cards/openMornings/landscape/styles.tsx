@@ -2,6 +2,8 @@ import { styled } from "@styles/stitches";
 
 const ActionWrapper = styled("div", {});
 const Card = styled("div", {
+  display: "flex",
+  height: 400,
   position: "relative",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
@@ -10,7 +12,6 @@ const Card = styled("div", {
   objectPosition: "bottom",
   boxShadow: "none",
   transition: "box-shadow 0.08s ease-out 0.08s",
-  height: "max-content",
   variants: {
     size: {
       small: {
@@ -22,28 +23,13 @@ const Card = styled("div", {
       large: {
         minWidth: 327,
         "@min1024": {
-          minWidth: 859,
-        },
-      },
-    },
-    type: {
-      default: {
-        display: "flex",
-        flexDirection: "column",
-      },
-      landscape: {
-        display: "flex",
-        flexDirection: "row-reverse",
-        height: 400,
-        "@min1024": {
           minWidth: 1459,
         },
       },
-      "application-form": {},
     },
   },
   "&:hover": {
-    boxShadow: "inset 0px 30px 120px 60px rgb(0 0 0 / 30%)",
+    boxShadow: "inset 0px 30px 120px 60px rgb(5 27 63 / 10%)",
   },
 });
 const CMarkImage = styled("div", {
@@ -52,34 +38,11 @@ const CMarkImage = styled("div", {
   backgroundRepeat: "no-repeat",
   backgroundSize: "contain",
   objectFit: "cover",
-  variants: {
-    size: {
-      small: {
-        width: 155,
-        height: 169,
-        left: 0,
-        bottom: 24,
-        "@min1024": {
-          width: 220,
-          height: 240,
-          left: 0,
-          bottom: 40,
-        },
-      },
-      large: {
-        width: 155,
-        height: 169,
-        left: 0,
-        bottom: 24,
-        "@min1024": {
-          width: 312,
-          height: 340,
-          left: 0,
-          bottom: 56,
-        },
-      },
-    },
-  },
+  width: 220,
+  height: 240,
+  left: 0,
+  top: "50%",
+  transform: "translate(0, -50%)",
 });
 const Description = styled("span", {
   gridColumn: "1 / span 12",
@@ -105,7 +68,7 @@ const Description = styled("span", {
       large: {
         "@min1024": {
           fontSize: "$bodyXXLarge",
-          gridColumn: "1 / span 9",
+          gridColumn: "1 / span 12",
           letterSpacing: "$tight",
         },
       },
@@ -115,29 +78,6 @@ const Description = styled("span", {
 const DescriptionWrapper = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(12, 1fr)",
-});
-const FooterWrapper = styled("div", {
-  position: "relative",
-  variants: {
-    size: {
-      small: {
-        paddingLeft: 144,
-        "@min1024": {
-          paddingLeft: 256,
-        },
-      },
-      large: {
-        paddingLeft: 144,
-        "@min1024": {
-          paddingLeft: 360,
-        },
-      },
-    },
-    type: {
-      default: {},
-      landscape: { flex: 1 },
-    },
-  },
 });
 const Heading = styled("span", {
   color: "$crestYellow",
@@ -162,14 +102,43 @@ const HeadingWrapper = styled("div", {
       large: {
         gap: 18,
         "@min1024": {
-          gap: 32,
+          gap: 24,
         },
       },
     },
   },
 });
-const ImageWrapper = styled("div", {});
-const Wrapper = styled("div", {
+const ImageWrapper = styled("div", {
+  height: "100%",
+  padding: "0 72px",
+  overflow: "hidden",
+});
+const LeftContainer = styled("div", {
+  position: "relative",
+  height: "100%",
+  variants: {
+    size: {
+      small: {
+        paddingLeft: 144,
+        "@min1024": {
+          paddingLeft: 256,
+        },
+      },
+      large: {
+        paddingLeft: 144,
+        "@min1024": {
+          paddingLeft: 256,
+        },
+      },
+    },
+  },
+});
+const LeftWrapper = styled("div", {
+  height: "100%",
+  flex: 1,
+});
+const RightContainer = styled("div", {
+  height: "100%",
   padding: 24,
   display: "flex",
   flexDirection: "column",
@@ -177,41 +146,42 @@ const Wrapper = styled("div", {
     size: {
       small: {
         padding: 24,
-        paddingBottom: 0,
+        paddingLeft: 0,
         gap: 24,
         "@min1024": {
           padding: 48,
-          paddingBottom: 0,
+          paddingLeft: 0,
           gap: 24,
         },
       },
       large: {
         padding: 24,
-        paddingBottom: 0,
+        paddingLeft: 0,
         gap: 24,
         "@min1024": {
           padding: 48,
-          paddingBottom: 0,
-          gap: 80,
+          paddingLeft: 0,
+          gap: 24,
         },
       },
     },
-    type: {
-      default: {},
-      landscape: { flex: 1 },
-    },
   },
+});
+const RightWrapper = styled("div", {
+  flex: 1,
 });
 
 export {
   ActionWrapper,
-  Card,
   CMarkImage,
+  Card,
   Description,
   DescriptionWrapper,
-  FooterWrapper,
   Heading,
   HeadingWrapper,
   ImageWrapper,
-  Wrapper,
+  LeftContainer,
+  LeftWrapper,
+  RightContainer,
+  RightWrapper,
 };
