@@ -1,41 +1,6 @@
 import { styled } from "@styles/stitches";
 
 const ActionWrapper = styled("div", {});
-const AFCard = styled("div", {
-  display: "flex",
-  flexDirection: "row-reverse",
-  height: 400,
-  position: "relative",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundPosition: "bottom",
-  objectFit: "cover",
-  objectPosition: "bottom",
-  boxShadow: "none",
-  transition: "box-shadow 0.08s ease-out 0.08s",
-  "@min1024": {
-    minWidth: 1024,
-  },
-  variants: {
-    size: {
-      small: {
-        minWidth: 327,
-        "@min1024": {
-          minWidth: 560,
-        },
-      },
-      large: {
-        minWidth: 327,
-        "@min1024": {
-          minWidth: 859,
-        },
-      },
-    },
-  },
-  "&:hover": {
-    boxShadow: "inset 0px 30px 120px 60px rgb(0 0 0 / 30%)",
-  },
-});
 const BottomWrapper = styled("div", {
   position: "relative",
   variants: {
@@ -59,7 +24,7 @@ const BottomWrapper = styled("div", {
     },
   },
 });
-const DefaultCard = styled("div", {
+const Card = styled("div", {
   position: "relative",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
@@ -344,10 +309,9 @@ const TopWrapper = styled("div", {
 
 export {
   ActionWrapper,
-  AFCard,
   BottomWrapper,
   CMarkImage,
-  DefaultCard,
+  Card,
   Description,
   DescriptionWrapper,
   Heading,
