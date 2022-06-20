@@ -17,12 +17,19 @@ export const HomePageQuery = gql`
             }
             videoUrl
             quicklinks {
-              linkText
-              link
+              ... on quicklinks_BlockType {
+                linkTitle
+                linkUrl
+                linkEntry {
+                  uri
+                }
+              }
             }
             featurePanelUrl
             featurePanelImage {
               url
+              width
+              height
             }
             featurePanelLink {
               uri
