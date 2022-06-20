@@ -8,10 +8,12 @@ const TextField = ({
   label,
   placeholder,
   required,
+  color = "white",
   error,
   disabled,
   type = "text",
   hint,
+  outerCSS,
 }: TFTypes) => {
   const [passVisible, setPassVisible] = useState(false);
 
@@ -34,9 +36,13 @@ const TextField = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper css={outerCSS}>
       <Label required={required} disabled={disabled}>
-        {label && <Text variant="Body-xSmall">{label}</Text>}
+        {label && (
+          <Text style={{ color: color }} variant="Body-xSmall">
+            {label}
+          </Text>
+        )}
         <InputWrapper>
           <Input
             type={handleType(type)}
@@ -68,8 +74,10 @@ type TFTypes = {
   required?: boolean;
   error?: string;
   disabled?: boolean;
+  color?: string;
   type?: "text" | "tel" | "email" | "number" | "password";
   hint?: string;
+  outerCSS?: any;
 };
 
 export default TextField;

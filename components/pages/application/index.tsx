@@ -58,7 +58,7 @@ const Application = ({}) => {
             purus sit amet luctus venenatis, lectus magna fringilla urna,
             porttitor rhoncus dolor purus non
           </Text>
-          <ApplyResumeButton />
+          <ApplyResumeButton resumeBttnTheme="light" />
         </LeftContent>
         <RightContent>
           <Content>

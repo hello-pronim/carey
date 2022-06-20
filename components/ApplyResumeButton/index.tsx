@@ -1,8 +1,11 @@
 import React from "react";
 import { styled, keyframes } from "@stitches/react";
-import { violet, blackA, red, mauve } from "@radix-ui/colors";
+import { blackA, mauve } from "@radix-ui/colors";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { Button, Text } from "@components/common";
+import ApplyForm from "./applyForm";
+import ResumeForm from "./resumeForm";
 import { Div } from "./styles";
 
 const overlayShow = keyframes({
@@ -83,57 +86,39 @@ export const ResumeApplicationDescription = StyledDescription;
 export const ResumeApplicationAction = AlertDialogPrimitive.Action;
 export const ResumeApplicationCancel = AlertDialogPrimitive.Cancel;
 
-const ButtonStyled = styled("button", {
+const CloseButtonStyled = styled("button", {
   all: "unset",
+  position: "absolute",
+  right: 85,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: 4,
-  padding: "0 15px",
-  fontSize: 15,
+  fontSize: 12,
   lineHeight: 1,
   fontWeight: 500,
-  height: 35,
-
-  variants: {
-    variant: {
-      violet: {
-        backgroundColor: "white",
-        color: violet.violet11,
-        boxShadow: `0 2px 10px ${blackA.blackA7}`,
-        "&:hover": { backgroundColor: mauve.mauve3 },
-        "&:focus": { boxShadow: `0 0 0 2px black` },
-      },
-      red: {
-        backgroundColor: red.red4,
-        color: red.red11,
-        "&:hover": { backgroundColor: red.red5 },
-        "&:focus": { boxShadow: `0 0 0 2px ${red.red7}` },
-      },
-      mauve: {
-        backgroundColor: mauve.mauve4,
-        color: mauve.mauve11,
-        "&:hover": { backgroundColor: mauve.mauve5 },
-        "&:focus": { boxShadow: `0 0 0 2px ${mauve.mauve7}` },
-      },
-    },
-  },
-
-  defaultVariants: {
-    variant: "violet",
-  },
+  color: "$white",
+  cursor: "pointer",
 });
 
-const ApplyResumeButton = ({}) => {
+const ApplyResumeButton = ({
+  resumeBttnTheme = "transparent",
+}: ApplyResumeButtonTypes) => {
   return (
-    <Div css={{ display: "flex", mt: 80 }}>
+    <Div
+      css={{
+        display: "flex",
+        mt: 80,
+        justifyContent: "space-between",
+        maxWidth: 560,
+      }}
+    >
       <StartApplication>
         <StartApplicationTrigger asChild>
           <Button
             arrow
             label="Start Application"
             color="$crestYellow"
-            type="outline"
+            type="solid"
             theme="transparent"
             variant="secondary"
             scale="xl"
@@ -142,22 +127,33 @@ const ApplyResumeButton = ({}) => {
         </StartApplicationTrigger>
         <StartApplicationContent>
           <StartApplicationCancel asChild>
-            <ButtonStyled variant="mauve" css={{ marginRight: 25 }}>
-              Close
-            </ButtonStyled>
+            <CloseButtonStyled>
+              Close{" "}
+              <Cross2Icon style={{ marginLeft: 13 }} width={14} height={14} />
+            </CloseButtonStyled>
           </StartApplicationCancel>
           <StartApplicationDescription>
             <Text as="h6" variant="Heading-Overline" style={{ color: "#fff" }}>
               APPLY ONLINE
             </Text>
-            <Text as="h2" variant="Heading-Small" style={{ color: "#fff" }}>
+            <Text
+              as="h2"
+              variant="Heading-Small"
+              style={{ color: "#fff", paddingTop: "32px" }}
+            >
               Start application
             </Text>
-            <Text as="p" variant="Body-Regular" style={{ color: "#fff" }}>
+            <Text
+              as="p"
+              variant="Body-Regular"
+              style={{ color: "#fff", paddingTop: "32px" }}
+            >
               Lorem ipsum dolor sit amet, consectetur adipiscingaliquam, purus
               sit amet luctus venenatis, lecs magna.
             </Text>
           </StartApplicationDescription>
+          <ApplyForm />
+          Resume Application
         </StartApplicationContent>
       </StartApplication>
       <ResumeApplication>
@@ -166,7 +162,7 @@ const ApplyResumeButton = ({}) => {
             arrow
             label="Resume Application"
             type="outline"
-            theme="transparent"
+            theme={resumeBttnTheme}
             variant="secondary"
             scale="xl"
             href="#"
@@ -174,26 +170,41 @@ const ApplyResumeButton = ({}) => {
         </ResumeApplicationTrigger>
         <ResumeApplicationContent>
           <ResumeApplicationCancel asChild>
-            <ButtonStyled variant="mauve" css={{ marginRight: 25 }}>
-              Close
-            </ButtonStyled>
+            <CloseButtonStyled>
+              Close{" "}
+              <Cross2Icon style={{ marginLeft: 13 }} width={14} height={14} />
+            </CloseButtonStyled>
           </ResumeApplicationCancel>
           <ResumeApplicationDescription>
             <Text as="h6" variant="Heading-Overline" style={{ color: "#fff" }}>
               APPLY ONLINE
             </Text>
-            <Text as="h2" variant="Heading-Small" style={{ color: "#fff" }}>
+            <Text
+              as="h2"
+              variant="Heading-Small"
+              style={{ color: "#fff", paddingTop: "32px" }}
+            >
               Resume application
             </Text>
-            <Text as="p" variant="Body-Regular" style={{ color: "#fff" }}>
+            <Text
+              as="p"
+              variant="Body-Regular"
+              style={{ color: "#fff", paddingTop: "32px" }}
+            >
               Lorem ipsum dolor sit amet, consectetur adipiscingaliquam, purus
               sit amet luctus venenatis, lecs magna.
             </Text>
           </ResumeApplicationDescription>
+          <ResumeForm />
+          Forgot email address or Unique ID
         </ResumeApplicationContent>
       </ResumeApplication>
     </Div>
   );
+};
+
+type ApplyResumeButtonTypes = {
+  resumeBttnTheme?: "light" | "dark" | "transparent";
 };
 
 export default ApplyResumeButton;
