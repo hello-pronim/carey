@@ -28,6 +28,7 @@ import HeroButton from "./HeroButton";
 import HeroIcons from "@components/common/icons/heroIcons";
 
 const Display = (props) => {
+  console.log(props);
   return (
     <Wrapper>
       <Bumper css={{ bg: "$crestYellow" }} />
@@ -146,13 +147,9 @@ const Display = (props) => {
           <>
             <ContentWrapper size={"small"}>
               <HeadingWrapper size={"small"}>
-                <Heading>{"Open Mornings"}</Heading>
+                <Heading>{props?.props?.headline}</Heading>
                 <DescriptionWrapper>
-                  <Description>
-                    {
-                      "We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-                    }
-                  </Description>
+                  <Description>{props?.props?.contentText}</Description>
                 </DescriptionWrapper>
               </HeadingWrapper>
               <ActionWrapper>
