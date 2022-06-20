@@ -7,3 +7,4 @@ export { default as Image } from "./image/image";
 export { default as Header } from "./header/header";
 export { default as Footer } from "./footer/footer";
 export { default as PreFooter } from "./preFooter/preFooter";
+export { default as Accordians } from "./accordians";
