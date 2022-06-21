@@ -33,18 +33,23 @@ const Divider = styled("div", {
 });
 
 const Content = (props) => {
+  const condWrapperStyles = {
+    bg: !!props.brandColours && props.brandColours,
+    "*": {
+      color: !!props.brandColours && getTextColor(props.brandColours),
+    },
+    ".inline-divider": {
+      opacity: !!props.brandColours && 0.3,
+      backgroundColor: !!props.brandColours && getTextColor(props.brandColours),
+    },
+  };
+
   // Converts HTML string into digestible object.
   const parsedHTML = parseDocument(props.bodyText);
 
   return (
     <ContentContainer>
-      <ContentWrapper
-        css={{
-          bg: !!props.brandColours && props.brandColours,
-          "*": { color: !!props.bgColour && getTextColor(props.brandColours) },
-        }}
-        hasBG={!!props.brandColours}
-      >
+      <ContentWrapper css={condWrapperStyles} hasBG={!!props.brandColours}>
         {parsedHTML.children.map((component: any) => (
           <InvokeElement
             key={uuid()}

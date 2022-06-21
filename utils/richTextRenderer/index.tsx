@@ -3,6 +3,13 @@ import Link from "next/link";
 import { styled } from "@styles/stitches";
 import InvokeElement from "../invokeElement";
 
+const Divider = styled("div", {
+  width: "100%",
+  bg: "$navy200",
+  height: "1px",
+  my: 56,
+});
+
 const Unordered = styled("ul", {
   display: "block",
   listStyleType: "disc",
@@ -181,6 +188,7 @@ const expandedRichText = new Map([
       );
     },
   ],
+  ["type_divider", () => <Divider className="inline-divider" />],
 ]);
 
 const ParseCustomFormatting = (props) => {
