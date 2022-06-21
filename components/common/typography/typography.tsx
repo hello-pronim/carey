@@ -82,6 +82,18 @@ const Text = styled("span", {
           letterSpacing: "$tight",
         },
       },
+      "Heading-xxSmall": {
+        fontWeight: "$regular",
+        fontSize: rem("14px"),
+        lineHeight: "$large",
+        letterSpacing: "$regular",
+        "@min1024": {
+          fontWeight: "$regular",
+          fontSize: rem("16px"),
+          lineHeight: "$large",
+          letterSpacing: "$regular",
+        },
+      },
       "Heading-Overline": {
         fontWeight: "$semiBold",
         fontSize: "$headingOverline",

@@ -48,8 +48,11 @@ const Head = styled("th", {
   display: "block",
   width: "100%",
   boxSizing: "border-box",
-  px: 24,
+  px: 12,
   py: 12,
+  "@min1024": {
+    px: 24,
+  },
   variants: {
     alignment: {
       left: {
@@ -65,8 +68,11 @@ const Head = styled("th", {
   },
 });
 const Cell = styled("td", {
-  px: 24,
+  px: 12,
   py: 12,
+  "@min1024": {
+    px: 24,
+  },
   boxSizing: "border-box",
   variants: {
     alignment: {
@@ -83,6 +89,15 @@ const Cell = styled("td", {
   },
 });
 
+const bodySmallMQ = {
+  "@max1024": {
+    fontWeight: "$regular",
+    fontSize: "$bodyXSmall",
+    lineHeight: "$large",
+    letterSpacing: "$regular",
+  },
+};
+
 const ThreeColTable = (props) => {
   return (
     <TableWrapper>
@@ -93,13 +108,13 @@ const ThreeColTable = (props) => {
         <thead>
           <Row css={{ bg: "$crestBlue200" }}>
             <Head>
-              <Text variant="Heading-xSmall">{props.colOneLabel}</Text>
+              <Text variant="Heading-xxSmall">{props.colOneLabel}</Text>
             </Head>
             <Head alignment="right">
-              <Text variant="Heading-xSmall">{props.colTwoLabel}</Text>
+              <Text variant="Heading-xxSmall">{props.colTwoLabel}</Text>
             </Head>
             <Head alignment="right">
-              <Text variant="Heading-xSmall">{props.colThreeLabel}</Text>
+              <Text variant="Heading-xxSmall">{props.colThreeLabel}</Text>
             </Head>
           </Row>
         </thead>
@@ -110,7 +125,7 @@ const ThreeColTable = (props) => {
                 {!!group.groupTitle && (
                   <Row type="Title-Row" css={{ bg: "#FFF6D1" }}>
                     <Head css={{ gridColumn: "1 / span 3" }}>
-                      <Text variant="Heading-xSmall">{group.groupTitle}</Text>
+                      <Text variant="Heading-xxSmall">{group.groupTitle}</Text>
                     </Head>
                   </Row>
                 )}
@@ -118,13 +133,19 @@ const ThreeColTable = (props) => {
                   return (
                     <Row key={uuid()}>
                       <Cell>
-                        <Text>{entry.col1}</Text>
+                        <Text css={bodySmallMQ} variant="Body-Small">
+                          {entry.col1}
+                        </Text>
                       </Cell>
                       <Cell alignment="right">
-                        <Text>{entry.col2}</Text>
+                        <Text css={bodySmallMQ} variant="Body-Small">
+                          {entry.col2}
+                        </Text>
                       </Cell>
                       <Cell alignment="right">
-                        <Text>{entry.col3}</Text>
+                        <Text css={bodySmallMQ} variant="Body-Small">
+                          {entry.col3}
+                        </Text>
                       </Cell>
                     </Row>
                   );

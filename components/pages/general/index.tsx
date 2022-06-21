@@ -7,7 +7,7 @@ import { BreadCrumb, Container } from "@components/common";
 import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
-// import ThreeColTable from "./components/ThreeColTable";
+import ThreeColTable from "./components/ThreeColTable";
 import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
 import TextContent from "./components/FeatureTextContent";
@@ -52,6 +52,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("featureTextBlock"), FeatureTextBlock],
     [ModuleType("contentTextImage"), TextImageContent],
     [ModuleType("mapBlock"), MapView],
+    [ModuleType("threeColumnTable"), ThreeColTable],
   ]);
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (

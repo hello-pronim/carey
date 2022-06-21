@@ -8,22 +8,22 @@ export const GeneralPageQuery = gql`
       title
       ... on generalPage_default_Entry {
         generalComponents {
-          # ... on generalComponents_threeColumnTable_BlockType {
-          #   tableTitle
-          #   colOneLabel
-          #   colTwoLabel
-          #   colThreeLabel
-          #   threeColTable {
-          #     ... on threeColTable_BlockType {
-          #       groupTitle
-          #       tableRow {
-          #         col1
-          #         col2
-          #         col3
-          #       }
-          #     }
-          #   }
-          # }
+          ... on generalComponents_threeColumnTable_BlockType {
+            tableTitle
+            colOneLabel
+            colTwoLabel
+            colThreeLabel
+            threeColTable {
+              ... on threeColTable_BlockType {
+                groupTitle
+                tableRow {
+                  col1
+                  col2
+                  col3
+                }
+              }
+            }
+          }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
           }
@@ -172,7 +172,7 @@ export const GeneralPageQuery = gql`
           # ... on generalComponents_sessionTimes_BlockType {
           #   title: tableTitle
           #   ctaTitle
-          #   ctaContent
+          #   ctaBody: contentText
           #   sessions: sessionTimeTable {
           #     ... on sessionTimeTable_BlockType {
           #       date: sessionDate
