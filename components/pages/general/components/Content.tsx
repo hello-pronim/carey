@@ -6,7 +6,8 @@ import InvokeElement from "@utils/invokeElement";
 import RichText from "@utils/richTextRenderer";
 
 const ContentWrapper = styled("div", {
-  gridColumn: "2 / span 6",
+  width: "100%",
+  boxSizing: "border-box",
   "> *:last-child": {
     mb: "unset !important",
   },
@@ -20,27 +21,46 @@ const ContentWrapper = styled("div", {
   },
 });
 
+const ContentContainer = styled("div", {
+  gridColumn: "2 / span 6",
+});
+
+const Divider = styled("div", {
+  width: "100%",
+  bg: "$navy200",
+  height: "1px",
+  mt: 56,
+});
+
 const Content = (props) => {
+  const condWrapperStyles = {
+    bg: !!props.brandColours && props.brandColours,
+    "*": {
+      color: !!props.brandColours && getTextColor(props.brandColours),
+    },
+    ".inline-divider": {
+      opacity: !!props.brandColours && 0.3,
+      backgroundColor: !!props.brandColours && getTextColor(props.brandColours),
+    },
+  };
+
   // Converts HTML string into digestible object.
   const parsedHTML = parseDocument(props.bodyText);
 
   return (
-    <ContentWrapper
-      css={{
-        bg: !!props.bgColor && props.bgColor,
-        "*": { color: !!props.bgColor && getTextColor(props.bgColor) },
-      }}
-      hasBG={!!props.bgColor}
-    >
-      {parsedHTML.children.map((component: any) => (
-        <InvokeElement
-          key={uuid()}
-          el={component}
-          type={component?.name}
-          map={RichText}
-        />
-      ))}
-    </ContentWrapper>
+    <ContentContainer>
+      <ContentWrapper css={condWrapperStyles} hasBG={!!props.brandColours}>
+        {parsedHTML.children.map((component: any) => (
+          <InvokeElement
+            key={uuid()}
+            el={component}
+            type={component?.name}
+            map={RichText}
+          />
+        ))}
+      </ContentWrapper>
+      {props.dividerToggle && <Divider />}
+    </ContentContainer>
   );
 };
 
