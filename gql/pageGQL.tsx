@@ -265,18 +265,18 @@ export const GeneralPageQuery = gql`
               }
             }
           }
-          # ... on generalComponents_sessionTimes_BlockType {
-          #   title: tableTitle
-          #   ctaTitle
-          #   ctaBody: bodyText
-          #   sessions: sessionTimeTable {
-          #     ... on sessionTimeTable_BlockType {
-          #       date: sessionDate
-          #       status: sessionStatus
-          #       link: sessionLink
-          #     }
-          #   }
-          # }
+          ... on generalComponents_sessionTimes_BlockType {
+            title: tableTitle
+            ctaTitle
+            ctaBody: contentText
+            sessions: sessionTimeTable {
+              ... on sessionTimeTable_BlockType {
+                date: sessionDate
+                status: sessionStatus
+                link: sessionLink
+              }
+            }
+          }
         }
       }
     }
