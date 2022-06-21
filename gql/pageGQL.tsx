@@ -160,6 +160,44 @@ export const GeneralPageQuery = gql`
               }
             }
           }
+          ... on generalComponents_images2up_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            image2 {
+              url
+            }
+            captionImage2
+            includeDividerUnderneath
+          }
+          ... on generalComponents_images2upVideo_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            image2 {
+              url
+            }
+            videoLabel
+            videoUrl
+            captionImage2
+            includeDividerUnderneath
+          }
+          ... on generalComponents_inlineGallery3up_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            image2 {
+              url
+            }
+            captionImage2
+            image3 {
+              url
+            }
+            captionImage3
+          }
           # ... on generalComponents_sessionTimes_BlockType {
           #   title: tableTitle
           #   ctaTitle
