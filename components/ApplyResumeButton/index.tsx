@@ -22,6 +22,7 @@ const StyledOverlay = styled(AlertDialogPrimitive.Overlay, {
   backgroundColor: blackA.blackA9,
   position: "fixed",
   inset: 0,
+  zIndex: 9999,
   "@media (prefers-reduced-motion: no-preference)": {
     animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
   },
@@ -75,7 +76,6 @@ export const StartApplicationTrigger = AlertDialogPrimitive.Trigger;
 export const StartApplicationContent = Content;
 export const StartApplicationTitle = StyledTitle;
 export const StartApplicationDescription = StyledDescription;
-export const StartApplicationAction = AlertDialogPrimitive.Action;
 export const StartApplicationCancel = AlertDialogPrimitive.Cancel;
 
 export const ResumeApplication = AlertDialogPrimitive.Root;
@@ -83,7 +83,6 @@ export const ResumeApplicationTrigger = AlertDialogPrimitive.Trigger;
 export const ResumeApplicationContent = Content;
 export const ResumeApplicationTitle = StyledTitle;
 export const ResumeApplicationDescription = StyledDescription;
-export const ResumeApplicationAction = AlertDialogPrimitive.Action;
 export const ResumeApplicationCancel = AlertDialogPrimitive.Cancel;
 
 const CloseButtonStyled = styled("button", {
@@ -122,7 +121,6 @@ const ApplyResumeButton = ({
             theme="transparent"
             variant="secondary"
             scale="xl"
-            href="#"
           />
         </StartApplicationTrigger>
         <StartApplicationContent>
@@ -165,7 +163,6 @@ const ApplyResumeButton = ({
             theme={resumeBttnTheme}
             variant="secondary"
             scale="xl"
-            href="#"
           />
         </ResumeApplicationTrigger>
         <ResumeApplicationContent>

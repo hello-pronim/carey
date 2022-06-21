@@ -1,16 +1,15 @@
 import React from "react";
 import { styled } from "@styles/stitches";
 import { keyframes } from "@stitches/react";
-import { violet, mauve } from "@radix-ui/colors";
+import { mauve } from "@radix-ui/colors";
 import * as Accordion from "@radix-ui/react-accordion";
 import { CaretRightIcon } from "@radix-ui/react-icons";
 
 const AccordionChevron = styled(CaretRightIcon, {
   transition: "transform 300ms",
   "[data-state=open] &": { transform: "rotate(90deg)" },
-  padding: "10px 5px",
-
-  // backgroundColor: 'red',
+  color: "$navy",
+  mr: 20,
 });
 
 const slideDown = keyframes({
@@ -23,41 +22,54 @@ const slideUp = keyframes({
   to: { height: 0 },
 });
 
+const StyledHeader = styled(Accordion.Header, {
+  all: "unset",
+  display: "flex",
+});
+
+const StyledItem = styled(Accordion.Item, {
+  overflow: "hidden",
+  marginTop: 1,
+  mb: 15,
+  "&:first-child": {
+    marginTop: 25,
+  },
+});
+
 const StyledContent = styled(Accordion.Content, {
   overflow: "hidden",
   fontSize: 18,
-  color: "black",
-  backgroundColor: mauve.mauve2,
-
+  lineHeight: 1.5,
+  color: "$navy",
   '&[data-state="open"]': {
     animation: `${slideDown} 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards`,
   },
   '&[data-state="closed"]': {
     animation: `${slideUp} 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards`,
   },
+  mb: 15,
+  pt: 15,
 });
 
 const StyledTrigger = styled(Accordion.Trigger, {
   all: "unset",
   fontFamily: "inherit",
-  backgroundColor: "transparent",
+  backgroundColor: "none",
   padding: "0px 0px",
   boxSizing: "unset",
-  height: 45,
   flex: 1,
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
   fontSize: 18,
   lineHeight: 1,
-  color: violet.violet11,
-  borderBottom: "1px solid gray",
   width: "100%",
-
-  // boxShadow: `0 1px 0 ${mauve.mauve6}`,
-  // '&[data-state="closed"]': { backgroundColor: 'white' },
-  // '&[data-state="open"]': { backgroundColor: 'white' },
-  // '&:hover': { backgroundColor: mauve.mauve2 },
+  borderBottom: `1px solid ${mauve.mauve10}`,
+  color: "$navy",
+  pb: 15,
+  "button, [type='button'], [type='reset'], [type='submit']": {
+    border: "none",
+    background: "transparent",
+  },
 });
 
 const Accordions = ({ items }) => {
@@ -65,19 +77,15 @@ const Accordions = ({ items }) => {
     <Accordion.Root type="single" collapsible>
       {items.map((item, index) => {
         return (
-          <Accordion.Item value={`item-${index}`} key={`item-${index}`}>
-            <Accordion.Header>
+          <StyledItem value={`item-${index}`} key={`item-${index}`}>
+            <StyledHeader>
               <StyledTrigger>
-                <Accordion.Trigger>
-                  <AccordionChevron aria-hidden />
-                  <span>{item.title}</span>
-                </Accordion.Trigger>
+                <AccordionChevron aria-hidden />
+                <span>{item.title}</span>
               </StyledTrigger>
-            </Accordion.Header>
-            <StyledContent>
-              <Accordion.Content>{item.details}</Accordion.Content>
-            </StyledContent>
-          </Accordion.Item>
+            </StyledHeader>
+            <StyledContent>{item.details}</StyledContent>
+          </StyledItem>
         );
       })}
     </Accordion.Root>

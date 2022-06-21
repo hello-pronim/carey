@@ -50,7 +50,7 @@ const Application = ({}) => {
             porttitor rhoncus dolor purus non
           </Text>
           <Accordians items={accordinaItems} />
-          <Text as="h2" variant="Heading-Large" css={{ mb: 16 }}>
+          <Text as="h2" variant="Heading-Large" css={{ mb: 16, mt: 80 }}>
             How much does it cost
           </Text>
           <Text as="p" variant="Body-Regular">
