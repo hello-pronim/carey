@@ -41,6 +41,13 @@ export const GeneralPageQuery = gql`
             imageAspect
             bodyText
           }
+          ... on generalComponents_contentTextFullBleedImage_BlockType {
+            layout
+            image {
+              url
+            }
+            bodyText
+          }
           ... on generalComponents_featuredPanel_BlockType {
             panelVariant
             featuredPanel {
