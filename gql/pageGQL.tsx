@@ -41,13 +41,6 @@ export const GeneralPageQuery = gql`
             imageAspect
             bodyText
           }
-          ... on generalComponents_contentTextFullBleedImage_BlockType {
-            layout
-            image {
-              url
-            }
-            bodyText
-          }
           ... on generalComponents_featuredPanel_BlockType {
             panelVariant
             featuredPanel {
@@ -80,7 +73,7 @@ export const GeneralPageQuery = gql`
                     headline
                   }
                   ... on accordionLayout_content_BlockType {
-                    contentBlock
+                    bodyText
                   }
                   ... on accordionLayout_breakOut_BlockType {
                     breakOutBlock
@@ -119,7 +112,7 @@ export const GeneralPageQuery = gql`
             headline
             overHeadline
             videoUrl
-            contentText
+            bodyText
             image {
               url
               width
@@ -129,12 +122,7 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_generalSideCareyBrand_BlockType {
             overHeadline
             headline
-            contentText
-            buttonLabel
-            buttonLink {
-              uri
-            }
-            buttonUrl
+            bodyText
           }
           ... on generalComponents_whyCarey_BlockType {
             image {
@@ -143,12 +131,7 @@ export const GeneralPageQuery = gql`
             videoUrl
             scriptTitle
             headline
-            contentText
-            buttonLabel
-            buttonLink {
-              uri
-            }
-            buttonUrl
+            bodyText
             featureVideoTitle
             featureVideoUrl
             featureDownloadLinkTitle
@@ -166,12 +149,7 @@ export const GeneralPageQuery = gql`
             layout
             overHeadline
             headline
-            contentText
-            buttonLabel
-            buttonLink {
-              uri
-            }
-            buttonUrl
+            bodyText
             featuredPanel {
               ... on featurePanels_featurePanels_Entry {
                 imageOfStudent {
@@ -185,7 +163,7 @@ export const GeneralPageQuery = gql`
           # ... on generalComponents_sessionTimes_BlockType {
           #   title: tableTitle
           #   ctaTitle
-          #   ctaBody: contentText
+          #   ctaBody: bodyText
           #   sessions: sessionTimeTable {
           #     ... on sessionTimeTable_BlockType {
           #       date: sessionDate

@@ -24,9 +24,11 @@ const Plain = (props) => {
           <Text as="h1" variant="Heading-Large">
             {props?.props?.headline}
           </Text>
-          <Text as="h2" variant="Heading-Small">
-            {props?.props?.contentText}
-          </Text>
+          <Text
+            dangerouslySetInnerHTML={{
+              __html: props?.bodyText,
+            }}
+          />
           <CTAWrapper>
             <Button
               href={

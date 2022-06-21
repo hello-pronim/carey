@@ -26,9 +26,12 @@ const General = (props) => {
           <Text as="h6" variant="Heading-Overline">
             {props?.props?.headline}
           </Text>
-          <Text as="h1" variant="Heading-xLarge">
-            {props?.props?.contentText}
-          </Text>
+          <Text
+            dangerouslySetInnerHTML={{
+              __html: props?.props?.bodyText,
+            }}
+          />
+
           <Text as="h2" variant="Heading-Small">
             {props?.props?.overHeadline}
           </Text>

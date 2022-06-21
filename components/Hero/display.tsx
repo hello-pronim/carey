@@ -19,7 +19,6 @@ import {
   FooterWrapper,
   DescriptionWrapper,
   Description,
-  ActionWrapper,
   ContentWrapper,
 } from "./styles";
 import { Text, Button } from "@components/common";
@@ -28,7 +27,6 @@ import HeroButton from "./HeroButton";
 import HeroIcons from "@components/common/icons/heroIcons";
 
 const Display = (props) => {
-  console.log(props);
   return (
     <Wrapper>
       <Bumper css={{ bg: "$crestYellow" }} />
@@ -149,21 +147,13 @@ const Display = (props) => {
               <HeadingWrapper size={"small"}>
                 <Heading>{props?.props?.headline}</Heading>
                 <DescriptionWrapper>
-                  <Description>{props?.props?.contentText}</Description>
+                  <Description
+                    dangerouslySetInnerHTML={{
+                      __html: props?.props?.bodyText,
+                    }}
+                  />
                 </DescriptionWrapper>
               </HeadingWrapper>
-              <ActionWrapper>
-                <Button
-                  href={
-                    props?.props?.buttonLink?.[0]?.uri ||
-                    props?.props?.buttonUrl
-                  }
-                  label={props?.props?.buttonLabel}
-                  arrow={true}
-                  theme="dark"
-                  variant="primary"
-                />
-              </ActionWrapper>
             </ContentWrapper>
             <FooterWrapper>
               <VideoButton href={props?.props?.featureVideoUrl}>
