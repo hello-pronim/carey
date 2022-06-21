@@ -26,6 +26,12 @@ export const GeneralPageQuery = gql`
           }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
+            dividerToggle
+          }
+          ... on generalComponents_breakoutContent_BlockType {
+            bodyText
+            brandColours
+            dividerToggle
           }
           ... on generalComponents_contentTextImage_BlockType {
             layout

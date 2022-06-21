@@ -46,6 +46,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
     [ModuleType("contentBlock"), Content],
+    [ModuleType("breakoutContent"), Content],
     [ModuleType("accordionsSet"), Accordion],
     [ModuleType("contentTextFeature"), TextContent],
     [ModuleType("ctaButton"), CtaButton],
