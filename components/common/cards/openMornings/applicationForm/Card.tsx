@@ -19,7 +19,10 @@ import {
 
 const ApplicationFormCard = ({ title, description, href, size }) => {
   return (
-    <Card size={size} css={{ backgroundImage: `url(assets/img/bg_card.png)` }}>
+    <Card
+      size={size}
+      css={{ backgroundImage: `url(assets/img/bg_card_blue.png)` }}
+    >
       <LeftWrapper>
         <LeftContainer size={size}>
           <CMarkImage />

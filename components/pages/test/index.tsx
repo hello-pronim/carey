@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Image } from "@components/common";
 import { PreFooter } from "@components/common";
 import OpenMorningsCard from "@components/common/cards/openMornings/Card";
+import EnrolmentCard from "@components/common/cards/enrolments/Card";
 
 import { ImageWrapper, Wrapper } from "./styles";
 
@@ -35,6 +36,40 @@ const Test = () => {
       </Container>
       <Container>
         <OpenMorningsCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          href="#"
+          size="large"
+          type="application-form"
+        />
+      </Container>
+      <Container>
+        <EnrolmentCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          href="#"
+          size="small"
+        />
+      </Container>
+      <Container>
+        <EnrolmentCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          href="#"
+          size="large"
+        />
+      </Container>
+      <Container>
+        <EnrolmentCard
+          title="Open Mornings"
+          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
+          href="#"
+          size="large"
+          type="landscape"
+        />
+      </Container>
+      <Container>
+        <EnrolmentCard
           title="Open Mornings"
           description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
           href="#"
