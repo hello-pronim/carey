@@ -19,8 +19,7 @@ const DefaultCard = ({ title, description, href, size }) => {
   return (
     <Card
       size={size}
-      type="default"
-      css={{ backgroundImage: `url(assets/img/bg_card.png)` }}
+      css={{ backgroundImage: `url(assets/img/bg_card_blue.png)` }}
     >
       <TopWrapper size={size}>
         <HeadingWrapper size={size}>

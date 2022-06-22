@@ -18,10 +18,6 @@ const BottomWrapper = styled("div", {
         },
       },
     },
-    type: {
-      default: {},
-      landscape: { flex: 1 },
-    },
   },
 });
 const Card = styled("div", {
@@ -48,21 +44,6 @@ const Card = styled("div", {
           minWidth: 859,
         },
       },
-    },
-    type: {
-      default: {
-        display: "flex",
-        flexDirection: "column",
-      },
-      landscape: {
-        display: "flex",
-        flexDirection: "row-reverse",
-        height: 400,
-        "@min1024": {
-          minWidth: 1459,
-        },
-      },
-      "application-form": {},
     },
   },
   "&:hover": {
@@ -100,14 +81,6 @@ const CMarkImage = styled("div", {
           left: 0,
           bottom: 56,
         },
-      },
-    },
-    type: {
-      default: {},
-      landscape: {
-        left: 0,
-        top: "50%",
-        transform: "translate(0, -50%)",
       },
     },
   },
@@ -176,17 +149,7 @@ const HeadingWrapper = styled("div", {
     },
   },
 });
-const ImageWrapper = styled("div", {
-  variants: {
-    type: {
-      default: {},
-      landscape: {
-        height: "100%",
-        margin: "auto",
-      },
-    },
-  },
-});
+const ImageWrapper = styled("div", {});
 const LandscapeCard = styled("div", {
   display: "flex",
   height: 400,
@@ -299,10 +262,6 @@ const TopWrapper = styled("div", {
           gap: 80,
         },
       },
-    },
-    type: {
-      default: {},
-      landscape: { flex: 1 },
     },
   },
 });
