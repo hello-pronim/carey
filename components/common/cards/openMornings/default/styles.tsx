@@ -1,6 +1,29 @@
 import { styled } from "@styles/stitches";
 
 const ActionWrapper = styled("div", {});
+const BottomWrapper = styled("div", {
+  position: "relative",
+  variants: {
+    size: {
+      small: {
+        paddingLeft: 144,
+        "@min1024": {
+          paddingLeft: 256,
+        },
+      },
+      large: {
+        paddingLeft: 144,
+        "@min1024": {
+          paddingLeft: 360,
+        },
+      },
+    },
+    type: {
+      default: {},
+      landscape: { flex: 1 },
+    },
+  },
+});
 const Card = styled("div", {
   position: "relative",
   backgroundRepeat: "no-repeat",
@@ -43,7 +66,7 @@ const Card = styled("div", {
     },
   },
   "&:hover": {
-    boxShadow: "inset 0px 30px 120px 60px rgb(0 0 0 / 30%)",
+    boxShadow: "inset 0px 30px 120px 60px rgb(5 27 63 / 20%)",
   },
 });
 const CMarkImage = styled("div", {
@@ -77,6 +100,14 @@ const CMarkImage = styled("div", {
           left: 0,
           bottom: 56,
         },
+      },
+    },
+    type: {
+      default: {},
+      landscape: {
+        left: 0,
+        top: "50%",
+        transform: "translate(0, -50%)",
       },
     },
   },
@@ -116,29 +147,6 @@ const DescriptionWrapper = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(12, 1fr)",
 });
-const FooterWrapper = styled("div", {
-  position: "relative",
-  variants: {
-    size: {
-      small: {
-        paddingLeft: 144,
-        "@min1024": {
-          paddingLeft: 256,
-        },
-      },
-      large: {
-        paddingLeft: 144,
-        "@min1024": {
-          paddingLeft: 360,
-        },
-      },
-    },
-    type: {
-      default: {},
-      landscape: { flex: 1 },
-    },
-  },
-});
 const Heading = styled("span", {
   color: "$crestYellow",
   fontSize: "$headingOverline",
@@ -168,8 +176,104 @@ const HeadingWrapper = styled("div", {
     },
   },
 });
-const ImageWrapper = styled("div", {});
-const Wrapper = styled("div", {
+const ImageWrapper = styled("div", {
+  variants: {
+    type: {
+      default: {},
+      landscape: {
+        height: "100%",
+        margin: "auto",
+      },
+    },
+  },
+});
+const LandscapeCard = styled("div", {
+  display: "flex",
+  height: 400,
+  position: "relative",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  backgroundPosition: "bottom",
+  objectFit: "cover",
+  objectPosition: "bottom",
+  boxShadow: "none",
+  transition: "box-shadow 0.08s ease-out 0.08s",
+  variants: {
+    size: {
+      small: {
+        minWidth: 327,
+        "@min1024": {
+          minWidth: 560,
+        },
+      },
+      large: {
+        minWidth: 327,
+        "@min1024": {
+          minWidth: 1459,
+        },
+      },
+    },
+  },
+  "&:hover": {
+    boxShadow: "inset 0px 30px 120px 60px rgb(0 0 0 / 30%)",
+  },
+});
+const LeftContainer = styled("div", {
+  position: "relative",
+  flex: 1,
+  variants: {
+    size: {
+      small: {
+        paddingLeft: 144,
+        "@min1024": {
+          paddingLeft: 256,
+        },
+      },
+      large: {
+        paddingLeft: 144,
+        "@min1024": {
+          paddingLeft: 360,
+        },
+      },
+    },
+  },
+});
+const LeftWrapper = styled("div", {
+  flex: 1,
+});
+const RightContainer = styled("div", {
+  padding: 24,
+  display: "flex",
+  flexDirection: "column",
+  variants: {
+    size: {
+      small: {
+        padding: 24,
+        paddingBottom: 0,
+        gap: 24,
+        "@min1024": {
+          padding: 48,
+          paddingBottom: 0,
+          gap: 24,
+        },
+      },
+      large: {
+        padding: 24,
+        paddingBottom: 0,
+        gap: 24,
+        "@min1024": {
+          padding: 48,
+          paddingBottom: 0,
+          gap: 80,
+        },
+      },
+    },
+  },
+});
+const RightWrapper = styled("div", {
+  flex: 1,
+});
+const TopWrapper = styled("div", {
   padding: 24,
   display: "flex",
   flexDirection: "column",
@@ -205,13 +309,18 @@ const Wrapper = styled("div", {
 
 export {
   ActionWrapper,
-  Card,
+  BottomWrapper,
   CMarkImage,
+  Card,
   Description,
   DescriptionWrapper,
-  FooterWrapper,
   Heading,
   HeadingWrapper,
   ImageWrapper,
-  Wrapper,
+  LandscapeCard,
+  LeftContainer,
+  LeftWrapper,
+  RightContainer,
+  RightWrapper,
+  TopWrapper,
 };

@@ -8,24 +8,30 @@ export const GeneralPageQuery = gql`
       title
       ... on generalPage_default_Entry {
         generalComponents {
-          # ... on generalComponents_threeColumnTable_BlockType {
-          #   tableTitle
-          #   colOneLabel
-          #   colTwoLabel
-          #   colThreeLabel
-          #   threeColTable {
-          #     ... on threeColTable_BlockType {
-          #       groupTitle
-          #       tableRow {
-          #         col1
-          #         col2
-          #         col3
-          #       }
-          #     }
-          #   }
-          # }
+          ... on generalComponents_threeColumnTable_BlockType {
+            tableTitle
+            colOneLabel
+            colTwoLabel
+            colThreeLabel
+            threeColTable {
+              ... on threeColTable_BlockType {
+                groupTitle
+                tableRow {
+                  col1
+                  col2
+                  col3
+                }
+              }
+            }
+          }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
+            dividerToggle
+          }
+          ... on generalComponents_breakoutContent_BlockType {
+            bodyText
+            brandColours
+            dividerToggle
           }
           ... on generalComponents_contentTextImage_BlockType {
             layout
@@ -67,7 +73,7 @@ export const GeneralPageQuery = gql`
                     headline
                   }
                   ... on accordionLayout_content_BlockType {
-                    contentBlock
+                    bodyText
                   }
                   ... on accordionLayout_breakOut_BlockType {
                     breakOutBlock
@@ -106,7 +112,7 @@ export const GeneralPageQuery = gql`
             headline
             overHeadline
             videoUrl
-            contentText
+            bodyText
             image {
               url
               width
@@ -116,12 +122,7 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_generalSideCareyBrand_BlockType {
             overHeadline
             headline
-            contentText
-            buttonLabel
-            buttonLink {
-              uri
-            }
-            buttonUrl
+            bodyText
           }
           ... on generalComponents_whyCarey_BlockType {
             image {
@@ -130,12 +131,7 @@ export const GeneralPageQuery = gql`
             videoUrl
             scriptTitle
             headline
-            contentText
-            buttonLabel
-            buttonLink {
-              uri
-            }
-            buttonUrl
+            bodyText
             featureVideoTitle
             featureVideoUrl
             featureDownloadLinkTitle
@@ -153,12 +149,7 @@ export const GeneralPageQuery = gql`
             layout
             overHeadline
             headline
-            contentText
-            buttonLabel
-            buttonLink {
-              uri
-            }
-            buttonUrl
+            bodyText
             featuredPanel {
               ... on featurePanels_featurePanels_Entry {
                 imageOfStudent {
@@ -169,10 +160,48 @@ export const GeneralPageQuery = gql`
               }
             }
           }
+          ... on generalComponents_images2up_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            image2 {
+              url
+            }
+            captionImage2
+            includeDividerUnderneath
+          }
+          ... on generalComponents_images2upVideo_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            image2 {
+              url
+            }
+            videoLabel
+            videoUrl
+            captionImage2
+            includeDividerUnderneath
+          }
+          ... on generalComponents_inlineGallery3up_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            image2 {
+              url
+            }
+            captionImage2
+            image3 {
+              url
+            }
+            captionImage3
+          }
           # ... on generalComponents_sessionTimes_BlockType {
           #   title: tableTitle
           #   ctaTitle
-          #   ctaContent
+          #   ctaBody: bodyText
           #   sessions: sessionTimeTable {
           #     ... on sessionTimeTable_BlockType {
           #       date: sessionDate

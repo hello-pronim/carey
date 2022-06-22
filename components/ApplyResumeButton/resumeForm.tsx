@@ -1,32 +1,58 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Text from "@components/common/forms/fields/text";
-import Submit from "@components/common/forms/fields/submit";
+import { Button } from "@components/common";
 import { Div } from "./styles";
 
 const ResumeForm = ({}) => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Div css={{ mt: 80, mb: 80 }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Text
-          {...register("email")}
+          register={register}
+          required={true}
+          error={
+            (errors.emailAddress &&
+              errors.emailAddress?.type === "required" &&
+              "Email address is required") ||
+            (errors.emailAddress?.type === "pattern" &&
+              "Enter valid email format")
+          }
+          name="emailAddress"
           label="Email address"
           placeholder="Enter your email address"
-          required
           type="email"
           outerCSS={{ mb: 24 }}
         />
         <Text
-          {...register("uniqueId")}
+          register={register}
+          required={true}
+          error={errors.uniqueId ? "Unique is required" : ""}
+          name="uniqueId"
           label="Unique ID"
           placeholder="Enter your Unique ID"
-          required
           type="text"
           outerCSS={{ mb: 24 }}
         />
-        <Submit value="Submit" />
+        <Button
+          arrow
+          label="Submit"
+          color="$crestYellow"
+          type="solid"
+          theme="transparent"
+          variant="secondary"
+          scale="xl"
+        />
       </form>
     </Div>
   );

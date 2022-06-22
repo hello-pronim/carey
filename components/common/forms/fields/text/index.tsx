@@ -6,6 +6,7 @@ import { Wrapper, Label, Subtext, InputWrapper } from "../sharedStyles";
 
 const TextField = ({
   label,
+  name,
   placeholder,
   required,
   color = "white",
@@ -14,6 +15,7 @@ const TextField = ({
   type = "text",
   hint,
   outerCSS,
+  register,
 }: TFTypes) => {
   const [passVisible, setPassVisible] = useState(false);
 
@@ -44,12 +46,32 @@ const TextField = ({
           </Text>
         )}
         <InputWrapper>
-          <Input
-            type={handleType(type)}
-            placeholder={!!placeholder ? placeholder : null}
-            error={!!error}
-            disabled={disabled}
-          />
+          {type === "email" && (
+            <Input
+              type={handleType(type)}
+              placeholder={!!placeholder ? placeholder : null}
+              error={!!error}
+              disabled={disabled}
+              {...register(name, {
+                required: required,
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                },
+              })}
+            />
+          )}
+          {type !== "email" && (
+            <Input
+              type={handleType(type)}
+              placeholder={!!placeholder ? placeholder : null}
+              error={!!error}
+              disabled={disabled}
+              {...register(name, {
+                required: required,
+                message: `${label} is required`,
+              })}
+            />
+          )}
           {type === "password" && (
             <PassToggle
               onClick={(e) => {
@@ -70,6 +92,7 @@ const TextField = ({
 
 type TFTypes = {
   label: string;
+  name: string;
   placeholder?: string;
   required?: boolean;
   error?: string;
@@ -78,6 +101,7 @@ type TFTypes = {
   type?: "text" | "tel" | "email" | "number" | "password";
   hint?: string;
   outerCSS?: any;
+  register?: any;
 };
 
 export default TextField;

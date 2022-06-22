@@ -151,7 +151,15 @@ const ApplyResumeButton = ({
             </Text>
           </StartApplicationDescription>
           <ApplyForm />
-          Resume Application
+          <Button
+            arrow
+            label="Resume Application"
+            color="transparent"
+            type="solid"
+            theme="light"
+            variant="secondary"
+            scale="xl"
+          />
         </StartApplicationContent>
       </StartApplication>
       <ResumeApplication>
@@ -193,7 +201,56 @@ const ApplyResumeButton = ({
             </Text>
           </ResumeApplicationDescription>
           <ResumeForm />
-          Forgot email address or Unique ID
+          <Div
+            css={{
+              color: "$white",
+              display: "inline-flex",
+              alignItems: "center",
+              fontSize: 20,
+            }}
+          >
+            Forgot
+            <Button
+              label="email address"
+              color="transparent"
+              type="solid"
+              theme="light"
+              variant="secondary"
+              scale="xl"
+              css={{
+                pt: 0,
+                pb: 0,
+                pl: 10,
+                pr: 10,
+                textDecoration: "underline",
+                color: "$white",
+                "&:hover": {
+                  textDecoration: "none",
+                },
+              }}
+            />
+            or
+            <Button
+              arrow
+              label="Unique ID"
+              color="transparent"
+              type="solid"
+              theme="light"
+              variant="secondary"
+              scale="xl"
+              css={{
+                pt: 0,
+                pb: 0,
+                pl: 10,
+                textDecoration: "underline",
+                color: "$white",
+                fontFamily: "$poppins",
+                "&:hover": {
+                  textDecoration: "none",
+                },
+              }}
+            />
+          </Div>
         </ResumeApplicationContent>
       </ResumeApplication>
     </Div>

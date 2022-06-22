@@ -7,7 +7,7 @@ import { BreadCrumb, Container } from "@components/common";
 import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
-// import ThreeColTable from "./components/ThreeColTable";
+import ThreeColTable from "./components/ThreeColTable";
 import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
 import TextContent from "./components/FeatureTextContent";
@@ -28,22 +28,45 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     "generalComponents_whyCarey_BlockType",
   ];
 
-  const heroData = pageData.find((item) => heroTypes.includes(item.__typename));
+  const getHeroType = (type) => {
+    switch (type) {
+      case "generalComponents_generalSideImage_BlockType":
+        return "general";
+      case "generalComponents_generalSideCareyBrand_BlockType":
+        return "plain";
+      case "generalComponents_whyCarey_BlockType":
+        return "display";
+      default:
+        return null;
+    }
+  };
+  console.log("pageData", pageData);
+  const heroData = pageData?.find((item) =>
+    heroTypes.includes(item.__typename)
+  );
 
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
     [ModuleType("contentBlock"), Content],
+    [ModuleType("breakoutContent"), Content],
     [ModuleType("accordionsSet"), Accordion],
     [ModuleType("contentTextFeature"), TextContent],
     [ModuleType("ctaButton"), CtaButton],
     [ModuleType("featureTextBlock"), FeatureTextBlock],
     [ModuleType("contentTextImage"), TextImageContent],
     [ModuleType("mapBlock"), MapView],
+    [ModuleType("threeColumnTable"), ThreeColTable],
   ]);
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (
     <>
-      <Hero type="display" props={heroData} applyNow={applyNow} />
+      {heroData && getHeroType(heroData.__typename) && (
+        <Hero
+          type={getHeroType(heroData.__typename)}
+          props={heroData}
+          applyNow={applyNow}
+        />
+      )}
       <Container type="flex">
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />

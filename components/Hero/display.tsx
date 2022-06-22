@@ -19,7 +19,6 @@ import {
   FooterWrapper,
   DescriptionWrapper,
   Description,
-  ActionWrapper,
   ContentWrapper,
 } from "./styles";
 import { Text, Button } from "@components/common";
@@ -146,27 +145,15 @@ const Display = (props) => {
           <>
             <ContentWrapper size={"small"}>
               <HeadingWrapper size={"small"}>
-                <Heading>{"Open Mornings"}</Heading>
+                <Heading>{props?.props?.headline}</Heading>
                 <DescriptionWrapper>
-                  <Description>
-                    {
-                      "We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-                    }
-                  </Description>
+                  <Description
+                    dangerouslySetInnerHTML={{
+                      __html: props?.props?.bodyText,
+                    }}
+                  />
                 </DescriptionWrapper>
               </HeadingWrapper>
-              <ActionWrapper>
-                <Button
-                  href={
-                    props?.props?.buttonLink?.[0]?.uri ||
-                    props?.props?.buttonUrl
-                  }
-                  label={props?.props?.buttonLabel}
-                  arrow={true}
-                  theme="dark"
-                  variant="primary"
-                />
-              </ActionWrapper>
             </ContentWrapper>
             <FooterWrapper>
               <VideoButton href={props?.props?.featureVideoUrl}>

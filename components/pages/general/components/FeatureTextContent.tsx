@@ -1,6 +1,6 @@
 import { styled } from "@styles/stitches";
 import React from "react";
-import { Text, Button } from "@components/common";
+import { Text } from "@components/common";
 import Image from "next/image";
 
 export default function TextContent(props) {
@@ -12,9 +12,6 @@ export default function TextContent(props) {
     gridColumn: "2 / span 6",
     gridTemplateColumns: "repeat(12, 1fr)",
     columnGap: 62,
-  });
-  const ButtonWrapper = styled("div", {
-    paddingTop: "2rem",
   });
 
   const ImageWrapper = styled("div", {
@@ -52,16 +49,11 @@ export default function TextContent(props) {
       <RightSection {...props}>
         <Text variant="Heading-xSmall">{props.overHeadline}</Text>
         <Text variant="Body-xxLarge">{props.headline}</Text>
-        <Text variant="Body-Regular">{props.contentText}</Text>
-        {props.buttonLabel && (props.buttonUrl || props.buttonLink?.[0]?.uri) && (
-          <ButtonWrapper>
-            <Button
-              href={props.buttonLink?.[0]?.uri || props.buttonUrl}
-              label={props.buttonLabel}
-              arrow={true}
-            />
-          </ButtonWrapper>
-        )}
+        <Text
+          dangerouslySetInnerHTML={{
+            __html: props?.bodyText,
+          }}
+        />
       </RightSection>
 
       <LeftSection>
