@@ -1,12 +1,14 @@
 import React from "react";
 // import { styled } from "@stitches/react";
 // import { blackA } from "@radix-ui/colors";
-import Hero from "@components/ApplyOnlineHero";
+import Hero from "@components/Hero";
 // import { Wrapper } from "./styles";
 import { Container } from "@components/common";
 import { Text, Accordians } from "@components/common";
-import ApplyResumeButton from "@components/ApplyResumeButton";
+import ApplyResumeButton from "@components/common/applyResumeButton";
 import { LeftContent, RightContent, Content } from "./styles";
+import Graphic from "../../../public/assets/GraphicC.svg";
+
 //import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 
 //export const AspectRatio = AspectRatioPrimitive;
@@ -29,9 +31,12 @@ const Application = ({}) => {
   return (
     <>
       <Hero
+        type="applyOnline"
         overHeadline="APPLY ONLINE"
         headline="Carey Baptist Grammar SchoolApplication for Admission"
         contentText="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
+        enableCta={true}
+        image={Graphic}
       />
       <Container
         outerCSS={{
