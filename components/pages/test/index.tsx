@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Image } from "@components/common";
+import { Button, Container, Image } from "@components/common";
 import { PreFooter } from "@components/common";
 import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 import EnrolmentCard from "@components/common/cards/enrolments/Card";
+import TextBlock from "@components/common/textBlock/index";
 
 import { ImageWrapper, Wrapper } from "./styles";
 
@@ -77,6 +78,26 @@ const Test = () => {
           type="application-form"
         />
       </Container>
+      <Container type="unbound">
+        <TextBlock
+          title="Transition to Middle School"
+          primaryText="The transitions from Junior School and to Senior School are managed carefully and sensitively for our Year 7s and Year 9s."
+          secondaryText="Before their first or last day arrives they will already feel a part of their new Carey environment. Our Middle School is separate but not isolated from our Junior and Senior Schools, allowing for cross-age activities and connections. "
+          action={
+            <Button
+              arrow
+              label="View more on the transition"
+              type="solid"
+              theme="light"
+              variant="secondary"
+              scale="md"
+              href="#"
+            />
+          }
+          textPosition="right"
+        />
+      </Container>
+
       <Container>
         <ImageWrapper>
           <Image
