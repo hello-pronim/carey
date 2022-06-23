@@ -1,5 +1,4 @@
 import { Image } from "@components/common";
-import TextBlockImage from "public/assets/img/text_block_img.png";
 import {
   ActionItem,
   ActionsWrapper,
@@ -41,7 +40,7 @@ const TextBlock = ({
       <ImageWrapper>
         <Image
           alt="PreFooter Image"
-          src={TextBlockImage}
+          src={image}
           width={900}
           height={837}
           placeholder="empty"
@@ -60,7 +59,7 @@ type TextBlockPropsType = {
   title: string;
   primaryText: string;
   secondaryText?: string;
-  image?: string;
+  image?: any;
   action?: React.ReactNode;
   textPosition?: "left" | "right";
 };

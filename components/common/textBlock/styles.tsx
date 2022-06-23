@@ -72,12 +72,8 @@ const Container = styled("div", {
     padding: 40,
   },
   "@min1440": {
-    padding: "180px 200px",
+    padding: "0 200px",
     gap: 24,
-  },
-  "@min1920": {
-    padding: "180px 200px",
-    gap: 40,
   },
 });
 
@@ -119,10 +115,13 @@ const SecondaryText = styled("div", {
 
 const TextWidgetWrapper = styled("div", {
   flex: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 });
 
 const Wrapper = styled("div", {
-  bg: "$crestYellow",
+  bg: "$white",
   display: "flex",
   flexDirection: "column",
   width: "100%",
