@@ -72,7 +72,7 @@ const Container = styled("div", {
     padding: 40,
   },
   "@min1440": {
-    padding: "0 200px",
+    padding: "180px 200px",
     gap: 24,
   },
 });
