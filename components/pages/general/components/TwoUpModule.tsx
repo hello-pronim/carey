@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
+import { useMedia, useWindowSize } from "react-use";
 // import { v4 as uuid } from "uuid";
 import { Modal, Video } from "@components/common";
 import { Text } from "@components/common";
@@ -7,10 +8,14 @@ import LeftImage from "public/assets/img/2upleft.png";
 import RightImage from "public/assets/img/2upRight.png";
 import Image from "next/image";
 import Play from "@components/common/icons/play";
+import Swiper from "@components/common/swiper";
 
 const ImageLeft = styled("div", {
   position: "relative",
-  gridColumn: "1 / span 8",
+  width: "100%",
+  "@min1024": {
+    gridColumn: "1 / span 8",
+  },
   "@min1440": {
     gridColumn: "2 / span 7",
   },
@@ -18,9 +23,16 @@ const ImageLeft = styled("div", {
 });
 
 const ImageRight = styled("div", {
-  gridColumn: "9 / span 3",
   boxSizing: "border-box",
-  alignSelf: "end",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  overflow: "hidden",
+  "@min1024": {
+    gridColumn: "9 / span 3",
+    alignSelf: "end",
+  },
 });
 
 const VideoCTA = styled("div", {
@@ -62,7 +74,26 @@ const VideoWrapper = styled("div", {
 });
 
 const TwoUpModule = ({ type = "video", ...props }) => {
+  const WindowDimensions = useWindowSize();
   const [modalActive, setModalActive] = useState(false);
+  const [primaryDimensions, setPrimaryDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+  const isMobile = useMedia("(max-width: 1024px)", false);
+  const Primary = useRef(null);
+  const ConditionalWrapper = useMemo(() => {
+    if (isMobile) return Swiper;
+    return Fragment;
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (Primary.current) {
+      const { width, height } = Primary.current.getBoundingClientRect();
+      setPrimaryDimensions({ width, height });
+    }
+  }, [WindowDimensions]);
+  console.log(primaryDimensions);
   return (
     <>
       {type === "video" && (
@@ -75,16 +106,28 @@ const TwoUpModule = ({ type = "video", ...props }) => {
           </VideoWrapper>
         </Modal>
       )}
-      <ImageLeft>
-        <VideoCTA onClick={() => setModalActive(!modalActive)}>
-          <Play width={33.33} />
-          <Text variant="Heading-xSmall">Watch our latest video</Text>
-        </VideoCTA>
-        <Image alt="" src={LeftImage} layout="responsive" />
-      </ImageLeft>
-      <ImageRight>
-        <Image alt="" src={RightImage} layout="responsive" />
-      </ImageRight>
+      <ConditionalWrapper>
+        <ImageLeft ref={Primary}>
+          <VideoCTA onClick={() => setModalActive(!modalActive)}>
+            <Play width={33.33} />
+            <Text variant="Heading-xSmall">Watch our latest video</Text>
+          </VideoCTA>
+          <Image alt="" src={LeftImage} layout="responsive" />
+        </ImageLeft>
+        <ImageRight
+          css={{
+            width: isMobile && primaryDimensions.width,
+            height: isMobile && primaryDimensions.height,
+          }}
+        >
+          <Image
+            alt=""
+            src={RightImage}
+            layout="responsive"
+            objectFit="cover"
+          />
+        </ImageRight>
+      </ConditionalWrapper>
     </>
   );
 };
