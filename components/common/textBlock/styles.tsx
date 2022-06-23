@@ -94,8 +94,6 @@ const ImageWrapper = styled("div", {
   position: "relative",
   display: "block",
   flex: 1,
-  "@min768": { display: "none" },
-  "@min1440": { display: "block" },
 });
 
 const PrimaryText = styled("div", {
