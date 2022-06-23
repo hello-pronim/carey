@@ -2,7 +2,8 @@ import React from "react";
 // import { Text } from "@components/common";
 import { Container, PreFooter } from "@components/common";
 import Hero from "@components/Hero";
-import TwoUpModule from "../general/components/TwoUpModule";
+// import TwoUpModule from "../general/components/TwoUpModule";
+import Swiper from "@components/common/swiper";
 const Home = ({ heroData, applyNow }) => {
   return (
     <>
@@ -13,7 +14,8 @@ const Home = ({ heroData, applyNow }) => {
       />
       <Container outerCSS={{ py: 120 }}>
         {/* <Text variant="Heading-Small">Home</Text> */}
-        <TwoUpModule />
+        <Swiper />
+        {/* <TwoUpModule /> */}
       </Container>
       <PreFooter />
     </>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "@styles/stitches";
 // import { v4 as uuid } from "uuid";
-import { Modal } from "@components/common";
+import { Modal, Video } from "@components/common";
 import { Text } from "@components/common";
 import LeftImage from "public/assets/img/2upleft.png";
 import RightImage from "public/assets/img/2upRight.png";
@@ -19,9 +19,6 @@ const ImageLeft = styled("div", {
 
 const ImageRight = styled("div", {
   gridColumn: "9 / span 3",
-  // "@min1440": {
-  //   gridColumn: "9 / span 3",
-  // },
   boxSizing: "border-box",
   alignSelf: "end",
 });
@@ -59,13 +56,27 @@ const VideoCTA = styled("div", {
   },
 });
 
+const VideoWrapper = styled("div", {
+  gridColumn: "2 / span 10",
+  gridRow: 1,
+});
+
 const TwoUpModule = ({ type = "video", ...props }) => {
-  const [modalToggled, setModalToggled] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   return (
     <>
-      {type === "video" && modalToggled && <Modal></Modal>}
+      {type === "video" && (
+        <Modal active={modalActive} setModalActive={setModalActive}>
+          <VideoWrapper>
+            <Video
+              playing={true}
+              url="https://www.youtube.com/watch?v=NJDCUP8m75g"
+            />
+          </VideoWrapper>
+        </Modal>
+      )}
       <ImageLeft>
-        <VideoCTA onClick={() => setModalToggled(!modalToggled)}>
+        <VideoCTA onClick={() => setModalActive(!modalActive)}>
           <Play width={33.33} />
           <Text variant="Heading-xSmall">Watch our latest video</Text>
         </VideoCTA>
