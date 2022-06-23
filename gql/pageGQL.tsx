@@ -51,6 +51,9 @@ export const GeneralPageQuery = gql`
                 buttonLink {
                   uri
                 }
+                backgroundGradient {
+                  url
+                }
                 imageOfStudent {
                   url
                 }
@@ -152,6 +155,9 @@ export const GeneralPageQuery = gql`
             bodyText
             featuredPanel {
               ... on featurePanels_featurePanels_Entry {
+                backgroundGradient {
+                  url
+                }
                 imageOfStudent {
                   url
                   width
@@ -159,6 +165,13 @@ export const GeneralPageQuery = gql`
                 }
               }
             }
+          }
+          ... on generalComponents_images1up_BlockType {
+            image1 {
+              url
+            }
+            captionImage1
+            includeDividerUnderneath
           }
           ... on generalComponents_images2up_BlockType {
             image1 {
@@ -197,6 +210,41 @@ export const GeneralPageQuery = gql`
               url
             }
             captionImage3
+          }
+          ... on generalComponents_cardsSectionOverview_BlockType {
+            cardsetOverview {
+              ... on cardsetOverview_BlockType {
+                overheadline
+                buttonLabel
+                linkToPage {
+                  title
+                  uri
+                }
+                image {
+                  url
+                }
+              }
+            }
+          }
+          ... on generalComponents_cardsSubjects_BlockType {
+            cardsetSubject {
+              subjectTitle
+            }
+          }
+          ... on generalComponents_cardsCampuses_BlockType {
+            cardsetCampuses {
+              ... on cardsetCampuses_BlockType {
+                cardTitle
+                cardContent
+                buttonLabel
+                buttonLink {
+                  uri
+                }
+                campusImage {
+                  url
+                }
+              }
+            }
           }
           # ... on generalComponents_sessionTimes_BlockType {
           #   title: tableTitle
