@@ -6,6 +6,8 @@ import ApplicationFormCard from "./applicationForm/Card";
 const EnrolmentCard = ({
   title,
   description,
+  backgroundImage,
+  studentImage,
   href = "#",
   type = "default",
   size = "small",
@@ -14,6 +16,8 @@ const EnrolmentCard = ({
     <DefaultCard
       title={title}
       description={description}
+      backgroundImage={backgroundImage}
+      studentImage={studentImage}
       href={href}
       size={size}
     />
@@ -21,6 +25,8 @@ const EnrolmentCard = ({
     <LandscapeCard
       title={title}
       description={description}
+      backgroundImage={backgroundImage}
+      studentImage={studentImage}
       href={href}
       size={size}
     />
@@ -28,6 +34,8 @@ const EnrolmentCard = ({
     <ApplicationFormCard
       title={title}
       description={description}
+      backgroundImage={backgroundImage}
+      studentImage={studentImage}
       href={href}
       size={size}
     />
@@ -40,6 +48,8 @@ type CardPropsType = {
   title: string;
   description: string;
   href?: string | Object;
+  backgroundImage: string;
+  studentImage: string;
   type?: "default" | "landscape" | "application-form" | any;
   size?: "small" | "large";
   landscape?: boolean;

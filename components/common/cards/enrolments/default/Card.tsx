@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@components/common";
-import MainImage from "public/assets/img/junior_img_1.png";
+
 import {
   ActionWrapper,
   BottomWrapper,
@@ -15,12 +15,16 @@ import {
   TopWrapper,
 } from "./styles";
 
-const DefaultCard = ({ title, description, href, size }) => {
+const DefaultCard = ({
+  title,
+  description,
+  backgroundImage,
+  studentImage,
+  href,
+  size,
+}) => {
   return (
-    <Card
-      size={size}
-      css={{ backgroundImage: `url(assets/img/bg_card_yellow.png)` }}
-    >
+    <Card size={size} css={{ backgroundImage: `url(${backgroundImage})` }}>
       <TopWrapper size={size}>
         <HeadingWrapper size={size}>
           <Heading>{title}</Heading>
@@ -44,7 +48,7 @@ const DefaultCard = ({ title, description, href, size }) => {
         <ImageWrapper>
           <Image
             alt="main image"
-            src={MainImage}
+            src={studentImage}
             width={480}
             height={600}
             layout="responsive"

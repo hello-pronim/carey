@@ -28,7 +28,7 @@ const Card = styled("div", {
     },
   },
   "&:hover": {
-    boxShadow: "inset 0px 30px 120px 60px rgb(5 27 63 / 20%)",
+    boxShadow: "inset 0px 30px 120px 60px rgb(255 204 0 / 20%)",
   },
 });
 const CMarkImage = styled("div", {
