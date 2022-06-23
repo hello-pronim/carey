@@ -40,8 +40,10 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
         return null;
     }
   };
-
-  const heroData = pageData.find((item) => heroTypes.includes(item.__typename));
+  console.log("pageData", pageData);
+  const heroData = pageData?.find((item) =>
+    heroTypes.includes(item.__typename)
+  );
 
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
@@ -58,7 +60,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (
     <>
-      {getHeroType(heroData.__typename) && (
+      {heroData && getHeroType(heroData.__typename) && (
         <Hero
           type={getHeroType(heroData.__typename)}
           props={heroData}

@@ -54,6 +54,36 @@ const Content = styled("div", {
   },
 });
 
+const ApplyOnlineContent = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  zIndex: 1,
+  p: 44,
+  rowGap: 24,
+  gridColumn: "1 / span 6",
+  "h6, h1, h2": {
+    margin: "unset",
+    color: "$white",
+  },
+});
+
+const ApplicationSupport = styled("div", {
+  gridColumn: "9 / span 3",
+});
+
+const ApplicationSupportContent = styled("div", {
+  background: "$crestBlue",
+  padding: 24,
+  mt: 56,
+  "h2,p": {
+    color: "$white",
+  },
+  h2: {
+    mt: 0,
+    pb: 50,
+  },
+});
+
 const DisplayContent = styled("div", {
   display: "flex",
   flexDirection: "column",
@@ -95,6 +125,11 @@ const ImageWrapper = styled("div", {
   span: {
     height: "100% !important",
   },
+});
+
+const ApplyOnlineImageWrapper = styled("div", {
+  height: "100%",
+  gridColumn: "8 / span 5",
 });
 
 const VideoWrapper = styled("div", {
@@ -361,9 +396,13 @@ export {
   InnerGrid,
   Bumper,
   Content,
+  ApplyOnlineContent,
+  ApplicationSupport,
+  ApplicationSupportContent,
   CTAWrapper,
   Crest,
   ImageWrapper,
+  ApplyOnlineImageWrapper,
   DisplayContent,
   DisplayImageWrapper,
   Div,

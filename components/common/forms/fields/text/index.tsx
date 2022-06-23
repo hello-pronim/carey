@@ -6,12 +6,16 @@ import { Wrapper, Label, Subtext, InputWrapper } from "../sharedStyles";
 
 const TextField = ({
   label,
+  name,
   placeholder,
   required,
+  color = "white",
   error,
   disabled,
   type = "text",
   hint,
+  outerCSS,
+  register,
 }: TFTypes) => {
   const [passVisible, setPassVisible] = useState(false);
 
@@ -34,16 +38,40 @@ const TextField = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper css={outerCSS}>
       <Label required={required} disabled={disabled}>
-        {label && <Text variant="Body-xSmall">{label}</Text>}
+        {label && (
+          <Text style={{ color: color }} variant="Body-xSmall">
+            {label}
+          </Text>
+        )}
         <InputWrapper>
-          <Input
-            type={handleType(type)}
-            placeholder={!!placeholder ? placeholder : null}
-            error={!!error}
-            disabled={disabled}
-          />
+          {type === "email" && (
+            <Input
+              type={handleType(type)}
+              placeholder={!!placeholder ? placeholder : null}
+              error={!!error}
+              disabled={disabled}
+              {...register(name, {
+                required: required,
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                },
+              })}
+            />
+          )}
+          {type !== "email" && (
+            <Input
+              type={handleType(type)}
+              placeholder={!!placeholder ? placeholder : null}
+              error={!!error}
+              disabled={disabled}
+              {...register(name, {
+                required: required,
+                message: `${label} is required`,
+              })}
+            />
+          )}
           {type === "password" && (
             <PassToggle
               onClick={(e) => {
@@ -64,12 +92,16 @@ const TextField = ({
 
 type TFTypes = {
   label: string;
+  name: string;
   placeholder?: string;
   required?: boolean;
   error?: string;
   disabled?: boolean;
+  color?: string;
   type?: "text" | "tel" | "email" | "number" | "password";
   hint?: string;
+  outerCSS?: any;
+  register?: any;
 };
 
 export default TextField;
