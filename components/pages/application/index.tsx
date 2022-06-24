@@ -14,6 +14,7 @@ import {
   HiddenMobile,
 } from "./styles";
 import Graphic from "../../../public/assets/GraphicC.svg";
+import { Div } from "@components/Hero/styles";
 
 //import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 
@@ -57,23 +58,25 @@ const Application = ({}) => {
         }}
       >
         <LeftContent>
-          <Text as="h2" variant="Heading-Large" css={{ mb: 16 }}>
-            What do I need?
-          </Text>
-          <Text as="p" variant="Body-Regular">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor purus non
-          </Text>
-          <Accordians items={accordinaItems} />
-          <Text as="h2" variant="Heading-Large" css={{ mb: 16, mt: 80 }}>
-            How much does it cost
-          </Text>
-          <Text as="p" variant="Body-Regular">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor purus non
-          </Text>
+          <Div css={{ maxWidth: 560 }}>
+            <Text as="h2" variant="Heading-Large" css={{ mb: 16 }}>
+              What do I need?
+            </Text>
+            <Text as="p" variant="Body-Regular">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+              urna, porttitor rhoncus dolor purus non
+            </Text>
+            <Accordians items={accordinaItems} />
+            <Text as="h2" variant="Heading-Large" css={{ mb: 16, mt: 80 }}>
+              How much does it cost
+            </Text>
+            <Text as="p" variant="Body-Regular">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+              aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+              urna, porttitor rhoncus dolor purus non
+            </Text>
+          </Div>
           <HiddenMobile>
             <ApplyResumeButton resumeBttnTheme="light" />
           </HiddenMobile>
