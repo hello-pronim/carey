@@ -1,5 +1,3 @@
-// QUERIES COMMENTED OUT FOR NOW TILL WE CAN FIX THE CRAFT DB ROLLBACK
-
 import { gql } from "@apollo/client";
 
 export const GeneralPageQuery = gql`
@@ -20,6 +18,27 @@ export const GeneralPageQuery = gql`
                   col1
                   col2
                   col3
+                }
+              }
+            }
+          }
+          ... on generalComponents_twoColumnTable_BlockType {
+            twoColumnTable {
+              ... on twoColumnTable_BlockType {
+                groupLabel
+                groupRows {
+                  groupItem
+                }
+              }
+            }
+          }
+          ... on generalComponents_oneColumnTable_BlockType {
+            tableTitle
+            oneColTable {
+              ... on oneColTable_BlockType {
+                groupLabel
+                groupItems {
+                  rowLabel
                 }
               }
             }

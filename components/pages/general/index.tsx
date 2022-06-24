@@ -8,6 +8,8 @@ import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
 import ThreeColTable from "./components/ThreeColTable";
+import TwoColTable from "./components/twoColTable";
+import OneColTable from "./components/oneColTable";
 import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
 import TextContent from "./components/FeatureTextContent";
@@ -40,7 +42,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
         return null;
     }
   };
-  console.log("pageData", pageData);
+
   const heroData = pageData?.find((item) =>
     heroTypes.includes(item.__typename)
   );
@@ -56,6 +58,8 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("contentTextImage"), TextImageContent],
     [ModuleType("mapBlock"), MapView],
     [ModuleType("threeColumnTable"), ThreeColTable],
+    [ModuleType("twoColumnTable"), TwoColTable],
+    [ModuleType("oneColumnTable"), OneColTable],
   ]);
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (
