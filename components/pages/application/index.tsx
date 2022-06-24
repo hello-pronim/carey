@@ -6,7 +6,13 @@ import Hero from "@components/Hero";
 import { Container } from "@components/common";
 import { Text, Accordians } from "@components/common";
 import ApplyResumeButton from "@components/common/applyResumeButton";
-import { LeftContent, RightContent, Content } from "./styles";
+import {
+  LeftContent,
+  RightContent,
+  Content,
+  VisibleMobile,
+  HiddenMobile,
+} from "./styles";
 import Graphic from "../../../public/assets/GraphicC.svg";
 
 //import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
@@ -44,6 +50,11 @@ const Application = ({}) => {
           pb: 100,
           background: "$background",
         }}
+        innerCSS={{
+          "@max768": {
+            gridTemplateColumns: "repeat(1, 1fr)",
+          },
+        }}
       >
         <LeftContent>
           <Text as="h2" variant="Heading-Large" css={{ mb: 16 }}>
@@ -63,7 +74,9 @@ const Application = ({}) => {
             purus sit amet luctus venenatis, lectus magna fringilla urna,
             porttitor rhoncus dolor purus non
           </Text>
-          <ApplyResumeButton resumeBttnTheme="light" />
+          <HiddenMobile>
+            <ApplyResumeButton resumeBttnTheme="light" />
+          </HiddenMobile>
         </LeftContent>
         <RightContent>
           <Content>
@@ -82,6 +95,9 @@ const Application = ({}) => {
               349 Barkers Road, Kew 3101 Victoria + 61 3 9816 1222or via email
             </Text>
           </Content>
+          <VisibleMobile>
+            <ApplyResumeButton resumeBttnTheme="light" />
+          </VisibleMobile>
         </RightContent>
       </Container>
     </>

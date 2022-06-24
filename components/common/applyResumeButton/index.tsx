@@ -109,6 +109,12 @@ const ApplyResumeButton = ({
         mt: 80,
         justifyContent: "space-between",
         maxWidth: 560,
+        "@max768": {
+          flexDirection: "column",
+        },
+        // '&:last-child': {
+        //   paddingTop: "5px",
+        // },
       }}
     >
       <StartApplication>
