@@ -9,6 +9,8 @@ import { Container } from "@components/common";
 import { LeftContent, RightContent } from "./styles";
 //import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 
+import { StudentDetails } from "./enrolmentSteps";
+
 //export const AspectRatio = AspectRatioPrimitive;
 
 const Enrolment = ({}) => {
@@ -34,7 +36,9 @@ const Enrolment = ({}) => {
           background: "$background",
         }}
       >
-        <LeftContent>Form Content</LeftContent>
+        <LeftContent>
+          <StudentDetails />
+        </LeftContent>
         <RightContent>Sidebar Content</RightContent>
       </Container>
     </>

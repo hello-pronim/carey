@@ -5,7 +5,7 @@ import Hero from "@components/Hero";
 // import { Wrapper } from "./styles";
 import { Container } from "@components/common";
 import { Text, Accordians } from "@components/common";
-import ApplyResumeButton from "@components/common/applyResumeButton";
+import ApplyResumeButton from "@components/common/testapplyResumeButton";
 import {
   LeftContent,
   RightContent,

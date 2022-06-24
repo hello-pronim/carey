@@ -4,8 +4,8 @@ import { blackA, mauve } from "@radix-ui/colors";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Button, Text } from "@components/common";
-import ApplyForm from "./applyForm";
-import ResumeForm from "./resumeForm";
+import ApplyForm from "@components/common/testapplyResumeButton/applyForm";
+import ResumeForm from "@components/common/testapplyResumeButton/resumeForm";
 import { Div } from "./styles";
 
 const overlayShow = keyframes({

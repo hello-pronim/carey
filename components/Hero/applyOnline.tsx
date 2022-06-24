@@ -10,7 +10,7 @@ import {
 } from "./styles";
 import { Text } from "@components/common";
 import Image from "next/image";
-import ApplyResumeButton from "@components/common/applyResumeButton";
+import ApplyResumeButton from "@components/common/testapplyResumeButton";
 
 const ApplyOnline = (props) => {
   return (
