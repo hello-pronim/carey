@@ -1,7 +1,7 @@
 import { styled } from "@styles/stitches";
 
 const LeftContent = styled("div", {
-  gridColumn: "2 / span 4",
+  gridColumn: "2 / span 5",
   pt: 70,
   "@max768": {
     gridColumn: "1",
