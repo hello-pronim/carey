@@ -265,13 +265,13 @@ export const GeneralPageQuery = gql`
               }
             }
           }
-          ... on generalComponents_sessionTimes_BlockType {
+          ... on generalComponents_sessionTimeTable_BlockType {
             title: tableTitle
             ctaTitle
             ctaBody: contentText
             sessions: sessionTimeTable {
               ... on sessionTimeTable_BlockType {
-                date: sessionDate
+                date
                 status: sessionStatus
                 link: sessionLink
               }
