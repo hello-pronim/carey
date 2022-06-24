@@ -5,6 +5,7 @@ const LeftContent = styled("div", {
   pt: 70,
   "@max768": {
     gridColumn: "1",
+    pt: 40,
   },
 });
 
@@ -19,6 +20,10 @@ const Content = styled("div", {
   background: "$white",
   p: 30,
   mt: 150,
+  "@max768": {
+    gridColumn: "1",
+    mt: 80,
+  },
 });
 
 const VisibleMobile = styled("div", {

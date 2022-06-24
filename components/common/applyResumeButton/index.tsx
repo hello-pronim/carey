@@ -111,6 +111,7 @@ const ApplyResumeButton = ({
         maxWidth: 560,
         "@max768": {
           flexDirection: "column",
+          mt: "50px",
         },
         // '&:last-child': {
         //   paddingTop: "5px",

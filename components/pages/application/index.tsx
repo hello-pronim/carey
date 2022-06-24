@@ -39,7 +39,7 @@ const Application = ({}) => {
       <Hero
         type="applyOnline"
         overHeadline="APPLY ONLINE"
-        headline="Carey Baptist Grammar SchoolApplication for Admission"
+        headline="Carey Baptist Grammar School Application for Admission"
         contentText="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
         enableCta={true}
         image={Graphic}
