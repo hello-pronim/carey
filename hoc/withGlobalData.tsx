@@ -9,7 +9,7 @@ export const withGlobalData = (gssp: any) => {
     const global = await client.query({
       query: globalQuery,
     });
-    //console.log("global", global)
+
     let sitemap = [];
     for (let i: number = 1; i <= 6; i++) {
       if (global?.data?.[`sitemapColumn${i}`]?.length > 0) {

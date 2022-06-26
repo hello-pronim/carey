@@ -8,6 +8,8 @@ import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
 import ThreeColTable from "./components/ThreeColTable";
+import TwoColTable from "./components/twoColTable";
+import OneColTable from "./components/oneColTable";
 import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
 import TextContent from "./components/FeatureTextContent";
@@ -16,7 +18,7 @@ import FeatureTextBlock from "./components/FeatureTextBlock";
 import TextImageContent from "./components/TextImageContent";
 import MapView from "./components/MapView";
 
-// import SessionTimes from "./components/SessionTimes";
+import SessionTimes from "./components/SessionTimes";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   // Mostly just to make the Module Map look cleaner.
@@ -41,7 +43,9 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     }
   };
 
-  const heroData = pageData.find((item) => heroTypes.includes(item.__typename));
+  const heroData = pageData?.find((item) =>
+    heroTypes.includes(item.__typename)
+  );
 
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
@@ -54,11 +58,14 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("contentTextImage"), TextImageContent],
     [ModuleType("mapBlock"), MapView],
     [ModuleType("threeColumnTable"), ThreeColTable],
+    [ModuleType("twoColumnTable"), TwoColTable],
+    [ModuleType("oneColumnTable"), OneColTable],
+    [ModuleType("sessionTimeTable"), SessionTimes],
   ]);
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (
     <>
-      {getHeroType(heroData.__typename) && (
+      {heroData && getHeroType(heroData.__typename) && (
         <Hero
           type={getHeroType(heroData.__typename)}
           props={heroData}
