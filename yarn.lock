@@ -1268,11 +1268,6 @@ damerau-levenshtein@^1.0.7:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
 
-day@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/day/-/day-0.0.2.tgz#a133c926ba4125dce2783cd2b99c918b3e52fb03"
-  integrity sha512-o889G1KUU4sX0+qd5g0JMGJV0MR7Kv89//yDe72ySr8dMdQH+dglY5KqCE3iy8uJs56RRerYv7WqY/AXpoMNzw==
-
 dayjs@^1.11.3:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
