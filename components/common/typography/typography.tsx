@@ -10,6 +10,9 @@ const Text = styled("span", {
   a: {
     color: "$link",
   },
+  span: {
+    color: "$darkBlue400",
+  },
   //Variants
   variants: {
     variant: {

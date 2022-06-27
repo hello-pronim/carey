@@ -5,11 +5,14 @@ import { Wrapper, Label, Subtext, InputWrapper } from "../sharedStyles";
 
 const Select = ({
   label,
+  name,
   required,
+  placeholder,
   error,
   disabled,
   hint,
   items,
+  register,
 }: SelTypes) => {
   const subtext = () => {
     let values = { text: undefined, color: undefined };
@@ -22,14 +25,24 @@ const Select = ({
   return (
     <Wrapper>
       <Label required={required} disabled={disabled}>
-        {label && <Text variant="Body-xSmall">{label}</Text>}
+        {label && (
+          <Text variant="Body-xSmall">
+            {label} {!required && <span>(optional)</span>}
+          </Text>
+        )}
         <InputWrapper>
           <Input
             isSearchable={false}
-            placeholder="choose from the following"
+            placeholder={
+              placeholder ? placeholder : "choose from the following"
+            }
             styles={customStyles}
             options={items}
             isDisabled={disabled}
+            {...register(name, {
+              required: required,
+              message: `${name} is required`,
+            })}
           />
         </InputWrapper>
       </Label>
@@ -42,12 +55,14 @@ const Select = ({
 
 type SelTypes = {
   label: string;
+  name: string;
   placeholder?: string;
   required?: boolean;
   error?: string;
   disabled?: boolean;
   hint?: string;
   items: Array<object>;
+  register?: any;
 };
 
 export default Select;

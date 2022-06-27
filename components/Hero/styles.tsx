@@ -130,6 +130,9 @@ const ImageWrapper = styled("div", {
 const ApplyOnlineImageWrapper = styled("div", {
   height: "100%",
   gridColumn: "8 / span 5",
+  "@max768": {
+    display: "none",
+  },
 });
 
 const VideoWrapper = styled("div", {
