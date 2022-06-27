@@ -1,21 +1,14 @@
 import { styled } from "@styles/stitches";
 import { keyframes } from "@stitches/react";
+import { mauve } from "@radix-ui/colors";
 import * as Accordion from "@radix-ui/react-accordion";
-import { CaretUpIcon } from "@radix-ui/react-icons";
+import { CaretRightIcon } from "@radix-ui/react-icons";
 
-const Div = styled("div", {});
-
-const AccordionChevron = styled(CaretUpIcon, {
+const AccordionChevron = styled(CaretRightIcon, {
   transition: "transform 300ms",
-  "[data-state=open] &": { transform: "rotate(180deg)" },
+  "[data-state=open] &": { transform: "rotate(90deg)" },
   color: "$navy",
-});
-
-const AccordionChevronWrapper = styled(AccordionChevron, {
-  width: 32,
-  height: 32,
-  border: "solid 1px $darkBlue400",
-  borderRadius: 50,
+  mr: 20,
 });
 
 const slideDown = keyframes({
@@ -31,7 +24,6 @@ const slideUp = keyframes({
 const StyledHeader = styled(Accordion.Header, {
   all: "unset",
   display: "flex",
-  justifyContent: "center",
 });
 
 const StyledItem = styled(Accordion.Item, {
@@ -67,30 +59,23 @@ const StyledTrigger = styled(Accordion.Trigger, {
   flex: 1,
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
   fontSize: 18,
   lineHeight: 1,
   width: "100%",
+  borderBottom: `1px solid ${mauve.mauve10}`,
   color: "$navy",
+  pb: 15,
   "button, [type='button'], [type='reset'], [type='submit']": {
     border: "none",
     background: "transparent",
   },
 });
 
-const Divider = styled("hr", {
-  mt: 20,
-  mb: 20,
-  background: "$navy200",
-});
-
 export {
-  Div,
-  AccordionChevronWrapper,
+  AccordionChevron,
   slideUp,
   StyledHeader,
   StyledItem,
   StyledContent,
   StyledTrigger,
-  Divider,
 };
