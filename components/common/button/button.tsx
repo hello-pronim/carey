@@ -35,8 +35,14 @@ const Button = ({
     if (!href) return Fragment;
   }, [href]);
 
+  const hrefValue = useMemo(() => {
+    if (href && !href.includes("http") && !href.startsWith("/"))
+      return `/${href}`;
+    if (href && href.includes("http")) return href;
+  }, [href]);
+
   return (
-    <Wrapper {...(href && { href: href, passHref: true })}>
+    <Wrapper {...(href && { href: hrefValue, passHref: true })}>
       <Root
         as={href ? "a" : "button"}
         scale={scale}
@@ -70,7 +76,7 @@ type buttonTypes = {
   arrow?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
-  href?: string | Object;
+  href?: string;
   onClick?: any;
   css?: any;
 };

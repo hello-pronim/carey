@@ -70,6 +70,7 @@ const SideNav = ({
   if (!activeMenuItem) {
     return <></>;
   }
+
   return (
     <Wrapper ref={SidebarRef}>
       <NavHeader>
@@ -85,10 +86,11 @@ const SideNav = ({
       >
         {activeMenuItem?.subItems?.map((item: any, i: number) => {
           if (item.subItems.length > 0) {
+            const path = `/${activeMenuItem.url}/${item.url}`;
             return (
               <AccordionItem key={`sidenav-item-1-${i}`} value={item.id}>
                 <AccordionTrigger>
-                  <Link href={item.url}>
+                  <Link href={path}>
                     <a>
                       <Text variant="Body-Small">{item.label}</Text>
                     </a>
@@ -96,9 +98,10 @@ const SideNav = ({
                 </AccordionTrigger>
                 <AccordionContent>
                   {item.subItems.map((subItem: any, i: number) => {
+                    const path = `/${activeMenuItem.url}/${item.url}/${subItem.url}`;
                     return (
                       <SingleItem key={`sidenav-item-2-${i}`}>
-                        <Link href={subItem.url}>
+                        <Link href={path}>
                           <a>
                             <Text variant="Body-Small">{subItem.label}</Text>
                           </a>
@@ -115,7 +118,7 @@ const SideNav = ({
               css={isActiveItem(item.url) && { bg: "$crestBlue150" }}
               key={`side-nav-0-${i}`}
             >
-              <Link href={item.url}>
+              <Link href={`/${activeMenuItem.url}/${item.url}`}>
                 <a>
                   <Text
                     css={
