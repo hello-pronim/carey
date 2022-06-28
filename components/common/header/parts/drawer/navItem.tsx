@@ -45,10 +45,10 @@ const Core = React.forwardRef(
 Core.displayName = "Core";
 
 const NavItem = (props) => {
-  const { item } = props;
-  if (item.url) {
+  const { url } = props;
+  if (url) {
     return (
-      <Link href={item.url} passHref>
+      <Link href={url} passHref>
         <Core {...props} />
       </Link>
     );

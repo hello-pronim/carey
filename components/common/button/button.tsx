@@ -4,6 +4,7 @@ import Root from "./styles";
 import { Text } from "@components/common";
 import MorphArrow from "@components/common/icons/morphArrow";
 import Plus from "@components/common/icons/plus";
+import useFormatUrl from "@utils/formatUrl";
 
 const Button = ({
   label,
@@ -35,14 +36,10 @@ const Button = ({
     if (!href) return Fragment;
   }, [href]);
 
-  const hrefValue = useMemo(() => {
-    if (href && !href.includes("http") && !href.startsWith("/"))
-      return `/${href}`;
-    if (href && href.includes("http")) return href;
-  }, [href]);
+  const formatUrl = useFormatUrl;
 
   return (
-    <Wrapper {...(href && { href: hrefValue, passHref: true })}>
+    <Wrapper {...(href && { href: formatUrl(href), passHref: true })}>
       <Root
         as={href ? "a" : "button"}
         scale={scale}

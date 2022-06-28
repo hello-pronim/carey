@@ -104,7 +104,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
     width: 0,
     height: 0,
   });
-  console.log(image1src);
+
   useEffect(() => {
     if (Primary.current) {
       const { width, height } = Primary.current.getBoundingClientRect();
