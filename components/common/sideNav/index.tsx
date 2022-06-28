@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { Text } from "@components/common";
 import {
@@ -11,7 +12,17 @@ import {
   SingleItem,
 } from "./styles";
 
-const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
+const SideNav = ({
+  activeSlug,
+  navigation,
+  setMinHeight,
+  minHeight,
+}: SideNavTypes) => {
+  const router = useRouter();
+  const SidebarRef = useRef<HTMLDivElement>(null);
+
+  const [openItems, setOpenItems] = useState([]);
+
   const getActiveParentMenu = () => {
     const findActiveNavItem = navigation.find((navItem: any) => {
       // check top level
@@ -32,18 +43,46 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
     return findActiveNavItem;
   };
 
+  const isActiveItem = (url) => {
+    return activeSlug === url;
+  };
+
   const activeMenuItem = getActiveParentMenu();
+
+  useEffect(() => {
+    if (activeMenuItem) {
+      const [activeItem] = activeMenuItem?.subItems?.filter(
+        (item) => item.url === activeSlug
+      );
+
+      setOpenItems([activeItem?.id.toString()]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.asPath]);
+
+  useEffect(() => {
+    if (SidebarRef.current) {
+      setMinHeight(SidebarRef.current.clientHeight + 200);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeMenuItem, minHeight]);
+
   if (!activeMenuItem) {
     return <></>;
   }
   return (
-    <Wrapper>
+    <Wrapper ref={SidebarRef}>
       <NavHeader>
         <Text variant="Heading-Overline" css={{ textTransform: "uppercase" }}>
           {activeMenuItem.label}
         </Text>
       </NavHeader>
-      <Accordion type="multiple" defaultValue={["start"]}>
+      <Accordion
+        type="multiple"
+        value={openItems}
+        onValueChange={(value) => setOpenItems(value)}
+        defaultValue={[]}
+      >
         {activeMenuItem?.subItems?.map((item: any, i: number) => {
           if (item.subItems.length > 0) {
             return (
@@ -51,7 +90,7 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
                 <AccordionTrigger>
                   <Link href={item.url}>
                     <a>
-                      <Text variant="Body-Regular">{item.label}</Text>
+                      <Text variant="Body-Small">{item.label}</Text>
                     </a>
                   </Link>
                 </AccordionTrigger>
@@ -61,7 +100,7 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
                       <SingleItem key={`sidenav-item-2-${i}`}>
                         <Link href={subItem.url}>
                           <a>
-                            <Text variant="Body-Regular">{subItem.label}</Text>
+                            <Text variant="Body-Small">{subItem.label}</Text>
                           </a>
                         </Link>
                       </SingleItem>
@@ -72,10 +111,22 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
             );
           }
           return (
-            <SingleItem key={`side-nav-0-${i}`}>
+            <SingleItem
+              css={isActiveItem(item.url) && { bg: "$crestBlue150" }}
+              key={`side-nav-0-${i}`}
+            >
               <Link href={item.url}>
                 <a>
-                  <Text variant="Body-Regular">{item.label}</Text>
+                  <Text
+                    css={
+                      isActiveItem(item.url) && {
+                        fontWeight: "$semiBold !important",
+                      }
+                    }
+                    variant="Body-Small"
+                  >
+                    {item.label}
+                  </Text>
                 </a>
               </Link>
             </SingleItem>
@@ -87,6 +138,8 @@ const SideNav = ({ activeSlug, navigation }: SideNavTypes) => {
 };
 
 type SideNavTypes = {
+  minHeight: number;
+  setMinHeight: any;
   navigation: Array<any>;
   activeSlug: string;
 };
