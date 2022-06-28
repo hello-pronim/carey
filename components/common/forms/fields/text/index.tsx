@@ -42,7 +42,7 @@ const TextField = ({
       <Label required={required} disabled={disabled}>
         {label && (
           <Text style={{ color: color }} variant="Body-xSmall">
-            {label}
+            {label} {!required && <span>(optional)</span>}
           </Text>
         )}
         <InputWrapper>
@@ -68,7 +68,7 @@ const TextField = ({
               disabled={disabled}
               {...register(name, {
                 required: required,
-                message: `${label} is required`,
+                message: `${name} is required`,
               })}
             />
           )}

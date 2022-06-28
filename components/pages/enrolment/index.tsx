@@ -6,12 +6,27 @@ import Hero from "@components/Hero";
 import { Container } from "@components/common";
 // import { Text, Accordians } from "@components/common";
 // import ApplyResumeButton from "@components/common/applyResumeButton";
-import { LeftContent, RightContent } from "./styles";
+import EnrolmentSideNav from "@components/common/enrolmentSideNav";
+import { useAppContext } from "@contexts/AppContext";
+import { LeftContent } from "./styles";
 //import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
+
+import {
+  StudentDetails,
+  ParentDetails,
+  CareyConnection,
+  TermsConditions,
+  ReviewPayment,
+  Confirm,
+} from "./enrolmentSteps";
 
 //export const AspectRatio = AspectRatioPrimitive;
 
 const Enrolment = ({}) => {
+  const {
+    state: { enrolmentDetails },
+  } = useAppContext();
+  const { activeStep } = enrolmentDetails;
   return (
     <>
       <Hero
@@ -33,9 +48,17 @@ const Enrolment = ({}) => {
         outerCSS={{
           background: "$background",
         }}
+        innerCSS={{ rowGap: 56, py: 56 }}
       >
-        <LeftContent>Form Content</LeftContent>
-        <RightContent>Sidebar Content</RightContent>
+        <LeftContent>
+          {activeStep === 1 && <StudentDetails />}
+          {activeStep === 2 && <ParentDetails />}
+          {activeStep === 3 && <CareyConnection />}
+          {activeStep === 4 && <TermsConditions />}
+          {activeStep === 5 && <ReviewPayment />}
+          {activeStep === 6 && <Confirm />}
+        </LeftContent>
+        <EnrolmentSideNav activeStep={activeStep} />
       </Container>
     </>
   );
