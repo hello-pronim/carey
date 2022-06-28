@@ -1,22 +1,24 @@
 import React from "react";
-import ReactSelect from "react-select";
+// import ReactDatePicker from "react-datepicker";
 import { Controller } from "react-hook-form";
-import customStyles from "./styles";
 import { Text } from "@components/common";
+import { DateInput } from "./styles";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { Wrapper, Label, Subtext, InputWrapper } from "../sharedStyles";
 
-const Select = ({
+const Date = ({
   label,
   name,
-  required,
   placeholder,
+  required,
+  color = "white",
   error,
   disabled,
   hint,
-  items,
+  outerCSS,
   control,
-  searchable = false,
-}: SelTypes) => {
+}: DateTypes) => {
   const subtext = () => {
     let values = { text: undefined, color: undefined };
     (!!error && !!hint) || (!!error && !hint)
@@ -26,42 +28,26 @@ const Select = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper css={outerCSS}>
       <Label required={required} disabled={disabled}>
         {label && (
-          <Text variant="Body-xSmall">
+          <Text style={{ color: color }} variant="Body-xSmall">
             {label} {!required && <span>(optional)</span>}
           </Text>
         )}
         <InputWrapper>
-          {/* <ReactSelect
-            isSearchable={false}
-            placeholder={
-              placeholder ? placeholder : "choose from the following"
-            }
-            styles={customStyles}
-            options={items}
-            isDisabled={disabled}
-            {...register(name, {
-              required: required,
-              message: `${name} is required`,
-            })}
-          /> */}
           <Controller
             control={control}
             name={name}
             rules={{ required: required }}
-            render={({ field: { onChange, value, ref } }) => (
-              <ReactSelect
-                isSearchable={searchable}
-                placeholder={
-                  placeholder ? placeholder : "choose from the following"
-                }
-                styles={customStyles}
-                ref={ref}
-                options={items}
-                value={items.find((c: any) => c.value === value)}
-                onChange={(val: any) => onChange(val.value)}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <DateInput
+                onChange={onChange}
+                onBlur={onBlur}
+                selected={value}
+                placeholderText={placeholder}
+                isClearable
+                shouldCloseOnSelect
               />
             )}
           />
@@ -74,17 +60,17 @@ const Select = ({
   );
 };
 
-type SelTypes = {
+type DateTypes = {
   label: string;
   name: string;
   placeholder?: string;
   required?: boolean;
-  searchable?: boolean;
   error?: string;
   disabled?: boolean;
+  color?: string;
   hint?: string;
-  items: Array<object>;
+  outerCSS?: any;
   control?: any;
 };
 
-export default Select;
+export default Date;

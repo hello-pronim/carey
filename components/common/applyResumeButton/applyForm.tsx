@@ -6,7 +6,7 @@ import { Div } from "./styles";
 
 const ApplyForm = ({}) => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -19,8 +19,8 @@ const ApplyForm = ({}) => {
     <Div css={{ mt: 80, mb: 80 }}>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Text
-          register={register}
           required
+          control={control}
           error={
             (errors.emailAddress &&
               errors.emailAddress?.type === "required" &&
@@ -35,8 +35,8 @@ const ApplyForm = ({}) => {
           outerCSS={{ mb: 24 }}
         />
         <Text
-          register={register}
           required
+          control={control}
           error={errors.name && "First name is required"}
           name="name"
           label="Name"

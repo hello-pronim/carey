@@ -35,7 +35,6 @@ const ParentDetails = ({}) => {
   const { activeStep } = enrolmentDetails;
 
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },
@@ -105,7 +104,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -120,7 +118,6 @@ const ParentDetails = ({}) => {
                         ]}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -135,7 +132,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -158,7 +154,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -173,7 +168,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -197,7 +191,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -215,7 +208,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -238,7 +230,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         name={`workPhone${guardian}`}
                         label="Work Phone"
@@ -248,7 +239,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         name={`homePhone${guardian}`}
                         label="Home Phone"
@@ -266,7 +256,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -283,7 +272,6 @@ const ParentDetails = ({}) => {
                         ]}
                       />
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -294,9 +282,9 @@ const ParentDetails = ({}) => {
                         label="Main language spoken"
                         placeholder="Select"
                         items={[
-                          { value: "language1", label: "Language 1" },
-                          { value: "language2", label: "Language 2" },
-                          { value: "language3", label: "Language 3" },
+                          { value: "Greek", label: "Language 1" },
+                          { value: "Chinese", label: "Language 2" },
+                          { value: "Portuguese", label: "Language 3" },
                         ]}
                       />
                     </Div>
@@ -317,7 +305,6 @@ const ParentDetails = ({}) => {
                   <StyledContent>
                     <Div>
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -340,7 +327,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         name={`postBox${guardian}`}
                         label="Apartment, Suite, Unit, PO Box"
@@ -350,7 +336,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -373,7 +358,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -388,7 +372,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -402,7 +385,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -420,7 +402,6 @@ const ParentDetails = ({}) => {
                     <Divider />
                     <Div>
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -441,7 +422,6 @@ const ParentDetails = ({}) => {
                     </Div>
                     <Div>
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -464,7 +444,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         name={`postalPostBox${guardian}`}
                         label="Apartment, Suite, Unit, PO Box"
@@ -474,7 +453,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -498,7 +476,6 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -513,7 +490,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -528,7 +504,6 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={

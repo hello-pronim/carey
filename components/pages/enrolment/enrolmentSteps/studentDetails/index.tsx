@@ -5,6 +5,7 @@ import { useAppContext } from "@contexts/AppContext";
 import TextField from "@components/common/forms/fields/text";
 import Select from "@components/common/forms/fields/select";
 import RadioGroup from "@components/common/forms/fields/radio";
+import DateField from "@components/common/forms/fields/date";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
 import { PlusIcon } from "@radix-ui/react-icons";
@@ -35,7 +36,6 @@ const StudentDetails = ({}) => {
   const { activeStep } = enrolmentDetails;
 
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },
@@ -69,7 +69,7 @@ const StudentDetails = ({}) => {
       admissionDetailsOpen,
     ]);
   };
-
+  console.log("errors", errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Accordion.Root type="multiple" defaultValue={studentAccordianOpen}>
@@ -96,7 +96,6 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -111,7 +110,6 @@ const StudentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         name={`middleName${student}`}
                         label="Middle Name"
@@ -121,7 +119,6 @@ const StudentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -144,7 +141,6 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         required
                         error={
@@ -158,8 +154,8 @@ const StudentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <TextField
-                        register={register}
+                      {/* <TextField
+                       
                         control={control}
                         required
                         error={
@@ -171,9 +167,20 @@ const StudentDetails = ({}) => {
                         type="date"
                         color="$navy"
                         outerCSS={{ mb: 24 }}
+                      /> */}
+                      <DateField
+                        control={control}
+                        required
+                        error={
+                          errors[`dob${student}`] && "Date of birth is required"
+                        }
+                        placeholder="e.g. 15/12/2021"
+                        name={`dob${student}`}
+                        label="Date of birth"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
                       />
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -198,7 +205,6 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
@@ -215,7 +221,6 @@ const StudentDetails = ({}) => {
                         ]}
                       />
                       <Select
-                        register={register}
                         control={control}
                         searchable
                         required
@@ -305,14 +310,13 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <Select
-                        register={register}
                         control={control}
                         required
                         error={
-                          errors[`isStudent${student}`] &&
+                          errors[`isStudentAboriginalOrTorres${student}`] &&
                           "Is the student of Aboriginal or Torres Strait Islander origin is required"
                         }
-                        name={`isStudent${student}`}
+                        name={`isStudentAboriginalOrTorres${student}`}
                         label="Is the student of Aboriginal or Torres Strait Islander origin?"
                         placeholder="Select"
                         items={[
@@ -398,7 +402,6 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
                         control={control}
                         name={`currentSchool${student}`}
                         label="Current school (if applicable)"
@@ -408,7 +411,6 @@ const StudentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <Select
-                        register={register}
                         control={control}
                         name={`currentYear${student}`}
                         label="Current year"

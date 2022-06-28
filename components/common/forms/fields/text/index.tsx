@@ -16,7 +16,6 @@ const TextField = ({
   type = "text",
   hint,
   outerCSS,
-  register,
   control,
 }: TFTypes) => {
   const [passVisible, setPassVisible] = useState(false);
@@ -49,17 +48,39 @@ const TextField = ({
         )}
         <InputWrapper>
           {type === "email" && (
-            <Input
-              type={handleType(type)}
-              placeholder={!!placeholder ? placeholder : null}
-              error={!!error}
-              disabled={disabled}
-              {...register(name, {
+            // <Input
+            //   type={handleType(type)}
+            //   placeholder={!!placeholder ? placeholder : null}
+            //   error={!!error}
+            //   disabled={disabled}
+            //   {...register(name, {
+            //     required: required,
+            //     pattern: {
+            //       value: /\S+@\S+\.\S+/,
+            //     },
+            //   })}
+            // />
+            <Controller
+              control={control}
+              name={name}
+              rules={{
                 required: required,
                 pattern: {
-                  value: /\S+@\S+\.\S+/,
+                  value:
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Must use a valid email",
                 },
-              })}
+              }}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  disabled={disabled}
+                  type={handleType(type)}
+                  placeholder={
+                    placeholder ? placeholder : "choose from the following"
+                  }
+                />
+              )}
             />
           )}
           {type !== "email" && (
@@ -81,6 +102,7 @@ const TextField = ({
                 <Input
                   {...field}
                   type={handleType(type)}
+                  disabled={disabled}
                   placeholder={
                     placeholder ? placeholder : "choose from the following"
                   }
@@ -117,7 +139,6 @@ type TFTypes = {
   type?: "text" | "tel" | "email" | "number" | "password" | "date";
   hint?: string;
   outerCSS?: any;
-  register?: any;
   control?: any;
 };
 
