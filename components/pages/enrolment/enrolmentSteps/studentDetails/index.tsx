@@ -37,6 +37,7 @@ const StudentDetails = ({}) => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -44,6 +45,7 @@ const StudentDetails = ({}) => {
     const value = {
       activeStep: activeStep + 1,
     };
+    console.log("value", value);
     dispatch({
       type: "SET_ENROLMENT_DETAILS",
       value,
@@ -62,7 +64,7 @@ const StudentDetails = ({}) => {
     const admissionDetailsOpen = `admissionDetails-${newStd}`;
     setStudentDetails([...studentDetails, newStd]);
     setStudentAccordianOpen([
-      ...studentDetails,
+      ...studentAccordianOpen,
       studentDetailsOpen,
       admissionDetailsOpen,
     ]);
@@ -95,6 +97,7 @@ const StudentDetails = ({}) => {
                     >
                       <TextField
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`firstName${student}`] &&
@@ -109,6 +112,7 @@ const StudentDetails = ({}) => {
                       />
                       <TextField
                         register={register}
+                        control={control}
                         name={`middleName${student}`}
                         label="Middle Name"
                         placeholder="Enter your middle name"
@@ -118,6 +122,7 @@ const StudentDetails = ({}) => {
                       />
                       <TextField
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`familyName${student}`] &&
@@ -140,6 +145,7 @@ const StudentDetails = ({}) => {
                     >
                       <TextField
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`perferredName${student}`] &&
@@ -154,6 +160,7 @@ const StudentDetails = ({}) => {
                       />
                       <TextField
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`dob${student}`] && "Date of birth is required"
@@ -167,6 +174,7 @@ const StudentDetails = ({}) => {
                       />
                       <Select
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`gender${student}`] && "Gender is required"
@@ -177,7 +185,7 @@ const StudentDetails = ({}) => {
                         items={[
                           { value: "male", label: "Male" },
                           { value: "female", label: "Female" },
-                          { value: "others", label: "Others" },
+                          { value: "self-describe", label: "Self-describe" },
                         ]}
                       />
                     </Div>
@@ -191,6 +199,7 @@ const StudentDetails = ({}) => {
                     >
                       <Select
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`religion${student}`] && "Religion is required"
@@ -199,13 +208,16 @@ const StudentDetails = ({}) => {
                         label="Religion"
                         placeholder="Select"
                         items={[
-                          { value: "hindu", label: "Hindu" },
-                          { value: "muslim", label: "Muslim" },
-                          { value: "christian", label: "Christian" },
+                          { value: "baptist", label: "Baptist" },
+                          { value: "catholic", label: "Catholic" },
+                          { value: "orthodox", label: "Orthodox" },
+                          { value: "other", label: "Other" },
                         ]}
                       />
                       <Select
                         register={register}
+                        control={control}
+                        searchable
                         required
                         error={
                           errors[`birthCountry${student}`] &&
@@ -216,8 +228,8 @@ const StudentDetails = ({}) => {
                         placeholder="Select"
                         items={[
                           { value: "australia", label: "Australia" },
-                          { value: "canada", label: "Canada" },
-                          { value: "usa", label: "USA" },
+                          { value: "canada", label: "China" },
+                          { value: "usa", label: "Zimbabwe" },
                         ]}
                       />
                     </Div>
@@ -294,6 +306,7 @@ const StudentDetails = ({}) => {
                     >
                       <Select
                         register={register}
+                        control={control}
                         required
                         error={
                           errors[`isStudent${student}`] &&
@@ -303,9 +316,21 @@ const StudentDetails = ({}) => {
                         label="Is the student of Aboriginal or Torres Strait Islander origin?"
                         placeholder="Select"
                         items={[
-                          { value: "test1", label: "Test 1" },
-                          { value: "test2", label: "Test 2" },
-                          { value: "test3", label: "Test 3" },
+                          { value: "No", label: "No" },
+                          {
+                            value: "Yes, Aboriginal",
+                            label: "Yes, Aboriginal",
+                          },
+                          {
+                            value:
+                              "Yes, both Aboriginal and Torres Strait Islander",
+                            label:
+                              "Yes, both Aboriginal and Torres Strait Islander",
+                          },
+                          {
+                            value: "Yes, Torres Strait Islander",
+                            label: "Yes, Torres Strait Islander",
+                          },
                         ]}
                       />
                     </Div>
@@ -374,6 +399,7 @@ const StudentDetails = ({}) => {
                     >
                       <TextField
                         register={register}
+                        control={control}
                         name={`currentSchool${student}`}
                         label="Current school (if applicable)"
                         placeholder="Enter your Current school"
@@ -383,6 +409,7 @@ const StudentDetails = ({}) => {
                       />
                       <Select
                         register={register}
+                        control={control}
                         name={`currentYear${student}`}
                         label="Current year"
                         placeholder="Select"
@@ -427,25 +454,13 @@ const StudentDetails = ({}) => {
             );
           })}
       </Accordion.Root>
-      {/* <Button
-        plus
-        label="Additional student"
-        type="outline"
-        theme="dark"
-        variant="secondary"
-        scale="xl"
-        css={{
-          borderColor: "$navy",
-        }}
-        onClick={() => addStudent()}
-      /> */}
       <AddButton onClick={() => addStudent()}>
         <PlusIcon /> <span>Additional student</span>
       </AddButton>
       <Divider />
       <ButtonsContainer>
         <Div>
-          <AddButton onClick={() => addStudent()}>
+          <AddButton>
             <span>Save & Exit</span>
           </AddButton>
         </Div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Text } from "@components/common";
+import { Controller } from "react-hook-form";
 import { Input, PassToggle } from "./styles";
 
 import { Wrapper, Label, Subtext, InputWrapper } from "../sharedStyles";
@@ -16,6 +17,7 @@ const TextField = ({
   hint,
   outerCSS,
   register,
+  control,
 }: TFTypes) => {
   const [passVisible, setPassVisible] = useState(false);
 
@@ -61,15 +63,29 @@ const TextField = ({
             />
           )}
           {type !== "email" && (
-            <Input
-              type={handleType(type)}
-              placeholder={!!placeholder ? placeholder : null}
-              error={!!error}
-              disabled={disabled}
-              {...register(name, {
-                required: required,
-                message: `${name} is required`,
-              })}
+            // <Input
+            //   type={handleType(type)}
+            //   placeholder={!!placeholder ? placeholder : null}
+            //   error={!!error}
+            //   disabled={disabled}
+            //   {...register(name, {
+            //     required: required,
+            //     message: `${name} is required`,
+            //   })}
+            // />
+            <Controller
+              control={control}
+              name={name}
+              rules={{ required: required }}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  type={handleType(type)}
+                  placeholder={
+                    placeholder ? placeholder : "choose from the following"
+                  }
+                />
+              )}
             />
           )}
           {type === "password" && (
@@ -102,6 +118,7 @@ type TFTypes = {
   hint?: string;
   outerCSS?: any;
   register?: any;
+  control?: any;
 };
 
 export default TextField;
