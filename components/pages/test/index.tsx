@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Image } from "@components/common";
+import { BreadCrumb, Button, Container, Image } from "@components/common";
 import { PreFooter } from "@components/common";
 import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 import EnrolmentCard from "@components/common/cards/enrolments/Card";
@@ -7,11 +7,25 @@ import TextBlock from "@components/common/textBlock/index";
 
 import TextBlockImage from "public/assets/img/text_block_img.png";
 
-import { ImageWrapper, Wrapper } from "./styles";
+import { BreadCrumbWrapper, ImageWrapper, Wrapper } from "./styles";
 
 const Test = () => {
+  const crumbs = [
+    { name: "Parent", path: "/" },
+    // { name: "Child1", path: "/" },
+    // { name: "Child2", path: "/" },
+    // { name: "Child3", path: "/" },
+    // { name: "Child4", path: "/" },
+    { name: "Test", path: "/test" },
+  ];
+
   return (
     <Wrapper>
+      <Container>
+        <BreadCrumbWrapper>
+          <BreadCrumb crumbs={crumbs} pt={0} />
+        </BreadCrumbWrapper>
+      </Container>
       <Container>
         <OpenMorningsCard
           title="Open Mornings"
