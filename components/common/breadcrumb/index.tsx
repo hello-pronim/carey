@@ -24,28 +24,19 @@ const Breadcrumb = ({ crumbs, pt = 130, pb = 0, pl = 0 }) => {
 
   return (
     <BottomBarInner css={{ pt, pb, pl }}>
-      {crumbs.map(({ name, path }, index: number) => {
-        if (path) {
-          return (
-            <LinkWrapper key={uuid()}>
-              <Link href={path}>
-                <a>{name}</a>
-              </Link>
-              {renderCrumbSeparator(crumbs, index)}
-            </LinkWrapper>
-          );
-        }
-        return (
-          <span key={uuid()}>
-            <EllipsisDots>•••</EllipsisDots>
-            <LinkWrapper key={uuid()}>
-              <ActiveLinkText>
-                {name} {renderCrumbSeparator(crumbs, index)}
-              </ActiveLinkText>
-            </LinkWrapper>
-          </span>
-        );
-      })}
+      {crumbs.map(({ name, path }, index: number) => (
+        <LinkWrapper key={uuid()}>
+          {index === crumbs.length - 1 && <EllipsisDots>•••</EllipsisDots>}
+          {path ? (
+            <Link href={path}>
+              <a>{name}</a>
+            </Link>
+          ) : (
+            <ActiveLinkText>{name}</ActiveLinkText>
+          )}
+          {renderCrumbSeparator(crumbs, index)}
+        </LinkWrapper>
+      ))}
     </BottomBarInner>
   );
 };
