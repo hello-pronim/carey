@@ -7,6 +7,9 @@ const LeftContent = styled("div", {
 
 const RightContent = styled("div", {
   gridColumn: "10 / span 3",
+  // "@max768": {
+  //   gridColumn: "1",
+  // },
 });
 
 const Div = styled("div", {});

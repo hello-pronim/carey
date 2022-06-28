@@ -59,16 +59,25 @@ const ApplyOnlineContent = styled("div", {
   flexDirection: "column",
   zIndex: 1,
   p: 44,
+  pb: 0,
   rowGap: 24,
   gridColumn: "1 / span 6",
   "h6, h1, h2": {
     margin: "unset",
     color: "$white",
   },
+  "@max1440": {
+    gridColumn: "1 / span 8",
+  },
 });
 
 const ApplicationSupport = styled("div", {
   gridColumn: "9 / span 3",
+  "@max768": {
+    gridColumn: "1 / 9",
+    ml: 40,
+    mr: 40,
+  },
 });
 
 const ApplicationSupportContent = styled("div", {
@@ -130,8 +139,9 @@ const ImageWrapper = styled("div", {
 const ApplyOnlineImageWrapper = styled("div", {
   height: "100%",
   gridColumn: "8 / span 5",
-  "@max768": {
-    display: "none",
+  display: "none",
+  "@min1440": {
+    display: "block",
   },
 });
 
