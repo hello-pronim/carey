@@ -27,9 +27,6 @@ const DotSeparator = styled("span", {
 
 const EllipsisDots = styled("div", {
   display: "block",
-  columnGap: " 4px",
-  marginTop: "16px",
-  paddingRight: " 4px",
   color: "$crestBlue500",
   fontSize: "$bodyXSmall",
   lineHeight: "$large",
@@ -49,6 +46,12 @@ const LinkWrapper = styled("div", {
   color: "$navy",
   "&:first-child": {
     display: "flex",
+    span: {
+      display: "none",
+      "@min768": {
+        display: "block",
+      },
+    },
   },
   "&:last-child": {
     display: "flex",
