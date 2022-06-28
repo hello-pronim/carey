@@ -4,6 +4,7 @@ import { Wrapper, RadioGroupRadio, RadioGroupIndicator, Root } from "./styles";
 
 const RadioGroup = ({
   label,
+  name,
   required,
   error,
   disabled,
@@ -45,6 +46,7 @@ const RadioGroup = ({
 
 type RadioTypes = {
   label: string;
+  name: string;
   required?: boolean;
   error?: string;
   disabled?: boolean;

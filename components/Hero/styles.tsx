@@ -254,6 +254,7 @@ const QuickLinksListItem = styled("li", {
   "> a, > button": {
     flexDirection: "row-reverse",
     px: 0,
+    justifyContent: "start",
   },
   "&:last-of-type": {
     borderBottom: "none",
