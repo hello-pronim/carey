@@ -19,6 +19,8 @@ import TextImageContent from "./components/TextImageContent";
 import MapView from "./components/MapView";
 
 import SessionTimes from "./components/SessionTimes";
+import TwoUpModule from "./components/TwoUpModule";
+import ThreeUpModule from "./components/ThreeUpModule";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   // Mostly just to make the Module Map look cleaner.
@@ -61,6 +63,9 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("twoColumnTable"), TwoColTable],
     [ModuleType("oneColumnTable"), OneColTable],
     [ModuleType("sessionTimeTable"), SessionTimes],
+    [ModuleType("images2up"), TwoUpModule],
+    [ModuleType("images2upVideo"), TwoUpModule],
+    [ModuleType("inlineGallery3up"), ThreeUpModule],
   ]);
   const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
   return (

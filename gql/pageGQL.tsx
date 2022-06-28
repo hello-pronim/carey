@@ -188,6 +188,8 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_images1up_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             includeDividerUnderneath
@@ -195,10 +197,14 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_images2up_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             image2 {
               url
+              width
+              height
             }
             captionImage2
             includeDividerUnderneath
@@ -206,10 +212,14 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_images2upVideo_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             image2 {
               url
+              width
+              height
             }
             videoLabel
             videoUrl
@@ -219,14 +229,20 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_inlineGallery3up_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             image2 {
               url
+              width
+              height
             }
             captionImage2
             image3 {
               url
+              width
+              height
             }
             captionImage3
           }
