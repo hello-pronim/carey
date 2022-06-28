@@ -76,6 +76,7 @@ const TextField = ({
                   {...field}
                   disabled={disabled}
                   type={handleType(type)}
+                  error={!!error}
                   placeholder={
                     placeholder ? placeholder : "choose from the following"
                   }
@@ -103,6 +104,7 @@ const TextField = ({
                   {...field}
                   type={handleType(type)}
                   disabled={disabled}
+                  error={!!error}
                   placeholder={
                     placeholder ? placeholder : "choose from the following"
                   }
@@ -136,7 +138,7 @@ type TFTypes = {
   error?: string;
   disabled?: boolean;
   color?: string;
-  type?: "text" | "tel" | "email" | "number" | "password" | "date";
+  type?: "text" | "tel" | "email" | "number" | "password";
   hint?: string;
   outerCSS?: any;
   control?: any;

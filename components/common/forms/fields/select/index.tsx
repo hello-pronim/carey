@@ -58,10 +58,15 @@ const Select = ({
                   placeholder ? placeholder : "choose from the following"
                 }
                 styles={customStyles}
+                className={error ? "error" : ""}
                 ref={ref}
                 options={items}
                 value={items.find((c: any) => c.value === value)}
                 onChange={(val: any) => onChange(val.value)}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 20,
+                })}
               />
             )}
           />

@@ -45,6 +45,7 @@ const Date = ({
                 onChange={onChange}
                 onBlur={onBlur}
                 selected={value}
+                error={!!error}
                 placeholderText={placeholder}
                 isClearable
                 shouldCloseOnSelect

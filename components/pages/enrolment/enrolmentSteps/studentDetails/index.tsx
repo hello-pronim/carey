@@ -253,8 +253,13 @@ const StudentDetails = ({}) => {
                           }}
                         >
                           <RadioGroup
-                            name="isAustralianCitizen"
+                            control={control}
+                            name={`isAustralianCitizen${student}`}
                             required
+                            error={
+                              errors[`isAustralianCitizen${student}`] &&
+                              "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                            }
                             label="Is the student an Australian citizen?"
                             items={[
                               { value: "yes", label: "Yes" },
@@ -264,8 +269,13 @@ const StudentDetails = ({}) => {
                         </Div>
                         <Div>
                           <RadioGroup
-                            name="languageOtherThanEnglish"
+                            control={control}
+                            name={`languageOtherThanEnglish${student}`}
                             required
+                            error={
+                              errors[`languageOtherThanEnglish${student}`] &&
+                              "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                            }
                             label="Does the student speak a language other the English at home?"
                             items={[
                               { value: "yes", label: "Yes" },
@@ -290,8 +300,13 @@ const StudentDetails = ({}) => {
                           }}
                         >
                           <RadioGroup
-                            name="additionalRequirement"
+                            control={control}
+                            name={`additionalRequirement${student}`}
                             required
+                            error={
+                              errors[`additionalRequirement${student}`] &&
+                              "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                            }
                             label="Does the student have additional requirements (Medical, Learning or Language)?"
                             items={[
                               { value: "yes", label: "Yes" },
@@ -364,6 +379,7 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <RadioGroup
+                        control={control}
                         name={`campus${student}`}
                         label="Which campus do you prefer?"
                         items={[
@@ -385,6 +401,7 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <RadioGroup
+                        control={control}
                         name={`appliedToOtherSchools${student}`}
                         label="Has the student applied to other schools?"
                         items={[
@@ -436,6 +453,7 @@ const StudentDetails = ({}) => {
                       }}
                     >
                       <RadioGroup
+                        control={control}
                         name={`secondCampus${student}`}
                         label="Which campus do you prefer?"
                         items={[

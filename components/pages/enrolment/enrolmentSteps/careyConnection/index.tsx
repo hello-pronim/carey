@@ -27,6 +27,7 @@ const CareyConnection = ({}) => {
 
   const {
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -86,6 +87,7 @@ const CareyConnection = ({}) => {
                   }}
                 >
                   <RadioGroup
+                    control={control}
                     name="previouslyAppliedAnotherChildForCary"
                     label="Have you previously applied for another Child to attend Carey?"
                     items={[
@@ -100,6 +102,7 @@ const CareyConnection = ({}) => {
                   }}
                 >
                   <RadioGroup
+                    control={control}
                     name="haveChildrenCurrentStudentsAtCarey"
                     label="Do you have other children who are current students at Carey?"
                     items={[
@@ -114,6 +117,7 @@ const CareyConnection = ({}) => {
                   }}
                 >
                   <RadioGroup
+                    control={control}
                     name="haveChildrenPreviouslyAttendingCarey"
                     label="Have you had children previously attending Carey?"
                     items={[
@@ -142,6 +146,7 @@ const CareyConnection = ({}) => {
                   }}
                 >
                   <RadioGroup
+                    control={control}
                     name="areYouPastStudentOfCarey"
                     label="Are you a past student of Carey?"
                     items={[
@@ -169,6 +174,7 @@ const CareyConnection = ({}) => {
                 }}
               >
                 <RadioGroup
+                  control={control}
                   name="areYouCurrentStaffMemberAtCarey"
                   label="Are you a current staff member at Carey?"
                   items={[
@@ -183,6 +189,7 @@ const CareyConnection = ({}) => {
                 }}
               >
                 <RadioGroup
+                  control={control}
                   name="permanentFulltimeContract"
                   label="Permanent Fulltime or Contract / Casual?"
                   items={[
