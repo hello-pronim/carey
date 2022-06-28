@@ -1,9 +1,9 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
 import { useMedia, useWindowSize } from "react-use";
-import { Modal, Video } from "@components/common";
+import { Modal, Video, Image } from "@components/common";
 import { Text } from "@components/common";
-import Image from "next/image";
+// import Image from "next/image";
 import Play from "@components/common/icons/play";
 import Swiper from "@components/common/swiper";
 
@@ -120,6 +120,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
             src={image1src.url}
             width={image1src.width}
             height={image1src.height}
+            enableSkeleton={true}
             layout="responsive"
             objectFit="cover"
           />
@@ -132,10 +133,11 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
           <Image
             alt={props.captionImage2}
             src={image2src.url}
-            layout="responsive"
-            objectFit="cover"
             width={image2src.width}
             height={image2src.height}
+            enableSkeleton={true}
+            layout="responsive"
+            objectFit="cover"
           />
         </ImageRight>
       </ConditionalWrapper>
