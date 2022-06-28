@@ -49,12 +49,6 @@ const LinkWrapper = styled("div", {
   color: "$navy",
   "&:first-child": {
     display: "flex",
-    span: {
-      display: "none",
-      "@min768": {
-        display: "block",
-      },
-    },
   },
   "&:last-child": {
     display: "flex",
