@@ -11,10 +11,12 @@ const ImageLeft = styled("div", {
   position: "relative",
   width: "100%",
   "@min1024": {
-    gridColumn: "1 / span 8",
+    gridColumn: "2 / span 5",
+    transform: "translateY(50%)",
   },
-  "@min1440": {
-    gridColumn: "2 / span 7",
+  "> span": {
+    height: "100% !important",
+    span: { height: "100% !important" },
   },
   boxSizing: "border-box",
 });
@@ -27,8 +29,28 @@ const ImageRight = styled("div", {
   justifyContent: "center",
   overflow: "hidden",
   "@min1024": {
-    gridColumn: "9 / span 3",
+    gridColumn: "7 / span 5",
     alignSelf: "end",
+  },
+});
+
+const ImageRightLower = styled("div", {
+  boxSizing: "border-box",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  overflow: "hidden",
+  "> span": {
+    width: "100%",
+    height: "100% !important",
+    span: { height: "100% !important", width: "100%" },
+  },
+  "@min1024": {
+    gridColumn: "7 / span 5",
+    alignSelf: "end",
+    // marginTop: 40,
+    paddingRight: "5em",
   },
 });
 
@@ -70,18 +92,19 @@ const VideoWrapper = styled("div", {
   gridRow: 1,
 });
 
-const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
+const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
   const Primary = useRef(null);
   const WindowDimensions = useWindowSize();
   const isMobile = useMedia("(max-width: 1024px)", false);
   const [image1src] = image1;
   const [image2src] = image2;
+  const [image3src] = image3;
   const [modalActive, setModalActive] = useState(false);
   const [primaryDimensions, setPrimaryDimensions] = useState({
     width: 0,
     height: 0,
   });
-
+  console.log(image1src);
   useEffect(() => {
     if (Primary.current) {
       const { width, height } = Primary.current.getBoundingClientRect();
@@ -100,16 +123,20 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
 
   return (
     <>
-      {__typename === "generalComponents_images2upVideo_BlockType" && (
+      {__typename === "generalComponents_inlineGallery3upVideo_BlockType" && (
         <Modal active={modalActive} setModalActive={setModalActive}>
           <VideoWrapper>
-            <Video playing={true} url={props.videoUrl} />
+            <Video
+              playing={true}
+              url="https://www.youtube.com/watch?v=NJDCUP8m75g"
+            />
           </VideoWrapper>
         </Modal>
       )}
       <ConditionalWrapper>
         <ImageLeft ref={Primary}>
-          {__typename === "generalComponents_images2upVideo_BlockType" && (
+          {__typename ===
+            "generalComponents_inlineGallery3upVideo_BlockType" && (
             <VideoCTA onClick={() => setModalActive(!modalActive)}>
               <Play width={33.33} />
               <Text variant="Heading-xSmall">Watch our latest video</Text>
@@ -132,15 +159,29 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
           <Image
             alt=""
             src={image2src.url}
-            layout="responsive"
-            objectFit="cover"
             width={image2src.width}
             height={image2src.height}
+            layout="responsive"
+            objectFit="cover"
           />
         </ImageRight>
+        <ImageRightLower
+          css={{
+            maxHeight: primaryDimensions.height,
+          }}
+        >
+          <Image
+            alt=""
+            src={image3src.url}
+            width={image3src.width}
+            height={image3src.height}
+            layout="responsive"
+            objectFit="cover"
+          />
+        </ImageRightLower>
       </ConditionalWrapper>
     </>
   );
 };
 
-export default TwoUpModule;
+export default ThreeUpModule;
