@@ -1,6 +1,22 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import * as Accordion from "@radix-ui/react-accordion";
 import { useAppContext } from "@contexts/AppContext";
+import RadioGroup from "@components/common/forms/fields/radio";
+import { Text } from "@components/common";
 import { Button } from "@components/common";
+
+import {
+  AddButton,
+  ButtonsContainer,
+  Div,
+  AccordionChevronWrapper,
+  StyledHeader,
+  StyledItem,
+  StyledContent,
+  StyledTrigger,
+  Divider,
+} from "../sharedStyles";
 
 const CareyConnection = ({}) => {
   const {
@@ -8,6 +24,12 @@ const CareyConnection = ({}) => {
     dispatch,
   } = useAppContext();
   const { activeStep } = enrolmentDetails;
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const prevStep = () => {
     const value = {
       activeStep: activeStep - 1,
@@ -17,6 +39,7 @@ const CareyConnection = ({}) => {
       value,
     });
   };
+
   const nextStep = () => {
     const value = {
       activeStep: activeStep + 1,
@@ -26,30 +49,189 @@ const CareyConnection = ({}) => {
       value,
     });
   };
+
+  const onSubmit = (data) => {
+    console.log("errors", errors);
+    console.log(data);
+    nextStep();
+  };
+
   return (
-    <>
-      <h2>Cary Connection</h2>
-      <Button
-        onClick={() => prevStep()}
-        arrow
-        label="Back"
-        color="$crestYellow"
-        type="solid"
-        theme="transparent"
-        variant="secondary"
-        scale="xl"
-      />
-      <Button
-        onClick={() => nextStep()}
-        arrow
-        label="Save & Continue"
-        color="$crestYellow"
-        type="solid"
-        theme="transparent"
-        variant="secondary"
-        scale="xl"
-      />
-    </>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Accordion.Root type="single" defaultValue="careyconnection-1">
+        <StyledItem value="careyconnection-1">
+          <StyledHeader>
+            <StyledTrigger>
+              <Text as="h2" variant="Heading-Large">
+                Carey Connections
+              </Text>
+              <AccordionChevronWrapper aria-hidden />
+            </StyledTrigger>
+          </StyledHeader>
+          <StyledContent>
+            <Text css={{ mb: 30, mt: 30 }} as="h3" variant="Heading-xSmall">
+              Family Connections
+            </Text>
+            <Div
+              css={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                columnGap: 15,
+              }}
+            >
+              <Div>
+                <Div
+                  css={{
+                    pb: 30,
+                  }}
+                >
+                  <RadioGroup
+                    name="previouslyAppliedAnotherChildForCary"
+                    label="Have you previously applied for another Child to attend Carey?"
+                    items={[
+                      { value: "yes", label: "Yes" },
+                      { value: "no", label: "No" },
+                    ]}
+                  />
+                </Div>
+                <Div
+                  css={{
+                    pb: 30,
+                  }}
+                >
+                  <RadioGroup
+                    name="haveChildrenCurrentStudentsAtCarey"
+                    label="Do you have other children who are current students at Carey?"
+                    items={[
+                      { value: "yes", label: "Yes" },
+                      { value: "no", label: "No" },
+                    ]}
+                  />
+                </Div>
+                <Div
+                  css={{
+                    pb: 30,
+                  }}
+                >
+                  <RadioGroup
+                    name="haveChildrenPreviouslyAttendingCarey"
+                    label="Have you had children previously attending Carey?"
+                    items={[
+                      { value: "yes", label: "Yes" },
+                      { value: "no", label: "No" },
+                    ]}
+                  />
+                </Div>
+              </Div>
+            </Div>
+            <Divider />
+            <Text css={{ mb: 30, mt: 30 }} as="h3" variant="Heading-xSmall">
+              Past Student
+            </Text>
+            <Div
+              css={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                columnGap: 15,
+              }}
+            >
+              <Div>
+                <Div
+                  css={{
+                    pb: 30,
+                  }}
+                >
+                  <RadioGroup
+                    name="areYouPastStudentOfCarey"
+                    label="Are you a past student of Carey?"
+                    items={[
+                      { value: "yes", label: "Yes" },
+                      { value: "no", label: "No" },
+                    ]}
+                  />
+                </Div>
+              </Div>
+            </Div>
+            <Divider />
+            <Text css={{ mb: 30, mt: 30 }} as="h3" variant="Heading-xSmall">
+              Current Staff
+            </Text>
+            <Div
+              css={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                columnGap: 15,
+              }}
+            >
+              <Div
+                css={{
+                  pb: 30,
+                }}
+              >
+                <RadioGroup
+                  name="areYouCurrentStaffMemberAtCarey"
+                  label="Are you a current staff member at Carey?"
+                  items={[
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "No" },
+                  ]}
+                />
+              </Div>
+              <Div
+                css={{
+                  pb: 30,
+                }}
+              >
+                <RadioGroup
+                  name="permanentFulltimeContract"
+                  label="Permanent Fulltime or Contract / Casual?"
+                  items={[
+                    { value: "permanent", label: "Permanent" },
+                    {
+                      value: "contractCasual",
+                      label: "Contract / Casual",
+                    },
+                    {
+                      value: "new",
+                      label: "New staff not commenced yet*",
+                    },
+                  ]}
+                />
+              </Div>
+            </Div>
+            <Divider />
+          </StyledContent>
+        </StyledItem>
+      </Accordion.Root>
+
+      <ButtonsContainer>
+        <Div>
+          <AddButton>
+            <span>Save & Exit</span>
+          </AddButton>
+        </Div>
+        <Div
+          css={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <AddButton onClick={() => prevStep()}>
+            <span>Back</span>
+          </AddButton>
+          <Button
+            arrow
+            label="Save & Continue"
+            color="$crestYellow"
+            type="solid"
+            theme="transparent"
+            variant="secondary"
+            scale="xl"
+          />
+        </Div>
+      </ButtonsContainer>
+    </form>
   );
 };
 

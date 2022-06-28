@@ -1,6 +1,6 @@
 export const initialState = {
   enrolmentDetails: {
-    activeStep: 1,
+    activeStep: 3,
   },
 };
 

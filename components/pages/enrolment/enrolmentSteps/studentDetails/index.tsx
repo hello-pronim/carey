@@ -10,6 +10,8 @@ import { Button } from "@components/common";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 import {
+  AddButton,
+  ButtonsContainer,
   Div,
   AccordionChevronWrapper,
   StyledHeader,
@@ -17,9 +19,7 @@ import {
   StyledContent,
   StyledTrigger,
   Divider,
-} from "./styles";
-
-import { AddButton, ButtonsContainer } from "../sharedStyles";
+} from "../sharedStyles";
 
 const StudentDetails = ({}) => {
   const [studentDetails, setStudentDetails] = useState(["std1"]);
@@ -161,7 +161,7 @@ const StudentDetails = ({}) => {
                         name={`dob${student}`}
                         label="Date of birth"
                         placeholder="e.g. 15/12/2021"
-                        type="text"
+                        type="date"
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />

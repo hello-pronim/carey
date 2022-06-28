@@ -1,3 +1,4 @@
+import React from "react";
 import Input from "react-select";
 import customStyles from "./styles";
 import { Text } from "@components/common";
@@ -21,7 +22,6 @@ const Select = ({
       : (values = { text: hint, color: "$navy300" });
     return values;
   };
-
   return (
     <Wrapper>
       <Label required={required} disabled={disabled}>
