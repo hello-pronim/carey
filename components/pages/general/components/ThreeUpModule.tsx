@@ -143,7 +143,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
             </VideoCTA>
           )}
           <Image
-            alt=""
+            alt={props.captionImage1}
             src={image1src.url}
             width={image1src.width}
             height={image1src.height}
@@ -157,7 +157,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
           }}
         >
           <Image
-            alt=""
+            alt={props.captionImage2}
             src={image2src.url}
             width={image2src.width}
             height={image2src.height}
@@ -171,7 +171,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
           }}
         >
           <Image
-            alt=""
+            alt={props.captionImage3}
             src={image3src.url}
             width={image3src.width}
             height={image3src.height}

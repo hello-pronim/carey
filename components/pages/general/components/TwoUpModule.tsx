@@ -116,7 +116,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
             </VideoCTA>
           )}
           <Image
-            alt=""
+            alt={props.captionImage1}
             src={image1src.url}
             width={image1src.width}
             height={image1src.height}
@@ -130,7 +130,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
           }}
         >
           <Image
-            alt=""
+            alt={props.captionImage2}
             src={image2src.url}
             layout="responsive"
             objectFit="cover"
