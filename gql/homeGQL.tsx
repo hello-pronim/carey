@@ -44,6 +44,7 @@ export const HomePageQuery = gql`
               url
               width
               height
+              focalPoint
             }
           }
         }
