@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import "styles/slick.css";
 import { ApolloProvider } from "@apollo/client";
 import { AppWrapper } from "@contexts/AppContext";
 import { useApollo } from "@utils/apolloClient";

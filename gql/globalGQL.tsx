@@ -12,11 +12,20 @@ export const globalQuery = gql`
         label: title
         url: nodeUri
         newWindow
+        parent {
+          url: nodeUri
+        }
         subItems: children(level: 3) {
           id
           label: title
           url: nodeUri
           newWindow
+          parent {
+            url: nodeUri
+            parent {
+              url: nodeUri
+            }
+          }
         }
       }
     }

@@ -1,6 +1,5 @@
-// MODULES COMMENTED OUT FOR NOW TILL WE CAN FIX THE CRAFT DB ROLLBACK
-
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import InvokeElement from "@utils/invokeElement";
 import { BreadCrumb, Container } from "@components/common";
@@ -8,6 +7,8 @@ import SideNav from "@components/common/sideNav";
 import Hero from "@components/Hero";
 import Content from "./components/Content";
 import ThreeColTable from "./components/ThreeColTable";
+import TwoColTable from "./components/twoColTable";
+import OneColTable from "./components/oneColTable";
 import Accordion from "./components/Accordion";
 import { BreadCrumbWrapper } from "./styles";
 import TextContent from "./components/FeatureTextContent";
@@ -15,10 +16,13 @@ import CtaButton from "./components/CtaButton";
 import FeatureTextBlock from "./components/FeatureTextBlock";
 import TextImageContent from "./components/TextImageContent";
 import MapView from "./components/MapView";
-
-// import SessionTimes from "./components/SessionTimes";
+import SessionTimes from "./components/SessionTimes";
+import TwoUpModule from "./components/TwoUpModule";
+import ThreeUpModule from "./components/ThreeUpModule";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
+  const router = useRouter();
+  const [minHeight, setMinHeight] = useState(0);
   // Mostly just to make the Module Map look cleaner.
   const ModuleType = (type: string) => `generalComponents_${type}_BlockType`;
 
@@ -40,10 +44,19 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
         return null;
     }
   };
-  console.log("pageData", pageData);
+
   const heroData = pageData?.find((item) =>
     heroTypes.includes(item.__typename)
   );
+
+  //remove hyphens from string and capitalize
+  const getTitle = (str) => {
+    return str
+      .replace(/-/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   //Assigns type name from content data to appropriate modules.
   const Modules = new Map([
@@ -56,8 +69,28 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("contentTextImage"), TextImageContent],
     [ModuleType("mapBlock"), MapView],
     [ModuleType("threeColumnTable"), ThreeColTable],
+    [ModuleType("twoColumnTable"), TwoColTable],
+    [ModuleType("oneColumnTable"), OneColTable],
+    [ModuleType("sessionTimeTable"), SessionTimes],
+    [ModuleType("images2up"), TwoUpModule],
+    [ModuleType("images2upVideo"), TwoUpModule],
+    [ModuleType("inlineGallery3up"), ThreeUpModule],
   ]);
-  const crumbs = [{ path: "/", name: "Home" }, { name: "Life at Carey" }];
+  // Ignoring ts error on map for now as I couldn't find
+  // an instance where the pageUri was ever not in an array
+  // will revisit this later.
+  const crumbs = [
+    { path: "/", name: "Home" },
+    // @ts-ignore
+    ...router.query.pageUri?.map((item, idx) => {
+      // Same deal as above
+      // @ts-ignore
+      const path = `/${router.query.pageUri.slice(0, idx + 1).join("/")}`;
+
+      return { path: path, name: item && getTitle(item) };
+    }),
+  ];
+
   return (
     <>
       {heroData && getHeroType(heroData.__typename) && (
@@ -67,12 +100,22 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
           applyNow={applyNow}
         />
       )}
-      <Container type="flex">
+      <Container
+        outerCSS={{ position: "absolute", zIndex: 2, pointerEvents: "none" }}
+      >
+        <SideNav
+          minHeight={minHeight}
+          setMinHeight={setMinHeight}
+          activeSlug={slug}
+          navigation={navigation}
+        />
+      </Container>
+      <Container>
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />
         </BreadCrumbWrapper>
       </Container>
-      <Container innerCSS={{ rowGap: 56, py: 56 }}>
+      <Container innerCSS={{ rowGap: 56, py: 56, minHeight: minHeight }}>
         {pageData?.map((module: any) => (
           <InvokeElement
             key={uuid()}
@@ -81,7 +124,6 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
             map={Modules}
           />
         ))}
-        <SideNav activeSlug={slug} navigation={navigation} />
       </Container>
     </>
   );

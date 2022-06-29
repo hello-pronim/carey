@@ -1,5 +1,3 @@
-// QUERIES COMMENTED OUT FOR NOW TILL WE CAN FIX THE CRAFT DB ROLLBACK
-
 import { gql } from "@apollo/client";
 
 export const GeneralPageQuery = gql`
@@ -20,6 +18,27 @@ export const GeneralPageQuery = gql`
                   col1
                   col2
                   col3
+                }
+              }
+            }
+          }
+          ... on generalComponents_twoColumnTable_BlockType {
+            twoColumnTable {
+              ... on twoColumnTable_BlockType {
+                groupLabel
+                groupRows {
+                  groupItem
+                }
+              }
+            }
+          }
+          ... on generalComponents_oneColumnTable_BlockType {
+            tableTitle
+            oneColTable {
+              ... on oneColTable_BlockType {
+                groupLabel
+                groupItems {
+                  rowLabel
                 }
               }
             }
@@ -50,6 +69,9 @@ export const GeneralPageQuery = gql`
                 buttonLabel
                 buttonLink {
                   uri
+                }
+                backgroundGradient {
+                  url
                 }
                 imageOfStudent {
                   url
@@ -152,6 +174,9 @@ export const GeneralPageQuery = gql`
             bodyText
             featuredPanel {
               ... on featurePanels_featurePanels_Entry {
+                backgroundGradient {
+                  url
+                }
                 imageOfStudent {
                   url
                   width
@@ -160,13 +185,26 @@ export const GeneralPageQuery = gql`
               }
             }
           }
+          ... on generalComponents_images1up_BlockType {
+            image1 {
+              url
+              width
+              height
+            }
+            captionImage1
+            includeDividerUnderneath
+          }
           ... on generalComponents_images2up_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             image2 {
               url
+              width
+              height
             }
             captionImage2
             includeDividerUnderneath
@@ -174,10 +212,14 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_images2upVideo_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             image2 {
               url
+              width
+              height
             }
             videoLabel
             videoUrl
@@ -187,29 +229,70 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_inlineGallery3up_BlockType {
             image1 {
               url
+              width
+              height
             }
             captionImage1
             image2 {
               url
+              width
+              height
             }
             captionImage2
             image3 {
               url
+              width
+              height
             }
             captionImage3
           }
-          # ... on generalComponents_sessionTimes_BlockType {
-          #   title: tableTitle
-          #   ctaTitle
-          #   ctaBody: bodyText
-          #   sessions: sessionTimeTable {
-          #     ... on sessionTimeTable_BlockType {
-          #       date: sessionDate
-          #       status: sessionStatus
-          #       link: sessionLink
-          #     }
-          #   }
-          # }
+          ... on generalComponents_cardsSectionOverview_BlockType {
+            cardsetOverview {
+              ... on cardsetOverview_BlockType {
+                overheadline
+                buttonLabel
+                linkToPage {
+                  title
+                  uri
+                }
+                image {
+                  url
+                }
+              }
+            }
+          }
+          ... on generalComponents_cardsSubjects_BlockType {
+            cardsetSubject {
+              subjectTitle
+            }
+          }
+          ... on generalComponents_cardsCampuses_BlockType {
+            cardsetCampuses {
+              ... on cardsetCampuses_BlockType {
+                cardTitle
+                cardContent
+                buttonLabel
+                buttonLink {
+                  uri
+                }
+                campusImage {
+                  url
+                }
+              }
+            }
+          }
+          ... on generalComponents_sessionTimeTable_BlockType {
+            title: tableTitle
+            ctaTitle
+            ctaBody: contentText
+            sessions: sessionTimeTable {
+              ... on sessionTimeTable_BlockType {
+                date
+                status: sessionStatus
+                link: sessionLink
+              }
+            }
+          }
         }
       }
     }

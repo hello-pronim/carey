@@ -7,6 +7,8 @@ const OpenMorningsCard = ({
   title,
   description,
   href = "#",
+  backgroundImage,
+  studentImage,
   type = "default",
   size = "small",
 }: CardPropsType) => {
@@ -14,6 +16,8 @@ const OpenMorningsCard = ({
     <DefaultCard
       title={title}
       description={description}
+      backgroundImage={backgroundImage}
+      studentImage={studentImage}
       href={href}
       size={size}
     />
@@ -21,6 +25,8 @@ const OpenMorningsCard = ({
     <LandscapeCard
       title={title}
       description={description}
+      backgroundImage={backgroundImage}
+      studentImage={studentImage}
       href={href}
       size={size}
     />
@@ -28,6 +34,8 @@ const OpenMorningsCard = ({
     <ApplicationFormCard
       title={title}
       description={description}
+      backgroundImage={backgroundImage}
+      studentImage={studentImage}
       href={href}
       size={size}
     />
@@ -39,6 +47,8 @@ const OpenMorningsCard = ({
 type CardPropsType = {
   title: string;
   description: string;
+  backgroundImage: string;
+  studentImage: string;
   href?: string | Object;
   type?: "default" | "landscape" | "application-form" | any;
   size?: "small" | "large";

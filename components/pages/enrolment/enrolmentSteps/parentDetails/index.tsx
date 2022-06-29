@@ -524,18 +524,7 @@ const ParentDetails = ({}) => {
             );
           })}
       </Accordion.Root>
-      {/* <Button
-        plus
-        label="Additional student"
-        type="outline"
-        theme="dark"
-        variant="secondary"
-        scale="xl"
-        css={{
-          borderColor: "$navy",
-        }}
-        onClick={() => addParent()}
-      /> */}
+
       <Div css={{ mb: 50 }}>
         <Checkbox label="I/We acknowledge that all legal guardians and carers for the student(s) have been entered into this application" />
       </Div>

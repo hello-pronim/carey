@@ -4,7 +4,7 @@ import { SkeletonLoader } from "./skeletonLoader";
 import { ImageWrapper, Wrapper } from "./styles";
 
 type ImageWithStateProps = ImageProps & {
-  fallback: string;
+  fallback?: string;
   enableSkeleton?: boolean;
   debug?: string;
 };
@@ -12,6 +12,7 @@ type ImageWithStateProps = ImageProps & {
 function Image({
   alt,
   src,
+  fallback = "", // image for failing status
   enableSkeleton = false, // if false, next/image, if true, image with skeleton lader
   ...props
 }: ImageWithStateProps): JSX.Element {
@@ -24,8 +25,8 @@ function Image({
     e: React.SyntheticEvent<HTMLImageElement, Event>
   ): void {
     console.log("handle on error");
-    if (e?.currentTarget?.src !== props.fallback) {
-      setOnErrorSrc(props.fallback);
+    if (e?.currentTarget?.src !== fallback) {
+      setOnErrorSrc(fallback);
     }
   }
 

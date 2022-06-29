@@ -154,20 +154,6 @@ const StudentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      {/* <TextField
-                       
-                        control={control}
-                        required
-                        error={
-                          errors[`dob${student}`] && "Date of birth is required"
-                        }
-                        name={`dob${student}`}
-                        label="Date of birth"
-                        placeholder="e.g. 15/12/2021"
-                        type="date"
-                        color="$navy"
-                        outerCSS={{ mb: 24 }}
-                      /> */}
                       <DateField
                         control={control}
                         required
@@ -491,7 +477,7 @@ const StudentDetails = ({}) => {
             alignItems: "center",
           }}
         >
-          <AddButton onClick={() => addStudent()}>
+          <AddButton>
             <span>Back</span>
           </AddButton>
           <Button

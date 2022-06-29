@@ -1,8 +1,60 @@
 import { styled } from "@styles/stitches";
 import { container } from "@components/common/container/container";
 
+const Actions = styled("div", {
+  display: "none",
+  position: "absolute",
+  height: "100%",
+  right: 0,
+  background: "$crestBlue",
+  "@min768": {
+    display: "block",
+  },
+});
+const ActionsWrapper = styled("div", {
+  position: "relative",
+  height: "100%",
+});
+const HeroText = styled("h1", {
+  fontFamily: "$avallon",
+  fontSize: "90px",
+  lineHeight: "80%",
+  fontWeight: "$regular",
+  letterSpacing: "$regular",
+  "@min768": {
+    fontSize: "180px",
+    lineHeight: "80%",
+  },
+  "@min1024": {
+    fontSize: "180px",
+    lineHeight: "80%",
+  },
+  "@min1440": {
+    fontSize: "240px",
+    lineHeight: "80%",
+  },
+  "@min1920": {
+    fontSize: "300px",
+    lineHeight: "80%",
+  },
+});
 const Wrapper = styled(container.outer, {
+  position: "relative",
   minHeight: 450,
+  "@min768": {
+    minHeight: 693,
+  },
+  "@min1920": {
+    minHeight: 960,
+  },
+});
+
+const ApplyOnlineWrapper = styled(container.outer, {
+  position: "relative",
+  minHeight: 450,
+  "@min768": {
+    minHeight: 693,
+  },
 });
 
 const InnerGrid = styled(container.grid, {
@@ -87,18 +139,33 @@ const ApplicationSupportContent = styled("div", {
 const DisplayContent = styled("div", {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "flex-end",
   zIndex: 1,
-  p: 44,
   rowGap: 24,
-  width: "60%",
+  p: "42px 24px",
   gridRow: 1,
   gridColumn: "1 / span 2",
   "@min768": {
+    width: "50%",
+    justifyContent: "flex-end",
     gridColumn: "1 / span 6",
+    p: "64px 48px",
   },
   "@min1024": {
+    width: "60%",
+    justifyContent: "center",
     gridColumn: "1 / span 12",
+    p: "24px 80px",
+  },
+  "@min1440": {
+    width: "60%",
+    justifyContent: "center",
+    p: "32px 80px",
+  },
+  "@min1920": {
+    width: "60%",
+    justifyContent: "center",
+    p: "48px 144px",
   },
   "h6, h1, h2": {
     margin: "unset",
@@ -111,9 +178,10 @@ const CTAWrapper = styled("div", {
 });
 
 const ImageWrapper = styled("div", {
-  height: "100%",
+  height: "auto",
   gridColumn: "1 / span 2",
   "@min768": {
+    height: 108,
     gridColumn: "4 / span 3",
   },
   "@min1024": {
@@ -121,6 +189,12 @@ const ImageWrapper = styled("div", {
   },
   "@min1200": {
     gridColumn: "5 / span 8",
+  },
+  "@min1440": {
+    height: 120,
+  },
+  "@min1920": {
+    height: 160,
   },
   span: {
     height: "100% !important",
@@ -158,13 +232,15 @@ const VideoWrapper = styled("div", {
 });
 
 const DisplayImageWrapper = styled("div", {
-  height: "100%",
+  height: 432,
   gridColumn: "1 / span 2",
   gridRow: 1,
   "@min768": {
+    height: "100%",
     gridColumn: "1 / span 6",
   },
   "@min1024": {
+    height: "100%",
     gridColumn: "1 / span 12",
   },
   span: {
@@ -212,31 +288,61 @@ const Crest = styled("div", {
   },
 });
 const Div = styled("div", {});
+const MobileActions = styled("div", {
+  display: "flex",
+  gridArea: "2 / 1 / auto / span 2",
+  marginLeft: -24,
+  "@min768": {
+    display: "none",
+  },
+});
+const MobileActionsWrapper = styled("div", {
+  display: "flex",
+  width: "100%",
+});
 const ContentBox = styled("div", {
-  position: "absolute",
-  right: "0",
-  bottom: "0",
-  zIndex: 2,
+  position: "relative",
+  flex: "auto",
+  "@min768": {
+    position: "absolute",
+    right: "0",
+    bottom: "0",
+  },
 });
 const QuickLinks = styled("div", {
-  width: "380px",
-  "@max1440": {
-    width: "340px",
-  },
-  "@max1024": {
-    width: "300px",
-  },
-  "@max768": {
-    width: "270px",
-  },
+  width: "auto",
   backgroundColor: "#FFFFFF",
-  p: 44,
+  p: "32px 24px 16px 24px",
+  "@min768": {
+    width: "280px",
+    p: "32px 32px 16px",
+  },
+  "@min1440": {
+    width: "306px",
+    p: "32px 32px 16px",
+  },
+  "@min1920": {
+    width: "378px",
+    p: "56px 56px 32px",
+  },
 });
 const QuickLinksList = styled("ul", {
-  mt: 24,
-  mb: 0,
   listStyle: "none",
   pl: 0,
+  mb: 0,
+  mt: 0,
+  "@min768": {
+    mt: 16,
+  },
+  "@min1024": {
+    mt: 16,
+  },
+  "@min1440": {
+    mt: 16,
+  },
+  "@min1920": {
+    mt: 24,
+  },
 });
 const QuickLinksListItem = styled("li", {
   borderBottom: "1px solid #B3CBDE",
@@ -245,6 +351,8 @@ const QuickLinksListItem = styled("li", {
     flexDirection: "row-reverse",
     px: 0,
     justifyContent: "start",
+    height: "auto",
+    lineHeight: 1,
   },
   "&:last-of-type": {
     borderBottom: "none",
@@ -396,7 +504,11 @@ const ActionWrapper = styled("div", {
 });
 
 export {
+  Actions,
+  ActionsWrapper,
+  HeroText,
   Wrapper,
+  ApplyOnlineWrapper,
   InnerGrid,
   Bumper,
   Content,
@@ -410,6 +522,8 @@ export {
   DisplayContent,
   DisplayImageWrapper,
   Div,
+  MobileActions,
+  MobileActionsWrapper,
   VideoWrapper,
   DisplayVideoWrapper,
   ContentBox,
