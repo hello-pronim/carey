@@ -26,9 +26,12 @@ const Display = (props) => {
           {/* <Text as="h1" variant="Display-Large">
             {props?.props?.scriptTitle || props?.props?.[0].bannerText}
           </Text> */}
-          <HeroText as="h1">
-            {props?.props?.scriptTitle || props?.props?.[0].bannerText}
-          </HeroText>
+          <HeroText
+            as="h1"
+            dangerouslySetInnerHTML={{
+              __html: props?.props?.scriptTitle || props?.props?.[0].bannerText,
+            }}
+          />
         </DisplayContent>
         {(props?.props?.videoUrl || props?.props?.[0].videoUrl) && (
           <DisplayVideoWrapper>
