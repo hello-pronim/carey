@@ -14,8 +14,6 @@ const ImageAccordion = ({ accordionData, navigation }) => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  console.log(navigation);
-
   const handleMouseOver = (index: any) => {
     setActiveIndex(index);
   };
