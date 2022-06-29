@@ -14,6 +14,8 @@ const ImageAccordion = ({ accordionData, navigation }) => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
 
+  console.log(navigation);
+
   const handleMouseOver = (index: any) => {
     setActiveIndex(index);
   };
@@ -50,8 +52,6 @@ const ImageAccordion = ({ accordionData, navigation }) => {
                 <Image
                   src={campusAccordionImage?.[0]?.url ?? ""}
                   alt={title ?? ""}
-                  width={campusAccordionImage?.[0]?.width}
-                  height={campusAccordionImage?.[0]?.height}
                   layout="fill"
                   objectPosition={`${xPoint} ${yPoint}`}
                   objectFit="cover"
