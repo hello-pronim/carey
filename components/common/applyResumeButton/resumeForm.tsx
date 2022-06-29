@@ -6,7 +6,7 @@ import { Div } from "./styles";
 
 const ResumeForm = ({}) => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -19,8 +19,8 @@ const ResumeForm = ({}) => {
     <Div css={{ mt: 80, mb: 80 }}>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Text
-          register={register}
           required={true}
+          control={control}
           error={
             (errors.emailAddress &&
               errors.emailAddress?.type === "required" &&
@@ -35,8 +35,8 @@ const ResumeForm = ({}) => {
           outerCSS={{ mb: 24 }}
         />
         <Text
-          register={register}
           required={true}
+          control={control}
           error={errors.uniqueId ? "Unique is required" : ""}
           name="uniqueId"
           label="Unique ID"

@@ -49,6 +49,14 @@ const Wrapper = styled(container.outer, {
   },
 });
 
+const ApplyOnlineWrapper = styled(container.outer, {
+  position: "relative",
+  minHeight: 450,
+  "@min768": {
+    minHeight: 693,
+  },
+});
+
 const InnerGrid = styled(container.grid, {
   position: "relative",
   bg: "$darkBlue",
@@ -342,6 +350,7 @@ const QuickLinksListItem = styled("li", {
   "> a, > button": {
     flexDirection: "row-reverse",
     px: 0,
+    justifyContent: "start",
     height: "auto",
     lineHeight: 1,
   },
@@ -499,6 +508,7 @@ export {
   ActionsWrapper,
   HeroText,
   Wrapper,
+  ApplyOnlineWrapper,
   InnerGrid,
   Bumper,
   Content,

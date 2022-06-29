@@ -35,8 +35,13 @@ const Divider = styled("div", {
 const Content = (props) => {
   const condWrapperStyles = {
     bg: !!props.brandColours && props.brandColours,
-    "*": {
+    "> *": {
       color: !!props.brandColours && getTextColor(props.brandColours),
+    },
+    "p, li": {
+      a: {
+        color: !!props.brandColours && getTextColor(props.brandColours),
+      },
     },
     ".inline-divider": {
       opacity: !!props.brandColours && 0.3,
