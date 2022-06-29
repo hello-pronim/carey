@@ -26,7 +26,7 @@ const ImageAccordion = ({ accordionData, ...props }) => {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 "@min768": {
-                  flex: `${activeIndex === index ? "2.5" : "1"}`,
+                  flex: `${activeIndex === index ? "1.5" : "1"}`,
                 },
               }}
               onMouseOver={() => handleMouseOver(index)}
@@ -47,12 +47,9 @@ const ImageAccordion = ({ accordionData, ...props }) => {
                     css={{
                       color: "$white",
                       fontWeight: "400",
-                      "@min1024": {
-                        fontWeight: "600",
-                      },
                     }}
                   >
-                    {title}
+                    {subtitle}
                   </Text>
                 )}
               </AccordionContent>
