@@ -28,10 +28,20 @@ const AccordionItem = styled("div", {
   padding: "20px",
   height: "340px",
   transition: "all 0.5s ease",
+  position: "relative",
+  overflow: "hidden",
   "@min768": {
     flex: 1,
     height: "540px",
   },
+});
+
+const AccordionImage = styled("div", {
+  position: "absolute",
+  top: "0",
+  left: "0",
+  width: "100%",
+  height: "100%",
 });
 
 const AccordionContent = styled("div", {
@@ -39,6 +49,7 @@ const AccordionContent = styled("div", {
   display: "flex",
   flexDirection: "column",
   maxWidth: "220px",
+  position: "relative",
   "@min1024": {
     maxWidth: "150px",
   },
@@ -50,5 +61,6 @@ export {
   IconWrapper,
   AccordionWrapper,
   AccordionItem,
+  AccordionImage,
   AccordionContent,
 };

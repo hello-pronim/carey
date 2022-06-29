@@ -1,13 +1,26 @@
 import React, { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { Text } from "@components/common";
-import { AccordionWrapper, AccordionItem, AccordionContent } from "./styles";
+import {
+  AccordionWrapper,
+  AccordionItem,
+  AccordionImage,
+  AccordionContent,
+} from "./styles";
+import getFullPath from "@utils/getFullPath";
 
-const ImageAccordion = ({ accordionData, ...props }) => {
+const ImageAccordion = ({ accordionData, navigation }) => {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleMouseOver = (index: any) => {
     setActiveIndex(index);
   };
+  const activeSlug = accordionData[0].pageLink?.[0].uri;
+
+  console.log(router);
+  console.log(getFullPath(navigation, activeSlug));
 
   return (
     <>
@@ -21,16 +34,28 @@ const ImageAccordion = ({ accordionData, ...props }) => {
             <AccordionItem
               key={title}
               css={{
-                backgroundImage: `url(${campusAccordionImage?.[0]?.url})`,
-                backgroundPosition: `${xPoint} ${yPoint}`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
                 "@min768": {
-                  flex: `${activeIndex === index ? "1.5" : "1"}`,
+                  flex: `${activeIndex === index ? "2.5" : "1"}`,
                 },
               }}
               onMouseOver={() => handleMouseOver(index)}
             >
+              <AccordionImage
+                css={{
+                  transform: `scale(${activeIndex === index ? "1.1" : "1"})`,
+                }}
+              >
+                <Image
+                  src={campusAccordionImage?.[0]?.url ?? ""}
+                  alt={title ?? ""}
+                  width={campusAccordionImage?.[0]?.width}
+                  height={campusAccordionImage?.[0]?.height}
+                  layout="fill"
+                  objectPosition={`${xPoint} ${yPoint}`}
+                  objectFit="cover"
+                />
+              </AccordionImage>
+
               <AccordionContent>
                 {title && (
                   <Text

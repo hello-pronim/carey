@@ -4,7 +4,7 @@ import { Container, PreFooter } from "@components/common";
 import Hero from "@components/Hero";
 import ImageAccordion from "@components/ImageAccordion";
 
-const Home = ({ heroData, applyNow }) => {
+const Home = ({ heroData, applyNow, navigation }) => {
   return (
     <>
       <Hero
@@ -16,7 +16,10 @@ const Home = ({ heroData, applyNow }) => {
         <Text>Carey Home</Text>
       </Container>
       <Container type="flex">
-        <ImageAccordion accordionData={heroData?.campuses} />
+        <ImageAccordion
+          accordionData={heroData?.campuses}
+          navigation={navigation}
+        />
       </Container>
       <PreFooter />
     </>
