@@ -22,14 +22,15 @@ const AccordionWrapper = styled("div", {
 });
 
 const AccordionItem = styled("div", {
+  position: "relative",
+  height: "340px",
+  padding: "20px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  padding: "20px",
-  height: "340px",
-  transition: "all 0.5s ease",
-  position: "relative",
+  cursor: "pointer",
   overflow: "hidden",
+  transition: "all 0.5s ease",
   "@min768": {
     flex: 1,
     height: "540px",

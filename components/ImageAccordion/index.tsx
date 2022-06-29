@@ -17,16 +17,17 @@ const ImageAccordion = ({ accordionData, navigation }) => {
   const handleMouseOver = (index: any) => {
     setActiveIndex(index);
   };
-  const activeSlug = accordionData[0].pageLink?.[0].uri;
 
-  console.log(router);
-  console.log(getFullPath(navigation, activeSlug));
+  const handleItemClick = (pageSlug: string) => {
+    if (!pageSlug) return;
+    router.push(getFullPath(navigation, pageSlug));
+  };
 
   return (
     <>
       <AccordionWrapper>
         {accordionData?.map((item, index) => {
-          const { title, subtitle, campusAccordionImage } = item;
+          const { title, subtitle, pageLink, campusAccordionImage } = item;
           const xPoint = campusAccordionImage?.[0]?.focalPoint?.[0] * 100 + "%";
           const yPoint = campusAccordionImage?.[0]?.focalPoint?.[1] * 100 + "%";
 
@@ -39,6 +40,7 @@ const ImageAccordion = ({ accordionData, navigation }) => {
                 },
               }}
               onMouseOver={() => handleMouseOver(index)}
+              onClick={() => handleItemClick(pageLink?.[0]?.uri ?? "")}
             >
               <AccordionImage
                 css={{
