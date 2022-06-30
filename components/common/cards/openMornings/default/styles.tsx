@@ -33,15 +33,15 @@ const Card = styled("div", {
   variants: {
     size: {
       small: {
-        minWidth: 327,
+        // minWidth: 327,
         "@min1024": {
-          minWidth: 560,
+          // minWidth: 560,
         },
       },
       large: {
-        minWidth: 327,
+        // minWidth: 327,
         "@min1024": {
-          minWidth: 859,
+          // minWidth: 859,
         },
       },
     },

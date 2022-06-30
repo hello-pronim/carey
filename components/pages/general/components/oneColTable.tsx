@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@styles/stitches";
-import { Text } from "@components/common";
+import { Container, Text } from "@components/common";
 import { v4 as uuid } from "uuid";
 
 const Wrapper = styled("div", {
@@ -42,33 +42,35 @@ const Item = styled("div", {});
 
 const OneColTable = ({ tableTitle, oneColTable, ...props }) => {
   return (
-    <Wrapper>
-      {!!tableTitle && (
-        <TitleBar>
-          <Text css={{ fontWeight: "$semiBold" }} variant="Heading-xSmall">
-            {tableTitle}
-          </Text>
-        </TitleBar>
-      )}
-      {oneColTable.map(({ groupLabel, groupItems }) => {
-        return (
-          <Group key={uuid()}>
-            <GroupTitleBar>
-              <Text>{groupLabel}</Text>
-            </GroupTitleBar>
-            <Items>
-              {groupItems.map(({ rowLabel }) => {
-                return (
-                  <Item key={uuid()}>
-                    <Text>{rowLabel}</Text>
-                  </Item>
-                );
-              })}
-            </Items>
-          </Group>
-        );
-      })}
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        {!!tableTitle && (
+          <TitleBar>
+            <Text css={{ fontWeight: "$semiBold" }} variant="Heading-xSmall">
+              {tableTitle}
+            </Text>
+          </TitleBar>
+        )}
+        {oneColTable.map(({ groupLabel, groupItems }) => {
+          return (
+            <Group key={uuid()}>
+              <GroupTitleBar>
+                <Text>{groupLabel}</Text>
+              </GroupTitleBar>
+              <Items>
+                {groupItems.map(({ rowLabel }) => {
+                  return (
+                    <Item key={uuid()}>
+                      <Text>{rowLabel}</Text>
+                    </Item>
+                  );
+                })}
+              </Items>
+            </Group>
+          );
+        })}
+      </Wrapper>
+    </Container>
   );
 };
 

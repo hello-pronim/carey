@@ -1,8 +1,6 @@
 import React from "react";
 import { BreadCrumb, Button, Container, Image } from "@components/common";
 import { PreFooter } from "@components/common";
-import OpenMorningsCard from "@components/common/cards/openMornings/Card";
-import EnrolmentCard from "@components/common/cards/enrolments/Card";
 import TextBlock from "@components/common/textBlock/index";
 
 import TextBlockImage from "public/assets/img/text_block_img.png";
@@ -25,90 +23,6 @@ const Test = () => {
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />
         </BreadCrumbWrapper>
-      </Container>
-      <Container>
-        <OpenMorningsCard
-          title="Open Mornings"
-          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          backgroundImage="assets/img/bg_card_blue.png"
-          studentImage="/assets/img/junior_img.png"
-          href="#"
-          size="small"
-        />
-      </Container>
-      <Container>
-        <OpenMorningsCard
-          title="Open Mornings"
-          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          backgroundImage="assets/img/bg_card_blue.png"
-          studentImage="/assets/img/junior_img.png"
-          href="#"
-          size="large"
-        />
-      </Container>
-      <Container>
-        <OpenMorningsCard
-          title="Open Mornings"
-          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          backgroundImage="assets/img/bg_card_blue.png"
-          studentImage="/assets/img/junior_img.png"
-          href="#"
-          size="large"
-          type="landscape"
-        />
-      </Container>
-      <Container>
-        <OpenMorningsCard
-          title="Open Mornings"
-          description="We invite you to visit us to explore our school and discover why a Carey education is right for your family."
-          backgroundImage="assets/img/bg_card_blue.png"
-          studentImage="/assets/img/junior_img.png"
-          href="#"
-          size="large"
-          type="application-form"
-        />
-      </Container>
-      <Container>
-        <EnrolmentCard
-          title="Enrolment"
-          description="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
-          backgroundImage="assets/img/bg_card_yellow.png"
-          studentImage="/assets/img/junior_img_1.png"
-          href="#"
-          size="small"
-        />
-      </Container>
-      <Container>
-        <EnrolmentCard
-          title="Enrolment"
-          description="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
-          backgroundImage="assets/img/bg_card_yellow.png"
-          studentImage="/assets/img/junior_img_1.png"
-          href="#"
-          size="large"
-        />
-      </Container>
-      <Container>
-        <EnrolmentCard
-          title="Enrolment"
-          description="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
-          backgroundImage="assets/img/bg_card_yellow.png"
-          studentImage="/assets/img/junior_img_1.png"
-          href="#"
-          size="large"
-          type="landscape"
-        />
-      </Container>
-      <Container>
-        <EnrolmentCard
-          title="Enrolment"
-          description="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
-          backgroundImage="assets/img/bg_card_yellow.png"
-          studentImage="/assets/img/junior_img_1.png"
-          href="#"
-          size="large"
-          type="application-form"
-        />
       </Container>
       <Container type="unbound">
         <TextBlock

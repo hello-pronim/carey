@@ -165,7 +165,6 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_featureTextBlock_BlockType {
             bodyText
             featureLayout
-            featureTextAlignment
           }
           ... on generalComponents_contentTextFeature_BlockType {
             layout

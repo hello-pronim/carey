@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Button } from "@components/common";
+import { Text, Button, Container } from "@components/common";
 import { v4 as uuid } from "uuid";
 import dayjs from "dayjs";
 import Chevron from "@components/common/icons/chevron";
@@ -38,15 +38,54 @@ const SessionTimes = (props) => {
   };
 
   return (
-    <Wrapper>
-      <Text variant="Heading-Small">Session Times</Text>
-      <Breakout>
-        <div style={{ marginBottom: 48 }}>
-          {props.title && <Text variant="Heading-Small">{props.title}</Text>}
-        </div>
-        {atCapacity.length > 0 && (
+    <Container>
+      <Wrapper>
+        <Text variant="Heading-Small">Session Times</Text>
+        <Breakout>
+          <div style={{ marginBottom: 48 }}>
+            {props.title && <Text variant="Heading-Small">{props.title}</Text>}
+          </div>
+          {atCapacity.length > 0 && (
+            <EntryWrapper>
+              {atCapacity.map(({ date, link, status }) => {
+                const dateParsed = dayjs(date).format("D MMMM");
+                const dayInt = new Date(date).getDay();
+                const day = dayjs().day(dayInt).format("dddd");
+
+                return (
+                  <Entry key={uuid()}>
+                    <Text
+                      css={{ fontWeight: "$medium", lineHeight: "$large" }}
+                      variant="Heading-xSmall"
+                    >
+                      {day} {dateParsed}
+                    </Text>
+                    <div style={{ display: "flex", columnGap: 40 }}>
+                      <Text variant="Body-Small">{statusToString(status)}</Text>
+                      <Chevron direction="right" />
+                    </div>
+                  </Entry>
+                );
+              })}
+            </EntryWrapper>
+          )}
+          <CTAPanel>
+            <Content>
+              <Text variant="Heading-Overline">{props.ctaTitle}</Text>
+              <Text css={{ fontWeight: "$medium" }} variant="Heading-xSmall">
+                {props.ctaBody}
+              </Text>
+            </Content>
+            <Button
+              label="subscribe"
+              scale="sm"
+              type="outline"
+              theme="light"
+              arrow
+            />
+          </CTAPanel>
           <EntryWrapper>
-            {atCapacity.map(({ date, link, status }) => {
+            {upcomming.map(({ date, link, status }) => {
               const dateParsed = dayjs(date).format("D MMMM");
               const dayInt = new Date(date).getDay();
               const day = dayjs().day(dayInt).format("dddd");
@@ -67,46 +106,9 @@ const SessionTimes = (props) => {
               );
             })}
           </EntryWrapper>
-        )}
-        <CTAPanel>
-          <Content>
-            <Text variant="Heading-Overline">{props.ctaTitle}</Text>
-            <Text css={{ fontWeight: "$medium" }} variant="Heading-xSmall">
-              {props.ctaBody}
-            </Text>
-          </Content>
-          <Button
-            label="subscribe"
-            scale="sm"
-            type="outline"
-            theme="light"
-            arrow
-          />
-        </CTAPanel>
-        <EntryWrapper>
-          {upcomming.map(({ date, link, status }) => {
-            const dateParsed = dayjs(date).format("D MMMM");
-            const dayInt = new Date(date).getDay();
-            const day = dayjs().day(dayInt).format("dddd");
-
-            return (
-              <Entry key={uuid()}>
-                <Text
-                  css={{ fontWeight: "$medium", lineHeight: "$large" }}
-                  variant="Heading-xSmall"
-                >
-                  {day} {dateParsed}
-                </Text>
-                <div style={{ display: "flex", columnGap: 40 }}>
-                  <Text variant="Body-Small">{statusToString(status)}</Text>
-                  <Chevron direction="right" />
-                </div>
-              </Entry>
-            );
-          })}
-        </EntryWrapper>
-      </Breakout>
-    </Wrapper>
+        </Breakout>
+      </Wrapper>
+    </Container>
   );
 };
 

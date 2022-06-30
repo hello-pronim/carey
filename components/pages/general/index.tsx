@@ -19,6 +19,7 @@ import MapView from "./components/MapView";
 import SessionTimes from "./components/SessionTimes";
 import TwoUpModule from "./components/TwoUpModule";
 import ThreeUpModule from "./components/ThreeUpModule";
+import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -75,6 +76,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("images2up"), TwoUpModule],
     [ModuleType("images2upVideo"), TwoUpModule],
     [ModuleType("inlineGallery3up"), ThreeUpModule],
+    [ModuleType("featuredPanel"), OpenMorningsCard],
   ]);
   // Ignoring ts error on map for now as I couldn't find
   // an instance where the pageUri was ever not in an array
@@ -101,7 +103,13 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
         />
       )}
       <Container
-        outerCSS={{ position: "absolute", zIndex: 2, pointerEvents: "none" }}
+        outerCSS={{
+          display: "none",
+          "@min1440": { display: "flex" },
+          position: "absolute",
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
       >
         <SideNav
           minHeight={minHeight}
@@ -115,7 +123,10 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
           <BreadCrumb crumbs={crumbs} pt={0} />
         </BreadCrumbWrapper>
       </Container>
-      <Container innerCSS={{ rowGap: 56, py: 56, minHeight: minHeight }}>
+      <Container
+        type="unbound-flex"
+        innerCSS={{ rowGap: 56, py: 56, minHeight: minHeight }}
+      >
         {pageData?.map((module: any) => (
           <InvokeElement
             key={uuid()}

@@ -1,7 +1,7 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
 import { useMedia, useWindowSize } from "react-use";
-import { Modal, Video, Image } from "@components/common";
+import { Modal, Video, Image, Container } from "@components/common";
 import { Text } from "@components/common";
 // import Image from "next/image";
 import Play from "@components/common/icons/play";
@@ -99,7 +99,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
   }, [isMobile]);
 
   return (
-    <>
+    <Container>
       {__typename === "generalComponents_images2upVideo_BlockType" && (
         <Modal active={modalActive} setModalActive={setModalActive}>
           <VideoWrapper>
@@ -141,7 +141,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
           />
         </ImageRight>
       </ConditionalWrapper>
-    </>
+    </Container>
   );
 };
 

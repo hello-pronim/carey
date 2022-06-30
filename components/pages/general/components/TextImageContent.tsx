@@ -1,68 +1,85 @@
 import { styled } from "@styles/stitches";
+import { v4 as uuid } from "uuid";
+import { parseDocument } from "htmlparser2";
+import InvokeElement from "@utils/invokeElement";
+import RichText from "@utils/richTextRenderer";
 import React from "react";
-import { Text } from "@components/common";
+import { Container } from "@components/common";
 import Image from "next/image";
 
-export default function TextImageContent(props) {
-  const ContentWrapper = styled("div", {
-    display: "flex",
-    "@max1024": {
-      flexDirection: "column",
+const ContentWrapper = styled("div", {
+  display: "flex",
+  width: "100%",
+  height: "100%",
+  paddingTop: "100px",
+  flexDirection: "column",
+  gridRow: 1,
+  variants: {
+    layout: {
+      leftImageRightText: {
+        gridColumn: "7 / span 4",
+      },
+      rightImageLeftText: {
+        gridColumn: "2 / span 4",
+      },
     },
-    gridColumn: "2 / span 6",
-    gridTemplateColumns: "repeat(12, 1fr)",
-    columnGap: 62,
-  });
+  },
+  defaultVariants: {
+    layout: "leftImageRightText",
+  },
+});
 
-  const ImageWrapper = styled("div", {
-    height: "100%",
+const ImageWrapper = styled("div", {
+  gridRow: 1,
+  variants: {
+    layout: {
+      leftImageRightText: {
+        gridColumn: "2 / span 4",
+      },
+      rightImageLeftText: {
+        gridColumn: "7 / span 4",
+      },
+    },
+  },
+  defaultVariants: {
+    layout: "leftImageRightText",
+  },
+  span: {
+    height: "100% !important",
+    width: "100% !important",
     span: {
       height: "100% !important",
       width: "100% !important",
     },
-  });
+  },
+});
 
-  const RightSection = styled("div", {
-    display: "flex",
-    order: props.layout === "leftImageRightText" ? 2 : 1,
-    width: "100%",
-    height: "100%",
-    paddingTop: "100px",
-    flexDirection: "column",
-    [`>${Text}`]: {
-      paddingTop: "24px",
-    },
-  });
-  const LeftSection = styled("div", {
-    width: props.imageAspect === "portrait" ? "50%" : "100%",
-    order: props.layout === "leftImageRightText" ? 1 : 2,
-    height: "100%",
-  });
-
+export default function TextImageContent(props) {
+  // Converts HTML string into digestible object.
+  const parsedHTML = parseDocument(props.bodyText);
   return (
-    <ContentWrapper>
-      <RightSection {...props}>
-        <Text
-          variant="Body-xxLarge"
-          dangerouslySetInnerHTML={{
-            __html: props.bodyText,
-          }}
-        />
-      </RightSection>
-
-      <LeftSection>
-        <ImageWrapper>
-          <Image
-            alt="principal"
-            width={500}
-            height={500}
-            layout="responsive"
-            objectFit="cover"
-            priority
-            src={props?.image?.[0].url}
+    <Container>
+      <ContentWrapper layout={props.layout}>
+        {parsedHTML.children.map((component: any) => (
+          <InvokeElement
+            key={uuid()}
+            el={component}
+            type={component?.name}
+            map={RichText}
           />
-        </ImageWrapper>
-      </LeftSection>
-    </ContentWrapper>
+        ))}
+      </ContentWrapper>
+      <ImageWrapper layout={props.layout}>
+        <Image
+          alt="principal"
+          width={500}
+          height={500}
+          layout="responsive"
+          objectFit="cover"
+          priority
+          src={props?.image?.[0].url}
+        />
+      </ImageWrapper>
+    </Container>
   );
 }

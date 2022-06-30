@@ -2,7 +2,7 @@ import { styled } from "@styles/stitches";
 
 const Root = styled("button", {
   all: "unset",
-  // width: "fit-content",
+  width: "fit-content",
   transition: "background ease-in-out 200ms",
   cursor: "pointer",
   display: "flex",
