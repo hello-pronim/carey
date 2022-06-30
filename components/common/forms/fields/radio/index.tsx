@@ -1,3 +1,4 @@
+import { Controller } from "react-hook-form";
 import { Text } from "@components/common";
 import { Subtext, Wrapper as Container } from "../sharedStyles";
 import { Wrapper, RadioGroupRadio, RadioGroupIndicator, Root } from "./styles";
@@ -9,8 +10,10 @@ const RadioGroup = ({
   error,
   disabled,
   hint,
+  control,
   items,
 }: RadioTypes) => {
+  console.log("erro", error);
   const subtext = () => {
     let values = { text: undefined, color: undefined };
     (!!error && !!hint) || (!!error && !hint)
@@ -22,20 +25,34 @@ const RadioGroup = ({
     <Container>
       {label && <Text variant="Body-xSmall">{label}</Text>}
       <Root aria-label={label}>
-        {items.map((item) => {
-          return (
-            <Wrapper key={item.value} required={required} disabled={disabled}>
-              <RadioGroupRadio
-                value={item.value}
-                error={!!error}
-                disabled={disabled}
-              >
-                <RadioGroupIndicator />
-              </RadioGroupRadio>
-              <Text variant="Body-xSmall">{item.label}</Text>
-            </Wrapper>
-          );
-        })}
+        <Controller
+          control={control}
+          name={name}
+          rules={{ required: required }}
+          render={({ field }) => (
+            <>
+              {items.map((item: any) => {
+                return (
+                  <Wrapper
+                    {...field}
+                    key={item.value}
+                    required={required}
+                    disabled={disabled}
+                  >
+                    <RadioGroupRadio
+                      value={item.value}
+                      error={!!error}
+                      disabled={disabled}
+                    >
+                      <RadioGroupIndicator />
+                    </RadioGroupRadio>
+                    <Text variant="Body-xSmall">{item.label}</Text>
+                  </Wrapper>
+                );
+              })}
+            </>
+          )}
+        />
       </Root>
       {(error || hint) && (
         <Subtext css={{ color: subtext().color }}>{subtext().text}</Subtext>
@@ -51,6 +68,7 @@ type RadioTypes = {
   error?: string;
   disabled?: boolean;
   hint?: string;
+  control?: any;
   items: Array<{
     value: string;
     label: string;

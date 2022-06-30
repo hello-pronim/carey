@@ -26,9 +26,11 @@ const customStyles = {
         ? `${theme.colors.navy}`
         : `${theme.colors.navy400}`,
     },
+
     padding: "10px 16px",
     boxShadow: "none",
   }),
+
   //container around chevron
   dropdownIndicator: (provided, state) => ({
     ...provided,

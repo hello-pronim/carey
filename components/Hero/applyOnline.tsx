@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Wrapper,
+  ApplyOnlineWrapper,
   InnerGrid,
   Bumper,
   ApplyOnlineContent,
@@ -14,7 +14,7 @@ import ApplyResumeButton from "@components/common/applyResumeButton";
 
 const ApplyOnline = (props) => {
   return (
-    <Wrapper>
+    <ApplyOnlineWrapper>
       <Bumper css={{ bg: "$crestYellow" }} />
       <InnerGrid
         css={{
@@ -72,7 +72,7 @@ const ApplyOnline = (props) => {
           </ApplyOnlineImageWrapper>
         )}
       </InnerGrid>
-    </Wrapper>
+    </ApplyOnlineWrapper>
   );
 };
 
