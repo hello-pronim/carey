@@ -1,7 +1,7 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
 import { useMedia, useWindowSize } from "react-use";
-import { Modal, Video } from "@components/common";
+import { Container, Modal, Video } from "@components/common";
 import { Text } from "@components/common";
 import Image from "next/image";
 import Play from "@components/common/icons/play";
@@ -30,7 +30,6 @@ const ImageRight = styled("div", {
   overflow: "hidden",
   "@min1024": {
     gridColumn: "7 / span 5",
-    alignSelf: "end",
   },
 });
 
@@ -49,7 +48,6 @@ const ImageRightLower = styled("div", {
   "@min1024": {
     gridColumn: "7 / span 5",
     alignSelf: "end",
-    // marginTop: 40,
     paddingRight: "5em",
   },
 });
@@ -122,7 +120,14 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
   }, [isMobile]);
 
   return (
-    <>
+    <Container
+      innerCSS={{
+        rowGap: 16,
+        "@min1440": { rowGap: 24 },
+        "@min1660": { rowGap: 36 },
+        "@min1920": { rowGap: 40 },
+      }}
+    >
       {__typename === "generalComponents_inlineGallery3upVideo_BlockType" && (
         <Modal active={modalActive} setModalActive={setModalActive}>
           <VideoWrapper>
@@ -180,7 +185,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
           />
         </ImageRightLower>
       </ConditionalWrapper>
-    </>
+    </Container>
   );
 };
 

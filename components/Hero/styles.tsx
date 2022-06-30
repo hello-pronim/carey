@@ -84,7 +84,7 @@ const Content = styled("div", {
   rowGap: 24,
   gridColumn: "1 / span 2",
   "@min768": {
-    gridColumn: "1 / span 3",
+    gridColumn: "1 / span 4",
   },
   "@min1024": {
     gridColumn: "1 / span 5",
@@ -140,7 +140,7 @@ const DisplayContent = styled("div", {
   "@min768": {
     width: "50%",
     justifyContent: "flex-end",
-    gridColumn: "1 / span 6",
+    gridColumn: "1 / span 8",
     p: "64px 48px",
   },
   "@min1024": {
@@ -174,7 +174,7 @@ const ImageWrapper = styled("div", {
   gridColumn: "1 / span 2",
   "@min768": {
     height: 108,
-    gridColumn: "4 / span 3",
+    gridColumn: "4 / span 4",
   },
   "@min1024": {
     gridColumn: "6 / span 7",
@@ -205,7 +205,7 @@ const VideoWrapper = styled("div", {
   height: "100%",
   gridColumn: "1 / span 2",
   "@min768": {
-    gridColumn: "4 / span 3",
+    gridColumn: "4 / span 4",
   },
   "@min1024": {
     gridColumn: "6 / span 7",

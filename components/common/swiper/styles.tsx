@@ -7,7 +7,7 @@ export const Wrapper = styled("div", {
   width: "100%",
   gridColumn: "1 / span 2",
   "@min768": {
-    gridColumn: "1 / span 6",
+    gridColumn: "1 / span 8",
   },
   "@min1024": {
     gridColumn: "1 / span 12",

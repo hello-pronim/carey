@@ -1,6 +1,6 @@
 import { styled } from "@styles/stitches";
 import React from "react";
-import { Text } from "@components/common";
+import { Container, Text } from "@components/common";
 import Image from "next/image";
 
 export default function TextContent(props) {
@@ -45,30 +45,32 @@ export default function TextContent(props) {
   const studentImage = props?.featuredPanel?.[0]?.imageOfStudent?.[0];
 
   return (
-    <ContentWrapper>
-      <RightSection {...props}>
-        <Text variant="Heading-xSmall">{props.overHeadline}</Text>
-        <Text variant="Body-xxLarge">{props.headline}</Text>
-        <Text
-          dangerouslySetInnerHTML={{
-            __html: props?.bodyText,
-          }}
-        />
-      </RightSection>
-
-      <LeftSection>
-        <ImageWrapper>
-          <Image
-            alt="principal"
-            width={studentImage?.width}
-            height={studentImage?.height}
-            layout="responsive"
-            objectFit="cover"
-            priority
-            src={studentImage?.url}
+    <Container>
+      <ContentWrapper>
+        <RightSection {...props}>
+          <Text variant="Heading-xSmall">{props.overHeadline}</Text>
+          <Text variant="Body-xxLarge">{props.headline}</Text>
+          <Text
+            dangerouslySetInnerHTML={{
+              __html: props?.bodyText,
+            }}
           />
-        </ImageWrapper>
-      </LeftSection>
-    </ContentWrapper>
+        </RightSection>
+
+        <LeftSection>
+          <ImageWrapper>
+            <Image
+              alt="principal"
+              width={studentImage?.width}
+              height={studentImage?.height}
+              layout="responsive"
+              objectFit="cover"
+              priority
+              src={studentImage?.url}
+            />
+          </ImageWrapper>
+        </LeftSection>
+      </ContentWrapper>
+    </Container>
   );
 }

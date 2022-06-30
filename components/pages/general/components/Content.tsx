@@ -4,6 +4,7 @@ import { styled } from "@styles/stitches";
 import { v4 as uuid } from "uuid";
 import InvokeElement from "@utils/invokeElement";
 import RichText from "@utils/richTextRenderer";
+import { Container } from "@components/common";
 
 const ContentWrapper = styled("div", {
   width: "100%",
@@ -22,7 +23,19 @@ const ContentWrapper = styled("div", {
 });
 
 const ContentContainer = styled("div", {
-  gridColumn: "2 / span 6",
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1024": {
+    gridColumn: "2 / span 10",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 6",
+  },
 });
 
 const Divider = styled("div", {
@@ -53,19 +66,21 @@ const Content = (props) => {
   const parsedHTML = parseDocument(props.bodyText);
 
   return (
-    <ContentContainer>
-      <ContentWrapper css={condWrapperStyles} hasBG={!!props.brandColours}>
-        {parsedHTML.children.map((component: any) => (
-          <InvokeElement
-            key={uuid()}
-            el={component}
-            type={component?.name}
-            map={RichText}
-          />
-        ))}
-      </ContentWrapper>
-      {props.dividerToggle && <Divider />}
-    </ContentContainer>
+    <Container>
+      <ContentContainer>
+        <ContentWrapper css={condWrapperStyles} hasBG={!!props.brandColours}>
+          {parsedHTML.children.map((component: any) => (
+            <InvokeElement
+              key={uuid()}
+              el={component}
+              type={component?.name}
+              map={RichText}
+            />
+          ))}
+        </ContentWrapper>
+        {props.dividerToggle && <Divider />}
+      </ContentContainer>
+    </Container>
   );
 };
 

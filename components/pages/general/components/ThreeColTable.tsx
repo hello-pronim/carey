@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@styles/stitches";
-import { Text } from "@components/common";
+import { Container, Text } from "@components/common";
 import { v4 as uuid } from "uuid";
 
 const TableWrapper = styled("div", {
@@ -100,62 +100,66 @@ const bodySmallMQ = {
 
 const ThreeColTable = (props) => {
   return (
-    <TableWrapper>
-      {!!props?.tableTitle && (
-        <Text variant="Heading-Small">{props.tableTitle}</Text>
-      )}
-      <Table>
-        <thead>
-          <Row css={{ bg: "$crestBlue200" }}>
-            <Head>
-              <Text variant="Heading-xxSmall">{props.colOneLabel}</Text>
-            </Head>
-            <Head alignment="right">
-              <Text variant="Heading-xxSmall">{props.colTwoLabel}</Text>
-            </Head>
-            <Head alignment="right">
-              <Text variant="Heading-xxSmall">{props.colThreeLabel}</Text>
-            </Head>
-          </Row>
-        </thead>
-        <tbody>
-          {props?.threeColTable.map((group, i) => {
-            return (
-              <React.Fragment key={uuid()}>
-                {!!group.groupTitle && (
-                  <Row type="Title-Row" css={{ bg: "#FFF6D1" }}>
-                    <Head css={{ gridColumn: "1 / span 3" }}>
-                      <Text variant="Heading-xxSmall">{group.groupTitle}</Text>
-                    </Head>
-                  </Row>
-                )}
-                {group.tableRow?.map((entry) => {
-                  return (
-                    <Row key={uuid()}>
-                      <Cell>
-                        <Text css={bodySmallMQ} variant="Body-Small">
-                          {entry.col1}
+    <Container>
+      <TableWrapper>
+        {!!props?.tableTitle && (
+          <Text variant="Heading-Small">{props.tableTitle}</Text>
+        )}
+        <Table>
+          <thead>
+            <Row css={{ bg: "$crestBlue200" }}>
+              <Head>
+                <Text variant="Heading-xxSmall">{props.colOneLabel}</Text>
+              </Head>
+              <Head alignment="right">
+                <Text variant="Heading-xxSmall">{props.colTwoLabel}</Text>
+              </Head>
+              <Head alignment="right">
+                <Text variant="Heading-xxSmall">{props.colThreeLabel}</Text>
+              </Head>
+            </Row>
+          </thead>
+          <tbody>
+            {props?.threeColTable.map((group, i) => {
+              return (
+                <React.Fragment key={uuid()}>
+                  {!!group.groupTitle && (
+                    <Row type="Title-Row" css={{ bg: "#FFF6D1" }}>
+                      <Head css={{ gridColumn: "1 / span 3" }}>
+                        <Text variant="Heading-xxSmall">
+                          {group.groupTitle}
                         </Text>
-                      </Cell>
-                      <Cell alignment="right">
-                        <Text css={bodySmallMQ} variant="Body-Small">
-                          {entry.col2}
-                        </Text>
-                      </Cell>
-                      <Cell alignment="right">
-                        <Text css={bodySmallMQ} variant="Body-Small">
-                          {entry.col3}
-                        </Text>
-                      </Cell>
+                      </Head>
                     </Row>
-                  );
-                })}
-              </React.Fragment>
-            );
-          })}
-        </tbody>
-      </Table>
-    </TableWrapper>
+                  )}
+                  {group.tableRow?.map((entry) => {
+                    return (
+                      <Row key={uuid()}>
+                        <Cell>
+                          <Text css={bodySmallMQ} variant="Body-Small">
+                            {entry.col1}
+                          </Text>
+                        </Cell>
+                        <Cell alignment="right">
+                          <Text css={bodySmallMQ} variant="Body-Small">
+                            {entry.col2}
+                          </Text>
+                        </Cell>
+                        <Cell alignment="right">
+                          <Text css={bodySmallMQ} variant="Body-Small">
+                            {entry.col3}
+                          </Text>
+                        </Cell>
+                      </Row>
+                    );
+                  })}
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </Table>
+      </TableWrapper>
+    </Container>
   );
 };
 

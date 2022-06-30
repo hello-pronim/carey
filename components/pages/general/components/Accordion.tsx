@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { styled, theme } from "@styles/stitches";
 import { motion } from "framer-motion";
-import { Text, Button } from "@components/common";
+import { Text, Button, Container } from "@components/common";
 import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
 
@@ -139,67 +139,59 @@ const Accordions = (props) => {
   };
 
   return (
-    <div style={{ gridColumn: "2 / span 6" }}>
-      {accordions?.length
-        ? accordions?.map((item, index) => {
-            return (
-              <AccordionItem key={index}>
-                <AccordionTitle onClick={() => changeActiveAccordion(index)}>
-                  <TitleWrapper>
-                    {props.accordionSetType === "numbered" && (
-                      <Number>
-                        <Text variant="Body-Large">{index + 1}</Text>
-                      </Number>
-                    )}
-                    {props.accordionSetType === "ticked" && <Dot />}
-                    <Text as="h2" variant="Heading-Small">
-                      {getAttr(index, "headline", "Heading")}
-                    </Text>
-                  </TitleWrapper>
-                  {props.accordionSetType === "plain" ? (
-                    <SVGWrapper>
-                      {getAttr(index, "isOpened", "Heading") ? (
-                        <OperatorIcon type="minus" />
-                      ) : (
-                        <OperatorIcon type="plus" />
+    <Container>
+      <div style={{ gridColumn: "2 / span 6" }}>
+        {accordions?.length
+          ? accordions?.map((item, index) => {
+              return (
+                <AccordionItem key={index}>
+                  <AccordionTitle onClick={() => changeActiveAccordion(index)}>
+                    <TitleWrapper>
+                      {props.accordionSetType === "numbered" && (
+                        <Number>
+                          <Text variant="Body-Large">{index + 1}</Text>
+                        </Number>
                       )}
-                    </SVGWrapper>
-                  ) : (
-                    <Div>
-                      {getAttr(index, "isOpened", "Heading") ? (
-                        <OperatorIcon type="minus" />
-                      ) : (
-                        <OperatorIcon type="plus" />
-                      )}
-                    </Div>
-                  )}
-                </AccordionTitle>
-                <AnimatePresence>
-                  {getAttr(index, "isOpened", "Heading") && (
-                    <ContentWrapper
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: { opacity: 1, height: "auto" },
-                        collapsed: { opacity: 0, height: 0 },
-                      }}
-                      transition={{
-                        duration: 0.5,
-                        ease: [0.04, 0.62, 0.23, 0.98],
-                      }}
-                    >
-                      <AccordionContent>
-                        {getAttr(index, "contentBlock", "content") && (
-                          <Text
-                            dangerouslySetInnerHTML={{
-                              __html: getAttr(index, "contentBlock", "content"),
-                            }}
-                            variant={"Body-Regular"}
-                          />
+                      {props.accordionSetType === "ticked" && <Dot />}
+                      <Text as="h2" variant="Heading-Small">
+                        {getAttr(index, "headline", "Heading")}
+                      </Text>
+                    </TitleWrapper>
+                    {props.accordionSetType === "plain" ? (
+                      <SVGWrapper>
+                        {getAttr(index, "isOpened", "Heading") ? (
+                          <OperatorIcon type="minus" />
+                        ) : (
+                          <OperatorIcon type="plus" />
                         )}
-                        {getAttr(index, "breakOutBlock", "breakOut") && (
-                          <ContentSecondBlock>
+                      </SVGWrapper>
+                    ) : (
+                      <Div>
+                        {getAttr(index, "isOpened", "Heading") ? (
+                          <OperatorIcon type="minus" />
+                        ) : (
+                          <OperatorIcon type="plus" />
+                        )}
+                      </Div>
+                    )}
+                  </AccordionTitle>
+                  <AnimatePresence>
+                    {getAttr(index, "isOpened", "Heading") && (
+                      <ContentWrapper
+                        initial="collapsed"
+                        animate="open"
+                        exit="collapsed"
+                        variants={{
+                          open: { opacity: 1, height: "auto" },
+                          collapsed: { opacity: 0, height: 0 },
+                        }}
+                        transition={{
+                          duration: 0.5,
+                          ease: [0.04, 0.62, 0.23, 0.98],
+                        }}
+                      >
+                        <AccordionContent>
+                          {getAttr(index, "contentBlock", "content") && (
                             <Text
                               dangerouslySetInnerHTML={{
                                 __html: getAttr(
@@ -210,35 +202,53 @@ const Accordions = (props) => {
                               }}
                               variant={"Body-Regular"}
                             />
-                          </ContentSecondBlock>
-                        )}
-                        {getAttr(index, "buttonText", "button") &&
-                          (getAttr(index, "buttonEntry", "button") ||
-                            getAttr(index, "buttonUrl", "button")) && (
-                            <ButtonWrapper>
-                              <Button
-                                arrow={getAttr(index, "arrowed", "button")}
-                                label={getAttr(index, "buttonText", "button")}
-                                theme={getAttr(index, "buttonTheme", "button")}
-                                type={getAttr(index, "buttonType", "button")}
-                                scale={getAttr(index, "buttonSize", "button")}
-                                href={
-                                  getAttr(index, "buttonEntry", "button")?.[0]
-                                    ?.uri ||
-                                  getAttr(index, "buttonUrl", "button")
-                                }
-                              />
-                            </ButtonWrapper>
                           )}
-                      </AccordionContent>
-                    </ContentWrapper>
-                  )}
-                </AnimatePresence>
-              </AccordionItem>
-            );
-          })
-        : ""}
-    </div>
+                          {getAttr(index, "breakOutBlock", "breakOut") && (
+                            <ContentSecondBlock>
+                              <Text
+                                dangerouslySetInnerHTML={{
+                                  __html: getAttr(
+                                    index,
+                                    "contentBlock",
+                                    "content"
+                                  ),
+                                }}
+                                variant={"Body-Regular"}
+                              />
+                            </ContentSecondBlock>
+                          )}
+                          {getAttr(index, "buttonText", "button") &&
+                            (getAttr(index, "buttonEntry", "button") ||
+                              getAttr(index, "buttonUrl", "button")) && (
+                              <ButtonWrapper>
+                                <Button
+                                  arrow={getAttr(index, "arrowed", "button")}
+                                  label={getAttr(index, "buttonText", "button")}
+                                  theme={getAttr(
+                                    index,
+                                    "buttonTheme",
+                                    "button"
+                                  )}
+                                  type={getAttr(index, "buttonType", "button")}
+                                  scale={getAttr(index, "buttonSize", "button")}
+                                  href={
+                                    getAttr(index, "buttonEntry", "button")?.[0]
+                                      ?.uri ||
+                                    getAttr(index, "buttonUrl", "button")
+                                  }
+                                />
+                              </ButtonWrapper>
+                            )}
+                        </AccordionContent>
+                      </ContentWrapper>
+                    )}
+                  </AnimatePresence>
+                </AccordionItem>
+              );
+            })
+          : ""}
+      </div>
+    </Container>
   );
 };
 
