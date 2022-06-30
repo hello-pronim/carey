@@ -51,8 +51,8 @@ const ImageAccordion = ({ accordionData, navigation }) => {
                   src={campusAccordionImage?.[0]?.url ?? ""}
                   alt={title ?? ""}
                   layout="fill"
-                  objectPosition={`${xPoint} ${yPoint}`}
                   objectFit="cover"
+                  objectPosition={`${xPoint} ${yPoint}`}
                 />
               </AccordionImage>
 
