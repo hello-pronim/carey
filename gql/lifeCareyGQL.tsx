@@ -22,6 +22,7 @@ export const LifeCareyPageQuery = gql`
               url
               width
               height
+              focalPoint
             }
             lifeVideoLoop
             lifeVideoUrl
