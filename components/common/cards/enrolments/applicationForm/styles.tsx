@@ -33,7 +33,7 @@ const Card = styled("div", {
 });
 const CMarkImage = styled("div", {
   position: "absolute",
-  bg: "url('assets/img/graphic-c-2.png')",
+  bg: "url('/assets/img/graphic-c-2.png')",
   backgroundRepeat: "no-repeat",
   backgroundSize: "contain",
   objectFit: "cover",
