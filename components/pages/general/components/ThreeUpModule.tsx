@@ -1,10 +1,8 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
 import { useMedia, useWindowSize } from "react-use";
-import { Container, Modal, Video } from "@components/common";
-import { Text } from "@components/common";
+import { Container, Modal, Video, VideoPlayCTA } from "@components/common";
 import Image from "next/image";
-import Play from "@components/common/icons/play";
 import Swiper from "@components/common/swiper";
 
 const ImageLeft = styled("div", {
@@ -49,39 +47,6 @@ const ImageRightLower = styled("div", {
     gridColumn: "7 / span 5",
     alignSelf: "end",
     paddingRight: "5em",
-  },
-});
-
-const VideoCTA = styled("div", {
-  position: "absolute",
-  display: "flex",
-  alignItems: "center",
-  bottom: 0,
-  left: 0,
-  bg: "$navy",
-  p: 18,
-  zIndex: 10,
-  columnGap: 24,
-  transition: "background ease 200ms",
-  cursor: "pointer",
-  "@media (hover: hover)": {
-    "&:hover": {
-      bg: "$crestBlue",
-    },
-  },
-  [`${Text}`]: {
-    position: "relative",
-    top: "0.1em",
-    color: "$white",
-  },
-  "@min375": {
-    p: 20,
-  },
-  "@min768": {
-    p: 36,
-  },
-  "@min1024": {
-    p: 44,
   },
 });
 
@@ -142,10 +107,10 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         <ImageLeft ref={Primary}>
           {__typename ===
             "generalComponents_inlineGallery3upVideo_BlockType" && (
-            <VideoCTA onClick={() => setModalActive(!modalActive)}>
-              <Play width={33.33} />
-              <Text variant="Heading-xSmall">Watch our latest video</Text>
-            </VideoCTA>
+            <VideoPlayCTA
+              onClick={() => setModalActive(!modalActive)}
+              label={"Watch our latest video"}
+            />
           )}
           <Image
             alt={props.captionImage1}
