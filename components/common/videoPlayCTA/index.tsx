@@ -21,7 +21,7 @@ const VideoCTA = styled("div", {
     },
   },
   "&&&": {
-    [`${Text}`]: {
+    span: {
       position: "relative",
       top: "0.1em",
       color: "$white",
