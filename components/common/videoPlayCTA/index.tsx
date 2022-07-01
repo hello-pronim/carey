@@ -20,10 +20,12 @@ const VideoCTA = styled("div", {
       bg: "$crestBlue",
     },
   },
-  [`${Text}`]: {
-    position: "relative",
-    top: "0.1em",
-    color: "$white",
+  "&&&": {
+    [`${Text}`]: {
+      position: "relative",
+      top: "0.1em",
+      color: "$white",
+    },
   },
   "@min375": {
     p: 20,
