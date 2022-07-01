@@ -6,6 +6,8 @@ import { CustomSwiper } from "./styles";
 import "swiper/css";
 
 const AccordionCarousel = ({ accordionData }) => {
+  // const swiperRef = React.useRef(null);
+
   if (!accordionData) return <></>;
 
   return (
@@ -14,10 +16,13 @@ const AccordionCarousel = ({ accordionData }) => {
         slidesPerView={1}
         spaceBetween={0}
         loop
+        observer
+        observeParents
         loopedSlides={accordionData.length}
         breakpoints={{
           768: {
-            slidesPerView: "auto",
+            loopedSlides: accordionData.length,
+            slidesPerView: 3,
             spaceBetween: 0,
             loop: true,
           },

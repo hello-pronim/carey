@@ -7,9 +7,8 @@ const CustomSwiper = styled(Swiper, {
       width: "100%",
       height: "414px",
       transition: "all 0.5s ease",
-      "@min786": {
+      "@min768": {
         width: "32vw",
-        height: "520px",
       },
       "@min1200": {
         width: "30vw",
@@ -19,16 +18,15 @@ const CustomSwiper = styled(Swiper, {
         height: "720px",
       },
       "&.swiper-slide-active": {
-        "@min786": {
-          width: "54vw",
-          height: "520px",
+        "@min768": {
+          width: "56vw !important",
         },
         "@min1200": {
-          width: "50vw",
+          width: "54vw !important",
           height: "600px",
         },
         "@min1440": {
-          width: "54vw",
+          width: "52vw !important",
           height: "720px",
         },
       },
