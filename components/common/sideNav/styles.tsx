@@ -107,8 +107,7 @@ AccordionTrigger.displayName = "Accordion Trigger";
 AccordionContent.displayName = "Accordion Content";
 
 const Wrapper = styled("div", {
-  position: "sticky",
-  top: 152,
+  pointerEvents: "auto",
   pb: 16,
   gridColumn: "10 / span 3",
   gridRow: 1,
@@ -118,8 +117,8 @@ const Wrapper = styled("div", {
 });
 
 const NavHeader = styled("div", {
-  pt: 40,
-  pb: 8,
+  pt: 56,
+  pb: 46,
   px: 24,
   bg: "$white",
 });

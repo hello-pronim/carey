@@ -6,7 +6,7 @@ export default function FeatureTextBlock(props) {
   const ContentWrapper = styled("div", {
     display: "flex",
     textAlign: props.featureTextAlignment === "left" ? "left" : "center",
-    gridColumn: props.featureLayout === "wide" ? "2 / span 6" : "2 / span 8",
+    gridColumn: props.featureLayout === "wide" ? "2 / span 8" : "2 / span 6",
     gridTemplateColumns: "repeat(12, 1fr)",
   });
   return (

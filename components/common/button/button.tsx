@@ -4,6 +4,7 @@ import Root from "./styles";
 import { Text } from "@components/common";
 import MorphArrow from "@components/common/icons/morphArrow";
 import Plus from "@components/common/icons/plus";
+import useFormatUrl from "@utils/formatUrl";
 
 const Button = ({
   label,
@@ -35,8 +36,10 @@ const Button = ({
     if (!href) return Fragment;
   }, [href]);
 
+  const formatUrl = useFormatUrl;
+
   return (
-    <Wrapper {...(href && { href: href, passHref: true })}>
+    <Wrapper {...(href && { href: formatUrl(href), passHref: true })}>
       <Root
         as={href ? "a" : "button"}
         scale={scale}
@@ -70,7 +73,7 @@ type buttonTypes = {
   arrow?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
-  href?: string | Object;
+  href?: string;
   onClick?: any;
   css?: any;
 };

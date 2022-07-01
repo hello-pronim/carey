@@ -4,7 +4,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { useAppContext } from "@contexts/AppContext";
 import TextField from "@components/common/forms/fields/text";
 import Select from "@components/common/forms/fields/select";
-import RadioGroup from "@components/common/forms/fields/radio";
+import Checkbox from "@components/common/forms/fields/checkbox";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
 import { PlusIcon } from "@radix-ui/react-icons";
@@ -22,10 +22,10 @@ import {
 } from "../sharedStyles";
 
 const ParentDetails = ({}) => {
-  const [studentDetails, setStudentDetails] = useState(["std1"]);
-  const [studentAccordianOpen, setStudentAccordianOpen] = useState([
-    "studentDetails-std1",
-    "admissionDetails-std1",
+  const [parentDetails, setParentDetails] = useState(["parent1"]);
+  const [parentAccordianOpen, setParentAccordianOpen] = useState([
+    "parentDetails-parent1",
+    "residentialDetails-parent1",
   ]);
 
   const {
@@ -35,8 +35,8 @@ const ParentDetails = ({}) => {
   const { activeStep } = enrolmentDetails;
 
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -66,31 +66,31 @@ const ParentDetails = ({}) => {
     nextStep();
   };
 
-  const addStudent = () => {
-    const newStd = `std${studentDetails.length + 1}`;
-    const studentDetailsOpen = `studentDetails-${newStd}`;
-    const admissionDetailsOpen = `admissionDetails-${newStd}`;
-    setStudentDetails([...studentDetails, newStd]);
-    setStudentAccordianOpen([
-      ...studentDetails,
-      studentDetailsOpen,
-      admissionDetailsOpen,
+  const addParent = () => {
+    const newParent = `parent${parentDetails.length + 1}`;
+    const parentDetailsOpen = `parentDetails-${newParent}`;
+    const residentialDetailsOpen = `residentialDetails-${newParent}`;
+    setParentDetails([...parentDetails, newParent]);
+    setParentAccordianOpen([
+      ...parentAccordianOpen,
+      parentDetailsOpen,
+      residentialDetailsOpen,
     ]);
   };
-
+  console.log("parentAccordianOpen", parentAccordianOpen);
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <Accordion.Root type="multiple" defaultValue={studentAccordianOpen}>
-        {studentDetails?.length > 0 &&
-          studentDetails.map((item, index) => {
+      <Accordion.Root type="multiple" defaultValue={parentAccordianOpen}>
+        {parentDetails?.length > 0 &&
+          parentDetails.map((item, index) => {
             const guardian = index + 1;
             return (
               <React.Fragment key={item}>
-                <StyledItem value={`studentDetails-${item}`}>
+                <StyledItem css={{ mb: 50 }} value={`parentDetails-${item}`}>
                   <StyledHeader>
                     <StyledTrigger>
                       <Text as="h2" variant="Heading-Large">
-                        Student Details
+                        Parent or Guardian {guardian}
                       </Text>
                       <AccordionChevronWrapper aria-hidden />
                     </StyledTrigger>
@@ -103,8 +103,22 @@ const ParentDetails = ({}) => {
                         columnGap: 15,
                       }}
                     >
+                      <Select
+                        control={control}
+                        required
+                        error={
+                          errors[`title${guardian}`] && "Title is required"
+                        }
+                        name={`title${guardian}`}
+                        label="Title"
+                        placeholder="Select"
+                        items={[
+                          { value: "mr", label: "Mr" },
+                          { value: "mrs", label: "Mrs" },
+                        ]}
+                      />
                       <TextField
-                        register={register}
+                        control={control}
                         required
                         error={
                           errors[`firstName${guardian}`] &&
@@ -118,16 +132,7 @@ const ParentDetails = ({}) => {
                         outerCSS={{ mb: 24 }}
                       />
                       <TextField
-                        register={register}
-                        name={`middleName${guardian}`}
-                        label="Middle Name"
-                        placeholder="Enter your middle name"
-                        type="text"
-                        color="$navy"
-                        outerCSS={{ mb: 24 }}
-                      />
-                      <TextField
-                        register={register}
+                        control={control}
                         required
                         error={
                           errors[`familyName${guardian}`] &&
@@ -144,12 +149,12 @@ const ParentDetails = ({}) => {
                     <Div
                       css={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
+                        gridTemplateColumns: "repeat(2, 1fr)",
                         columnGap: 15,
                       }}
                     >
                       <TextField
-                        register={register}
+                        control={control}
                         required
                         error={
                           errors[`perferredName${guardian}`] &&
@@ -162,22 +167,8 @@ const ParentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <TextField
-                        register={register}
-                        required
-                        error={
-                          errors[`dob${guardian}`] &&
-                          "Date of birth is required"
-                        }
-                        name={`dob${guardian}`}
-                        label="Date of birth"
-                        placeholder="e.g. 15/12/2021"
-                        type="date"
-                        color="$navy"
-                        outerCSS={{ mb: 24 }}
-                      />
                       <Select
-                        register={register}
+                        control={control}
                         required
                         error={
                           errors[`gender${guardian}`] && "Gender is required"
@@ -192,191 +183,6 @@ const ParentDetails = ({}) => {
                         ]}
                       />
                     </Div>
-                    <Divider />
-                    <Div
-                      css={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
-                        columnGap: 15,
-                      }}
-                    >
-                      <Select
-                        register={register}
-                        required
-                        error={
-                          errors[`religion${guardian}`] &&
-                          "Religion is required"
-                        }
-                        name={`religion${guardian}`}
-                        label="Religion"
-                        placeholder="Select"
-                        items={[
-                          { value: "hindu", label: "Hindu" },
-                          { value: "muslim", label: "Muslim" },
-                          { value: "christian", label: "Christian" },
-                        ]}
-                      />
-                      <Select
-                        register={register}
-                        required
-                        error={
-                          errors[`birthCountry${guardian}`] &&
-                          "Country of birth is required"
-                        }
-                        name={`birthCountry${guardian}`}
-                        label="Country of birth"
-                        placeholder="Select"
-                        items={[
-                          { value: "australia", label: "Australia" },
-                          { value: "canada", label: "Canada" },
-                          { value: "usa", label: "USA" },
-                        ]}
-                      />
-                    </Div>
-                    <Divider />
-                    <Div
-                      css={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, 1fr)",
-                        columnGap: 15,
-                      }}
-                    >
-                      <Div>
-                        <Div
-                          css={{
-                            pb: 30,
-                          }}
-                        >
-                          <RadioGroup
-                            name="isAustralianCitizen"
-                            required
-                            label="Is the student an Australian citizen?"
-                            items={[
-                              { value: "yes", label: "Yes" },
-                              { value: "no", label: "No" },
-                            ]}
-                          />
-                        </Div>
-                        <Div>
-                          <RadioGroup
-                            name="languageOtherThanEnglish"
-                            required
-                            label="Does the student speak a language other the English at home?"
-                            items={[
-                              { value: "yes", label: "Yes" },
-                              { value: "no", label: "No" },
-                            ]}
-                          />
-                        </Div>
-                      </Div>
-                    </Div>
-                    <Divider />
-                    <Div
-                      css={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, 1fr)",
-                        columnGap: 15,
-                      }}
-                    >
-                      <Div>
-                        <Div
-                          css={{
-                            pb: 30,
-                          }}
-                        >
-                          <RadioGroup
-                            name="additionalRequirement"
-                            required
-                            label="Does the student have additional requirements (Medical, Learning or Language)?"
-                            items={[
-                              { value: "yes", label: "Yes" },
-                              { value: "no", label: "No" },
-                            ]}
-                          />
-                        </Div>
-                      </Div>
-                    </Div>
-                    <Divider />
-                    <Div
-                      css={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, 1fr)",
-                        columnGap: 15,
-                      }}
-                    >
-                      <Select
-                        register={register}
-                        required
-                        error={
-                          errors[`isStudent${guardian}`] &&
-                          "Is the student of Aboriginal or Torres Strait Islander origin is required"
-                        }
-                        name={`isStudent${guardian}`}
-                        label="Is the student of Aboriginal or Torres Strait Islander origin?"
-                        placeholder="Select"
-                        items={[
-                          { value: "test1", label: "Test 1" },
-                          { value: "test2", label: "Test 2" },
-                          { value: "test3", label: "Test 3" },
-                        ]}
-                      />
-                    </Div>
-                    <Divider />
-                  </StyledContent>
-                </StyledItem>
-                <StyledItem value={`admissionDetails-${item}`}>
-                  <StyledHeader>
-                    <StyledTrigger>
-                      <Text as="h2" variant="Heading-Large">
-                        Admission Details
-                      </Text>
-                      <AccordionChevronWrapper aria-hidden />
-                    </StyledTrigger>
-                  </StyledHeader>
-                  <StyledContent>
-                    <Text
-                      css={{ mb: 30, mt: 30 }}
-                      as="h3"
-                      variant="Heading-xSmall"
-                    >
-                      First Preference for Entry
-                    </Text>
-                    <Div
-                      css={{
-                        pb: 30,
-                      }}
-                    >
-                      <RadioGroup
-                        name={`campus${guardian}`}
-                        label="Which campus do you prefer?"
-                        items={[
-                          {
-                            value: "Kew Campus (ELC — Year 12)",
-                            label: "Kew Campus (ELC — Year 12)",
-                          },
-                          {
-                            value: "Donvale Campus (ELC — Year 6)",
-                            label: "Donvale Campus (ELC — Year 6)",
-                          },
-                        ]}
-                      />
-                    </Div>
-                    <Divider />
-                    <Div
-                      css={{
-                        pb: 30,
-                      }}
-                    >
-                      <RadioGroup
-                        name={`appliedToOtherSchools${guardian}`}
-                        label="Has the student applied to other schools?"
-                        items={[
-                          { value: "yes", label: "Yes" },
-                          { value: "no", label: "No" },
-                        ]}
-                      />
-                    </Div>
-                    <Divider />
                     <Div
                       css={{
                         display: "grid",
@@ -385,52 +191,331 @@ const ParentDetails = ({}) => {
                       }}
                     >
                       <TextField
-                        register={register}
-                        name={`currentSchool${guardian}`}
-                        label="Current school (if applicable)"
-                        placeholder="Enter your Current school"
+                        control={control}
+                        required
+                        error={
+                          (errors.emailAddress &&
+                            errors.emailAddress?.type === "required" &&
+                            "Email address is required") ||
+                          (errors.emailAddress?.type === "pattern" &&
+                            "Enter valid email format")
+                        }
+                        name={`email${guardian}`}
+                        label="Email"
+                        placeholder="Enter your email"
+                        type="email"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`mobilePhone${guardian}`] &&
+                          "Mobile phone is required"
+                        }
+                        name={`mobilePhone${guardian}`}
+                        label="Mobile Phone"
+                        placeholder="Enter your mobile phone"
+                        type="tel"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                    </Div>
+                    <Div
+                      css={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        columnGap: 15,
+                      }}
+                    >
+                      <TextField
+                        control={control}
+                        name={`workPhone${guardian}`}
+                        label="Work Phone"
+                        placeholder="Enter your work phone"
+                        type="tel"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <TextField
+                        control={control}
+                        name={`homePhone${guardian}`}
+                        label="Home Phone"
+                        placeholder="Enter your home phone"
+                        type="tel"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                    </Div>
+                    <Div
+                      css={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        columnGap: 15,
+                      }}
+                    >
+                      <Select
+                        control={control}
+                        required
+                        error={
+                          errors[`relationship${guardian}`] &&
+                          "Relationship to the student (s) on application is required"
+                        }
+                        name={`relationship${guardian}`}
+                        label="Relationship to the student (s) on application"
+                        placeholder="Select"
+                        items={[
+                          { value: "relationship1", label: "Relationship 1" },
+                          { value: "relationship2", label: "Relationship 2" },
+                          { value: "relationship3", label: "Relationship 3" },
+                        ]}
+                      />
+                      <Select
+                        control={control}
+                        required
+                        error={
+                          errors[`mainLanguage${guardian}`] &&
+                          "Main language spoken is required"
+                        }
+                        name={`mainLanguage${guardian}`}
+                        label="Main language spoken"
+                        placeholder="Select"
+                        items={[
+                          { value: "Greek", label: "Language 1" },
+                          { value: "Chinese", label: "Language 2" },
+                          { value: "Portuguese", label: "Language 3" },
+                        ]}
+                      />
+                    </Div>
+                  </StyledContent>
+                </StyledItem>
+                <StyledItem
+                  css={{ mb: 50 }}
+                  value={`residentialDetails-${item}`}
+                >
+                  <StyledHeader>
+                    <StyledTrigger>
+                      <Text as="h2" variant="Heading-Large">
+                        Residential Address
+                      </Text>
+                      <AccordionChevronWrapper aria-hidden />
+                    </StyledTrigger>
+                  </StyledHeader>
+                  <StyledContent>
+                    <Div>
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`streetAddress${guardian}`] &&
+                          "Street address is required"
+                        }
+                        name={`streetAddress${guardian}`}
+                        label="Street address"
+                        placeholder="Enter your Street address"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                    </Div>
+                    <Div
+                      css={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        columnGap: 15,
+                      }}
+                    >
+                      <TextField
+                        control={control}
+                        name={`postBox${guardian}`}
+                        label="Apartment, Suite, Unit, PO Box"
+                        placeholder="Enter your Apartment, Suite, Unit, PO Box"
                         type="text"
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
                       <Select
-                        register={register}
-                        name={`currentYear${guardian}`}
-                        label="Current year"
+                        control={control}
+                        required
+                        error={
+                          errors[`country${guardian}`] && "Country is required"
+                        }
+                        name={`country${guardian}`}
+                        label="Country"
                         placeholder="Select"
                         items={[
-                          { value: "2022", label: "2022" },
-                          { value: "2021", label: "2021" },
-                          { value: "2020", label: "2020" },
+                          { value: "AU", label: "Australia" },
+                          { value: "NZ", label: "Newzealand" },
                         ]}
                       />
                     </Div>
-                    <Divider />
-                    <Text
-                      css={{ mb: 30, mt: 30 }}
-                      as="h3"
-                      variant="Heading-xSmall"
-                    >
-                      Second Preference for Entry
-                    </Text>
                     <Div
                       css={{
-                        pb: 30,
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 1fr)",
+                        columnGap: 15,
                       }}
                     >
-                      <RadioGroup
-                        name={`secondCampus${guardian}`}
-                        label="Which campus do you prefer?"
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`suburb${guardian}`] &&
+                          "Suburb / Town is required"
+                        }
+                        name={`suburb${guardian}`}
+                        label="Suburb / Town"
+                        placeholder="Pascoe Vale"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`state${guardian}`] && "State is required"
+                        }
+                        name={`state${guardian}`}
+                        label="State"
+                        placeholder="VIC"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`postcode${guardian}`] &&
+                          "Postcode is required"
+                        }
+                        name={`postcode${guardian}`}
+                        label="Postcode"
+                        placeholder="3044"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                    </Div>
+                    <Divider />
+                    <Div>
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`occupation${guardian}`] &&
+                          "Occupation/Job Title is required"
+                        }
+                        name={`occupation${guardian}`}
+                        label="Occupation/Job Title"
+                        placeholder="Enter your Occupation/Job Title"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                    </Div>
+                    <Divider />
+                    <Div>
+                      <Checkbox label="Postal Address (Same as Residential address)" />
+                    </Div>
+                    <Div>
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`postalStreetAddress${guardian}`] &&
+                          "Street address is required"
+                        }
+                        name={`postalStreetAddress${guardian}`}
+                        label="Street address"
+                        placeholder="Enter your Street address"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                    </Div>
+                    <Div
+                      css={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        columnGap: 15,
+                      }}
+                    >
+                      <TextField
+                        control={control}
+                        name={`postalPostBox${guardian}`}
+                        label="Apartment, Suite, Unit, PO Box"
+                        placeholder="Enter your Apartment, Suite, Unit, PO Box"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <Select
+                        control={control}
+                        required
+                        error={
+                          errors[`postalCountry${guardian}`] &&
+                          "Country is required"
+                        }
+                        name={`postalCountry${guardian}`}
+                        label="Country"
+                        placeholder="Select"
                         items={[
-                          {
-                            value: "Kew Campus (ELC — Year 12)",
-                            label: "Kew Campus (ELC — Year 12)",
-                          },
-                          {
-                            value: "Donvale Campus (ELC — Year 6)",
-                            label: "Donvale Campus (ELC — Year 6)",
-                          },
+                          { value: "AU", label: "Australia" },
+                          { value: "NZ", label: "Newzealand" },
                         ]}
+                      />
+                    </Div>
+                    <Div
+                      css={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 1fr)",
+                        columnGap: 15,
+                      }}
+                    >
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`postalSuburb${guardian}`] &&
+                          "Suburb / Town is required"
+                        }
+                        name={`postalSuburb${guardian}`}
+                        label="Suburb / Town"
+                        placeholder="Pascoe Vale"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`postalState${guardian}`] &&
+                          "State is required"
+                        }
+                        name={`postalState${guardian}`}
+                        label="State"
+                        placeholder="VIC"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
+                      />
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`postalPostcode${guardian}`] &&
+                          "Postcode is required"
+                        }
+                        name={`postalPostcode${guardian}`}
+                        label="Postcode"
+                        placeholder="3044"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{ mb: 24 }}
                       />
                     </Div>
                   </StyledContent>
@@ -439,25 +524,17 @@ const ParentDetails = ({}) => {
             );
           })}
       </Accordion.Root>
-      {/* <Button
-        plus
-        label="Additional student"
-        type="outline"
-        theme="dark"
-        variant="secondary"
-        scale="xl"
-        css={{
-          borderColor: "$navy",
-        }}
-        onClick={() => addStudent()}
-      /> */}
-      <AddButton onClick={() => addStudent()}>
-        <PlusIcon /> <span>Additional student</span>
+
+      <Div css={{ mb: 50 }}>
+        <Checkbox label="I/We acknowledge that all legal guardians and carers for the student(s) have been entered into this application" />
+      </Div>
+      <AddButton onClick={() => addParent()}>
+        <PlusIcon /> <span> Another Parent/Guardian</span>
       </AddButton>
       <Divider />
       <ButtonsContainer>
         <Div>
-          <AddButton onClick={() => addStudent()}>
+          <AddButton>
             <span>Save & Exit</span>
           </AddButton>
         </Div>

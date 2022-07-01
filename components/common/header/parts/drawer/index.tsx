@@ -14,6 +14,7 @@ import {
   Tertiary,
 } from "./styles";
 import MobileDrawer from "./mobile";
+import useFormatUrl from "@utils/formatUrl";
 
 const Drawer = ({ navigation, stuck }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +31,7 @@ const Drawer = ({ navigation, stuck }) => {
 
   //makes the indicator resize on breakpoints
   useWindowSize();
-
+  const formatUrl = useFormatUrl;
   useEffect(() => {
     const initActiveItem = document?.querySelector("[data-key='about-carey']");
     setActivePrimary(initActiveItem);
@@ -74,6 +75,7 @@ const Drawer = ({ navigation, stuck }) => {
             {navigation.map((item) => {
               return (
                 <NavItem
+                  url={formatUrl(item.url)}
                   key={`primary-${item.id}`}
                   item={item}
                   activeItem={activePrimary}
@@ -98,8 +100,10 @@ const Drawer = ({ navigation, stuck }) => {
             >
               <NavItems>
                 {secondaryNavigation.map((item) => {
+                  const path = `/${item.parent.url}/${item.url}`;
                   return (
                     <NavItem
+                      url={path}
                       key={`secondary-${item.id}`}
                       item={item}
                       activeItem={activeSecondary}
@@ -126,8 +130,10 @@ const Drawer = ({ navigation, stuck }) => {
             >
               <NavItems>
                 {tertiaryNavigation.map((item) => {
+                  const path = `/${item.parent.parent.url}/${item.parent.url}/${item.url}`;
                   return (
                     <NavItem
+                      url={path}
                       key={`tertiary-${item.id}`}
                       item={item}
                       activeItem={activeTertiary}

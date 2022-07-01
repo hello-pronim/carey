@@ -17,7 +17,8 @@ export const {
   theme: {
     colors: {
       darkerYellow: "#FFBF00",
-      lightYellow: "FFDB4D",
+      lightYellow: "#FFDB4D",
+      tintYellow: "#fff6d1",
       background: "#F6F6F6",
       black: "#000000",
       crestBlue100: "#E6EEF4",
@@ -43,7 +44,7 @@ export const {
       darkBlue900: "#374A67",
       darkBlue: "#213565",
       grey: "#F0F0F0",
-      navy100: "E6E8EC",
+      navy100: "#E6E8EC",
       navy200: "#CDD1D9",
       navy300: "#B4BBC5",
       navy400: "#9BA4B2",

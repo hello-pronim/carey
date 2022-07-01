@@ -7,4 +7,6 @@ export { default as Image } from "./image/image";
 export { default as Header } from "./header/header";
 export { default as Footer } from "./footer/footer";
 export { default as PreFooter } from "./preFooter/preFooter";
+export { default as Modal } from "./modal/modal";
+export { default as Video } from "./videoPlayer/videoPlayer";
 export { default as Accordians } from "./accordians";

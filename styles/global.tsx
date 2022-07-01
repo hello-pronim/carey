@@ -4,6 +4,11 @@ const globalStyles = globalCss({
   html: {
     lineHeight: 1.15,
     "-webkit-text-size-adjust": "100%",
+    boxSizing: "border-box",
+    fontSize: 16,
+    "-webkit-font-smoothing": "antialiased",
+    "-moz-osx-font-smoothing": "grayscale",
+    scrollBehavior: "smooth",
   },
 
   "html, body": {

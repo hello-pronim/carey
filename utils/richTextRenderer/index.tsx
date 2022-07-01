@@ -183,7 +183,7 @@ const expandedRichText = new Map([
           {...properties}
           label={label}
           href={link}
-          css={{ mt: 40, mb: 56 }}
+          css={{ width: "max-content", mt: 40, mb: 56 }}
         />
       );
     },
