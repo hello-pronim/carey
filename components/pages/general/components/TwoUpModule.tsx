@@ -11,9 +11,12 @@ const ImageLeft = styled("div", {
   position: "relative",
   width: "100%",
   "@min1024": {
-    gridColumn: "1 / span 8",
+    gridColumn: "2 / span 7",
   },
   "@min1440": {
+    gridColumn: "1 / span 8",
+  },
+  "@min1920": {
     gridColumn: "2 / span 7",
   },
   boxSizing: "border-box",
@@ -60,7 +63,7 @@ const VideoCTA = styled("div", {
   "@min768": {
     p: 36,
   },
-  "@min1024": {
+  "@min1440": {
     p: 44,
   },
 });
@@ -105,6 +108,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
           <VideoWrapper>
             <Video playing={true} url={props.videoUrl} />
           </VideoWrapper>
+          <></>
         </Modal>
       )}
       <ConditionalWrapper>
