@@ -12,6 +12,12 @@ const ImageLeft = styled("div", {
     gridColumn: "2 / span 5",
     transform: "translateY(50%)",
   },
+  "@min1440": {
+    gridColumn: "1 / span 6",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 5",
+  },
   "> span": {
     height: "100% !important",
     span: { height: "100% !important" },
@@ -26,6 +32,10 @@ const ImageRight = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   overflow: "hidden",
+  "> span": {
+    height: "100% !important",
+    span: { height: "100% !important" },
+  },
   "@min1024": {
     gridColumn: "7 / span 5",
   },
@@ -123,7 +133,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         </ImageLeft>
         <ImageRight
           css={{
-            maxHeight: primaryDimensions.height,
+            maxHeight: isMobile && primaryDimensions.height,
           }}
         >
           <Image
@@ -137,7 +147,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         </ImageRight>
         <ImageRightLower
           css={{
-            maxHeight: primaryDimensions.height,
+            maxHeight: isMobile && primaryDimensions.height,
           }}
         >
           <Image
