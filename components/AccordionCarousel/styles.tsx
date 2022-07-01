@@ -38,16 +38,6 @@ const SlideContainer = styled("div", {
   width: "100%",
   height: "100%",
   position: "relative",
-});
-
-const SlideImage = styled("div", {
-  width: "100%",
-  height: "100%",
-  position: "absolute",
-  top: 0,
-  left: 0,
-  transition: "visibility 0s linear 0.5s, opacity 0.5s",
-  zIndex: 1,
   "&::before": {
     content: "",
     position: "absolute",
@@ -61,6 +51,16 @@ const SlideImage = styled("div", {
   },
 });
 
+const SlideImage = styled("div", {
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  transition: "visibility 0s linear 0.5s, opacity 0.5s",
+  zIndex: 1,
+});
+
 const SlideVideo = styled("div", {
   width: "100%",
   height: "100%",
@@ -70,4 +70,15 @@ const SlideVideo = styled("div", {
   },
 });
 
-export { CustomSwiper, SlideContainer, SlideImage, SlideVideo };
+const ModalVideoWrapper = styled("div", {
+  gridColumn: "2 / span 10",
+  gridRow: 1,
+});
+
+export {
+  CustomSwiper,
+  SlideContainer,
+  SlideImage,
+  SlideVideo,
+  ModalVideoWrapper,
+};
