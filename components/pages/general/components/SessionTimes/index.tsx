@@ -11,10 +11,12 @@ import {
   CTAPanel,
   Content,
 } from "./styles";
+import { useMedia } from "react-use";
 
 const SessionTimes = (props) => {
   let atCapacity = [];
   let upcomming = [];
+  const isMobile = useMedia("(max-width: 768px)", false);
 
   props.sessions.filter((item) => {
     if (item.status === "atCapacity") {
@@ -45,12 +47,43 @@ const SessionTimes = (props) => {
           <div style={{ marginBottom: 48 }}>
             {props.title && <Text variant="Heading-Small">{props.title}</Text>}
           </div>
-          {atCapacity.length > 0 && (
-            <EntryWrapper>
-              {atCapacity.map(({ date, link, status }) => {
+          <EntryWrapper>
+            {upcomming.map(({ date, link, status }) => {
+              const dateParsed = dayjs(date).format("D MMMM");
+              const dayInt = new Date(date).getDay();
+              const day = dayjs()
+                .day(dayInt)
+                .format(isMobile ? "ddd" : "dddd");
+
+              return (
+                <Entry key={uuid()}>
+                  <Text
+                    css={{ fontWeight: "$medium", lineHeight: "$large" }}
+                    variant="Heading-xSmall"
+                  >
+                    {day} {dateParsed}
+                  </Text>
+                  <div
+                    style={{
+                      display: "flex",
+                      columnGap: 40,
+                      justifyContent: "flex-end",
+                      textAlign: "right",
+                    }}
+                  >
+                    <Text variant="Body-Small">{statusToString(status)}</Text>
+                    <Chevron direction="right" />
+                  </div>
+                </Entry>
+              );
+            })}
+            {atCapacity.length > 0 &&
+              atCapacity.map(({ date, link, status }) => {
                 const dateParsed = dayjs(date).format("D MMMM");
                 const dayInt = new Date(date).getDay();
-                const day = dayjs().day(dayInt).format("dddd");
+                const day = dayjs()
+                  .day(dayInt)
+                  .format(isMobile ? "ddd" : "dddd");
 
                 return (
                   <Entry key={uuid()}>
@@ -60,15 +93,21 @@ const SessionTimes = (props) => {
                     >
                       {day} {dateParsed}
                     </Text>
-                    <div style={{ display: "flex", columnGap: 40 }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        columnGap: 40,
+                        justifyContent: "flex-end",
+                        textAlign: "right",
+                      }}
+                    >
                       <Text variant="Body-Small">{statusToString(status)}</Text>
                       <Chevron direction="right" />
                     </div>
                   </Entry>
                 );
               })}
-            </EntryWrapper>
-          )}
+          </EntryWrapper>
           <CTAPanel>
             <Content>
               <Text variant="Heading-Overline">{props.ctaTitle}</Text>
@@ -84,28 +123,6 @@ const SessionTimes = (props) => {
               arrow
             />
           </CTAPanel>
-          <EntryWrapper>
-            {upcomming.map(({ date, link, status }) => {
-              const dateParsed = dayjs(date).format("D MMMM");
-              const dayInt = new Date(date).getDay();
-              const day = dayjs().day(dayInt).format("dddd");
-
-              return (
-                <Entry key={uuid()}>
-                  <Text
-                    css={{ fontWeight: "$medium", lineHeight: "$large" }}
-                    variant="Heading-xSmall"
-                  >
-                    {day} {dateParsed}
-                  </Text>
-                  <div style={{ display: "flex", columnGap: 40 }}>
-                    <Text variant="Body-Small">{statusToString(status)}</Text>
-                    <Chevron direction="right" />
-                  </div>
-                </Entry>
-              );
-            })}
-          </EntryWrapper>
         </Breakout>
       </Wrapper>
     </Container>

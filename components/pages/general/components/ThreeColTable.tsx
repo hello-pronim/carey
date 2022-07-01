@@ -5,7 +5,19 @@ import { v4 as uuid } from "uuid";
 
 const TableWrapper = styled("div", {
   display: "flex",
-  gridColumn: "2 / span 6",
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1024": {
+    gridColumn: "2 / span 10",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 6",
+  },
   flexDirection: "column",
   rowGap: 48,
 });
