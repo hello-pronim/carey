@@ -12,6 +12,46 @@ import {
   Content,
 } from "./styles";
 import { useMedia } from "react-use";
+import Link from "next/link";
+
+const defaultCta = {
+  title: "KEEP UP TO DATE",
+  body: "Get notified when the next date becomes available",
+  link: "#subscribe",
+};
+
+const OpenLinks = ({ children, status, href }) => {
+  if (status === "regOpen") {
+    return (
+      <Link href={href} passHref>
+        <a
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            columnGap: 40,
+            justifyContent: "flex-end",
+            textAlign: "right",
+          }}
+        >
+          {children}
+        </a>
+      </Link>
+    );
+  } else {
+    return (
+      <div
+        style={{
+          display: "flex",
+          columnGap: 40,
+          justifyContent: "flex-end",
+          textAlign: "right",
+        }}
+      >
+        {children}
+      </div>
+    );
+  }
+};
 
 const SessionTimes = (props) => {
   let atCapacity = [];
@@ -63,17 +103,10 @@ const SessionTimes = (props) => {
                   >
                     {day} {dateParsed}
                   </Text>
-                  <div
-                    style={{
-                      display: "flex",
-                      columnGap: 40,
-                      justifyContent: "flex-end",
-                      textAlign: "right",
-                    }}
-                  >
+                  <OpenLinks status={status} href={link}>
                     <Text variant="Body-Small">{statusToString(status)}</Text>
                     <Chevron direction="right" />
-                  </div>
+                  </OpenLinks>
                 </Entry>
               );
             })}
@@ -93,26 +126,21 @@ const SessionTimes = (props) => {
                     >
                       {day} {dateParsed}
                     </Text>
-                    <div
-                      style={{
-                        display: "flex",
-                        columnGap: 40,
-                        justifyContent: "flex-end",
-                        textAlign: "right",
-                      }}
-                    >
+                    <OpenLinks status={status} href={link}>
                       <Text variant="Body-Small">{statusToString(status)}</Text>
                       <Chevron direction="right" />
-                    </div>
+                    </OpenLinks>
                   </Entry>
                 );
               })}
           </EntryWrapper>
           <CTAPanel>
             <Content>
-              <Text variant="Heading-Overline">{props.ctaTitle}</Text>
+              <Text variant="Heading-Overline">
+                {props.ctaTitle ? props.ctaTitle : defaultCta.title}
+              </Text>
               <Text css={{ fontWeight: "$medium" }} variant="Heading-xSmall">
-                {props.ctaBody}
+                {props.ctaBody ? props.ctaBody : defaultCta.body}
               </Text>
             </Content>
             <Button

@@ -30,7 +30,7 @@ export const Breakout = styled("div", {
 });
 export const CTAPanel = styled("div", {
   p: 24,
-  my: 24,
+  mt: 48,
   bg: "$tintYellow",
   justifyContent: "space-between",
 
