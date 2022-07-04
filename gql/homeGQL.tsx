@@ -43,7 +43,7 @@ export const HomePageQuery = gql`
             pageLink {
               uri
             }
-            campusAccordionImage {
+            image {
               url
               width
               height

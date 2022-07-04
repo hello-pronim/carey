@@ -27,9 +27,9 @@ const ImageAccordion = ({ accordionData, navigation }) => {
     <>
       <AccordionWrapper>
         {accordionData?.map((item, index) => {
-          const { title, subtitle, pageLink, campusAccordionImage } = item;
-          const xPoint = campusAccordionImage?.[0]?.focalPoint?.[0] * 100 + "%";
-          const yPoint = campusAccordionImage?.[0]?.focalPoint?.[1] * 100 + "%";
+          const { title, subtitle, pageLink, image } = item;
+          const xPoint = image?.[0]?.focalPoint?.[0] * 100 + "%";
+          const yPoint = image?.[0]?.focalPoint?.[1] * 100 + "%";
 
           return (
             <AccordionItem
@@ -48,7 +48,7 @@ const ImageAccordion = ({ accordionData, navigation }) => {
                 }}
               >
                 <Image
-                  src={campusAccordionImage?.[0]?.url ?? ""}
+                  src={image?.[0]?.url ?? ""}
                   alt={title ?? ""}
                   layout="fill"
                   objectFit="cover"
