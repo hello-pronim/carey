@@ -16,14 +16,17 @@ export function AppWrapper({ children }) {
   }, [state, dispatch]);
 
   useEffect(() => {
-    if (localStorage.getItem("APP_STATE")) {
+    if (localStorage.getItem("CAREY_APP_STATE")) {
       try {
-        const storedState = JSON.parse(localStorage.getItem("APP_STATE"));
+        const storedState = JSON.parse(localStorage.getItem("CAREY_APP_STATE"));
         dispatch({
-          type: "INIT_STORED",
+          type: "INIT_STORE",
           value: storedState,
         });
       } catch (e) {
+        dispatch({
+          type: "RESET_STORE",
+        });
         console.log("Unable to parse stored state");
       }
     }
