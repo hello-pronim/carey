@@ -23,6 +23,7 @@
       "@gql/*": ["gql/*"],
       "@hoc/*": ["hoc/*"],
       "@styles/*": ["styles/*"],
+      "@hooks/*": ["hooks/*"],
       "@styles/stitches": ["styles/stitches.config"]
     },
     "incremental": true
