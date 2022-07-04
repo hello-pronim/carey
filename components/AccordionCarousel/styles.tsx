@@ -92,6 +92,13 @@ const ModalVideoWrapper = styled("div", {
   gridRow: 1,
 });
 
+const SliderProgress = styled("div", {
+  marginTop: "32px",
+  "@min1024": {
+    marginTop: "48px",
+  },
+});
+
 export {
   CustomSwiper,
   SlideContent,
@@ -99,4 +106,5 @@ export {
   SlideImage,
   SlideVideo,
   ModalVideoWrapper,
+  SliderProgress,
 };
