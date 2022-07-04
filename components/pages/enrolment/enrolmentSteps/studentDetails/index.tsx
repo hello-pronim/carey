@@ -53,7 +53,6 @@ const StudentDetails = ({}) => {
   };
 
   const onSubmit = (data) => {
-    console.log("errors", errors);
     console.log(data);
     nextStep();
   };
@@ -69,7 +68,6 @@ const StudentDetails = ({}) => {
       admissionDetailsOpen,
     ]);
   };
-  console.log("errors", errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Accordion.Root type="multiple" defaultValue={studentAccordianOpen}>
