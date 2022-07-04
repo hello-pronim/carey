@@ -10,6 +10,8 @@ const AccordionCarousel = ({ accordionData }) => {
 
   if (!accordionData) return <></>;
 
+  console.log(accordionData);
+
   return (
     <>
       <CustomSwiper

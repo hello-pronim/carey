@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Player from "react-player";
-import { VideoPlayCTA, Modal, Video } from "@components/common";
+import { VideoPlayCTA, Modal, Video, Text } from "@components/common";
 import {
+  SlideContent,
   SlideContainer,
   SlideImage,
   SlideVideo,
@@ -23,6 +24,20 @@ const AccordionSlide = ({ accordion }) => {
   return (
     <>
       <SlideContainer onMouseEnter={togglePlay} onMouseLeave={togglePlay}>
+        <SlideContent
+          css={{
+            visibility: playing ? "hidden" : "visible",
+            opacity: playing ? 0 : 1,
+          }}
+        >
+          <Text as="h3" variant="Heading-Small">
+            {title}
+          </Text>
+          <Text as="p" variant="Body-Regular">
+            {title}
+          </Text>
+        </SlideContent>
+
         <SlideImage
           css={{
             visibility: playing ? "hidden" : "visible",
