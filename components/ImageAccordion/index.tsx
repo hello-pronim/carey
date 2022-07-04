@@ -27,9 +27,9 @@ const ImageAccordion = ({ accordionData, navigation }) => {
     <>
       <AccordionWrapper>
         {accordionData?.map((item, index) => {
-          const { title, subtitle, pageLink, image } = item;
-          const xPoint = image?.[0]?.focalPoint?.[0] * 100 + "%";
-          const yPoint = image?.[0]?.focalPoint?.[1] * 100 + "%";
+          const { title, subtitle, pageLink, campusAccordionImage } = item;
+          const xPoint = campusAccordionImage?.[0]?.focalPoint?.[0] * 100 + "%";
+          const yPoint = campusAccordionImage?.[0]?.focalPoint?.[1] * 100 + "%";
 
           return (
             <AccordionItem
@@ -42,19 +42,21 @@ const ImageAccordion = ({ accordionData, navigation }) => {
               onMouseOver={() => handleMouseOver(index)}
               onClick={() => handleItemClick(pageLink?.[0]?.uri ?? "")}
             >
-              <AccordionImage
-                css={{
-                  transform: `scale(${activeIndex === index ? "1.1" : "1"})`,
-                }}
-              >
-                <Image
-                  src={image?.[0]?.url ?? ""}
-                  alt={title ?? ""}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition={`${xPoint} ${yPoint}`}
-                />
-              </AccordionImage>
+              {campusAccordionImage?.[0]?.url && (
+                <AccordionImage
+                  css={{
+                    transform: `scale(${activeIndex === index ? "1.15" : "1"})`,
+                  }}
+                >
+                  <Image
+                    src={campusAccordionImage?.[0]?.url}
+                    alt={title ?? ""}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition={`${xPoint} ${yPoint}`}
+                  />
+                </AccordionImage>
+              )}
 
               <AccordionContent>
                 {title && (

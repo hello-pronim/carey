@@ -29,13 +29,15 @@ const AccordionSlide = ({ accordion }) => {
             opacity: playing ? 0 : 1,
           }}
         >
-          <Image
-            src={lifeHeroImage?.[0]?.url ?? ""}
-            alt={title}
-            layout="fill"
-            objectFit="cover"
-            objectPosition={`${xPoint} ${yPoint}`}
-          />
+          {lifeHeroImage?.[0]?.url && (
+            <Image
+              src={lifeHeroImage?.[0]?.url}
+              alt={title}
+              layout="fill"
+              objectFit="cover"
+              objectPosition={`${xPoint} ${yPoint}`}
+            />
+          )}
         </SlideImage>
 
         <VideoPlayCTA
