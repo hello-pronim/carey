@@ -61,6 +61,7 @@ const ImageAccordion = ({ accordionData, navigation }) => {
               <AccordionContent>
                 {title && (
                   <Text
+                    as="h3"
                     variant="Heading-Large"
                     css={{
                       color: "$white",
@@ -71,6 +72,7 @@ const ImageAccordion = ({ accordionData, navigation }) => {
                 )}
                 {subtitle && (
                   <Text
+                    variant="Body-Regular"
                     css={{
                       color: "$white",
                       fontWeight: "400",

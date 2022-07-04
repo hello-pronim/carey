@@ -1,5 +1,6 @@
-import { styled } from "@styles/stitches";
 import { Swiper } from "swiper/react";
+import { styled } from "@styles/stitches";
+import { Text } from "@components/common";
 
 const CustomSwiper = styled(Swiper, {
   "&&&": {
@@ -19,14 +20,14 @@ const CustomSwiper = styled(Swiper, {
       },
       "&.swiper-slide-active": {
         "@min768": {
-          width: "56vw !important",
+          width: "54vw !important",
         },
         "@min1200": {
-          width: "54vw !important",
+          width: "52vw !important",
           height: "600px",
         },
         "@min1440": {
-          width: "52vw !important",
+          width: "50vw !important",
           height: "720px",
         },
       },
@@ -47,7 +48,7 @@ const SlideContainer = styled("div", {
     height: "100%",
     background:
       "linear-gradient(0deg, rgba(5, 27, 63, 0.3), rgba(5, 27, 63, 0.3))",
-    zIndex: 1,
+    zIndex: 2,
   },
 });
 
@@ -70,15 +71,40 @@ const SlideVideo = styled("div", {
   },
 });
 
+const SlideContent = styled("div", {
+  padding: "24px",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  zIndex: 2,
+  transition: "visibility 0s linear 0.5s, opacity 0.5s",
+  "@min1024": {
+    padding: "80px",
+  },
+  [`& ${Text}`]: {
+    zIndex: 3,
+    color: "$white",
+  },
+});
+
 const ModalVideoWrapper = styled("div", {
   gridColumn: "2 / span 10",
   gridRow: 1,
 });
 
+const SliderProgress = styled("div", {
+  marginTop: "32px",
+  "@min1024": {
+    marginTop: "48px",
+  },
+});
+
 export {
   CustomSwiper,
+  SlideContent,
   SlideContainer,
   SlideImage,
   SlideVideo,
   ModalVideoWrapper,
+  SliderProgress,
 };

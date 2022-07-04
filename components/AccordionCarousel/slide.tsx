@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Player from "react-player";
-import { VideoPlayCTA, Modal, Video } from "@components/common";
+import { VideoPlayCTA, Modal, Video, Text } from "@components/common";
+import { useWindowSize } from "@hooks/useWindowSize";
 import {
+  SlideContent,
   SlideContainer,
   SlideImage,
   SlideVideo,
@@ -10,7 +12,8 @@ import {
 } from "./styles";
 
 const AccordionSlide = ({ accordion }) => {
-  const { title, lifeHeroImage } = accordion;
+  const { width } = useWindowSize();
+  const { title, peopleTitle, lifeHeroImage } = accordion;
   const xPoint = lifeHeroImage?.[0]?.focalPoint?.[0] * 100 + "%";
   const yPoint = lifeHeroImage?.[0]?.focalPoint?.[1] * 100 + "%";
   const [playing, setPlaying] = useState<boolean>(false);
@@ -23,6 +26,20 @@ const AccordionSlide = ({ accordion }) => {
   return (
     <>
       <SlideContainer onMouseEnter={togglePlay} onMouseLeave={togglePlay}>
+        <SlideContent
+          css={{
+            visibility: playing ? "hidden" : "visible",
+            opacity: playing ? 0 : 1,
+          }}
+        >
+          <Text as="h3" variant="Heading-Small">
+            {title}
+          </Text>
+          <Text as="p" variant="Body-Regular">
+            {peopleTitle}
+          </Text>
+        </SlideContent>
+
         <SlideImage
           css={{
             visibility: playing ? "hidden" : "visible",
@@ -42,7 +59,7 @@ const AccordionSlide = ({ accordion }) => {
 
         <VideoPlayCTA
           onClick={() => setModalActive(!modalActive)}
-          label={`${title}'s Carey Story`}
+          label={width > 767 ? `${title}'s Carey Story` : `${title}'s Story`}
         />
 
         <SlideVideo>
