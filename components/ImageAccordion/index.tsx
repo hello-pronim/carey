@@ -42,19 +42,21 @@ const ImageAccordion = ({ accordionData, navigation }) => {
               onMouseOver={() => handleMouseOver(index)}
               onClick={() => handleItemClick(pageLink?.[0]?.uri ?? "")}
             >
-              <AccordionImage
-                css={{
-                  transform: `scale(${activeIndex === index ? "1.1" : "1"})`,
-                }}
-              >
-                <Image
-                  src={campusAccordionImage?.[0]?.url ?? ""}
-                  alt={title ?? ""}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition={`${xPoint} ${yPoint}`}
-                />
-              </AccordionImage>
+              {campusAccordionImage?.[0]?.url && (
+                <AccordionImage
+                  css={{
+                    transform: `scale(${activeIndex === index ? "1.15" : "1"})`,
+                  }}
+                >
+                  <Image
+                    src={campusAccordionImage?.[0]?.url}
+                    alt={title ?? ""}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition={`${xPoint} ${yPoint}`}
+                  />
+                </AccordionImage>
+              )}
 
               <AccordionContent>
                 {title && (
