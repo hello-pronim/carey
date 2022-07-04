@@ -1,5 +1,4 @@
 import { styled } from "@styles/stitches";
-import ArrowRight from "@components/common/icons/arrowRight";
 
 const CarouselScrollbarWrapper = styled("div", {
   display: "grid",
@@ -24,7 +23,7 @@ const ArrowsContainer = styled("div", {
   display: "flex",
   alignItems: "center",
   gap: "18px",
-  [`& ${ArrowRight}`]: {
+  "& svg": {
     cursor: "pointer",
   },
 });
