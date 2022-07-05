@@ -10,3 +10,4 @@ export { default as PreFooter } from "./preFooter/preFooter";
 export { default as Modal } from "./modal/modal";
 export { default as Video } from "./videoPlayer/videoPlayer";
 export { default as Accordians } from "./accordians";
+export { default as VideoPlayCTA } from "./videoPlayCTA";

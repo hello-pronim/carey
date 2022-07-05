@@ -1,67 +1,49 @@
 import { Image } from "@components/common";
+import InvokeElement from "@utils/invokeElement";
+import { v4 as uuid } from "uuid";
+import { parseDocument } from "htmlparser2";
+import { Container as OuterContainer } from "@components/common";
 import {
-  ActionItem,
-  ActionsWrapper,
   Container,
   Content,
-  Heading,
-  HeadingText,
   ImageWrapper,
-  PrimaryText,
-  SecondaryText,
   TextWidgetWrapper,
   Wrapper,
 } from "./styles";
+import RichText from "@utils/richTextRenderer";
 
-const TextBlock = ({
-  title,
-  primaryText,
-  secondaryText,
-  image,
-  action,
-  textPosition = "left",
-}: TextBlockPropsType) => {
+const TextBlock = (props) => {
+  const parsedHTML = parseDocument(props.bodyText);
   return (
-    <Wrapper position={textPosition}>
-      <TextWidgetWrapper>
-        <Container>
-          <Content>
-            <Heading>
-              <HeadingText>{title}</HeadingText>
-            </Heading>
-            <PrimaryText>{primaryText}</PrimaryText>
-            <SecondaryText>{secondaryText}</SecondaryText>
-          </Content>
-          <ActionsWrapper>
-            <ActionItem>{action}</ActionItem>
-          </ActionsWrapper>
-        </Container>
-      </TextWidgetWrapper>
-      <ImageWrapper>
-        <Image
-          alt="PreFooter Image"
-          src={image}
-          width={900}
-          height={837}
-          placeholder="empty"
-          layout="responsive"
-          fallback="random thing"
-          objectFit="cover"
-          priority
-          unoptimized
-        />
-      </ImageWrapper>
-    </Wrapper>
+    <OuterContainer type="unbound">
+      <Wrapper layout={props.layout}>
+        <TextWidgetWrapper>
+          <Container>
+            <Content>
+              {parsedHTML.children.map((component: any) => (
+                <InvokeElement
+                  key={uuid()}
+                  el={component}
+                  type={component?.name}
+                  map={RichText}
+                />
+              ))}
+            </Content>
+          </Container>
+        </TextWidgetWrapper>
+        <ImageWrapper>
+          <Image
+            alt="PreFooter Image"
+            src={props.image?.[0].url}
+            width={props.image?.[0].width}
+            height={props.image?.[0].height}
+            layout="responsive"
+            objectFit="cover"
+          />
+        </ImageWrapper>
+      </Wrapper>
+    </OuterContainer>
   );
-};
-
-type TextBlockPropsType = {
-  title: string;
-  primaryText: string;
-  secondaryText?: string;
-  image?: any;
-  action?: React.ReactNode;
-  textPosition?: "left" | "right";
 };
 
 export default TextBlock;

@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@components/common";
-
 import {
   ActionWrapper,
   BottomWrapper,
@@ -27,7 +26,7 @@ const DefaultCard = ({
     <Card size={size} css={{ backgroundImage: `url(${backgroundImage})` }}>
       <TopWrapper size={size}>
         <HeadingWrapper size={size}>
-          <Heading>{title}</Heading>
+          <Heading size={size}>{title}</Heading>
           <DescriptionWrapper>
             <Description size={size}>{description}</Description>
           </DescriptionWrapper>

@@ -1,10 +1,8 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
 import { useMedia, useWindowSize } from "react-use";
-import { Modal, Video } from "@components/common";
-import { Text } from "@components/common";
+import { Container, Modal, Video, VideoPlayCTA } from "@components/common";
 import Image from "next/image";
-import Play from "@components/common/icons/play";
 import Swiper from "@components/common/swiper";
 
 const ImageLeft = styled("div", {
@@ -13,6 +11,12 @@ const ImageLeft = styled("div", {
   "@min1024": {
     gridColumn: "2 / span 5",
     transform: "translateY(50%)",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 6",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 5",
   },
   "> span": {
     height: "100% !important",
@@ -28,9 +32,12 @@ const ImageRight = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   overflow: "hidden",
+  "> span": {
+    height: "100% !important",
+    span: { height: "100% !important" },
+  },
   "@min1024": {
     gridColumn: "7 / span 5",
-    alignSelf: "end",
   },
 });
 
@@ -49,41 +56,7 @@ const ImageRightLower = styled("div", {
   "@min1024": {
     gridColumn: "7 / span 5",
     alignSelf: "end",
-    // marginTop: 40,
     paddingRight: "5em",
-  },
-});
-
-const VideoCTA = styled("div", {
-  position: "absolute",
-  display: "flex",
-  alignItems: "center",
-  bottom: 0,
-  left: 0,
-  bg: "$navy",
-  p: 18,
-  zIndex: 10,
-  columnGap: 24,
-  transition: "background ease 200ms",
-  cursor: "pointer",
-  "@media (hover: hover)": {
-    "&:hover": {
-      bg: "$crestBlue",
-    },
-  },
-  [`${Text}`]: {
-    position: "relative",
-    top: "0.1em",
-    color: "$white",
-  },
-  "@min375": {
-    p: 20,
-  },
-  "@min768": {
-    p: 36,
-  },
-  "@min1024": {
-    p: 44,
   },
 });
 
@@ -122,7 +95,14 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
   }, [isMobile]);
 
   return (
-    <>
+    <Container
+      innerCSS={{
+        rowGap: 16,
+        "@min1440": { rowGap: 24 },
+        "@min1660": { rowGap: 36 },
+        "@min1920": { rowGap: 40 },
+      }}
+    >
       {__typename === "generalComponents_inlineGallery3upVideo_BlockType" && (
         <Modal active={modalActive} setModalActive={setModalActive}>
           <VideoWrapper>
@@ -137,10 +117,10 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         <ImageLeft ref={Primary}>
           {__typename ===
             "generalComponents_inlineGallery3upVideo_BlockType" && (
-            <VideoCTA onClick={() => setModalActive(!modalActive)}>
-              <Play width={33.33} />
-              <Text variant="Heading-xSmall">Watch our latest video</Text>
-            </VideoCTA>
+            <VideoPlayCTA
+              onClick={() => setModalActive(!modalActive)}
+              label={"Watch our latest video"}
+            />
           )}
           <Image
             alt={props.captionImage1}
@@ -153,7 +133,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         </ImageLeft>
         <ImageRight
           css={{
-            maxHeight: primaryDimensions.height,
+            maxHeight: isMobile && primaryDimensions.height,
           }}
         >
           <Image
@@ -167,7 +147,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         </ImageRight>
         <ImageRightLower
           css={{
-            maxHeight: primaryDimensions.height,
+            maxHeight: isMobile && primaryDimensions.height,
           }}
         >
           <Image
@@ -180,7 +160,7 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
           />
         </ImageRightLower>
       </ConditionalWrapper>
-    </>
+    </Container>
   );
 };
 

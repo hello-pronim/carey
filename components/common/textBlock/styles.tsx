@@ -55,9 +55,10 @@ const ActionsWrapper = styled("div", {
 const Content = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: 24,
-  "@min1920": {
-    gap: 40,
+  a: {
+    "&:last-child": {
+      marginBottom: 0,
+    },
   },
 });
 
@@ -94,6 +95,9 @@ const ImageWrapper = styled("div", {
   position: "relative",
   display: "block",
   flex: 1,
+  span: {
+    height: "100% !important",
+  },
 });
 
 const PrimaryText = styled("div", {
@@ -119,18 +123,19 @@ const TextWidgetWrapper = styled("div", {
 });
 
 const Wrapper = styled("div", {
+  boxSizing: "border-box",
   bg: "$white",
   display: "flex",
   flexDirection: "column",
   width: "100%",
   variants: {
-    position: {
-      left: {
+    layout: {
+      rightImageLeftText: {
         "@min768": {
           flexDirection: "row",
         },
       },
-      right: {
+      leftImageRightText: {
         "@min768": {
           flexDirection: "row-reverse",
         },

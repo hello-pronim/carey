@@ -1,10 +1,29 @@
 import React, { useState } from "react";
 import { styled, theme } from "@styles/stitches";
 import { motion } from "framer-motion";
-import { Text, Button } from "@components/common";
+import { Text, Button, Container } from "@components/common";
 import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
+import { parseDocument } from "htmlparser2";
+import { v4 as uuid } from "uuid";
+import InvokeElement from "@utils/invokeElement";
+import RichText from "@utils/richTextRenderer";
 
+const AccordionWrapper = styled("div", {
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1024": {
+    gridColumn: "2 / span 10",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 6",
+  },
+});
 const AccordionItem = styled("div", {
   width: "100%",
 });
@@ -138,107 +157,123 @@ const Accordions = (props) => {
     return false;
   };
 
+  const ParseHTML = ({ html }) => {
+    const parsedHTML = parseDocument(html);
+    return (
+      <>
+        {parsedHTML.children.map((component: any) => (
+          <InvokeElement
+            key={uuid()}
+            el={component}
+            type={component?.name}
+            map={RichText}
+          />
+        ))}
+      </>
+    );
+  };
+
   return (
-    <div style={{ gridColumn: "2 / span 6" }}>
-      {accordions?.length
-        ? accordions?.map((item, index) => {
-            return (
-              <AccordionItem key={index}>
-                <AccordionTitle onClick={() => changeActiveAccordion(index)}>
-                  <TitleWrapper>
-                    {props.accordionSetType === "numbered" && (
-                      <Number>
-                        <Text variant="Body-Large">{index + 1}</Text>
-                      </Number>
+    <Container>
+      <AccordionWrapper>
+        {accordions?.length
+          ? accordions?.map((item, index) => {
+              return (
+                <AccordionItem key={index}>
+                  <AccordionTitle onClick={() => changeActiveAccordion(index)}>
+                    <TitleWrapper>
+                      {props.accordionSetType === "numbered" && (
+                        <Number>
+                          <Text variant="Body-Large">{index + 1}</Text>
+                        </Number>
+                      )}
+                      {props.accordionSetType === "ticked" && <Dot />}
+                      <Text as="h2" variant="Heading-Small">
+                        {getAttr(index, "headline", "Heading")}
+                      </Text>
+                    </TitleWrapper>
+                    {props.accordionSetType === "plain" ? (
+                      <SVGWrapper>
+                        {getAttr(index, "isOpened", "Heading") ? (
+                          <OperatorIcon type="minus" />
+                        ) : (
+                          <OperatorIcon type="plus" />
+                        )}
+                      </SVGWrapper>
+                    ) : (
+                      <Div>
+                        {getAttr(index, "isOpened", "Heading") ? (
+                          <OperatorIcon type="minus" />
+                        ) : (
+                          <OperatorIcon type="plus" />
+                        )}
+                      </Div>
                     )}
-                    {props.accordionSetType === "ticked" && <Dot />}
-                    <Text as="h2" variant="Heading-Small">
-                      {getAttr(index, "headline", "Heading")}
-                    </Text>
-                  </TitleWrapper>
-                  {props.accordionSetType === "plain" ? (
-                    <SVGWrapper>
-                      {getAttr(index, "isOpened", "Heading") ? (
-                        <OperatorIcon type="minus" />
-                      ) : (
-                        <OperatorIcon type="plus" />
-                      )}
-                    </SVGWrapper>
-                  ) : (
-                    <Div>
-                      {getAttr(index, "isOpened", "Heading") ? (
-                        <OperatorIcon type="minus" />
-                      ) : (
-                        <OperatorIcon type="plus" />
-                      )}
-                    </Div>
-                  )}
-                </AccordionTitle>
-                <AnimatePresence>
-                  {getAttr(index, "isOpened", "Heading") && (
-                    <ContentWrapper
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: { opacity: 1, height: "auto" },
-                        collapsed: { opacity: 0, height: 0 },
-                      }}
-                      transition={{
-                        duration: 0.5,
-                        ease: [0.04, 0.62, 0.23, 0.98],
-                      }}
-                    >
-                      <AccordionContent>
-                        {getAttr(index, "contentBlock", "content") && (
-                          <Text
-                            dangerouslySetInnerHTML={{
-                              __html: getAttr(index, "contentBlock", "content"),
-                            }}
-                            variant={"Body-Regular"}
-                          />
-                        )}
-                        {getAttr(index, "breakOutBlock", "breakOut") && (
-                          <ContentSecondBlock>
-                            <Text
-                              dangerouslySetInnerHTML={{
-                                __html: getAttr(
-                                  index,
-                                  "contentBlock",
-                                  "content"
-                                ),
-                              }}
-                              variant={"Body-Regular"}
+                  </AccordionTitle>
+                  <AnimatePresence>
+                    {getAttr(index, "isOpened", "Heading") && (
+                      <ContentWrapper
+                        initial="collapsed"
+                        animate="open"
+                        exit="collapsed"
+                        variants={{
+                          open: { opacity: 1, height: "auto" },
+                          collapsed: { opacity: 0, height: 0 },
+                        }}
+                        transition={{
+                          duration: 0.5,
+                          ease: [0.04, 0.62, 0.23, 0.98],
+                        }}
+                      >
+                        <AccordionContent>
+                          {getAttr(index, "bodyText", "content") && (
+                            <ParseHTML
+                              html={getAttr(index, "bodyText", "content")}
                             />
-                          </ContentSecondBlock>
-                        )}
-                        {getAttr(index, "buttonText", "button") &&
-                          (getAttr(index, "buttonEntry", "button") ||
-                            getAttr(index, "buttonUrl", "button")) && (
-                            <ButtonWrapper>
-                              <Button
-                                arrow={getAttr(index, "arrowed", "button")}
-                                label={getAttr(index, "buttonText", "button")}
-                                theme={getAttr(index, "buttonTheme", "button")}
-                                type={getAttr(index, "buttonType", "button")}
-                                scale={getAttr(index, "buttonSize", "button")}
-                                href={
-                                  getAttr(index, "buttonEntry", "button")?.[0]
-                                    ?.uri ||
-                                  getAttr(index, "buttonUrl", "button")
-                                }
-                              />
-                            </ButtonWrapper>
                           )}
-                      </AccordionContent>
-                    </ContentWrapper>
-                  )}
-                </AnimatePresence>
-              </AccordionItem>
-            );
-          })
-        : ""}
-    </div>
+                          {getAttr(index, "breakOutBlock", "breakOut") && (
+                            <ContentSecondBlock>
+                              <ParseHTML
+                                html={getAttr(
+                                  index,
+                                  "breakOutBlock",
+                                  "breakOut"
+                                )}
+                              />
+                            </ContentSecondBlock>
+                          )}
+                          {getAttr(index, "buttonText", "button") &&
+                            (getAttr(index, "buttonEntry", "button") ||
+                              getAttr(index, "buttonUrl", "button")) && (
+                              <ButtonWrapper>
+                                <Button
+                                  arrow={getAttr(index, "arrowed", "button")}
+                                  label={getAttr(index, "buttonText", "button")}
+                                  theme={getAttr(
+                                    index,
+                                    "buttonTheme",
+                                    "button"
+                                  )}
+                                  type={getAttr(index, "buttonType", "button")}
+                                  scale={getAttr(index, "buttonSize", "button")}
+                                  href={
+                                    getAttr(index, "buttonEntry", "button")?.[0]
+                                      ?.uri ||
+                                    getAttr(index, "buttonUrl", "button")
+                                  }
+                                />
+                              </ButtonWrapper>
+                            )}
+                        </AccordionContent>
+                      </ContentWrapper>
+                    )}
+                  </AnimatePresence>
+                </AccordionItem>
+              );
+            })
+          : ""}
+      </AccordionWrapper>
+    </Container>
   );
 };
 

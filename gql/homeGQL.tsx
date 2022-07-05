@@ -36,6 +36,21 @@ export const HomePageQuery = gql`
             }
           }
         }
+        campuses {
+          ... on campus_default_Entry {
+            title
+            subtitle
+            pageLink {
+              uri
+            }
+            campusAccordionImage {
+              url
+              width
+              height
+              focalPoint
+            }
+          }
+        }
       }
     }
   }

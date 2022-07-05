@@ -19,6 +19,10 @@ import MapView from "./components/MapView";
 import SessionTimes from "./components/SessionTimes";
 import TwoUpModule from "./components/TwoUpModule";
 import ThreeUpModule from "./components/ThreeUpModule";
+import OpenMorningsCard from "@components/common/cards/openMornings/Card";
+import TextBlock from "@components/common/textBlock";
+import OneUpImage from "./components/OneUpImage";
+import SideNavContainer from "@components/common/sideNav/sideNavContainer";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -67,14 +71,17 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("ctaButton"), CtaButton],
     [ModuleType("featureTextBlock"), FeatureTextBlock],
     [ModuleType("contentTextImage"), TextImageContent],
+    [ModuleType("contentTextFullBleedImage"), TextBlock],
     [ModuleType("mapBlock"), MapView],
     [ModuleType("threeColumnTable"), ThreeColTable],
     [ModuleType("twoColumnTable"), TwoColTable],
     [ModuleType("oneColumnTable"), OneColTable],
     [ModuleType("sessionTimeTable"), SessionTimes],
+    [ModuleType("images1up"), OneUpImage],
     [ModuleType("images2up"), TwoUpModule],
     [ModuleType("images2upVideo"), TwoUpModule],
     [ModuleType("inlineGallery3up"), ThreeUpModule],
+    [ModuleType("featuredPanel"), OpenMorningsCard],
   ]);
   // Ignoring ts error on map for now as I couldn't find
   // an instance where the pageUri was ever not in an array
@@ -100,22 +107,23 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
           applyNow={applyNow}
         />
       )}
-      <Container
-        outerCSS={{ position: "absolute", zIndex: 2, pointerEvents: "none" }}
-      >
+      <SideNavContainer>
         <SideNav
           minHeight={minHeight}
           setMinHeight={setMinHeight}
           activeSlug={slug}
           navigation={navigation}
         />
-      </Container>
+      </SideNavContainer>
       <Container>
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />
         </BreadCrumbWrapper>
       </Container>
-      <Container innerCSS={{ rowGap: 56, py: 56, minHeight: minHeight }}>
+      <Container
+        type="unbound-flex"
+        innerCSS={{ rowGap: 56, py: 56, minHeight: minHeight }}
+      >
         {pageData?.map((module: any) => (
           <InvokeElement
             key={uuid()}

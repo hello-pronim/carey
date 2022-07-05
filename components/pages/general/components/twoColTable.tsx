@@ -1,11 +1,23 @@
 import React, { Fragment } from "react";
 import { styled } from "@styles/stitches";
-import { Text } from "@components/common";
+import { Container, Text } from "@components/common";
 import { v4 as uuid } from "uuid";
 
 const Wrapper = styled("div", {
   display: "flex",
-  gridColumn: "2 / span 6",
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1024": {
+    gridColumn: "2 / span 10",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 6",
+  },
   flexDirection: "column",
   bg: "$white",
   boxSizing: "border-box",
@@ -43,28 +55,30 @@ const Item = styled("div", {});
 
 const TwoColTable = ({ twoColumnTable, ...props }) => {
   return (
-    <Wrapper>
-      <Group>
-        {twoColumnTable.map(({ groupLabel, groupRows }) => {
-          return (
-            <Fragment key={uuid()}>
-              <GroupTitleBar>
-                <Text>{groupLabel}</Text>
-              </GroupTitleBar>
-              <Items>
-                {groupRows.map(({ groupItem }) => {
-                  return (
-                    <Item key={uuid()}>
-                      <Text>{groupItem}</Text>
-                    </Item>
-                  );
-                })}
-              </Items>
-            </Fragment>
-          );
-        })}
-      </Group>
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <Group>
+          {twoColumnTable.map(({ groupLabel, groupRows }) => {
+            return (
+              <Fragment key={uuid()}>
+                <GroupTitleBar>
+                  <Text>{groupLabel}</Text>
+                </GroupTitleBar>
+                <Items>
+                  {groupRows.map(({ groupItem }) => {
+                    return (
+                      <Item key={uuid()}>
+                        <Text>{groupItem}</Text>
+                      </Item>
+                    );
+                  })}
+                </Items>
+              </Fragment>
+            );
+          })}
+        </Group>
+      </Wrapper>
+    </Container>
   );
 };
 

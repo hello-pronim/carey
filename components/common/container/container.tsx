@@ -25,7 +25,7 @@ const Grid = styled("div", {
   },
   "@min768": {
     columnGap: "16px",
-    gridTemplateColumns: "repeat(6, 1fr)",
+    gridTemplateColumns: "repeat(8, 1fr)",
     mx: "32px",
   },
   "@min1024": {
@@ -71,6 +71,12 @@ const Unbound = styled("div", {
   width: "100%",
 });
 
+const UnboundFlex = styled("div", {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column",
+});
+
 export const container = {
   outer: Wrapper,
   grid: Grid,
@@ -87,6 +93,7 @@ const Container = ({
     if (type === "flex") return Flex;
     if (type === "grid") return Grid;
     if (type === "unbound") return Unbound;
+    if (type === "unbound-flex") return UnboundFlex;
     return Grid;
   }, [type]);
 
@@ -198,7 +205,7 @@ This results in the card starting at column 2, and ending on column 4.
 */
 
 type ContainerTypes = {
-  type?: "grid" | "flex" | "unbound";
+  type?: "grid" | "flex" | "unbound" | "unbound-flex";
   outerCSS?: Stitches.CSS;
   innerCSS?: Stitches.CSS;
   children: React.ReactNode;
