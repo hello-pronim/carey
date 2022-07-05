@@ -56,6 +56,8 @@ export const GeneralPageQuery = gql`
             layout
             image {
               url
+              height
+              width
             }
             imageAspect
             bodyText
