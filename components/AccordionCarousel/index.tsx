@@ -9,9 +9,8 @@ import CarouselScrollbar from "@components/CarouselScrollbar";
 
 const AccordionCarousel = ({ accordionData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  if (!accordionData) return <></>;
 
-  console.log(accordionData);
+  if (!accordionData) return <></>;
 
   return (
     <>
@@ -25,7 +24,6 @@ const AccordionCarousel = ({ accordionData }) => {
         loopedSlides={accordionData.length}
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.realIndex);
-          // console.log(swiper);
         }}
         breakpoints={{
           768: {
@@ -54,22 +52,3 @@ const AccordionCarousel = ({ accordionData }) => {
 };
 
 export default AccordionCarousel;
-
-// const swiperRef = React.useRef(null);
-
-// return (
-//   <>
-//     <div id="previousButton" onClick={() => swiperRef.current.swiper.slidePrev()} />
-//     <div id="nextButton" onClick={() => swiperRef.current.swiper.slideNext()} />
-//     <Swiper
-//       ref={swiperRef}
-//     >
-//       <SwiperSlide>
-//         Slide 1
-//       </SwiperSlide>
-//       <SwiperSlide>
-//         Slide 2
-//       </SwiperSlide>
-//     </Swiper>
-//   </>
-// )

@@ -58,6 +58,11 @@ const AccordionSlide = ({ accordion }) => {
         <VideoPlayCTA
           onClick={() => setModalActive(!modalActive)}
           label={lifeVideoButtonLabel}
+          css={{
+            visibility: playing ? "visible" : "hidden",
+            opacity: playing ? 1 : 0,
+            transition: "all 0.3s ease-in",
+          }}
         />
 
         <SlideVideo>
