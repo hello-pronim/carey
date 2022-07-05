@@ -60,3 +60,32 @@ pipelines:
                 APPLICATION_NAME: $AWS_EB_APP_NAME
                 S3_BUCKET: $S3_BUCKET
                 ZIP_FILE: "application.zip"
+    preprod:
+      - step:
+          name: "Install depencies and build"
+          script:
+            - apt-get update
+            - apt-get install -y zip
+            - export NEXT_PUBLIC_API_URL=$PREPROD_NEXT_PUBLIC_API_URL
+            - export NEXT_PAGE_REVALIDATE=$NEXT_PAGE_REVALIDATE
+            - export BITBUCKET_COMMIT=$BITBUCKET_COMMIT
+            - export NODE_ENV=$STG_NODE_ENV
+            - npm install
+            - npm run build
+            - zip -r application.zip . -x bitbucket-pipelines.yml -x \*.git\* -x \*node_modules\* -x \components\* -x \contexts\* -x \gql\* -x \pages\* -x \styles\* -x \utils\* -x \hoc\*
+          artifacts:
+            - application.zip
+
+      - step:
+          name: "Deployment to EBS"
+          image: atlassian/pipelines-awscli
+          script:
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:0.5.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                ENVIRONMENT_NAME: $PREPROD_AWS_EB_ENV_NAME
+                APPLICATION_NAME: $AWS_EB_APP_NAME
+                S3_BUCKET: $S3_BUCKET
+                ZIP_FILE: "application.zip"
