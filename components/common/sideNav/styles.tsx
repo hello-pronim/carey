@@ -3,6 +3,7 @@ import Chevron from "@components/common/icons/chevron";
 import { styled, keyframes } from "@styles/stitches";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { Text } from "@components/common";
+import { motion } from "framer-motion";
 
 const slideDown = keyframes({
   from: { height: 0 },
@@ -14,7 +15,9 @@ const slideUp = keyframes({
   to: { height: 0 },
 });
 
-const StyledAccordion = styled(AccordionPrimitive.Root, {});
+const StyledAccordion = styled(AccordionPrimitive.Root, {
+  "@max1440": { mt: 16 },
+});
 
 const StyledItem = styled(AccordionPrimitive.Item, {
   overflow: "hidden",
@@ -30,6 +33,15 @@ const SingleItem = styled("div", {
   backgroundColor: "transparent",
   py: 12,
   px: 24,
+  "@min768": {
+    px: "32px",
+  },
+  "@min1024": {
+    px: "40px",
+  },
+  "@min1440": {
+    px: 24,
+  },
   flex: 1,
   display: "flex",
   alignItems: "center",
@@ -51,6 +63,15 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
   backgroundColor: "transparent",
   py: 12,
   px: 24,
+  "@min768": {
+    px: "32px",
+  },
+  "@min1024": {
+    px: "40px",
+  },
+  "@min1440": {
+    px: 24,
+  },
   flex: 1,
   display: "flex",
   alignItems: "center",
@@ -109,7 +130,16 @@ AccordionContent.displayName = "Accordion Content";
 const Wrapper = styled("div", {
   pointerEvents: "auto",
   pb: 16,
-  gridColumn: "10 / span 3",
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 8",
+  },
+  "@min1024": {
+    gridColumn: "1 / span 12",
+  },
+  "@min1440": {
+    gridColumn: "10 / span 3",
+  },
   gridRow: 1,
   bg: "$white",
   height: "max-content",
@@ -121,6 +151,36 @@ const NavHeader = styled("div", {
   pb: 46,
   px: 24,
   bg: "$white",
+  "@max1440": {
+    position: "relative",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    span: {
+      position: "relative",
+      top: "0.1em",
+    },
+  },
+  variants: {
+    isMobile: {
+      true: {
+        cursor: "pointer",
+        pt: 16,
+        pb: "unset",
+        "@min768": {
+          px: "32px",
+        },
+        "@min1024": {
+          px: "40px",
+        },
+      },
+    },
+  },
+});
+
+const AccordionWrapper = styled(motion.div, {
+  overflow: "hidden",
+  bg: "$white",
 });
 
 type anyType = {
@@ -130,6 +190,7 @@ type anyType = {
 export {
   Wrapper,
   NavHeader,
+  AccordionWrapper,
   Accordion,
   AccordionItem,
   AccordionTrigger,

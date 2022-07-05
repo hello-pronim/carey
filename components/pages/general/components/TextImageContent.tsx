@@ -11,19 +11,81 @@ const ContentWrapper = styled("div", {
   display: "flex",
   width: "100%",
   height: "100%",
-  paddingTop: "100px",
   flexDirection: "column",
-  gridRow: 1,
+  justifyContent: "center",
+  boxSizing: "border-box",
+  pt: 32,
+  pb: 0,
+  "@min1024": {
+    py: 16,
+  },
+  a: {
+    mt: 16,
+    mb: 32,
+    "&:last-child": {
+      mb: 0,
+    },
+  },
   variants: {
+    orientation: {
+      portrait: {},
+      landscape: {},
+    },
     layout: {
       leftImageRightText: {
-        gridColumn: "7 / span 4",
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridColumn: "8 / span 4",
+        },
+        "@min1440": {
+          gridColumn: "7 / span 4",
+        },
+        "@min1920": {
+          gridColumn: "8 / span 4",
+        },
       },
       rightImageLeftText: {
-        gridColumn: "2 / span 4",
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridRow: 1,
+          gridColumn: "2 / span 4",
+        },
+        "@min1440": {
+          gridColumn: "1 / span 4",
+        },
+        "@min1920": {
+          gridColumn: "2 / span 4",
+        },
       },
     },
   },
+  compoundVariants: [
+    {
+      orientation: "portrait",
+      layout: "leftImageRightText",
+      css: {
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridColumn: "8 / span 4",
+        },
+        "@min1440": {
+          gridColumn: "6 / span 4",
+        },
+        "@min1920": {
+          gridColumn: "7 / span 4",
+        },
+      },
+    },
+  ],
   defaultVariants: {
     layout: "leftImageRightText",
   },
@@ -32,34 +94,109 @@ const ContentWrapper = styled("div", {
 const ImageWrapper = styled("div", {
   gridRow: 1,
   variants: {
+    orientation: {
+      portrait: {},
+      landscape: {},
+    },
     layout: {
-      leftImageRightText: {
-        gridColumn: "2 / span 4",
-      },
-      rightImageLeftText: {
-        gridColumn: "7 / span 4",
-      },
+      leftImageRightText: {},
+      rightImageLeftText: {},
     },
   },
+  compoundVariants: [
+    {
+      orientation: "portrait",
+      layout: "leftImageRightText",
+      css: {
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridColumn: "2 / span 5",
+        },
+        "@min1440": {
+          gridColumn: "1 / span 4",
+        },
+        "@min1920": {
+          gridColumn: "2 / span 4",
+        },
+      },
+    },
+    {
+      orientation: "portrait",
+      layout: "rightImageLeftText",
+      css: {
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridColumn: "7 / span 5",
+        },
+        "@min1440": {
+          gridColumn: "6 / span 5",
+        },
+        "@min1920": {
+          gridColumn: "7 / span 4",
+        },
+      },
+    },
+    {
+      orientation: "landscape",
+      layout: "leftImageRightText",
+      css: {
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridColumn: "2 / span 5",
+        },
+        "@min1440": {
+          gridColumn: "1 / span 5",
+        },
+        "@min1920": {
+          gridColumn: "2 / span 5",
+        },
+      },
+    },
+    {
+      orientation: "landscape",
+      layout: "rightImageLeftText",
+      css: {
+        gridColumn: "1 / span 2",
+        "@min768": {
+          gridColumn: "1 / span 7",
+        },
+        "@min1024": {
+          gridColumn: "7 / span 5",
+        },
+        "@min1440": {
+          gridColumn: "6 / span 6",
+        },
+        "@min1920": {
+          gridColumn: "7 / span 5",
+        },
+      },
+    },
+  ],
   defaultVariants: {
     layout: "leftImageRightText",
+    orientation: "landscape",
   },
   span: {
     height: "100% !important",
-    width: "100% !important",
-    span: {
-      height: "100% !important",
-      width: "100% !important",
-    },
   },
 });
 
 export default function TextImageContent(props) {
   // Converts HTML string into digestible object.
   const parsedHTML = parseDocument(props.bodyText);
+
   return (
     <Container>
-      <ContentWrapper layout={props.layout}>
+      <ContentWrapper layout={props.layout} orientation={props.imageAspect}>
         {parsedHTML.children.map((component: any) => (
           <InvokeElement
             key={uuid()}
@@ -69,14 +206,14 @@ export default function TextImageContent(props) {
           />
         ))}
       </ContentWrapper>
-      <ImageWrapper layout={props.layout}>
+      <ImageWrapper layout={props.layout} orientation={props.imageAspect}>
         <Image
-          alt="principal"
-          width={500}
-          height={500}
+          alt=""
+          height={props?.image?.[0].height}
+          width={props?.image?.[0].width}
           layout="responsive"
-          objectFit="cover"
           priority
+          objectFit="cover"
           src={props?.image?.[0].url}
         />
       </ImageWrapper>

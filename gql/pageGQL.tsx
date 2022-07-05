@@ -56,9 +56,20 @@ export const GeneralPageQuery = gql`
             layout
             image {
               url
+              height
+              width
             }
             imageAspect
             bodyText
+          }
+          ... on generalComponents_contentTextFullBleedImage_BlockType {
+            layout
+            bodyText
+            image {
+              url
+              height
+              width
+            }
           }
           ... on generalComponents_featuredPanel_BlockType {
             panelVariant

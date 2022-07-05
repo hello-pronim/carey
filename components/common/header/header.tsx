@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useMedia, useClickAway, useWindowScroll } from "react-use";
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 import { AnimatePresence } from "framer-motion";
 import { Text } from "@components/common";
 import Link from "next/link";
@@ -25,10 +30,26 @@ import {
 import Image from "next/image";
 
 const Header = ({ navigation, headerNav, headerGlobals }) => {
+  const isMobile = useMedia("(max-width: 768px)", false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const { headerRightLinks } = headerGlobals;
   const [hasStuck, setHasStuck] = useState(false);
   const header = useRef(null);
   const yPos = useWindowScroll().y;
+
+  useEffect(() => {
+    if (header.current) {
+      if (drawerOpen) {
+        disableBodyScroll(header.current);
+      } else {
+        enableBodyScroll(header.current);
+      }
+    }
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [drawerOpen]);
+
   useEffect(() => {
     if (yPos >= 30) {
       setHasStuck(true);
@@ -42,8 +63,6 @@ const Header = ({ navigation, headerNav, headerGlobals }) => {
     setDrawerOpen(false);
   });
 
-  const isMobile = useMedia("(max-width: 768px)", false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <Wrapper ref={header} stuck={hasStuck}>
       <HeaderLeft>

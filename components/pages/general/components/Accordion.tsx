@@ -4,7 +4,26 @@ import { motion } from "framer-motion";
 import { Text, Button, Container } from "@components/common";
 import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
+import { parseDocument } from "htmlparser2";
+import { v4 as uuid } from "uuid";
+import InvokeElement from "@utils/invokeElement";
+import RichText from "@utils/richTextRenderer";
 
+const AccordionWrapper = styled("div", {
+  gridColumn: "1 / span 2",
+  "@min768": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1024": {
+    gridColumn: "2 / span 10",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 7",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 6",
+  },
+});
 const AccordionItem = styled("div", {
   width: "100%",
 });
@@ -138,9 +157,25 @@ const Accordions = (props) => {
     return false;
   };
 
+  const ParseHTML = ({ html }) => {
+    const parsedHTML = parseDocument(html);
+    return (
+      <>
+        {parsedHTML.children.map((component: any) => (
+          <InvokeElement
+            key={uuid()}
+            el={component}
+            type={component?.name}
+            map={RichText}
+          />
+        ))}
+      </>
+    );
+  };
+
   return (
     <Container>
-      <div style={{ gridColumn: "2 / span 6" }}>
+      <AccordionWrapper>
         {accordions?.length
           ? accordions?.map((item, index) => {
               return (
@@ -191,29 +226,19 @@ const Accordions = (props) => {
                         }}
                       >
                         <AccordionContent>
-                          {getAttr(index, "contentBlock", "content") && (
-                            <Text
-                              dangerouslySetInnerHTML={{
-                                __html: getAttr(
-                                  index,
-                                  "contentBlock",
-                                  "content"
-                                ),
-                              }}
-                              variant={"Body-Regular"}
+                          {getAttr(index, "bodyText", "content") && (
+                            <ParseHTML
+                              html={getAttr(index, "bodyText", "content")}
                             />
                           )}
                           {getAttr(index, "breakOutBlock", "breakOut") && (
                             <ContentSecondBlock>
-                              <Text
-                                dangerouslySetInnerHTML={{
-                                  __html: getAttr(
-                                    index,
-                                    "contentBlock",
-                                    "content"
-                                  ),
-                                }}
-                                variant={"Body-Regular"}
+                              <ParseHTML
+                                html={getAttr(
+                                  index,
+                                  "breakOutBlock",
+                                  "breakOut"
+                                )}
                               />
                             </ContentSecondBlock>
                           )}
@@ -247,7 +272,7 @@ const Accordions = (props) => {
               );
             })
           : ""}
-      </div>
+      </AccordionWrapper>
     </Container>
   );
 };
