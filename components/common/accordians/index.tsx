@@ -25,7 +25,9 @@ const Accordions = ({ items }) => {
                 <span>{item.title}</span>
               </StyledTrigger>
             </StyledHeader>
-            <StyledContent dangerouslySetInnerHTML={{ __html: item.details }} />
+            <StyledContent>
+              <span dangerouslySetInnerHTML={{ __html: item.details }} />
+            </StyledContent>
           </StyledItem>
         );
       })}
