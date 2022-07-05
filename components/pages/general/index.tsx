@@ -20,6 +20,7 @@ import SessionTimes from "./components/SessionTimes";
 import TwoUpModule from "./components/TwoUpModule";
 import ThreeUpModule from "./components/ThreeUpModule";
 import OpenMorningsCard from "@components/common/cards/openMornings/Card";
+import TextBlock from "@components/common/textBlock";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -68,6 +69,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("ctaButton"), CtaButton],
     [ModuleType("featureTextBlock"), FeatureTextBlock],
     [ModuleType("contentTextImage"), TextImageContent],
+    [ModuleType("contentTextFullBleedImage"), TextBlock],
     [ModuleType("mapBlock"), MapView],
     [ModuleType("threeColumnTable"), ThreeColTable],
     [ModuleType("twoColumnTable"), TwoColTable],
