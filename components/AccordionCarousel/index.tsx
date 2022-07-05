@@ -28,6 +28,12 @@ const AccordionCarousel = ({ accordionData }) => {
         breakpoints={{
           768: {
             loopedSlides: accordionData.length,
+            slidesPerView: 2,
+            spaceBetween: 0,
+            loop: true,
+          },
+          1024: {
+            loopedSlides: accordionData.length,
             slidesPerView: 3,
             spaceBetween: 0,
             loop: true,
