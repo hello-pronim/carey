@@ -22,6 +22,7 @@ import ThreeUpModule from "./components/ThreeUpModule";
 import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 import TextBlock from "@components/common/textBlock";
 import OneUpImage from "./components/OneUpImage";
+import SideNavContainer from "@components/common/sideNav/sideNavContainer";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -106,22 +107,14 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
           applyNow={applyNow}
         />
       )}
-      <Container
-        outerCSS={{
-          display: "none",
-          "@min1440": { display: "flex" },
-          position: "absolute",
-          zIndex: 2,
-          pointerEvents: "none",
-        }}
-      >
+      <SideNavContainer>
         <SideNav
           minHeight={minHeight}
           setMinHeight={setMinHeight}
           activeSlug={slug}
           navigation={navigation}
         />
-      </Container>
+      </SideNavContainer>
       <Container>
         <BreadCrumbWrapper>
           <BreadCrumb crumbs={crumbs} pt={0} />

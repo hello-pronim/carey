@@ -5,12 +5,16 @@ import { Text } from "@components/common";
 import {
   Wrapper,
   NavHeader,
+  AccordionWrapper,
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
   SingleItem,
 } from "./styles";
+import { useClickAway, useMedia } from "react-use";
+import { AnimatePresence } from "framer-motion";
+import Chevron from "../icons/chevron";
 
 const SideNav = ({
   activeSlug,
@@ -19,8 +23,9 @@ const SideNav = ({
   minHeight,
 }: SideNavTypes) => {
   const router = useRouter();
+  const isMobile = useMedia("(max-width: 1440px)", false);
   const SidebarRef = useRef<HTMLDivElement>(null);
-
+  const [navToggled, setNavToggled] = useState(false);
   const [openItems, setOpenItems] = useState([]);
 
   const getActiveParentMenu = () => {
@@ -67,75 +72,107 @@ const SideNav = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMenuItem, minHeight]);
 
+  const handleNavToggle = () => {
+    if (isMobile) {
+      setNavToggled(!navToggled);
+    }
+  };
+  useClickAway(SidebarRef, () => {
+    setNavToggled(false);
+  });
+  useEffect(() => {
+    if (!isMobile) {
+      setNavToggled(true);
+    } else setNavToggled(false);
+  }, [isMobile]);
+
   if (!activeMenuItem) {
     return <></>;
   }
-
+  console.log(navToggled);
   return (
     <Wrapper ref={SidebarRef}>
-      <NavHeader>
-        <Text variant="Heading-Overline" css={{ textTransform: "uppercase" }}>
+      <NavHeader isMobile={isMobile} onClick={() => handleNavToggle()}>
+        <Text
+          variant={isMobile ? "Body-Small" : "Heading-Overline"}
+          css={{ textTransform: !isMobile && "uppercase" }}
+        >
           {activeMenuItem.label}
         </Text>
+        {isMobile && (
+          <Chevron toggleState={navToggled} aria-hidden direction="down" />
+        )}
       </NavHeader>
-      <Accordion
-        type="multiple"
-        value={openItems}
-        onValueChange={(value) => setOpenItems(value)}
-        defaultValue={[]}
-      >
-        {activeMenuItem?.subItems?.map((item: any, i: number) => {
-          if (item.subItems.length > 0) {
-            const path = `/${activeMenuItem.url}/${item.url}`;
-            return (
-              <AccordionItem key={`sidenav-item-1-${i}`} value={item.id}>
-                <AccordionTrigger>
-                  <Link href={path}>
-                    <a>
-                      <Text variant="Body-Small">{item.label}</Text>
-                    </a>
-                  </Link>
-                </AccordionTrigger>
-                <AccordionContent>
-                  {item.subItems.map((subItem: any, i: number) => {
-                    const path = `/${activeMenuItem.url}/${item.url}/${subItem.url}`;
-                    return (
-                      <SingleItem key={`sidenav-item-2-${i}`}>
+      <AnimatePresence>
+        {navToggled && (
+          <AccordionWrapper
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+          >
+            <Accordion
+              type="multiple"
+              value={openItems}
+              onValueChange={(value) => setOpenItems(value)}
+              defaultValue={[]}
+            >
+              {activeMenuItem?.subItems?.map((item: any, i: number) => {
+                if (item.subItems.length > 0) {
+                  const path = `/${activeMenuItem.url}/${item.url}`;
+                  return (
+                    <AccordionItem key={`sidenav-item-1-${i}`} value={item.id}>
+                      <AccordionTrigger>
                         <Link href={path}>
                           <a>
-                            <Text variant="Body-Small">{subItem.label}</Text>
+                            <Text variant="Body-Small">{item.label}</Text>
                           </a>
                         </Link>
-                      </SingleItem>
-                    );
-                  })}
-                </AccordionContent>
-              </AccordionItem>
-            );
-          }
-          return (
-            <SingleItem
-              css={isActiveItem(item.url) && { bg: "$crestBlue150" }}
-              key={`side-nav-0-${i}`}
-            >
-              <Link href={`/${activeMenuItem.url}/${item.url}`}>
-                <a>
-                  <Text
-                    css={
-                      isActiveItem(item.url) && {
-                        fontWeight: "$semiBold !important",
-                      }
-                    }
-                    variant="Body-Small"
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        {item.subItems.map((subItem: any, i: number) => {
+                          const path = `/${activeMenuItem.url}/${item.url}/${subItem.url}`;
+                          return (
+                            <SingleItem key={`sidenav-item-2-${i}`}>
+                              <Link href={path}>
+                                <a>
+                                  <Text variant="Body-Small">
+                                    {subItem.label}
+                                  </Text>
+                                </a>
+                              </Link>
+                            </SingleItem>
+                          );
+                        })}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                }
+                return (
+                  <SingleItem
+                    css={isActiveItem(item.url) && { bg: "$crestBlue150" }}
+                    key={`side-nav-0-${i}`}
                   >
-                    {item.label}
-                  </Text>
-                </a>
-              </Link>
-            </SingleItem>
-          );
-        })}
-      </Accordion>
+                    <Link href={`/${activeMenuItem.url}/${item.url}`}>
+                      <a>
+                        <Text
+                          css={
+                            isActiveItem(item.url) && {
+                              fontWeight: "$semiBold !important",
+                            }
+                          }
+                          variant="Body-Small"
+                        >
+                          {item.label}
+                        </Text>
+                      </a>
+                    </Link>
+                  </SingleItem>
+                );
+              })}
+            </Accordion>
+          </AccordionWrapper>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 };
