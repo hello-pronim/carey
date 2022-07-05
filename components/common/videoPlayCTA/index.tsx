@@ -41,11 +41,12 @@ const VideoCTA = styled("div", {
 type VideoPlayCTAProps = {
   onClick: () => void;
   label: string;
+  css?: any;
 };
 
-const VideoPlayCTA = ({ onClick, label }: VideoPlayCTAProps) => {
+const VideoPlayCTA = ({ onClick, label, css }: VideoPlayCTAProps) => {
   return (
-    <VideoCTA onClick={onClick}>
+    <VideoCTA onClick={onClick} css={css}>
       <Play width={33.33} />
       <Text variant="Heading-xSmall">{label}</Text>
     </VideoCTA>
