@@ -4,6 +4,7 @@ import { Text } from "@components/common";
 
 const CustomSwiper = styled(Swiper, {
   "&&&": {
+    overflow: "visible",
     "& .swiper-slide": {
       width: "100%",
       height: "414px",
