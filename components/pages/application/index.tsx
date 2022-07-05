@@ -37,10 +37,20 @@ const Application = ({ pageData }) => {
           "@max768": {
             gridTemplateColumns: "repeat(1, 1fr)",
           },
+          "@max1440": {
+            gridTemplateColumns: "1fr",
+          },
         }}
       >
         <LeftContent>
-          <Div css={{ maxWidth: 560 }}>
+          <Div
+            css={{
+              maxWidth: 560,
+              "@max1200": {
+                maxWidth: "100%",
+              },
+            }}
+          >
             {pageData.instructionsBlock.length > 0 && (
               <>
                 <Text as="h2" variant="Heading-Large" css={{ mb: 16 }}>
@@ -70,7 +80,12 @@ const Application = ({ pageData }) => {
             </Text>
           </Div>
           <HiddenMobile>
-            <ApplyResumeButton resumeBttnTheme="light" />
+            <ApplyResumeButton
+              outerCSS={{
+                mt: 80,
+              }}
+              resumeBttnTheme="light"
+            />
           </HiddenMobile>
         </LeftContent>
         <RightContent>
@@ -89,7 +104,12 @@ const Application = ({ pageData }) => {
             </Content>
           )}
           <VisibleMobile>
-            <ApplyResumeButton resumeBttnTheme="light" />
+            <ApplyResumeButton
+              outerCSS={{
+                mt: 80,
+              }}
+              resumeBttnTheme="light"
+            />
           </VisibleMobile>
         </RightContent>
       </Container>
