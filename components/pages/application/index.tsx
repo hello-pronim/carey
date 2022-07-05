@@ -40,7 +40,7 @@ const Application = ({}) => {
       <Hero
         type="applyOnline"
         overHeadline="APPLY ONLINE"
-        headline="Carey Baptist Grammar SchoolApplication for Admission"
+        headline="Carey Baptist Grammar School Application for Admission"
         contentText="Carey is an open-entry, inclusive and diverse co-educational school. We invite you to apply to enrol at ELC, Junior School, Middle and Senior School."
         enableCta={true}
         image={Graphic}
@@ -55,10 +55,20 @@ const Application = ({}) => {
           "@max768": {
             gridTemplateColumns: "repeat(1, 1fr)",
           },
+          "@max1440": {
+            gridTemplateColumns: "1fr",
+          },
         }}
       >
         <LeftContent>
-          <Div css={{ maxWidth: 560 }}>
+          <Div
+            css={{
+              maxWidth: 560,
+              "@max1200": {
+                maxWidth: "100%",
+              },
+            }}
+          >
             <Text as="h2" variant="Heading-Large" css={{ mb: 16 }}>
               What do I need?
             </Text>
@@ -78,7 +88,12 @@ const Application = ({}) => {
             </Text>
           </Div>
           <HiddenMobile>
-            <ApplyResumeButton resumeBttnTheme="light" />
+            <ApplyResumeButton
+              outerCSS={{
+                mt: 80,
+              }}
+              resumeBttnTheme="light"
+            />
           </HiddenMobile>
         </LeftContent>
         <RightContent>
@@ -99,7 +114,12 @@ const Application = ({}) => {
             </Text>
           </Content>
           <VisibleMobile>
-            <ApplyResumeButton resumeBttnTheme="light" />
+            <ApplyResumeButton
+              outerCSS={{
+                mt: 80,
+              }}
+              resumeBttnTheme="light"
+            />
           </VisibleMobile>
         </RightContent>
       </Container>

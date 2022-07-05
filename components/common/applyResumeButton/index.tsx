@@ -1,6 +1,7 @@
 import React from "react";
 import { styled, keyframes } from "@stitches/react";
 import { blackA, mauve } from "@radix-ui/colors";
+import type * as Stitches from "@stitches/react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Button, Text } from "@components/common";
@@ -101,17 +102,21 @@ const CloseButtonStyled = styled("button", {
 
 const ApplyResumeButton = ({
   resumeBttnTheme = "transparent",
+  outerCSS,
 }: ApplyResumeButtonTypes) => {
   return (
     <Div
       css={{
         display: "flex",
-        mt: 80,
         justifyContent: "space-between",
         maxWidth: 600,
         "@max768": {
           flexDirection: "column",
         },
+        "@min1024": {
+          flexDirection: "row",
+        },
+        ...outerCSS,
       }}
     >
       <StartApplication>
@@ -124,6 +129,11 @@ const ApplyResumeButton = ({
             theme="transparent"
             variant="secondary"
             scale="xl"
+            css={{
+              "@max768": {
+                mb: 20,
+              },
+            }}
           />
         </StartApplicationTrigger>
         <StartApplicationContent>
@@ -261,6 +271,7 @@ const ApplyResumeButton = ({
 };
 
 type ApplyResumeButtonTypes = {
+  outerCSS?: Stitches.CSS;
   resumeBttnTheme?: "light" | "dark" | "transparent";
 };
 
