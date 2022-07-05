@@ -14,7 +14,6 @@ import {
 } from "./styles";
 
 const Application = ({ pageData }) => {
-  console.log(pageData);
   return (
     <>
       {pageData.applyOnlineBanner?.length > 0 && (
