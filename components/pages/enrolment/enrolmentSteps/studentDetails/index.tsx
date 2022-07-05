@@ -8,7 +8,7 @@ import RadioGroup from "@components/common/forms/fields/radio";
 import DateField from "@components/common/forms/fields/date";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon, Cross1Icon, CaretLeftIcon } from "@radix-ui/react-icons";
 
 import {
   AddButton,
@@ -20,6 +20,7 @@ import {
   StyledContent,
   StyledTrigger,
   Divider,
+  ButtonWrap,
 } from "../sharedStyles";
 
 const StudentDetails = ({}) => {
@@ -45,7 +46,6 @@ const StudentDetails = ({}) => {
     const value = {
       activeStep: activeStep + 1,
     };
-    console.log("value", value);
     dispatch({
       type: "SET_ENROLMENT_DETAILS",
       value,
@@ -458,14 +458,16 @@ const StudentDetails = ({}) => {
             );
           })}
       </Accordion.Root>
-      <AddButton onClick={() => addStudent()}>
-        <PlusIcon /> <span>Additional student</span>
-      </AddButton>
+      <ButtonWrap>
+        <AddButton outlined onClick={() => addStudent()}>
+          <PlusIcon /> <span>Additional student</span>
+        </AddButton>
+      </ButtonWrap>
       <Divider />
       <ButtonsContainer>
         <Div>
           <AddButton>
-            <span>Save & Exit</span>
+            <Cross1Icon /> <span>Save & Exit</span>
           </AddButton>
         </Div>
         <Div
@@ -475,7 +477,8 @@ const StudentDetails = ({}) => {
             alignItems: "center",
           }}
         >
-          <AddButton>
+          <AddButton disabled>
+            <CaretLeftIcon />
             <span>Back</span>
           </AddButton>
           <Button
