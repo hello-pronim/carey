@@ -52,9 +52,9 @@ const Wrapper = styled(container.outer, {
 const ApplyOnlineWrapper = styled(container.outer, {
   position: "relative",
   minHeight: 450,
-  "@min768": {
-    minHeight: 693,
-  },
+  // "@min768": {
+  //   minHeight: 693,
+  // },
 });
 
 const InnerGrid = styled(container.grid, {
