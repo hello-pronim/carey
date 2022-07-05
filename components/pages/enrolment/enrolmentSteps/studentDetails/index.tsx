@@ -23,7 +23,12 @@ import {
   ButtonWrap,
 } from "../sharedStyles";
 
-const StudentDetails = ({}) => {
+interface StudentDetailsProps {
+  gender: Array<any>;
+  religion: Array<any>;
+}
+
+const StudentDetails = ({ gender, religion }: StudentDetailsProps) => {
   const [studentDetails, setStudentDetails] = useState(["std1"]);
   const [studentAccordianOpen, setStudentAccordianOpen] = useState([
     "studentDetails-std1",
@@ -164,21 +169,19 @@ const StudentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`gender${student}`] && "Gender is required"
-                        }
-                        name={`gender${student}`}
-                        label="Gender"
-                        placeholder="Select"
-                        items={[
-                          { value: "male", label: "Male" },
-                          { value: "female", label: "Female" },
-                          { value: "self-describe", label: "Self-describe" },
-                        ]}
-                      />
+                      {gender?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`gender${student}`] && "Gender is required"
+                          }
+                          name={`gender${student}`}
+                          label="Gender"
+                          placeholder="Select"
+                          items={gender}
+                        />
+                      )}
                     </Div>
                     <Divider />
                     <Div
@@ -188,22 +191,20 @@ const StudentDetails = ({}) => {
                         columnGap: 15,
                       }}
                     >
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`religion${student}`] && "Religion is required"
-                        }
-                        name={`religion${student}`}
-                        label="Religion"
-                        placeholder="Select"
-                        items={[
-                          { value: "baptist", label: "Baptist" },
-                          { value: "catholic", label: "Catholic" },
-                          { value: "orthodox", label: "Orthodox" },
-                          { value: "other", label: "Other" },
-                        ]}
-                      />
+                      {religion.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`religion${student}`] &&
+                            "Religion is required"
+                          }
+                          name={`religion${student}`}
+                          label="Religion"
+                          placeholder="Select"
+                          items={religion}
+                        />
+                      )}
                       <Select
                         control={control}
                         searchable

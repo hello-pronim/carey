@@ -35,7 +35,7 @@ const StyledHeader = styled(Accordion.Header, {
 });
 
 const StyledItem = styled(Accordion.Item, {
-  overflow: "hidden",
+  // overflow: "hidden",
   marginTop: 1,
   mb: 15,
   "&:first-child": {
@@ -44,7 +44,7 @@ const StyledItem = styled(Accordion.Item, {
 });
 
 const StyledContent = styled(Accordion.Content, {
-  overflow: "hidden",
+  // overflow: "hidden",
   fontSize: 18,
   lineHeight: 1.5,
   color: "$navy",
