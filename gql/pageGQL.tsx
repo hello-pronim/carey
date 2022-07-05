@@ -308,3 +308,42 @@ export const GeneralPageQuery = gql`
     }
   }
 `;
+
+export const ApplyOnlinePageQuery = gql`
+  query ApplyPageQuery {
+    entry(slug: "apply-online") {
+      title
+      ... on applyOnline_applyOnline_Entry {
+        id
+        applyOnlineBanner {
+          ... on applyOnlineBanner_BlockType {
+            id
+            headline
+            subText
+            preText
+          }
+        }
+        applicationSupportBox
+        seomatic {
+          metaTitleContainer
+          metaTagContainer
+          metaLinkContainer
+        }
+        instructionsBlock {
+          ... on instructionsBlock_BlockType {
+            id
+            headline
+            richText
+          }
+        }
+        concertina {
+          ... on concertina_BlockType {
+            id
+            details
+            intro
+          }
+        }
+      }
+    }
+  }
+`;

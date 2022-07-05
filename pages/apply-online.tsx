@@ -4,28 +4,20 @@ import Head from "next/head";
 import { Layout } from "@components/common";
 import ApplicationPage from "@components/pages/application";
 import { withGlobalData } from "@hoc/withGlobalData";
-//import { initializeApollo } from "@utils/apolloClient";
+import { initializeApollo } from "@utils/apolloClient";
+import { ApplyOnlinePageQuery } from "@gql/pageGQL";
 
 interface ApplicationPageProps {
   pageData: any;
-  navigation: Array<any>;
-  applyNow: Array<any>;
 }
 
-export default function Application({
-  navigation,
-  pageData,
-  applyNow,
-  ...props
-}: ApplicationPageProps) {
+export default function Application({ pageData }: ApplicationPageProps) {
   return (
     <>
       <Head>
-        <title>Home | Carey Grammar</title>
-        <meta name="description" content="Traffic Next.js Starter" />
-        <meta name="robots" content="index, follow" />
+        <title>Apply Online | Carey Grammar</title>
       </Head>
-      <ApplicationPage />
+      <ApplicationPage pageData={pageData} />
     </>
   );
 }
@@ -35,8 +27,16 @@ Application.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = withGlobalData(async () => {
+  const client = initializeApollo();
+
+  const {
+    data: { entry: pageData },
+  } = await client.query({
+    query: ApplyOnlinePageQuery,
+  });
+
   return {
-    props: {},
+    props: { pageData },
     revalidate: parseInt(process.env.NEXT_PAGE_REVALIDATE),
   };
 });
