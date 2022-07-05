@@ -7,7 +7,6 @@ const CommunityCarousel = styled("div", {
     gridColumn: "2 / span 11",
   },
   "&:before": {
-    content: "",
     backgroundColor: "$background",
     width: "100%",
     position: "absolute",
@@ -16,6 +15,9 @@ const CommunityCarousel = styled("div", {
     left: "-100%",
     pointerEvents: "none",
     zIndex: 3,
+    "@min768": {
+      content: "",
+    },
   },
 });
 
