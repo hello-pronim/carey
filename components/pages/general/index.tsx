@@ -21,6 +21,7 @@ import TwoUpModule from "./components/TwoUpModule";
 import ThreeUpModule from "./components/ThreeUpModule";
 import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 import TextBlock from "@components/common/textBlock";
+import OneUpImage from "./components/OneUpImage";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -75,6 +76,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("twoColumnTable"), TwoColTable],
     [ModuleType("oneColumnTable"), OneColTable],
     [ModuleType("sessionTimeTable"), SessionTimes],
+    [ModuleType("images1up"), OneUpImage],
     [ModuleType("images2up"), TwoUpModule],
     [ModuleType("images2upVideo"), TwoUpModule],
     [ModuleType("inlineGallery3up"), ThreeUpModule],
