@@ -8,10 +8,15 @@ import {
   StyledTrigger,
 } from "./styles";
 
+interface AccordianItem {
+  title: string;
+  details: string;
+}
+
 const Accordions = ({ items }) => {
   return (
     <Accordion.Root type="single" collapsible>
-      {items.map((item, index) => {
+      {items.map((item: AccordianItem, index: number) => {
         return (
           <StyledItem value={`item-${index}`} key={`item-${index}`}>
             <StyledHeader>
@@ -20,7 +25,7 @@ const Accordions = ({ items }) => {
                 <span>{item.title}</span>
               </StyledTrigger>
             </StyledHeader>
-            <StyledContent>{item.details}</StyledContent>
+            <StyledContent dangerouslySetInnerHTML={{ __html: item.details }} />
           </StyledItem>
         );
       })}

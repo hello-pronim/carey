@@ -23,6 +23,7 @@
       "@gql/*": ["gql/*"],
       "@hoc/*": ["hoc/*"],
       "@styles/*": ["styles/*"],
+      "@public/*": ["public/*"],
       "@hooks/*": ["hooks/*"],
       "@styles/stitches": ["styles/stitches.config"]
     },

@@ -24,6 +24,7 @@ const slideUp = keyframes({
 const StyledHeader = styled(Accordion.Header, {
   all: "unset",
   display: "flex",
+  cursor: "pointer",
 });
 
 const StyledItem = styled(Accordion.Item, {

@@ -29,9 +29,14 @@ const ApplyOnline = (props) => {
           <Text as="h1" variant="Heading-xLarge">
             {props?.headline}
           </Text>
-          <Text as="h2" variant="Heading-Small">
-            {props?.contentText}
-          </Text>
+          <Text
+            as="div"
+            css={{
+              color: "$white",
+            }}
+            variant="Heading-Small"
+            dangerouslySetInnerHTML={{ __html: props?.contentText }}
+          />
           {props.enableCta && <ApplyResumeButton />}
           {props?.overHeadlineBottom && (
             <Text as="h6" variant="Heading-Overline">
