@@ -78,7 +78,7 @@ const SideNav = ({
     }
   };
   useClickAway(SidebarRef, () => {
-    setNavToggled(false);
+    isMobile && setNavToggled(false);
   });
   useEffect(() => {
     if (!isMobile) {
@@ -89,7 +89,7 @@ const SideNav = ({
   if (!activeMenuItem) {
     return <></>;
   }
-  console.log(navToggled);
+
   return (
     <Wrapper ref={SidebarRef}>
       <NavHeader isMobile={isMobile} onClick={() => handleNavToggle()}>

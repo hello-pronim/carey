@@ -45,6 +45,7 @@ const DrawerWrapper = styled(motion.div, {
 const Mobile = styled(motion.div, {
   boxSizing: "border-box",
   position: "relative",
+  overflowY: "scroll",
   py: 40,
   height: "100%",
   bg: "#ffffff",
@@ -53,6 +54,11 @@ const Mobile = styled(motion.div, {
   zIndex: 40,
   width: "100%",
   display: "block",
+  "-ms-overflow-style": "none",
+  scrollbarWidth: "none",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
   "@min600": {
     width: 375,
   },
