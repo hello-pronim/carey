@@ -84,10 +84,14 @@ const Divider = styled("hr", {
   background: "$navy200",
 });
 
+const ButtonWrap = styled("div", {
+  mt: 20,
+  mb: 50,
+});
+
 const AddButton = styled("div", {
   fontSize: 20,
   color: "$navy",
-  border: "2px solid $navy",
   alignItems: "center",
   justifyContent: "center",
   borderRadius: 44,
@@ -97,25 +101,42 @@ const AddButton = styled("div", {
   cursor: "pointer",
   transition: "background ease-in-out 200ms",
   display: "inline-flex",
-  mt: 30,
-  mb: 50,
+  variants: {
+    outlined: {
+      true: {
+        border: "2px solid $navy",
+        "&:hover": {
+          color: "$white",
+          borderColor: "$darkBlue900",
+          background: "$darkBlue900",
+          svg: {
+            path: {
+              fill: "$white",
+            },
+          },
+        },
+      },
+    },
+    disabled: {
+      true: {
+        color: "$darkBlue300",
+        cursor: "not-allowed",
+        svg: {
+          path: {
+            fill: "$darkBlue300",
+          },
+        },
+      },
+    },
+  },
   svg: {
     path: {
       fill: "$navy",
     },
-    width: 24,
-    height: 24,
+    width: 14,
+    height: 14,
     mt: -4,
-  },
-  "&:hover": {
-    color: "$white",
-    borderColor: "$darkBlue900",
-    background: "$darkBlue900",
-    svg: {
-      path: {
-        fill: "$white",
-      },
-    },
+    mr: 20,
   },
 });
 
@@ -124,6 +145,7 @@ const ButtonsContainer = styled("div", {
   gridTemplateColumns: "repeat(2, 1fr)",
   columnGap: 15,
   mt: 30,
+  mb: 100,
 });
 
 export {
@@ -137,4 +159,5 @@ export {
   StyledContent,
   StyledTrigger,
   Divider,
+  ButtonWrap,
 };

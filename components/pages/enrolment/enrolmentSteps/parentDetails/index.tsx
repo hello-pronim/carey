@@ -7,7 +7,7 @@ import Select from "@components/common/forms/fields/select";
 import Checkbox from "@components/common/forms/fields/checkbox";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon, Cross1Icon, CaretLeftIcon } from "@radix-ui/react-icons";
 
 import {
   AddButton,
@@ -19,6 +19,7 @@ import {
   StyledContent,
   StyledTrigger,
   Divider,
+  ButtonWrap,
 } from "../sharedStyles";
 
 const ParentDetails = ({}) => {
@@ -76,7 +77,7 @@ const ParentDetails = ({}) => {
       residentialDetailsOpen,
     ]);
   };
-  console.log("parentAccordianOpen", parentAccordianOpen);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Accordion.Root type="multiple" defaultValue={parentAccordianOpen}>
@@ -527,14 +528,16 @@ const ParentDetails = ({}) => {
       <Div css={{ mb: 50 }}>
         <Checkbox label="I/We acknowledge that all legal guardians and carers for the student(s) have been entered into this application" />
       </Div>
-      <AddButton onClick={() => addParent()}>
-        <PlusIcon /> <span> Another Parent/Guardian</span>
-      </AddButton>
+      <ButtonWrap>
+        <AddButton outlined onClick={() => addParent()}>
+          <PlusIcon /> <span> Another Parent/Guardian</span>
+        </AddButton>
+      </ButtonWrap>
       <Divider />
       <ButtonsContainer>
         <Div>
           <AddButton>
-            <span>Save & Exit</span>
+            <Cross1Icon /> <span>Save & Exit</span>
           </AddButton>
         </Div>
         <Div
@@ -545,7 +548,7 @@ const ParentDetails = ({}) => {
           }}
         >
           <AddButton onClick={() => prevStep()}>
-            <span>Back</span>
+            <CaretLeftIcon /> <span>Back</span>
           </AddButton>
           <Button
             arrow
