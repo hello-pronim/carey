@@ -26,7 +26,7 @@ const DefaultCard = ({
     <Card size={size} css={{ backgroundImage: `url(${backgroundImage})` }}>
       <TopWrapper size={size}>
         <HeadingWrapper size={size}>
-          <Heading>{title}</Heading>
+          <Heading size={size}>{title}</Heading>
           <DescriptionWrapper>
             <Description size={size}>{description}</Description>
           </DescriptionWrapper>

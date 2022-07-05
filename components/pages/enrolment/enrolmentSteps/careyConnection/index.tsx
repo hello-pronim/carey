@@ -25,11 +25,7 @@ const CareyConnection = ({}) => {
   } = useAppContext();
   const { activeStep } = enrolmentDetails;
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit, control } = useForm();
 
   const prevStep = () => {
     const value = {
@@ -52,7 +48,6 @@ const CareyConnection = ({}) => {
   };
 
   const onSubmit = (data) => {
-    console.log("errors", errors);
     console.log(data);
     nextStep();
   };

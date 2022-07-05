@@ -22,11 +22,11 @@ const ApplyForm = ({}) => {
           required
           control={control}
           error={
-            (errors.emailAddress &&
-              errors.emailAddress?.type === "required" &&
-              "Email address is required") ||
-            (errors.emailAddress?.type === "pattern" &&
-              "Enter valid email format")
+            errors.emailAddress?.type === "required"
+              ? "Email address is required"
+              : errors.emailAddress?.type === "pattern"
+              ? "Enter valid email format"
+              : ""
           }
           name="emailAddress"
           label="Email address"

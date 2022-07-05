@@ -13,7 +13,6 @@ const RadioGroup = ({
   control,
   items,
 }: RadioTypes) => {
-  console.log("erro", error);
   const subtext = () => {
     let values = { text: undefined, color: undefined };
     (!!error && !!hint) || (!!error && !hint)

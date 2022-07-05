@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 
 import AccordionSlide from "./slide";
-import { CustomSwiper } from "./styles";
+import { CustomSwiper, SliderProgress } from "./styles";
 import "swiper/css";
+import CarouselScrollbar from "@components/CarouselScrollbar";
 
 const AccordionCarousel = ({ accordionData }) => {
-  // const swiperRef = React.useRef(null);
-
+  const [activeIndex, setActiveIndex] = useState(0);
   if (!accordionData) return <></>;
+
+  console.log(accordionData);
 
   return (
     <>
       <CustomSwiper
+        modules={[Navigation]}
         slidesPerView={1}
         spaceBetween={0}
         loop
         observer
         observeParents
         loopedSlides={accordionData.length}
+        onSlideChange={(swiper) => {
+          setActiveIndex(swiper.realIndex);
+          // console.log(swiper);
+        }}
         breakpoints={{
           768: {
             loopedSlides: accordionData.length,
@@ -28,13 +36,18 @@ const AccordionCarousel = ({ accordionData }) => {
           },
         }}
       >
-        {accordionData?.map((accordion, id) => {
-          return (
-            <SwiperSlide key={`${accordion.title}-${id}`}>
-              <AccordionSlide accordion={accordion} />
-            </SwiperSlide>
-          );
-        })}
+        {accordionData?.map((accordion, id) => (
+          <SwiperSlide key={`${accordion.title}-${id}`}>
+            <AccordionSlide accordion={accordion} />
+          </SwiperSlide>
+        ))}
+
+        <SliderProgress>
+          <CarouselScrollbar
+            activeIndex={activeIndex}
+            total={accordionData.length}
+          />
+        </SliderProgress>
       </CustomSwiper>
     </>
   );

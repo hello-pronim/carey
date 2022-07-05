@@ -61,7 +61,6 @@ const ParentDetails = ({}) => {
   };
 
   const onSubmit = (data) => {
-    console.log("errors", errors);
     console.log(data);
     nextStep();
   };

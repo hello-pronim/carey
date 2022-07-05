@@ -7,14 +7,16 @@ const ArrowRight = ({
   ...props
 }) => (
   <svg
-    viewBox="0 0 24 16.8"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="14"
+    viewBox="0 0 20 14"
+    fill="none"
     style={{ width: width, height: "auto" }}
     {...props}
   >
     <path
-      d="M13 0L11.59 1.41L16.17 6H0V8H16.17L11.58 12.59L13 14L20 7L13 0Z"
+      d="M12.4791 0L11.144 1.41L15.4806 6H0.169922V8H15.4806L11.1346 12.59L12.4791 14L19.1071 7L12.4791 0Z"
       fill={fill}
     />
   </svg>
