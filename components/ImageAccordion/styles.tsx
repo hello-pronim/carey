@@ -43,6 +43,7 @@ const AccordionImage = styled("div", {
   left: "0",
   width: "100%",
   height: "100%",
+  transition: "transform 0.5s ease",
 });
 
 const AccordionContent = styled("div", {

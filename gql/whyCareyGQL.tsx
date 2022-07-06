@@ -24,6 +24,24 @@ export const WhyCareyQuery = gql`
             }
           }
         }
+        campuses {
+          ... on campus_default_Entry {
+            title
+            subtitle
+            pageLink {
+              slug
+              ancestors {
+                slug
+              }
+            }
+            campusAccordionImage {
+              url
+              width
+              height
+              focalPoint
+            }
+          }
+        }
       }
     }
   }

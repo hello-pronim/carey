@@ -2,6 +2,7 @@ import React from "react";
 import { Container, PreFooter } from "@components/common";
 import Hero from "@components/Hero";
 import ImageAccordion from "@components/ImageAccordion";
+import { FullGridContainer } from "./styles";
 
 const Home = ({ heroData, applyNow }) => {
   return (
@@ -11,8 +12,10 @@ const Home = ({ heroData, applyNow }) => {
         props={heroData?.homePageBanner}
         applyNow={applyNow}
       />
-      <Container type="unbound">
-        <ImageAccordion accordionData={heroData?.campuses} />
+      <Container type="grid">
+        <FullGridContainer>
+          <ImageAccordion accordionData={heroData?.campuses} />
+        </FullGridContainer>
       </Container>
       <PreFooter />
     </>
