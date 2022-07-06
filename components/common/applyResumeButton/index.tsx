@@ -39,9 +39,9 @@ const StyledContent = styled(AlertDialogPrimitive.Content, {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "90vw",
-  maxWidth: "850px",
+  maxWidth: "650px",
   maxHeight: "85vh",
-  padding: 80,
+  padding: "50px 80px",
   zIndex: 9999,
   "@media (prefers-reduced-motion: no-preference)": {
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
