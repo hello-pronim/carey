@@ -84,7 +84,7 @@ const Display = (props) => {
         <MobileActions>
           <MobileActionsWrapper>
             <ContentBox>
-              {!props.props?.[0]?.featureDownloadAsset.length ? (
+              {!props.props?.[0]?.featureDownloadAsset?.length ? (
                 <QuickLinksMenu data={props?.props} />
               ) : (
                 <FeaturePanel data={props?.props} />
@@ -104,7 +104,7 @@ const Display = (props) => {
       <Actions>
         <ActionsWrapper>
           <ContentBox>
-            {!props.props?.[0]?.featureDownloadAsset.length ? (
+            {!props.props?.[0]?.featureDownloadAsset?.length ? (
               <QuickLinksMenu data={props?.props} />
             ) : (
               <FeaturePanel data={props?.props} />
