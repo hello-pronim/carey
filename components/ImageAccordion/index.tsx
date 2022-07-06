@@ -2,25 +2,27 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Text } from "@components/common";
+import { useGetFullPath } from "@hooks/useGetFullPath";
 import {
   AccordionWrapper,
   AccordionItem,
   AccordionImage,
   AccordionContent,
 } from "./styles";
-import getFullPath from "@utils/getFullPath";
 
-const ImageAccordion = ({ accordionData, navigation }) => {
+const ImageAccordion = ({ accordionData }) => {
   const router = useRouter();
+  const getFullPath = useGetFullPath();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleMouseOver = (index: any) => {
     setActiveIndex(index);
   };
 
-  const handleItemClick = (pageSlug: string) => {
+  const handleItemClick = (pageSlug) => {
     if (!pageSlug) return;
-    router.push(getFullPath(navigation, pageSlug));
+
+    router.push(getFullPath(pageSlug));
   };
 
   return (
@@ -40,7 +42,7 @@ const ImageAccordion = ({ accordionData, navigation }) => {
                 },
               }}
               onMouseOver={() => handleMouseOver(index)}
-              onClick={() => handleItemClick(pageLink?.[0]?.uri ?? "")}
+              onClick={() => handleItemClick(pageLink?.[0])}
             >
               {campusAccordionImage?.[0]?.url && (
                 <AccordionImage
