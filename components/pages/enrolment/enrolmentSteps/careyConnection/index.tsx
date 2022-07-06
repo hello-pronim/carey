@@ -5,6 +5,7 @@ import { useAppContext } from "@contexts/AppContext";
 import RadioGroup from "@components/common/forms/fields/radio";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
+import { Cross1Icon, CaretLeftIcon } from "@radix-ui/react-icons";
 
 import {
   AddButton,
@@ -209,7 +210,7 @@ const CareyConnection = ({}) => {
       <ButtonsContainer>
         <Div>
           <AddButton>
-            <span>Save & Exit</span>
+            <Cross1Icon /> <span>Save & Exit</span>
           </AddButton>
         </Div>
         <Div
@@ -220,7 +221,7 @@ const CareyConnection = ({}) => {
           }}
         >
           <AddButton onClick={() => prevStep()}>
-            <span>Back</span>
+            <CaretLeftIcon /> <span>Back</span>
           </AddButton>
           <Button
             arrow
