@@ -30,12 +30,16 @@ const AccordionSlide = ({ accordion }) => {
             opacity: playing ? 0 : 1,
           }}
         >
-          <Text as="h3" variant="Heading-Small">
-            {title}
-          </Text>
-          <Text as="p" variant="Body-Regular">
-            {peopleTitle}
-          </Text>
+          {title && (
+            <Text as="h3" variant="Heading-Small">
+              {title}
+            </Text>
+          )}
+          {peopleTitle && (
+            <Text as="p" variant="Body-Regular">
+              {peopleTitle}
+            </Text>
+          )}
         </SlideContent>
 
         <SlideImage
@@ -57,7 +61,7 @@ const AccordionSlide = ({ accordion }) => {
 
         <VideoPlayCTA
           onClick={() => setModalActive(!modalActive)}
-          label={lifeVideoButtonLabel}
+          label={lifeVideoButtonLabel ?? ""}
           css={{
             visibility: playing ? "visible" : "hidden",
             opacity: playing ? 1 : 0,
@@ -75,14 +79,14 @@ const AccordionSlide = ({ accordion }) => {
             className="react-player"
             width="100%"
             height="100%"
-            url={accordion.lifeVideoLoop}
+            url={accordion.lifeVideoLoop ?? ""}
           />
         </SlideVideo>
       </SlideContainer>
 
       <Modal active={modalActive} setModalActive={setModalActive}>
         <ModalVideoWrapper>
-          <Video playing={true} url={accordion.lifeVideoLoop} />
+          <Video playing={true} url={accordion.lifeVideoLoop ?? ""} />
         </ModalVideoWrapper>
       </Modal>
     </>
