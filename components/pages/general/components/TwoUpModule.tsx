@@ -90,30 +90,34 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
               label={"Watch our latest video"}
             />
           )}
-          <Image
-            alt={props.captionImage1}
-            src={image1src.url}
-            width={image1src.width}
-            height={image1src.height}
-            enableSkeleton={true}
-            layout="responsive"
-            objectFit="cover"
-          />
+          {image1src?.url && (
+            <Image
+              alt={props.captionImage1}
+              src={image1src.url}
+              width={image1src.width}
+              height={image1src.height}
+              enableSkeleton={true}
+              layout="responsive"
+              objectFit="cover"
+            />
+          )}
         </ImageLeft>
         <ImageRight
           css={{
             maxHeight: primaryDimensions.height,
           }}
         >
-          <Image
-            alt={props.captionImage2}
-            src={image2src.url}
-            width={image2src.width}
-            height={image2src.height}
-            enableSkeleton={true}
-            layout="responsive"
-            objectFit="cover"
-          />
+          {image2src?.url && (
+            <Image
+              alt={props.captionImage2}
+              src={image2src.url}
+              width={image2src.width}
+              height={image2src.height}
+              enableSkeleton={true}
+              layout="responsive"
+              objectFit="cover"
+            />
+          )}
         </ImageRight>
       </ConditionalWrapper>
     </Container>
