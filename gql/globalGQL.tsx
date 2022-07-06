@@ -184,7 +184,10 @@ export const globalQuery = gql`
       ... on applyNow_GlobalSet {
         buttonLabel
         buttonLink {
-          uri
+          slug
+          ancestors {
+            slug
+          }
         }
         buttonUrl
       }

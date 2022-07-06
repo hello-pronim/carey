@@ -79,7 +79,10 @@ export const GeneralPageQuery = gql`
                 panelContent
                 buttonLabel
                 buttonLink {
-                  uri
+                  slug
+                  ancestors {
+                    slug
+                  }
                 }
                 backgroundGradient {
                   url
@@ -119,7 +122,10 @@ export const GeneralPageQuery = gql`
                     buttonTheme
                     arrowed
                     buttonEntry {
-                      uri
+                      slug
+                      ancestors {
+                        slug
+                      }
                     }
                   }
                 }
@@ -134,7 +140,10 @@ export const GeneralPageQuery = gql`
             buttonTheme
             buttonArrow
             buttonLink {
-              uri
+              slug
+              ancestors {
+                slug
+              }
             }
           }
           ... on generalComponents_mapBlock_BlockType {
@@ -283,7 +292,10 @@ export const GeneralPageQuery = gql`
                 cardContent
                 buttonLabel
                 buttonLink {
-                  uri
+                  slug
+                  ancestors {
+                    slug
+                  }
                 }
                 campusImage {
                   url

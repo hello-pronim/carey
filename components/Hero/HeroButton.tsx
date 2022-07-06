@@ -1,10 +1,13 @@
 import React from "react";
 import HeroButtonArrow from "@components/common/icons/HeroArrow";
+import { useGetFullPath } from "@hooks/useGetFullPath";
 import { styled } from "@styles/stitches";
 import { Text } from "@components/common";
 
 export default function HeroButton({ data }) {
-  const ButtonWrraper = styled("a", {
+  const getFullPath = useGetFullPath();
+
+  const ButtonWrapper = styled("a", {
     cursor: "pointer",
     zIndex: 1,
     textDecoration: "none",
@@ -75,13 +78,15 @@ export default function HeroButton({ data }) {
 
   return (
     <>
-      {data.buttonLabel && (data.buttonUrl || data.buttonLink?.[0]?.uri) && (
-        <ButtonWrraper href={data?.buttonLink?.[0]?.uri || data.buttonUrl}>
+      {data.buttonLabel && (data.buttonUrl || data.buttonLink?.[0]) && (
+        <ButtonWrapper
+          href={data.buttonUrl || getFullPath(data?.buttonLink?.[0])}
+        >
           <Button>
             <HeroButtonArrow />
             <Text variant={"Heading-xSmall"}>{data?.buttonLabel}</Text>
           </Button>
-        </ButtonWrraper>
+        </ButtonWrapper>
       )}
     </>
   );

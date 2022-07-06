@@ -5,6 +5,7 @@ const useFormatUrl = (href) => {
     if (href && !href.includes("http") && !href.startsWith("/"))
       return `/${href}`;
     if (href && href.includes("http")) return href;
+    return href;
   }, [href]);
 
   return hrefValue;

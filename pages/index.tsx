@@ -26,7 +26,7 @@ export default function HomePage({
         <meta name="description" content="Traffic Next.js Starter" />
         <meta name="robots" content="index, follow" />
       </Head>
-      <Home heroData={pageData} applyNow={applyNow} navigation={navigation} />
+      <Home heroData={pageData} applyNow={applyNow} />
     </>
   );
 }
