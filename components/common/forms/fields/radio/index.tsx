@@ -34,7 +34,7 @@ const RadioGroup = ({
                 return (
                   <Wrapper
                     {...field}
-                    key={item.value}
+                    key={`${name}-${item.value}`}
                     required={required}
                     disabled={disabled}
                   >
