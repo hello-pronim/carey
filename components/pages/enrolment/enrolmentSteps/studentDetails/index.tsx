@@ -78,11 +78,12 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
               ]}
               key={item}
             >
-              <StyledItem value={`studentDetails-${item}`}>
+              {student > 1 && <Divider css={{ mb: 50 }} />}
+              <StyledItem css={{ mb: 50 }} value={`studentDetails-${item}`}>
                 <StyledHeader>
                   <StyledTrigger>
                     <Text as="h2" variant="Heading-Large">
-                      Student Details
+                      Student Details {student}
                     </Text>
                     <AccordionChevronWrapper aria-hidden />
                   </StyledTrigger>
@@ -335,7 +336,7 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                   <Divider />
                 </StyledContent>
               </StyledItem>
-              <StyledItem value={`admissionDetails-${item}`}>
+              <StyledItem css={{ mb: 50 }} value={`admissionDetails-${item}`}>
                 <StyledHeader>
                   <StyledTrigger>
                     <Text as="h2" variant="Heading-Large">
