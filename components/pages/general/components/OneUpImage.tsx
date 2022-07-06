@@ -23,7 +23,7 @@ const ImageWrapper = styled("div", {
 
 const OneUpImage = ({ __typename, image1, ...props }) => {
   const [image1src] = image1;
-
+  if (!image1src?.url) return null;
   return (
     <Container>
       <ImageWrapper>
