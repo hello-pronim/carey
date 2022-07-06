@@ -18,8 +18,8 @@ const OpenMorningsCard = ({
           <DefaultCard
             title={panel.title}
             description={panel.panelContent}
-            backgroundImage={panel.backgroundGradient?.[0].url}
-            studentImage={panel.imageOfStudent?.[0].url}
+            backgroundImage={panel.backgroundGradient?.[0]?.url}
+            studentImage={panel.imageOfStudent?.[0]?.url}
             href={href}
             size="small"
           />
@@ -29,8 +29,8 @@ const OpenMorningsCard = ({
           <DefaultCard
             title={panel.title}
             description={panel.panelContent}
-            backgroundImage={panel.backgroundGradient?.[0].url}
-            studentImage={panel.imageOfStudent?.[0].url}
+            backgroundImage={panel.backgroundGradient?.[0]?.url}
+            studentImage={panel.imageOfStudent?.[0]?.url}
             href={href}
             size="large"
           />
