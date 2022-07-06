@@ -7,6 +7,7 @@ import {
   ApplicationSupport,
   ApplicationSupportContent,
   ApplyOnlineImageWrapper,
+  Div,
 } from "./styles";
 import { Text } from "@components/common";
 import Image from "next/image";
@@ -29,20 +30,44 @@ const ApplyOnline = (props) => {
           <Text as="h1" variant="Heading-xLarge">
             {props?.headline}
           </Text>
-          <Text as="h2" variant="Heading-Small">
-            {props?.contentText}
-          </Text>
-          {props.enableCta && <ApplyResumeButton />}
-          {props?.overHeadlineBottom && (
-            <Text as="h6" variant="Heading-Overline">
-              {props.overHeadlineBottom}
-            </Text>
+          <Text
+            css={{
+              color: "$white",
+            }}
+            variant="Heading-Small"
+            dangerouslySetInnerHTML={{ __html: props?.contentText }}
+          />
+          {props.enableCta && (
+            <ApplyResumeButton
+              outerCSS={{
+                mt: 20,
+                mb: 44,
+                "@min1500": {
+                  mt: 80,
+                  mb: 0,
+                },
+              }}
+            />
           )}
-          {props?.idNumber && (
-            <Text as="h2" variant="Heading-Small">
-              {props.idNumber}
-            </Text>
-          )}
+          <Div
+            css={{
+              display: "none",
+              "@min768": {
+                display: "block",
+              },
+            }}
+          >
+            {props?.overHeadlineBottom && (
+              <Text as="h6" variant="Heading-Overline">
+                {props.overHeadlineBottom}
+              </Text>
+            )}
+            {props?.idNumber && (
+              <Text as="h2" variant="Heading-Small">
+                {props.idNumber}
+              </Text>
+            )}
+          </Div>
         </ApplyOnlineContent>
         {props.applicationSupport && (
           <ApplicationSupport>
@@ -59,6 +84,35 @@ const ApplyOnline = (props) => {
             </ApplicationSupportContent>
           </ApplicationSupport>
         )}
+        <Div
+          css={{
+            display: "none",
+            "h6, h1, h2": {
+              color: "$white",
+            },
+            "@max768": {
+              display: "grid",
+              gridColumn: "1 / 9",
+              m: 40,
+            },
+            "@max1024": {
+              display: "block",
+              gridColumn: "1 / 9",
+              // m: 40,
+            },
+          }}
+        >
+          {props?.overHeadlineBottom && (
+            <Text as="h6" variant="Heading-Overline">
+              {props.overHeadlineBottom}
+            </Text>
+          )}
+          {props?.idNumber && (
+            <Text as="h2" variant="Heading-Small">
+              {props.idNumber}
+            </Text>
+          )}
+        </Div>
         {props?.image && (
           <ApplyOnlineImageWrapper>
             <Image

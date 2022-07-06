@@ -2,41 +2,41 @@ import type { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { Layout } from "@components/common";
-import EnrolmentPage from "@components/pages/enrolment";
+import ApplicationPage from "@components/pages/application";
 import { withGlobalData } from "@hoc/withGlobalData";
-//import { initializeApollo } from "@utils/apolloClient";
+import { initializeApollo } from "@utils/apolloClient";
+import { ApplyOnlinePageQuery } from "@gql/pageGQL";
 
-interface EnrolmentPageProps {
+interface ApplicationPageProps {
   pageData: any;
-  navigation: Array<any>;
-  applyNow: Array<any>;
 }
 
-export default function Enrolment({
-  navigation,
-  pageData,
-  applyNow,
-  ...props
-}: EnrolmentPageProps) {
+export default function Application({ pageData }: ApplicationPageProps) {
   return (
     <>
       <Head>
-        <title>Home | Carey Grammar</title>
-        <meta name="description" content="Traffic Next.js Starter" />
-        <meta name="robots" content="index, follow" />
+        <title>Apply Online | Carey Grammar</title>
       </Head>
-      <EnrolmentPage />
+      <ApplicationPage pageData={pageData} />
     </>
   );
 }
 
-Enrolment.getLayout = function getLayout(page: ReactElement) {
+Application.getLayout = function getLayout(page: ReactElement) {
   return <Layout {...page.props}>{page}</Layout>;
 };
 
 export const getStaticProps: GetStaticProps = withGlobalData(async () => {
+  const client = initializeApollo();
+
+  const {
+    data: { entry: pageData },
+  } = await client.query({
+    query: ApplyOnlinePageQuery,
+  });
+
   return {
-    props: {},
+    props: { pageData },
     revalidate: parseInt(process.env.NEXT_PAGE_REVALIDATE),
   };
 });

@@ -193,7 +193,6 @@ const ItemHeader = styled("a", {
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
-  p: 24,
   border: "none",
   "&:after": {
     position: "absolute",

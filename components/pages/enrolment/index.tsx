@@ -22,7 +22,21 @@ import {
 
 //export const AspectRatio = AspectRatioPrimitive;
 
-const Enrolment = ({}) => {
+interface EnrolmentProps {
+  dataGender: Array<any>;
+  dataReligion: Array<any>;
+  dataLanguage: Array<any>;
+  dataRelationToStudent: Array<any>;
+  dataCountry: Array<any>;
+}
+
+const Enrolment = ({
+  dataGender,
+  dataReligion,
+  dataLanguage,
+  dataRelationToStudent,
+  dataCountry,
+}: EnrolmentProps) => {
   const {
     state: { enrolmentDetails },
   } = useAppContext();
@@ -51,8 +65,17 @@ const Enrolment = ({}) => {
         innerCSS={{ rowGap: 56, py: 56 }}
       >
         <LeftContent>
-          {activeStep === 1 && <StudentDetails />}
-          {activeStep === 2 && <ParentDetails />}
+          {activeStep === 1 && (
+            <StudentDetails gender={dataGender} religion={dataReligion} />
+          )}
+          {activeStep === 2 && (
+            <ParentDetails
+              gender={dataGender}
+              relationToStudent={dataRelationToStudent}
+              language={dataLanguage}
+              country={dataCountry}
+            />
+          )}
           {activeStep === 3 && <CareyConnection />}
           {activeStep === 4 && <TermsConditions />}
           {activeStep === 5 && <ReviewPayment />}

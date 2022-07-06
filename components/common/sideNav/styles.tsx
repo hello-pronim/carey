@@ -25,53 +25,8 @@ const StyledItem = styled(AccordionPrimitive.Item, {
 
 const StyledHeader = styled(AccordionPrimitive.Header, {
   all: "unset",
-  display: "flex",
-});
-
-const SingleItem = styled("div", {
   fontFamily: "inherit",
   backgroundColor: "transparent",
-  py: 12,
-  px: 24,
-  "@min768": {
-    px: "32px",
-  },
-  "@min1024": {
-    px: "40px",
-  },
-  "@min1440": {
-    px: 24,
-  },
-  flex: 1,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  fontSize: 15,
-  lineHeight: 1,
-  color: "$navy",
-  cursor: "pointer",
-  bg: "$white",
-  "&:hover": { bg: "$crestBlue100" },
-  "& a": {
-    textDecoration: "none",
-  },
-});
-
-const StyledTrigger = styled(AccordionPrimitive.Trigger, {
-  all: "unset",
-  fontFamily: "inherit",
-  backgroundColor: "transparent",
-  py: 12,
-  px: 24,
-  "@min768": {
-    px: "32px",
-  },
-  "@min1024": {
-    px: "40px",
-  },
-  "@min1440": {
-    px: 24,
-  },
   flex: 1,
   display: "flex",
   alignItems: "center",
@@ -88,7 +43,69 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
     [`& ${Text}`]: { fontWeight: 500 },
     "&:hover": { bg: "$crestBlue200" },
   },
-  "&:hover": { bg: "$crestBlue100" },
+  "@media (hover: hover)": { "&:hover": { bg: "$crestBlue100" } },
+});
+
+const LinkedHeader = styled("a", {
+  py: 12,
+  px: 24,
+  flex: 1,
+  "@min768": {
+    px: "32px",
+  },
+  "@min1024": {
+    px: "40px",
+  },
+  "@min1440": {
+    px: 24,
+  },
+});
+
+const SingleItem = styled("a", {
+  fontFamily: "inherit",
+  backgroundColor: "transparent",
+  py: 12,
+  px: 24,
+  "@min768": {
+    px: "32px",
+  },
+  "@min1024": {
+    px: "40px",
+  },
+  "@min1440": {
+    px: 24,
+  },
+  flex: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  fontSize: 15,
+  lineHeight: 1,
+  color: "$navy",
+  cursor: "pointer",
+  bg: "$white",
+  "@media (hover: hover)": {
+    "&:hover": { bg: "$crestBlue100" },
+  },
+
+  "& a": {
+    textDecoration: "none",
+  },
+});
+
+const StyledTrigger = styled(AccordionPrimitive.Trigger, {
+  all: "unset",
+  py: 12,
+  px: 24,
+  "@min768": {
+    px: "32px",
+  },
+  "@min1024": {
+    px: "40px",
+  },
+  "@min1440": {
+    px: 24,
+  },
 });
 
 const StyledContent = styled(AccordionPrimitive.Content, {
@@ -109,8 +126,9 @@ const AccordionItem = StyledItem;
 const AccordionTrigger = React.forwardRef(
   ({ children, ...props }: anyType, forwardedRef: Ref<HTMLButtonElement>) => (
     <StyledHeader>
-      <StyledTrigger {...props} ref={forwardedRef}>
-        {children}
+      {/*@ts-ignore */}
+      <LinkedHeader href={props.href}>{children}</LinkedHeader>
+      <StyledTrigger ref={forwardedRef}>
         <Chevron aria-hidden direction="down" />
       </StyledTrigger>
     </StyledHeader>
@@ -147,10 +165,8 @@ const Wrapper = styled("div", {
 });
 
 const NavHeader = styled("div", {
-  pt: 56,
-  pb: 46,
-  px: 24,
   bg: "$white",
+  boxSizing: "border-box",
   "@max1440": {
     position: "relative",
     display: "flex",
@@ -159,21 +175,6 @@ const NavHeader = styled("div", {
     span: {
       position: "relative",
       top: "0.1em",
-    },
-  },
-  variants: {
-    isMobile: {
-      true: {
-        cursor: "pointer",
-        pt: 16,
-        pb: "unset",
-        "@min768": {
-          px: "32px",
-        },
-        "@min1024": {
-          px: "40px",
-        },
-      },
     },
   },
 });
