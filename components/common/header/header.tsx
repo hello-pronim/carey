@@ -28,14 +28,19 @@ import {
   DrawerToggleCompact,
 } from "./styles";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Header = ({ navigation, headerNav, headerGlobals }) => {
+  const router = useRouter();
   const isMobile = useMedia("(max-width: 768px)", false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { headerRightLinks } = headerGlobals;
   const [hasStuck, setHasStuck] = useState(false);
   const header = useRef(null);
   const yPos = useWindowScroll().y;
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [router.asPath]);
 
   useEffect(() => {
     if (header.current) {
