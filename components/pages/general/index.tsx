@@ -103,7 +103,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
       {heroData && getHeroType(heroData.__typename) && (
         <Hero
           type={getHeroType(heroData.__typename)}
-          props={heroData}
+          {...heroData}
           applyNow={applyNow}
         />
       )}

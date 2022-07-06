@@ -4,7 +4,7 @@ import { parseDocument } from "htmlparser2";
 import { Text } from "@components/common";
 import Image from "next/image";
 
-const General = ({ props }) => {
+const General = (props) => {
   const { overHeadline, headline, image } = props;
   const parsedHTML = parseDocument(props.bodyText);
 
