@@ -1,18 +1,27 @@
-import React from "react";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import appProcessorClient from "@utils/appProcessorClient";
 import Text from "@components/common/forms/fields/text";
 import { Button } from "@components/common";
 import { Div } from "./styles";
 
 const ApplyForm = ({}) => {
+  const router = useRouter();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    try {
+      const result = await appProcessorClient.newApplication(data);
+      console.log(result);
+      // set application Id
+      router.push("/application-form");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -22,13 +31,13 @@ const ApplyForm = ({}) => {
           required
           control={control}
           error={
-            errors.emailAddress?.type === "required"
+            errors.email?.type === "required"
               ? "Email address is required"
-              : errors.emailAddress?.type === "pattern"
+              : errors.email?.type === "pattern"
               ? "Enter valid email format"
               : ""
           }
-          name="emailAddress"
+          name="email"
           label="Email address"
           placeholder="Enter your email address"
           type="email"

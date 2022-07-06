@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-const useFormatUrl = (href) => {
+const useFormatUrl = (href: string) => {
   const hrefValue = useMemo(() => {
     if (href && !href.includes("http") && !href.startsWith("/"))
       return `/${href}`;

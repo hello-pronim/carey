@@ -64,8 +64,6 @@ export default function Enrolment({
     <>
       <Head>
         <title>Home | Carey Grammar</title>
-        <meta name="description" content="Traffic Next.js Starter" />
-        <meta name="robots" content="index, follow" />
       </Head>
       <EnrolmentPage
         dataGender={formatedGender}
