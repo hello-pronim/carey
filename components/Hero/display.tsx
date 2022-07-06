@@ -30,11 +30,12 @@ const Display = (props) => {
           <HeroText
             as="h1"
             dangerouslySetInnerHTML={{
-              __html: props?.props?.scriptTitle || props?.props?.[0].bannerText,
+              __html:
+                props?.props?.scriptTitle || props?.props?.[0]?.bannerText,
             }}
           />
         </DisplayContent>
-        {(props?.props?.videoUrl || props?.props?.[0].videoUrl) && (
+        {(props?.props?.videoUrl || props?.props?.[0]?.videoUrl) && (
           <DisplayVideoWrapper>
             <video
               preload="auto"
@@ -44,7 +45,7 @@ const Display = (props) => {
               playsInline={true}
             >
               <source
-                src={props?.props?.videoUrl || props?.props?.[0].videoUrl}
+                src={props?.props?.videoUrl || props?.props?.[0]?.videoUrl}
                 type="video/mp4"
                 media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)"
               />
@@ -53,7 +54,7 @@ const Display = (props) => {
         )}
 
         {props?.props?.image?.length &&
-        !(props?.props?.videoUrl || props?.props?.[0].videoUrl) ? (
+        !(props?.props?.videoUrl || props?.props?.[0]?.videoUrl) ? (
           <DisplayImageWrapper>
             <Image
               alt="principal"
@@ -68,7 +69,7 @@ const Display = (props) => {
         ) : null}
 
         {props?.props?.[0]?.backgroundImage[0] &&
-        !(props?.props?.videoUrl || props?.props?.[0].videoUrl) ? (
+        !(props?.props?.videoUrl || props?.props?.[0]?.videoUrl) ? (
           <DisplayImageWrapper>
             <Image
               alt="principal"

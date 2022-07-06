@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import appProcessorClient from "@utils/appProcessorClient";
@@ -6,6 +7,7 @@ import { Button } from "@components/common";
 import { Div } from "./styles";
 
 const ApplyForm = ({}) => {
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
   const {
     control,
@@ -15,12 +17,15 @@ const ApplyForm = ({}) => {
 
   const onSubmit = async (data: any) => {
     try {
+      setSubmitting(true);
       const result = await appProcessorClient.newApplication(data);
       console.log(result);
       // set application Id
       router.push("/application-form");
     } catch (e) {
       console.log(e);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -55,7 +60,7 @@ const ApplyForm = ({}) => {
         />
         <Button
           arrow
-          label="Submit"
+          label={submitting ? "Submitting" : "Submit"}
           color="$crestYellow"
           type="solid"
           theme="transparent"
