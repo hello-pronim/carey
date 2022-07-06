@@ -47,6 +47,10 @@ export default function TextContent(props) {
   return (
     <Container>
       <ContentWrapper>
+        {/* 
+          This is what's causing all the prop on 
+          react dom issues, to remove and fix later. 
+        */}
         <RightSection {...props}>
           <Text variant="Heading-xSmall">{props.overHeadline}</Text>
           <Text variant="Body-xxLarge">{props.headline}</Text>
