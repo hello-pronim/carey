@@ -29,51 +29,36 @@ export default function Enrolment({
   dataCountry,
   ...props
 }: EnrolmentPageProps) {
-  const formatedGender = [];
-  const formatedReligion = [];
-  const formatedLanguage = [];
-  const formatedRelationToStudent = [];
-  const formatedCountry = [];
-
-  dataGender?.length > 0 &&
-    dataGender.forEach((element) => {
-      formatedGender.push({
-        value: element.dataCodeValue,
-        label: element.title,
-      });
-    });
-
-  dataReligion?.length > 0 &&
-    dataReligion.forEach((element) => {
-      formatedReligion.push({
-        value: element.dataCodeValue,
-        label: element.title,
-      });
-    });
-
-  dataLanguage?.length > 0 &&
-    dataLanguage.forEach((element) => {
-      formatedLanguage.push({
-        value: element.dataCodeValue,
-        label: element.title,
-      });
-    });
-
-  dataRelationToStudent?.length > 0 &&
-    dataRelationToStudent.forEach((element) => {
-      formatedRelationToStudent.push({
-        value: element.dataCodeValue,
-        label: element.title,
-      });
-    });
-
-  dataCountry?.length > 0 &&
-    dataCountry.forEach((element) => {
-      formatedCountry.push({
-        value: element.dataCodeValue,
-        label: element.title,
-      });
-    });
+  const formatedGender = dataGender?.map((element) => {
+    return {
+      value: element.dataCodeValue,
+      label: element.title,
+    };
+  });
+  const formatedReligion = dataReligion.map((element) => {
+    return {
+      value: element.dataCodeValue,
+      label: element.title,
+    };
+  });
+  const formatedLanguage = dataLanguage.map((element) => {
+    return {
+      value: element.dataCodeValue,
+      label: element.title,
+    };
+  });
+  const formatedRelationToStudent = dataRelationToStudent.map((element) => {
+    return {
+      value: element.dataCodeValue,
+      label: element.title,
+    };
+  });
+  const formatedCountry = dataCountry.map((element) => {
+    return {
+      value: element.dataCodeValue,
+      label: element.title,
+    };
+  });
 
   return (
     <>

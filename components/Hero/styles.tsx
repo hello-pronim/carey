@@ -118,9 +118,6 @@ const ApplyOnlineContent = styled("div", {
     margin: "unset",
     color: "$white",
   },
-  "@max1440": {
-    gridColumn: "1 / span 8",
-  },
 });
 
 const ApplicationSupport = styled("div", {
@@ -214,7 +211,7 @@ const ApplyOnlineImageWrapper = styled("div", {
   height: "100%",
   gridColumn: "8 / span 5",
   display: "none",
-  "@min1440": {
+  "@min1200": {
     display: "block",
   },
 });

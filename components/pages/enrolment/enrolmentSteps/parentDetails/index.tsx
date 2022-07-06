@@ -110,8 +110,14 @@ const ParentDetails = ({
                     <Div
                       css={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
+                        gridTemplateColumns: "repeat(6, 1fr)",
                         columnGap: 15,
+                        ":nth-child(2)": {
+                          gridColumn: "2 / span 2",
+                        },
+                        ":nth-child(3)": {
+                          gridColumn: "4 / span 3",
+                        },
                       }}
                     >
                       <Select
@@ -422,7 +428,11 @@ const ParentDetails = ({
                       />
                     </Div>
                     <Divider />
-                    <Div>
+                    <Div
+                      css={{
+                        mb: 24,
+                      }}
+                    >
                       <Checkbox label="Postal Address (Same as Residential address)" />
                     </Div>
                     <Div>

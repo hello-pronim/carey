@@ -26,9 +26,10 @@ import {
 interface StudentDetailsProps {
   gender: Array<any>;
   religion: Array<any>;
+  country: Array<any>;
 }
 
-const StudentDetails = ({ gender, religion }: StudentDetailsProps) => {
+const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
   const [studentDetails, setStudentDetails] = useState(["std1"]);
   const [studentAccordianOpen, setStudentAccordianOpen] = useState([
     "studentDetails-std1",
@@ -205,23 +206,21 @@ const StudentDetails = ({ gender, religion }: StudentDetailsProps) => {
                           items={religion}
                         />
                       )}
-                      <Select
-                        control={control}
-                        searchable
-                        required
-                        error={
-                          errors[`birthCountry${student}`] &&
-                          "Country of birth is required"
-                        }
-                        name={`birthCountry${student}`}
-                        label="Country of birth"
-                        placeholder="Select"
-                        items={[
-                          { value: "australia", label: "Australia" },
-                          { value: "canada", label: "China" },
-                          { value: "usa", label: "Zimbabwe" },
-                        ]}
-                      />
+                      {country?.length > 0 && (
+                        <Select
+                          control={control}
+                          searchable
+                          required
+                          error={
+                            errors[`birthCountry${student}`] &&
+                            "Country of birth is required"
+                          }
+                          name={`birthCountry${student}`}
+                          label="Country of birth"
+                          placeholder="Select"
+                          items={country}
+                        />
+                      )}
                     </Div>
                     <Divider />
                     <Div
