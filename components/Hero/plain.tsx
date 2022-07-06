@@ -8,11 +8,14 @@ import {
   Crest,
 } from "./styles";
 import { Button, Text } from "@components/common";
+import { useGetFullPath } from "@hooks/useGetFullPath";
 import cGraphic from "public/assets/c-graphic.svg";
 import Image from "next/image";
 import HeroButton from "./HeroButton";
 
 const Plain = (props) => {
+  const getFullPath = useGetFullPath();
+
   return (
     <Wrapper>
       <Bumper css={{ bg: "$crestYellow" }} />
@@ -32,7 +35,8 @@ const Plain = (props) => {
           <CTAWrapper>
             <Button
               href={
-                props?.props?.buttonLink?.[0]?.uri || props?.props?.buttonUrl
+                props?.props?.buttonUrl ||
+                getFullPath(props?.props?.buttonLink?.[0])
               }
               label={props?.props?.buttonLabel}
               arrow={true}
