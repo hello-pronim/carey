@@ -183,9 +183,12 @@ const CTAWrapper = styled("div", {
   mt: 24,
 });
 
-const ImageWrapper = styled("div", {
+const ImageWrapper = styled("a", {
+  textDecoration: "none",
   height: "auto",
   gridColumn: "1 / span 2",
+  cursor: "pointer",
+  display: "block",
   "@min768": {
     height: 108,
     gridColumn: "4 / span 4",
@@ -244,7 +247,7 @@ const DisplayImageWrapper = styled("div", {
   gridRow: 1,
   "@min768": {
     height: "100%",
-    gridColumn: "1 / span 6",
+    gridColumn: "1 / span 12",
   },
   "@min1024": {
     height: "100%",
@@ -261,7 +264,7 @@ const DisplayVideoWrapper = styled("div", {
   gridColumn: "1 / span 2",
   gridRow: 1,
   "@min768": {
-    gridColumn: "1 / span 6",
+    gridColumn: "1 / span 12",
   },
   "@min1024": {
     gridColumn: "1 / span 12",
@@ -271,7 +274,7 @@ const DisplayVideoWrapper = styled("div", {
   },
   video: {
     width: "100%",
-    maxHeight: "920px",
+    height: "100%",
     objectFit: "cover",
   },
 });

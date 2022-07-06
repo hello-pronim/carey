@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import HeroButton from "./HeroButton";
 import QuickLinksMenu from "./quickLinksMenu";
+import FeaturePanel from "./featurePanel";
 import {
   Actions,
   ActionsWrapper,
@@ -51,7 +52,8 @@ const Display = (props) => {
           </DisplayVideoWrapper>
         )}
 
-        {props?.props?.image?.length ? (
+        {props?.props?.image?.length &&
+        !(props?.props?.videoUrl || props?.props?.[0].videoUrl) ? (
           <DisplayImageWrapper>
             <Image
               alt="principal"
@@ -65,7 +67,8 @@ const Display = (props) => {
           </DisplayImageWrapper>
         ) : null}
 
-        {props?.props?.[0]?.backgroundImage[0] ? (
+        {props?.props?.[0]?.backgroundImage[0] &&
+        !(props?.props?.videoUrl || props?.props?.[0].videoUrl) ? (
           <DisplayImageWrapper>
             <Image
               alt="principal"
@@ -81,7 +84,11 @@ const Display = (props) => {
         <MobileActions>
           <MobileActionsWrapper>
             <ContentBox>
-              <QuickLinksMenu data={props?.props} />
+              {!props.props?.[0]?.featureDownloadAsset?.length ? (
+                <QuickLinksMenu data={props?.props} />
+              ) : (
+                <FeaturePanel data={props?.props} />
+              )}
             </ContentBox>
             <Bumper
               css={{
@@ -97,7 +104,11 @@ const Display = (props) => {
       <Actions>
         <ActionsWrapper>
           <ContentBox>
-            <QuickLinksMenu data={props?.props} />
+            {!props.props?.[0]?.featureDownloadAsset?.length ? (
+              <QuickLinksMenu data={props?.props} />
+            ) : (
+              <FeaturePanel data={props?.props} />
+            )}
           </ContentBox>
           <Bumper
             css={{

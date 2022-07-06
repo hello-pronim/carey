@@ -4,17 +4,17 @@ import Hero from "@components/Hero";
 import ImageAccordion from "@components/ImageAccordion";
 import { FullGridContainer } from "./styles";
 
-const Home = ({ heroData, applyNow }) => {
+const WhyCarey = ({ pageData, applyNow }) => {
   return (
     <>
       <Hero
         type="display"
-        props={heroData?.homePageBanner}
+        props={pageData?.whyCareyBanner}
         applyNow={applyNow}
       />
       <Container type="grid">
         <FullGridContainer>
-          <ImageAccordion accordionData={heroData?.campuses} />
+          <ImageAccordion accordionData={pageData?.campuses} />
         </FullGridContainer>
       </Container>
       <PreFooter />
@@ -22,4 +22,4 @@ const Home = ({ heroData, applyNow }) => {
   );
 };
 
-export default Home;
+export default WhyCarey;

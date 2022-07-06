@@ -1,31 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import { Text, Button } from "@components/common";
-import HeroIcons from "@components/common/icons/heroIcons";
 import {
   QuickLinks,
   QuickLinksList,
   QuickLinksListItem,
   ImageWrapper,
-  DownloadButton,
-  VideoButton,
-  HeadingWrapper,
-  Heading,
-  FooterWrapper,
-  DescriptionWrapper,
-  Description,
-  ContentWrapper,
 } from "./styles";
 
 const QuickLinksMenu = ({ data }) => {
-  return data?.[0]?.quicklinks && data?.[0]?.quicklinks?.length ? (
+  return (
     <>
       <QuickLinks>
         <Text as="h3" variant="Heading-xSmall" css={{ fontWeight: "$medium" }}>
           Quicklinks
         </Text>
         <QuickLinksList>
-          {data?.[0]?.quicklinks.map((item, index) => {
+          {data?.[0]?.quicklinks?.map((item, index) => {
             return (
               <QuickLinksListItem key={index}>
                 <Button
@@ -41,7 +32,7 @@ const QuickLinksMenu = ({ data }) => {
           })}
         </QuickLinksList>
       </QuickLinks>
-      <ImageWrapper>
+      <ImageWrapper href={data?.[0]?.featurePanelLink?.[0]?.uri}>
         <Image
           alt="main image"
           src={data?.[0]?.featurePanelImage?.[0]?.url}
@@ -53,31 +44,6 @@ const QuickLinksMenu = ({ data }) => {
           priority
         />
       </ImageWrapper>
-    </>
-  ) : (
-    <>
-      <ContentWrapper size={"small"}>
-        <HeadingWrapper size={"small"}>
-          <Heading>{data?.headline}</Heading>
-          <DescriptionWrapper>
-            <Description
-              dangerouslySetInnerHTML={{
-                __html: data?.bodyText,
-              }}
-            />
-          </DescriptionWrapper>
-        </HeadingWrapper>
-      </ContentWrapper>
-      <FooterWrapper>
-        <VideoButton href={data?.featureVideoUrl}>
-          <Text>{data?.featureVideoTitle}</Text>
-          <HeroIcons type={"video"} />
-        </VideoButton>
-        <DownloadButton href={data?.featureDownloadAsset?.[0]?.url}>
-          <Text>{data?.featureDownloadLinkTitle}</Text>
-          <HeroIcons type={"download"} />
-        </DownloadButton>
-      </FooterWrapper>
     </>
   );
 };
