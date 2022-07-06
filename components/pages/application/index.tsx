@@ -32,14 +32,6 @@ const Application = ({ pageData }) => {
           pb: 100,
           background: "$background",
         }}
-        innerCSS={{
-          "@max768": {
-            gridTemplateColumns: "repeat(1, 1fr)",
-          },
-          "@max1440": {
-            gridTemplateColumns: "1fr",
-          },
-        }}
       >
         <LeftContent>
           <Div

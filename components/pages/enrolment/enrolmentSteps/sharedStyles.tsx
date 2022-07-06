@@ -32,6 +32,7 @@ const StyledHeader = styled(Accordion.Header, {
   all: "unset",
   display: "flex",
   justifyContent: "center",
+  cursor: "pointer",
 });
 
 const StyledItem = styled(Accordion.Item, {

@@ -66,7 +66,11 @@ const Enrolment = ({
       >
         <LeftContent>
           {activeStep === 1 && (
-            <StudentDetails gender={dataGender} religion={dataReligion} />
+            <StudentDetails
+              country={dataCountry}
+              gender={dataGender}
+              religion={dataReligion}
+            />
           )}
           {activeStep === 2 && (
             <ParentDetails

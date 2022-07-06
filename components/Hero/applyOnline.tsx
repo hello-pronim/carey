@@ -42,10 +42,6 @@ const ApplyOnline = (props) => {
               outerCSS={{
                 mt: 20,
                 mb: 44,
-                "@min1500": {
-                  mt: 80,
-                  mb: 0,
-                },
               }}
             />
           )}
@@ -118,10 +114,9 @@ const ApplyOnline = (props) => {
             <Image
               alt="principal"
               src={props.image}
-              width={782}
-              height={840}
+              width={102}
+              height={100}
               layout="responsive"
-              priority
             />
           </ApplyOnlineImageWrapper>
         )}
