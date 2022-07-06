@@ -33,7 +33,7 @@ const Button = ({
 
   const Wrapper = useMemo(() => {
     if (href) return Link;
-    if (!href) return Fragment;
+    return Fragment;
   }, [href]);
 
   const formatUrl = useFormatUrl;
