@@ -14,7 +14,6 @@ import {
 } from "./styles";
 
 const EnrolmentSideNav = ({ activeStep }: EnrolmentSideNavTypes) => {
-  console.log("activeStep", activeStep);
   return (
     <Wrapper>
       <NavHeader>

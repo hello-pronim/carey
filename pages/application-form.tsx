@@ -5,7 +5,7 @@ import { Layout } from "@components/common";
 import EnrolmentPage from "@components/pages/enrolment";
 import { withGlobalData } from "@hoc/withGlobalData";
 import { initializeApollo } from "@utils/apolloClient";
-import { CategoriesQuery } from "@gql/categoriesGQL";
+import { ListDataQuery } from "@gql/categoriesGQL";
 
 interface EnrolmentPageProps {
   pageData: any;
@@ -99,50 +99,16 @@ Enrolment.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = withGlobalData(async () => {
   const client = initializeApollo();
-
   const {
-    data: { categories: dataGender },
-  } = await client.query({
-    query: CategoriesQuery,
-    variables: {
-      group: "dataGender",
+    data: {
+      relationToStudentList: dataRelationToStudent,
+      genderList: dataGender,
+      religionList: dataReligion,
+      languageList: dataLanguage,
+      countryList: dataCountry,
     },
-  });
-
-  const {
-    data: { categories: dataReligion },
   } = await client.query({
-    query: CategoriesQuery,
-    variables: {
-      group: "dataReligion",
-    },
-  });
-
-  const {
-    data: { categories: dataLanguage },
-  } = await client.query({
-    query: CategoriesQuery,
-    variables: {
-      group: "dataLanguage",
-    },
-  });
-
-  const {
-    data: { categories: dataRelationToStudent },
-  } = await client.query({
-    query: CategoriesQuery,
-    variables: {
-      group: "dataRelationToStudent",
-    },
-  });
-
-  const {
-    data: { categories: dataCountry },
-  } = await client.query({
-    query: CategoriesQuery,
-    variables: {
-      group: "dataCountry",
-    },
+    query: ListDataQuery,
   });
 
   return {
