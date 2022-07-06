@@ -1,6 +1,29 @@
 import { styled } from "@styles/stitches";
 
-const ActionWrapper = styled("div", {});
+const ActionWrapper = styled("div", {
+  a: {
+    width: "100%",
+    span: {
+      fontSize: "$bodySmall",
+    },
+  },
+  "@min1024": {
+    a: {
+      width: "max-content",
+      span: {
+        fontSize: "$bodySmall",
+      },
+    },
+  },
+  "@min1920": {
+    a: {
+      width: "max-content",
+      span: {
+        fontSize: "$bodyRegular",
+      },
+    },
+  },
+});
 const BottomWrapper = styled("div", {
   position: "relative",
   variants: {
@@ -141,33 +164,27 @@ const Heading = styled("span", {
   variants: {
     size: {
       small: {
-        fontSize: "$headingOverline",
-        lineHeight: "$large",
+        fontSize: "$bodySmall",
+        fontWeight: "$medium",
+        lineHeight: "$medium",
         letterSpacing: "$regular",
-        "@min768": {
-          fontSize: "$bodySmall",
-          fontWeight: "$medium",
-          lineHeight: "$medium",
-        },
-        "@min1024": {
-          fontSize: "$headingXSmall",
-          fontWeight: "$regular",
-          lineHeight: "$large",
-        },
         "@min1920": {
           fontSize: "$headingXSmall",
           fontWeight: "$regular",
           lineHeight: "$large",
+          letterSpacing: "$regular",
         },
       },
       large: {
         fontSize: "$bodySmall",
+        fontWeight: "$medium",
         lineHeight: "$medium",
         letterSpacing: "$regular",
         "@min1440": {
           fontSize: "$headingXSmall",
           fontWeight: "$regular",
           lineHeight: "$large",
+          letterSpacing: "$regular",
         },
       },
     },
