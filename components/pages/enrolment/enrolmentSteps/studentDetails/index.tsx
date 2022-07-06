@@ -8,7 +8,7 @@ import RadioGroup from "@components/common/forms/fields/radio";
 import DateField from "@components/common/forms/fields/date";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon, Cross1Icon, CaretLeftIcon } from "@radix-ui/react-icons";
 
 import {
   AddButton,
@@ -20,9 +20,15 @@ import {
   StyledContent,
   StyledTrigger,
   Divider,
+  ButtonWrap,
 } from "../sharedStyles";
 
-const StudentDetails = ({}) => {
+interface StudentDetailsProps {
+  gender: Array<any>;
+  religion: Array<any>;
+}
+
+const StudentDetails = ({ gender, religion }: StudentDetailsProps) => {
   const [studentDetails, setStudentDetails] = useState(["std1"]);
   const [studentAccordianOpen, setStudentAccordianOpen] = useState([
     "studentDetails-std1",
@@ -45,7 +51,6 @@ const StudentDetails = ({}) => {
     const value = {
       activeStep: activeStep + 1,
     };
-    console.log("value", value);
     dispatch({
       type: "SET_ENROLMENT_DETAILS",
       value,
@@ -164,21 +169,19 @@ const StudentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`gender${student}`] && "Gender is required"
-                        }
-                        name={`gender${student}`}
-                        label="Gender"
-                        placeholder="Select"
-                        items={[
-                          { value: "male", label: "Male" },
-                          { value: "female", label: "Female" },
-                          { value: "self-describe", label: "Self-describe" },
-                        ]}
-                      />
+                      {gender?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`gender${student}`] && "Gender is required"
+                          }
+                          name={`gender${student}`}
+                          label="Gender"
+                          placeholder="Select"
+                          items={gender}
+                        />
+                      )}
                     </Div>
                     <Divider />
                     <Div
@@ -188,22 +191,20 @@ const StudentDetails = ({}) => {
                         columnGap: 15,
                       }}
                     >
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`religion${student}`] && "Religion is required"
-                        }
-                        name={`religion${student}`}
-                        label="Religion"
-                        placeholder="Select"
-                        items={[
-                          { value: "baptist", label: "Baptist" },
-                          { value: "catholic", label: "Catholic" },
-                          { value: "orthodox", label: "Orthodox" },
-                          { value: "other", label: "Other" },
-                        ]}
-                      />
+                      {religion.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`religion${student}`] &&
+                            "Religion is required"
+                          }
+                          name={`religion${student}`}
+                          label="Religion"
+                          placeholder="Select"
+                          items={religion}
+                        />
+                      )}
                       <Select
                         control={control}
                         searchable
@@ -458,14 +459,16 @@ const StudentDetails = ({}) => {
             );
           })}
       </Accordion.Root>
-      <AddButton onClick={() => addStudent()}>
-        <PlusIcon /> <span>Additional student</span>
-      </AddButton>
+      <ButtonWrap>
+        <AddButton outlined onClick={() => addStudent()}>
+          <PlusIcon /> <span>Additional student</span>
+        </AddButton>
+      </ButtonWrap>
       <Divider />
       <ButtonsContainer>
         <Div>
           <AddButton>
-            <span>Save & Exit</span>
+            <Cross1Icon /> <span>Save & Exit</span>
           </AddButton>
         </Div>
         <Div
@@ -475,7 +478,8 @@ const StudentDetails = ({}) => {
             alignItems: "center",
           }}
         >
-          <AddButton>
+          <AddButton disabled>
+            <CaretLeftIcon />
             <span>Back</span>
           </AddButton>
           <Button

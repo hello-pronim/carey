@@ -7,7 +7,7 @@ import Select from "@components/common/forms/fields/select";
 import Checkbox from "@components/common/forms/fields/checkbox";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon, Cross1Icon, CaretLeftIcon } from "@radix-ui/react-icons";
 
 import {
   AddButton,
@@ -19,9 +19,21 @@ import {
   StyledContent,
   StyledTrigger,
   Divider,
+  ButtonWrap,
 } from "../sharedStyles";
 
-const ParentDetails = ({}) => {
+interface ParentDetailsProps {
+  language: Array<any>;
+  gender: Array<any>;
+  relationToStudent: Array<any>;
+  country: Array<any>;
+}
+const ParentDetails = ({
+  language,
+  gender,
+  relationToStudent,
+  country,
+}: ParentDetailsProps) => {
   const [parentDetails, setParentDetails] = useState(["parent1"]);
   const [parentAccordianOpen, setParentAccordianOpen] = useState([
     "parentDetails-parent1",
@@ -76,7 +88,7 @@ const ParentDetails = ({}) => {
       residentialDetailsOpen,
     ]);
   };
-  console.log("parentAccordianOpen", parentAccordianOpen);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Accordion.Root type="multiple" defaultValue={parentAccordianOpen}>
@@ -166,21 +178,19 @@ const ParentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`gender${guardian}`] && "Gender is required"
-                        }
-                        name={`gender${guardian}`}
-                        label="Gender"
-                        placeholder="Select"
-                        items={[
-                          { value: "male", label: "Male" },
-                          { value: "female", label: "Female" },
-                          { value: "others", label: "Others" },
-                        ]}
-                      />
+                      {gender?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`gender${guardian}`] && "Gender is required"
+                          }
+                          name={`gender${guardian}`}
+                          label="Gender"
+                          placeholder="Select"
+                          items={gender}
+                        />
+                      )}
                     </Div>
                     <Div
                       css={{
@@ -254,38 +264,34 @@ const ParentDetails = ({}) => {
                         columnGap: 15,
                       }}
                     >
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`relationship${guardian}`] &&
-                          "Relationship to the student (s) on application is required"
-                        }
-                        name={`relationship${guardian}`}
-                        label="Relationship to the student (s) on application"
-                        placeholder="Select"
-                        items={[
-                          { value: "relationship1", label: "Relationship 1" },
-                          { value: "relationship2", label: "Relationship 2" },
-                          { value: "relationship3", label: "Relationship 3" },
-                        ]}
-                      />
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`mainLanguage${guardian}`] &&
-                          "Main language spoken is required"
-                        }
-                        name={`mainLanguage${guardian}`}
-                        label="Main language spoken"
-                        placeholder="Select"
-                        items={[
-                          { value: "Greek", label: "Language 1" },
-                          { value: "Chinese", label: "Language 2" },
-                          { value: "Portuguese", label: "Language 3" },
-                        ]}
-                      />
+                      {relationToStudent?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`relationship${guardian}`] &&
+                            "Relationship to the student (s) on application is required"
+                          }
+                          name={`relationship${guardian}`}
+                          label="Relationship to the student (s) on application"
+                          placeholder="Select"
+                          items={relationToStudent}
+                        />
+                      )}
+                      {language?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`mainLanguage${guardian}`] &&
+                            "Main language spoken is required"
+                          }
+                          name={`mainLanguage${guardian}`}
+                          label="Main language spoken"
+                          placeholder="Select"
+                          items={language}
+                        />
+                      )}
                     </Div>
                   </StyledContent>
                 </StyledItem>
@@ -334,20 +340,20 @@ const ParentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`country${guardian}`] && "Country is required"
-                        }
-                        name={`country${guardian}`}
-                        label="Country"
-                        placeholder="Select"
-                        items={[
-                          { value: "AU", label: "Australia" },
-                          { value: "NZ", label: "Newzealand" },
-                        ]}
-                      />
+                      {country?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`country${guardian}`] &&
+                            "Country is required"
+                          }
+                          name={`country${guardian}`}
+                          label="Country"
+                          placeholder="Select"
+                          items={country}
+                        />
+                      )}
                     </Div>
                     <Div
                       css={{
@@ -451,21 +457,20 @@ const ParentDetails = ({}) => {
                         color="$navy"
                         outerCSS={{ mb: 24 }}
                       />
-                      <Select
-                        control={control}
-                        required
-                        error={
-                          errors[`postalCountry${guardian}`] &&
-                          "Country is required"
-                        }
-                        name={`postalCountry${guardian}`}
-                        label="Country"
-                        placeholder="Select"
-                        items={[
-                          { value: "AU", label: "Australia" },
-                          { value: "NZ", label: "Newzealand" },
-                        ]}
-                      />
+                      {country?.length > 0 && (
+                        <Select
+                          control={control}
+                          required
+                          error={
+                            errors[`postalCountry${guardian}`] &&
+                            "Country is required"
+                          }
+                          name={`postalCountry${guardian}`}
+                          label="Country"
+                          placeholder="Select"
+                          items={country}
+                        />
+                      )}
                     </Div>
                     <Div
                       css={{
@@ -527,14 +532,16 @@ const ParentDetails = ({}) => {
       <Div css={{ mb: 50 }}>
         <Checkbox label="I/We acknowledge that all legal guardians and carers for the student(s) have been entered into this application" />
       </Div>
-      <AddButton onClick={() => addParent()}>
-        <PlusIcon /> <span> Another Parent/Guardian</span>
-      </AddButton>
+      <ButtonWrap>
+        <AddButton outlined onClick={() => addParent()}>
+          <PlusIcon /> <span> Another Parent/Guardian</span>
+        </AddButton>
+      </ButtonWrap>
       <Divider />
       <ButtonsContainer>
         <Div>
           <AddButton>
-            <span>Save & Exit</span>
+            <Cross1Icon /> <span>Save & Exit</span>
           </AddButton>
         </Div>
         <Div
@@ -545,7 +552,7 @@ const ParentDetails = ({}) => {
           }}
         >
           <AddButton onClick={() => prevStep()}>
-            <span>Back</span>
+            <CaretLeftIcon /> <span>Back</span>
           </AddButton>
           <Button
             arrow

@@ -34,19 +34,6 @@ const Select = ({
           </Text>
         )}
         <InputWrapper>
-          {/* <ReactSelect
-            isSearchable={false}
-            placeholder={
-              placeholder ? placeholder : "choose from the following"
-            }
-            styles={customStyles}
-            options={items}
-            isDisabled={disabled}
-            {...register(name, {
-              required: required,
-              message: `${name} is required`,
-            })}
-          /> */}
           <Controller
             control={control}
             name={name}
