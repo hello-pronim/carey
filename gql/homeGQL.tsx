@@ -41,7 +41,10 @@ export const HomePageQuery = gql`
             title
             subtitle
             pageLink {
-              uri
+              slug
+              ancestors {
+                slug
+              }
             }
             campusAccordionImage {
               url
