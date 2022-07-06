@@ -276,6 +276,7 @@ export const GeneralPageQuery = gql`
                 }
                 image {
                   url
+                  title
                 }
               }
             }
@@ -292,13 +293,15 @@ export const GeneralPageQuery = gql`
                 cardContent
                 buttonLabel
                 buttonLink {
-                  slug
+                  uri
                   ancestors {
                     slug
                   }
                 }
                 campusImage {
                   url
+                  width
+                  height
                 }
               }
             }

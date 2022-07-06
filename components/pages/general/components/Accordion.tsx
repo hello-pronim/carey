@@ -158,8 +158,6 @@ const Accordions = (props) => {
     return false;
   };
 
-  console.log(props);
-
   const ParseHTML = ({ html }) => {
     const parsedHTML = parseDocument(html);
     return (
