@@ -1,8 +1,11 @@
-import { Button, Container } from "@components/common";
-import { styled } from "@styles/stitches";
 import React from "react";
+import { Button, Container } from "@components/common";
+import { useGetFullPath } from "@hooks/useGetFullPath";
+import { styled } from "@styles/stitches";
 
 export default function CtaButton(props) {
+  const getFullPath = useGetFullPath();
+
   const ButtonWrapper = styled("div", {
     display: "flex",
     gridColumn: "1 / span 2",
@@ -22,7 +25,7 @@ export default function CtaButton(props) {
 
   return (
     <Container>
-      {props?.buttonLabel && (props?.buttonUrl || props?.buttonLink?.[0]?.uri) && (
+      {props?.buttonLabel && (props?.buttonUrl || props?.buttonLink?.[0]) && (
         <ButtonWrapper>
           <Button
             arrow={props?.buttonArrow}
@@ -30,7 +33,7 @@ export default function CtaButton(props) {
             theme={props?.buttonTheme}
             type={props?.buttonType}
             scale={props?.buttonSize}
-            href={props?.buttonLink?.[0]?.uri || props.buttonUrl}
+            href={props.buttonUrl || getFullPath(props?.buttonLink?.[0])}
           />
         </ButtonWrapper>
       )}

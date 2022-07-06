@@ -1,13 +1,13 @@
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
 import { styled, theme } from "@styles/stitches";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Text, Button, Container } from "@components/common";
-import { AnimatePresence } from "framer-motion";
 import OperatorIcon from "@components/common/icons/operatorIcon";
 import { parseDocument } from "htmlparser2";
-import { v4 as uuid } from "uuid";
 import InvokeElement from "@utils/invokeElement";
 import RichText from "@utils/richTextRenderer";
+import { useGetFullPath } from "@hooks/useGetFullPath";
 
 const AccordionWrapper = styled("div", {
   gridColumn: "1 / span 2",
@@ -130,6 +130,7 @@ const AccordionContent = styled(motion.div, {
 });
 
 const Accordions = (props) => {
+  const getFullPath = useGetFullPath();
   const [accordions, setAccordions] = useState<any>(props?.accordions);
 
   const changeActiveAccordion = (index) => {
@@ -156,6 +157,8 @@ const Accordions = (props) => {
     }
     return false;
   };
+
+  console.log(props);
 
   const ParseHTML = ({ html }) => {
     const parsedHTML = parseDocument(html);
@@ -257,9 +260,13 @@ const Accordions = (props) => {
                                   type={getAttr(index, "buttonType", "button")}
                                   scale={getAttr(index, "buttonSize", "button")}
                                   href={
-                                    getAttr(index, "buttonEntry", "button")?.[0]
-                                      ?.uri ||
-                                    getAttr(index, "buttonUrl", "button")
+                                    getFullPath(
+                                      getAttr(
+                                        index,
+                                        "buttonEntry",
+                                        "button"
+                                      )?.[0]
+                                    ) || getAttr(index, "buttonUrl", "button")
                                   }
                                 />
                               </ButtonWrapper>

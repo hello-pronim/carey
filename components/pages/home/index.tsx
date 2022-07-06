@@ -3,7 +3,7 @@ import { Container, PreFooter } from "@components/common";
 import Hero from "@components/Hero";
 import ImageAccordion from "@components/ImageAccordion";
 
-const Home = ({ heroData, applyNow, navigation }) => {
+const Home = ({ heroData, applyNow }) => {
   return (
     <>
       <Hero
@@ -12,10 +12,7 @@ const Home = ({ heroData, applyNow, navigation }) => {
         applyNow={applyNow}
       />
       <Container type="unbound">
-        <ImageAccordion
-          accordionData={heroData?.campuses}
-          navigation={navigation}
-        />
+        <ImageAccordion accordionData={heroData?.campuses} />
       </Container>
       <PreFooter />
     </>
