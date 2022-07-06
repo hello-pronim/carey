@@ -23,6 +23,7 @@ import OpenMorningsCard from "@components/common/cards/openMornings/Card";
 import TextBlock from "@components/common/textBlock";
 import OneUpImage from "./components/OneUpImage";
 import SideNavContainer from "@components/common/sideNav/sideNavContainer";
+import CardsSubjects from "./components/CardsSubjects";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -82,6 +83,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("images2upVideo"), TwoUpModule],
     [ModuleType("inlineGallery3up"), ThreeUpModule],
     [ModuleType("featuredPanel"), OpenMorningsCard],
+    [ModuleType("cardsSubjects"), CardsSubjects],
   ]);
   // Ignoring ts error on map for now as I couldn't find
   // an instance where the pageUri was ever not in an array
