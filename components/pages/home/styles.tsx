@@ -1,17 +1,9 @@
 import { styled } from "@styles/stitches";
 
-const Example = styled("div", {});
-const AccordionContainer = styled("div", {
-  width: "40%",
-
-  "@media screen and (max-width: 768px)": {
-    width: "100%",
-  },
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center",
-  alignItems: "center",
-  paddingBottom: "40px",
+const FullGridContainer = styled("div", {
+  gridColumn: "1 / span 12",
 });
 
-export { Example, AccordionContainer };
+const Example = styled("div", {});
+
+export { Example, FullGridContainer };
