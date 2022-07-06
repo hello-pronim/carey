@@ -15,6 +15,47 @@ import {
 import { useClickAway, useMedia } from "react-use";
 import { AnimatePresence } from "framer-motion";
 import Chevron from "../icons/chevron";
+import { styled } from "@styles/stitches";
+
+const HeaderTrigger = styled("button", {
+  all: "unset",
+  display: "flex",
+  boxSizing: "border-box",
+  px: 24,
+  cursor: "pointer",
+  pt: 16,
+  pb: "unset",
+  "@min768": {
+    px: "32px",
+  },
+  "@min1024": {
+    px: "40px",
+  },
+});
+
+const HeaderLabel = styled("a", {
+  display: "flex",
+  boxSizing: "border-box",
+  flex: 1,
+  pt: 56,
+  pb: 46,
+  px: 24,
+  variants: {
+    isMobile: {
+      true: {
+        cursor: "pointer",
+        pt: 16,
+        pb: "unset",
+        "@min768": {
+          px: "32px",
+        },
+        "@min1024": {
+          px: "40px",
+        },
+      },
+    },
+  },
+});
 
 const SideNav = ({
   activeSlug,
@@ -27,6 +68,13 @@ const SideNav = ({
   const SidebarRef = useRef<HTMLDivElement>(null);
   const [navToggled, setNavToggled] = useState(false);
   const [openItems, setOpenItems] = useState([]);
+
+  // on next router change  close the nav
+  useEffect(() => {
+    if (isMobile) {
+      setNavToggled(false);
+    }
+  }, [router.asPath, isMobile]);
 
   const getActiveParentMenu = () => {
     const findActiveNavItem = navigation.find((navItem: any) => {
@@ -92,15 +140,21 @@ const SideNav = ({
 
   return (
     <Wrapper ref={SidebarRef}>
-      <NavHeader isMobile={isMobile} onClick={() => handleNavToggle()}>
-        <Text
-          variant={isMobile ? "Body-Small" : "Heading-Overline"}
-          css={{ textTransform: !isMobile && "uppercase" }}
-        >
-          {activeMenuItem.label}
-        </Text>
+      <NavHeader>
+        <Link href={`/${activeMenuItem.url}`} passHref>
+          <HeaderLabel isMobile={isMobile}>
+            <Text
+              variant={isMobile ? "Body-Small" : "Heading-Overline"}
+              css={{ textTransform: !isMobile && "uppercase" }}
+            >
+              {activeMenuItem.label}
+            </Text>
+          </HeaderLabel>
+        </Link>
         {isMobile && (
-          <Chevron toggleState={navToggled} aria-hidden direction="down" />
+          <HeaderTrigger onClick={() => handleNavToggle()}>
+            <Chevron toggleState={navToggled} aria-hidden direction="down" />
+          </HeaderTrigger>
         )}
       </NavHeader>
       <AnimatePresence>
@@ -121,26 +175,26 @@ const SideNav = ({
                   const path = `/${activeMenuItem.url}/${item.url}`;
                   return (
                     <AccordionItem key={`sidenav-item-1-${i}`} value={item.id}>
-                      <AccordionTrigger>
-                        <Link href={path}>
-                          <a>
-                            <Text variant="Body-Small">{item.label}</Text>
-                          </a>
-                        </Link>
-                      </AccordionTrigger>
+                      <Link href={path} passHref>
+                        <AccordionTrigger>
+                          <Text variant="Body-Small">{item.label}</Text>
+                        </AccordionTrigger>
+                      </Link>
                       <AccordionContent>
                         {item.subItems.map((subItem: any, i: number) => {
                           const path = `/${activeMenuItem.url}/${item.url}/${subItem.url}`;
                           return (
-                            <SingleItem key={`sidenav-item-2-${i}`}>
-                              <Link href={path}>
-                                <a>
-                                  <Text variant="Body-Small">
-                                    {subItem.label}
-                                  </Text>
-                                </a>
-                              </Link>
-                            </SingleItem>
+                            <Link
+                              key={`sidenav-item-2-${i}`}
+                              href={path}
+                              passHref
+                            >
+                              <SingleItem>
+                                <Text variant="Body-Small">
+                                  {subItem.label}
+                                </Text>
+                              </SingleItem>
+                            </Link>
                           );
                         })}
                       </AccordionContent>
@@ -148,25 +202,26 @@ const SideNav = ({
                   );
                 }
                 return (
-                  <SingleItem
-                    css={isActiveItem(item.url) && { bg: "$crestBlue150" }}
+                  <Link
                     key={`side-nav-0-${i}`}
+                    href={`/${activeMenuItem.url}/${item.url}`}
+                    passHref
                   >
-                    <Link href={`/${activeMenuItem.url}/${item.url}`}>
-                      <a>
-                        <Text
-                          css={
-                            isActiveItem(item.url) && {
-                              fontWeight: "$semiBold !important",
-                            }
+                    <SingleItem
+                      css={isActiveItem(item.url) && { bg: "$crestBlue150" }}
+                    >
+                      <Text
+                        css={
+                          isActiveItem(item.url) && {
+                            fontWeight: "$semiBold !important",
                           }
-                          variant="Body-Small"
-                        >
-                          {item.label}
-                        </Text>
-                      </a>
-                    </Link>
-                  </SingleItem>
+                        }
+                        variant="Body-Small"
+                      >
+                        {item.label}
+                      </Text>
+                    </SingleItem>
+                  </Link>
                 );
               })}
             </Accordion>
