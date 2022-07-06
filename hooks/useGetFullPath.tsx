@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback } from "react";
 
 // get the tree path in the nested object array
 // const getPaths = (object, slug) => {
@@ -15,12 +15,10 @@ import { useMemo } from "react";
 //   }
 // };
 
-export const useGetFullPath = (page) => {
-  const fullPath = useMemo(() => {
+export const useGetFullPath = () => {
+  return useCallback((page) => {
     const pageSlug = page.slug;
     const parentSlug = page?.ancestors?.map((el) => el.slug).join("/");
     return `/${parentSlug}/${pageSlug}`;
-  }, [page]);
-
-  return fullPath;
+  }, []);
 };
