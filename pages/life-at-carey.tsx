@@ -17,7 +17,6 @@ export default function LifeCareyPage({
   pageData,
   ...props
 }: LifeCareyPageProps) {
-  console.log(pageData);
   return (
     <>
       <Head>
