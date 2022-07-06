@@ -103,6 +103,7 @@ const ParentDetails = ({
               ]}
               key={item}
             >
+              {guardian > 1 && <Divider css={{ mb: 50 }} />}
               <StyledItem css={{ mb: 50 }} value={`parentDetails-${item}`}>
                 <StyledHeader>
                   <StyledTrigger>
