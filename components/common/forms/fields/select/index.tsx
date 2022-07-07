@@ -16,6 +16,7 @@ const Select = ({
   items,
   control,
   searchable = false,
+  outerCSS,
 }: SelTypes) => {
   const subtext = () => {
     let values = { text: undefined, color: undefined };
@@ -26,7 +27,7 @@ const Select = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper css={outerCSS}>
       <Label required={required} disabled={disabled}>
         {label && (
           <Text variant="Body-xSmall">
@@ -49,7 +50,9 @@ const Select = ({
                 ref={ref}
                 options={items}
                 value={items.find((c: any) => c.value === value)}
-                onChange={(val: any) => onChange(val.value)}
+                onChange={(val: any) => {
+                  onChange(val.value);
+                }}
                 theme={(theme) => ({
                   ...theme,
                   borderRadius: 20,
@@ -77,6 +80,7 @@ type SelTypes = {
   hint?: string;
   items: Array<object>;
   control?: any;
+  outerCSS?: any;
 };
 
 export default Select;

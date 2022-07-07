@@ -1,3 +1,4 @@
+import { Controller } from "react-hook-form";
 import { Text } from "@components/common";
 import { AreaInput } from "./styles";
 
@@ -5,11 +6,14 @@ import { Wrapper, Label, Subtext, InputWrapper } from "../sharedStyles";
 
 const TextArea = ({
   label,
+  name,
   placeholder,
   required,
   error,
   disabled,
   hint,
+  control,
+  outerCSS,
 }: TATypes) => {
   const subtext = () => {
     let values = { text: undefined, color: undefined };
@@ -20,15 +24,23 @@ const TextArea = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper css={outerCSS}>
       <Label required={required} disabled={disabled}>
         {label && <Text variant="Body-xSmall">{label}</Text>}
         <InputWrapper>
-          <AreaInput
-            as="textarea"
-            placeholder={!!placeholder ? placeholder : null}
-            error={!!error}
-            disabled={disabled}
+          <Controller
+            control={control}
+            name={name}
+            rules={{ required: required }}
+            render={({ field }) => (
+              <AreaInput
+                {...field}
+                as="textarea"
+                placeholder={!!placeholder ? placeholder : null}
+                error={!!error}
+                disabled={disabled}
+              />
+            )}
           />
         </InputWrapper>
       </Label>
@@ -41,11 +53,14 @@ const TextArea = ({
 
 type TATypes = {
   label: string;
+  name: string;
   placeholder?: string;
   required?: boolean;
   error?: string;
   disabled?: boolean;
   hint?: string;
+  outerCSS?: any;
+  control?: any;
 };
 
 export default TextArea;

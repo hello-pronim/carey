@@ -431,7 +431,10 @@ const ParentDetails = ({
                       mb: 24,
                     }}
                   >
-                    <Checkbox label="Postal Address (Same as Residential address)" />
+                    <Checkbox
+                      name={`samePostalAddress${guardian}`}
+                      label="Postal Address (Same as Residential address)"
+                    />
                   </Div>
                   <Div>
                     <TextField
@@ -536,7 +539,11 @@ const ParentDetails = ({
         })}
 
       <Div css={{ mb: 50 }}>
-        <Checkbox label="I/We acknowledge that all legal guardians and carers for the student(s) have been entered into this application" />
+        <Checkbox
+          control={control}
+          name="iAcknowledge"
+          label="I/We acknowledge that all legal guardians and carers for the student(s) have been entered into this application"
+        />
       </Div>
       <ButtonWrap>
         <AddButton outlined onClick={() => addParent()}>

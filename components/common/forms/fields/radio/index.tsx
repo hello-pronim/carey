@@ -12,6 +12,7 @@ const RadioGroup = ({
   hint,
   control,
   items,
+  outerCSS,
 }: RadioTypes) => {
   const subtext = () => {
     let values = { text: undefined, color: undefined };
@@ -23,7 +24,7 @@ const RadioGroup = ({
   return (
     <Container>
       {label && <Text variant="Body-xSmall">{label}</Text>}
-      <Root aria-label={label}>
+      <Root aria-label={label} css={outerCSS}>
         <Controller
           control={control}
           name={name}
@@ -72,6 +73,7 @@ type RadioTypes = {
     value: string;
     label: string;
   }>;
+  outerCSS?: any;
 };
 
 export default RadioGroup;
