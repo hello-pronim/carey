@@ -5,17 +5,25 @@ import { Image, Container } from "@components/common";
 const ImageWrapper = styled("div", {
   position: "relative",
   width: "100%",
+  overflow: "hidden",
   gridColumn: "1 / span 2",
+  maxHeight: 327,
+  "@min480": {
+    maxHeight: 460,
+  },
   "@min768": {
     gridColumn: "1 / span 7",
   },
   "@min1024": {
+    maxHeight: 465,
     gridColumn: "2 / span 10",
   },
   "@min1440": {
+    maxHeight: 520,
     gridColumn: "1 / span 8",
   },
   "@min1920": {
+    maxHeight: 600,
     gridColumn: "2 / span 7",
   },
   boxSizing: "border-box",

@@ -14,13 +14,21 @@ import Swiper from "@components/common/swiper";
 const ImageLeft = styled("div", {
   position: "relative",
   width: "100%",
+  overflow: "hidden",
+  maxHeight: 327,
+  "@min480": {
+    maxHeight: 460,
+  },
   "@min1024": {
+    maxHeight: 465,
     gridColumn: "2 / span 7",
   },
   "@min1440": {
+    maxHeight: 520,
     gridColumn: "1 / span 8",
   },
   "@min1920": {
+    maxHeight: 600,
     gridColumn: "2 / span 7",
   },
   boxSizing: "border-box",
@@ -36,6 +44,10 @@ const ImageRight = styled("div", {
   "@min1024": {
     gridColumn: "9 / span 3",
     alignSelf: "end",
+    maxHeight: 336,
+  },
+  "@min1920": {
+    maxHeight: 440,
   },
 });
 
@@ -104,7 +116,7 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
         </ImageLeft>
         <ImageRight
           css={{
-            maxHeight: primaryDimensions.height,
+            maxHeight: isMobile && primaryDimensions.height,
           }}
         >
           {image2src?.url && (

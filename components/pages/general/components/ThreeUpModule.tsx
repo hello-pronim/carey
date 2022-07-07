@@ -8,15 +8,18 @@ import Swiper from "@components/common/swiper";
 const ImageLeft = styled("div", {
   position: "relative",
   width: "100%",
+  overflow: "hidden",
   "@min1024": {
     gridColumn: "2 / span 5",
     transform: "translateY(50%)",
+    maxHeight: 480,
   },
   "@min1440": {
     gridColumn: "1 / span 6",
   },
   "@min1920": {
     gridColumn: "2 / span 5",
+    maxHeight: 640,
   },
   "> span": {
     height: "100% !important",
@@ -38,6 +41,10 @@ const ImageRight = styled("div", {
   },
   "@min1024": {
     gridColumn: "7 / span 5",
+    maxHeight: 480,
+  },
+  "@min1920": {
+    maxHeight: 640,
   },
 });
 
@@ -53,10 +60,18 @@ const ImageRightLower = styled("div", {
     height: "100% !important",
     span: { height: "100% !important", width: "100%" },
   },
+  maxHeight: 327,
+  "@min480": {
+    maxHeight: 460,
+  },
   "@min1024": {
     gridColumn: "7 / span 5",
     alignSelf: "end",
     paddingRight: "5em",
+    maxHeight: 480,
+  },
+  "@min1920": {
+    maxHeight: 640,
   },
 });
 
