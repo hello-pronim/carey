@@ -1,12 +1,12 @@
 import React from "react";
+import Container from "@components/common/container/container";
+
 import DefaultCard from "./default/Card";
 import LandscapeCard from "./landscape/Card";
-import Container from "@components/common/container/container";
 
 const OpenMorningsCard = ({
   href = "#",
   panelVariant,
-  size = "small",
   featuredPanel,
 }: CardPropsType) => {
   const [panel] = featuredPanel;
@@ -43,20 +43,9 @@ const OpenMorningsCard = ({
             backgroundImage={panel.backgroundGradient?.[0].url}
             studentImage={panel.imageOfStudent?.[0].url}
             href={href}
-            size={size}
           />
         </div>
       ) : (
-        // : type === "application-form" ? (
-        //   <ApplicationFormCard
-        //     title={title}
-        //     description={description}
-        //     backgroundImage={backgroundImage}
-        //     studentImage={studentImage}
-        //     href={href}
-        //     size={size}
-        //   />
-        // )
         <></>
       )}
     </Container>
@@ -64,13 +53,9 @@ const OpenMorningsCard = ({
 };
 
 type CardPropsType = {
-  title: string;
-  description: string;
   href?: string | Object;
   featuredPanel: any;
-  panelVariant?: "small" | "large" | "landscape" | "application-form" | any;
-  size?: "small" | "large";
-  landscape?: boolean;
+  panelVariant?: "small" | "large" | "landscape" | any;
 };
 
 export default OpenMorningsCard;
