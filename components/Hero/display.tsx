@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import HeroButton from "./HeroButton";
+import ApplyButton from "@components/ApplyButton";
+
 import QuickLinksMenu from "./quickLinksMenu";
 import FeaturePanel from "./featurePanel";
 import {
@@ -97,7 +98,7 @@ const Display = (props) => {
                 flex: "none",
               }}
             >
-              <HeroButton data={props.applyNow} />
+              <ApplyButton data={props.applyNow} />
             </Bumper>
           </MobileActionsWrapper>
         </MobileActions>
@@ -116,7 +117,7 @@ const Display = (props) => {
               display: "flex",
             }}
           >
-            <HeroButton data={props.applyNow} />
+            <ApplyButton data={props.applyNow} />
           </Bumper>
         </ActionsWrapper>
       </Actions>

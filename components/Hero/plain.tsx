@@ -8,10 +8,10 @@ import {
   Crest,
 } from "./styles";
 import { Button, Text } from "@components/common";
+import ApplyButton from "@components/ApplyButton";
 import { useGetFullPath } from "@hooks/useGetFullPath";
 import cGraphic from "public/assets/c-graphic.svg";
 import Image from "next/image";
-import HeroButton from "./HeroButton";
 
 const Plain = (props) => {
   const getFullPath = useGetFullPath();
@@ -60,7 +60,7 @@ const Plain = (props) => {
           bg: "$darkBlue",
         }}
       >
-        <HeroButton data={props.applyNow} />
+        <ApplyButton data={props.applyNow} />
       </Bumper>
     </Wrapper>
   );
