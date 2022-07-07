@@ -60,7 +60,14 @@ const CardsCampuses = (props) => {
 
   return (
     <Container type="grid">
-      <ContentContainer>
+      <ContentContainer
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         {props?.cardsetCampuses?.map((item, index) => {
           return (
             <ContentWrapper key={index}>

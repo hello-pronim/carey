@@ -13,7 +13,14 @@ const MapView = (props) => {
   });
   return (
     <Container>
-      <MapWrapper>
+      <MapWrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         <ReactMapGL
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
           initialViewState={{

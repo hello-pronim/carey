@@ -113,7 +113,14 @@ const bodySmallMQ = {
 const ThreeColTable = (props) => {
   return (
     <Container>
-      <TableWrapper>
+      <TableWrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         {!!props?.tableTitle && (
           <Text variant="Heading-Small">{props.tableTitle}</Text>
         )}

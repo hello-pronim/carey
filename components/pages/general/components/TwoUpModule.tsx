@@ -118,7 +118,14 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
           <></>
         </Modal>
       )}
-      <ConditionalWrapper>
+      <ConditionalWrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         <LeftWrapper>
           <ImageLeft ref={Primary}>
             {__typename === "generalComponents_images2upVideo_BlockType" && (

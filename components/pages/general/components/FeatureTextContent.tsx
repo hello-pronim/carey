@@ -46,7 +46,14 @@ export default function TextContent(props) {
 
   return (
     <Container>
-      <ContentWrapper>
+      <ContentWrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         {/* 
           This is what's causing all the prop on 
           react dom issues, to remove and fix later. 

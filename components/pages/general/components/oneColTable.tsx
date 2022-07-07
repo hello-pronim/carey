@@ -55,7 +55,14 @@ const Item = styled("div", {});
 const OneColTable = ({ tableTitle, oneColTable, ...props }) => {
   return (
     <Container>
-      <Wrapper>
+      <Wrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         {!!tableTitle && (
           <TitleBar>
             <Text css={{ fontWeight: "$semiBold" }} variant="Heading-xSmall">

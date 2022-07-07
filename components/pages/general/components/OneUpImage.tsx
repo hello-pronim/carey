@@ -54,7 +54,14 @@ const OneUpImage = ({ __typename, image1, ...props }) => {
   if (!image1src?.url) return null;
   return (
     <Container>
-      <Wrapper>
+      <Wrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         <ImageWrapper>
           <Image
             alt={props.captionImage1}

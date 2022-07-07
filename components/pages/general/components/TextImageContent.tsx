@@ -196,7 +196,16 @@ export default function TextImageContent(props) {
 
   return (
     <Container>
-      <ContentWrapper layout={props.layout} orientation={props.imageAspect}>
+      <ContentWrapper
+        layout={props.layout}
+        orientation={props.imageAspect}
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         {parsedHTML.children.map((component: any) => (
           <InvokeElement
             key={uuid()}

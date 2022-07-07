@@ -21,6 +21,12 @@ export const GeneralPageQuery = gql`
                 }
               }
             }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_twoColumnTable_BlockType {
             twoColumnTable {
@@ -29,6 +35,12 @@ export const GeneralPageQuery = gql`
                 groupRows {
                   groupItem
                 }
+              }
+            }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
               }
             }
           }
@@ -42,15 +54,33 @@ export const GeneralPageQuery = gql`
                 }
               }
             }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_contentBlock_BlockType {
             bodyText
             dividerToggle
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_breakoutContent_BlockType {
             bodyText
             brandColours
             dividerToggle
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_contentTextImage_BlockType {
             layout
@@ -61,6 +91,12 @@ export const GeneralPageQuery = gql`
             }
             imageAspect
             bodyText
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_contentTextFullBleedImage_BlockType {
             layout
@@ -69,6 +105,12 @@ export const GeneralPageQuery = gql`
               url
               height
               width
+            }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
             }
           }
           ... on generalComponents_featuredPanel_BlockType {
@@ -96,6 +138,12 @@ export const GeneralPageQuery = gql`
                 facilitySchool {
                   title
                 }
+              }
+            }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
               }
             }
           }
@@ -131,6 +179,12 @@ export const GeneralPageQuery = gql`
                 }
               }
             }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_ctaButton_BlockType {
             buttonLabel
@@ -145,10 +199,22 @@ export const GeneralPageQuery = gql`
                 slug
               }
             }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_mapBlock_BlockType {
             latitude
             longitude
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_generalSideImage_BlockType {
             headline
@@ -185,6 +251,12 @@ export const GeneralPageQuery = gql`
           ... on generalComponents_featureTextBlock_BlockType {
             bodyText
             featureLayout
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_contentTextFeature_BlockType {
             layout
@@ -203,6 +275,12 @@ export const GeneralPageQuery = gql`
                 }
               }
             }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_images1up_BlockType {
             image1 {
@@ -212,6 +290,12 @@ export const GeneralPageQuery = gql`
             }
             captionImage1
             includeDividerUnderneath
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_images2up_BlockType {
             image1 {
@@ -227,6 +311,12 @@ export const GeneralPageQuery = gql`
             }
             captionImage2
             includeDividerUnderneath
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_images2upVideo_BlockType {
             image1 {
@@ -244,6 +334,12 @@ export const GeneralPageQuery = gql`
             videoUrl
             captionImage2
             includeDividerUnderneath
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_inlineGallery3up_BlockType {
             image1 {
@@ -264,6 +360,12 @@ export const GeneralPageQuery = gql`
               height
             }
             captionImage3
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_cardsSectionOverview_BlockType {
             cardsetOverview {
@@ -280,10 +382,22 @@ export const GeneralPageQuery = gql`
                 }
               }
             }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
           }
           ... on generalComponents_cardsSubjects_BlockType {
             cardsetSubject {
               subjectTitle
+            }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
             }
           }
           ... on generalComponents_cardsCampuses_BlockType {
@@ -304,6 +418,18 @@ export const GeneralPageQuery = gql`
                   height
                 }
               }
+            }
+            jumpToToggle {
+              ... on jumpToToggle_BlockType {
+                available
+                anchorSlug
+              }
+            }
+          }
+          ... on generalComponents_jumpTo_BlockType {
+            jumpToBlock {
+              title
+              anchorSlug
             }
           }
           ... on generalComponents_sessionTimeTable_BlockType {

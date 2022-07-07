@@ -156,7 +156,14 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
           </VideoWrapper>
         </Modal>
       )}
-      <ConditionalWrapper>
+      <ConditionalWrapper
+        id={
+          props?.jumpToToggle?.[0]?.available &&
+          props?.jumpToToggle?.[0]?.anchorSlug
+            ? props?.jumpToToggle?.[0]?.anchorSlug
+            : null
+        }
+      >
         <LeftWrapper>
           <ImageLeft ref={Primary}>
             {__typename ===
