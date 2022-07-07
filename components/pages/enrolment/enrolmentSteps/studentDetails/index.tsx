@@ -44,6 +44,7 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
     handleSubmit,
     control,
     formState: { errors },
+    watch,
   } = useForm();
 
   const nextStep = () => {
@@ -65,6 +66,8 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
     const newStd = `std${studentDetails.length + 1}`;
     setStudentDetails([...studentDetails, newStd]);
   };
+
+  const watchAllFields = watch();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -182,24 +185,25 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                         items={gender}
                       />
                     )}
-
-                    <TextField
-                      control={control}
-                      required
-                      error={
-                        errors[`selfDescribe${student}`] &&
-                        "Self-describe is required"
-                      }
-                      placeholder="|"
-                      name={`selfDescribe${student}`}
-                      label="Self-describe"
-                      type="text"
-                      color="$navy"
-                      outerCSS={{
-                        mb: 24,
-                        gridColumn: "3",
-                      }}
-                    />
+                    {watchAllFields[`gender${student}`] === "S" && (
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`selfDescribe${student}`] &&
+                          "Self-describe is required"
+                        }
+                        placeholder="|"
+                        name={`selfDescribe${student}`}
+                        label="Self-describe"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{
+                          mb: 24,
+                          gridColumn: "3",
+                        }}
+                      />
+                    )}
                   </Div>
                   <Divider />
                   <Div
@@ -268,23 +272,26 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                       />
                     </Div>
                     <Div>
-                      <Select
-                        outerCSS={{ mb: 30 }}
-                        control={control}
-                        searchable
-                        required
-                        error={
-                          errors[`languageAtHome${student}`] &&
-                          "Language at home is required"
-                        }
-                        name={`languageAtHome${student}`}
-                        label="Language at home"
-                        placeholder="Select"
-                        items={[
-                          { value: "language", label: "language" },
-                          { value: "language", label: "language" },
-                        ]}
-                      />
+                      {watchAllFields[`isAustralianCitizen${student}`] ===
+                        "yes" && (
+                        <Select
+                          outerCSS={{ mb: 30 }}
+                          control={control}
+                          searchable
+                          required
+                          error={
+                            errors[`languageAtHome${student}`] &&
+                            "Language at home is required"
+                          }
+                          name={`languageAtHome${student}`}
+                          label="Language at home"
+                          placeholder="Select"
+                          items={[
+                            { value: "language", label: "language" },
+                            { value: "language", label: "language" },
+                          ]}
+                        />
+                      )}
                     </Div>
                     <Div>
                       <RadioGroup
@@ -304,22 +311,25 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                       />
                     </Div>
                     <Div>
-                      <Select
-                        control={control}
-                        searchable
-                        required
-                        error={
-                          errors[`nationality${student}`] &&
-                          "Nationality is required"
-                        }
-                        name={`nationality${student}`}
-                        label="Nationality"
-                        placeholder="Select"
-                        items={[
-                          { value: "nationality", label: "nationality" },
-                          { value: "nationality", label: "nationality" },
-                        ]}
-                      />
+                      {watchAllFields[`languageOtherThanEnglish${student}`] ===
+                        "yes" && (
+                        <Select
+                          control={control}
+                          searchable
+                          required
+                          error={
+                            errors[`nationality${student}`] &&
+                            "Nationality is required"
+                          }
+                          name={`nationality${student}`}
+                          label="Nationality"
+                          placeholder="Select"
+                          items={[
+                            { value: "nationality", label: "nationality" },
+                            { value: "nationality", label: "nationality" },
+                          ]}
+                        />
+                      )}
                     </Div>
                   </Div>
                   <Divider />
@@ -351,59 +361,62 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                         ]}
                       />
                     </Div>
-
-                    <Div>
-                      <Div
-                        css={{
-                          display: "grid",
-                          gridTemplateColumns: "repeat(2, 1fr)",
-                          columnGap: 15,
-                        }}
-                      >
-                        <Text
-                          css={{ mb: 10, gridColumn: "1 / span 2" }}
-                          variant="Body-xSmall"
-                        >
-                          Select their requirements below
-                        </Text>
-                        <Checkbox
-                          control={control}
-                          name={`medicalSupport${student}`}
-                          outerCSS={{ mb: 20 }}
-                          label="Medical support"
-                        />
-                        <Checkbox
-                          control={control}
-                          name="learningSupport"
-                          outerCSS={{ mb: 20 }}
-                          label="Learning support"
-                        />
-                        <Checkbox
-                          control={control}
-                          name="englishAsSecondLanguage"
-                          outerCSS={{ mb: 20 }}
-                          label="English as second language"
-                        />
-                        <Checkbox
-                          control={control}
-                          name="other"
-                          outerCSS={{ mb: 30 }}
-                          label="Other"
-                        />
-                      </Div>
+                    {watchAllFields[`additionalRequirement${student}`] ===
+                      "yes" && (
                       <Div>
-                        <TextArea
-                          control={control}
-                          name={`studentAdditionalRequirements${student}`}
-                          required
-                          error={
-                            errors[`studentAdditionalRequirements${student}`] &&
-                            "Details is required"
-                          }
-                          label="Please provide details"
-                        />
+                        <Div
+                          css={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(2, 1fr)",
+                            columnGap: 15,
+                          }}
+                        >
+                          <Text
+                            css={{ mb: 10, gridColumn: "1 / span 2" }}
+                            variant="Body-xSmall"
+                          >
+                            Select their requirements below
+                          </Text>
+                          <Checkbox
+                            control={control}
+                            name={`medicalSupport${student}`}
+                            outerCSS={{ mb: 20 }}
+                            label="Medical support"
+                          />
+                          <Checkbox
+                            control={control}
+                            name="learningSupport"
+                            outerCSS={{ mb: 20 }}
+                            label="Learning support"
+                          />
+                          <Checkbox
+                            control={control}
+                            name="englishAsSecondLanguage"
+                            outerCSS={{ mb: 20 }}
+                            label="English as second language"
+                          />
+                          <Checkbox
+                            control={control}
+                            name="other"
+                            outerCSS={{ mb: 30 }}
+                            label="Other"
+                          />
+                        </Div>
+                        <Div>
+                          <TextArea
+                            control={control}
+                            name={`studentAdditionalRequirements${student}`}
+                            required
+                            error={
+                              errors[
+                                `studentAdditionalRequirements${student}`
+                              ] && "Details is required"
+                            }
+                            label="Please provide details"
+                          />
+                        </Div>
                       </Div>
-                    </Div>
+                    )}
                   </Div>
                   <Divider />
                   <Div
@@ -508,26 +521,28 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                         ]}
                       />
                     </Div>
-
-                    <Div>
-                      <TextField
-                        control={control}
-                        required
-                        error={
-                          errors[`whichSchool${student}`] &&
-                          "Which schools is required"
-                        }
-                        placeholder="|"
-                        name={`whichSchool${student}`}
-                        label="Which schools"
-                        type="text"
-                        color="$navy"
-                        outerCSS={{
-                          mb: 24,
-                          gridColumn: "3",
-                        }}
-                      />
-                    </Div>
+                    {watchAllFields[`appliedToOtherSchools${student}`] ===
+                      "yes" && (
+                      <Div>
+                        <TextField
+                          control={control}
+                          required
+                          error={
+                            errors[`whichSchool${student}`] &&
+                            "Which schools is required"
+                          }
+                          placeholder="|"
+                          name={`whichSchool${student}`}
+                          label="Which schools"
+                          type="text"
+                          color="$navy"
+                          outerCSS={{
+                            mb: 24,
+                            gridColumn: "3",
+                          }}
+                        />
+                      </Div>
+                    )}
                   </Div>
                   <Divider />
                   <Div
