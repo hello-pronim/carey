@@ -13,8 +13,7 @@ const RadioGroup = ({
   control,
   items,
   outerCSS,
-}: // setSelected,
-RadioTypes) => {
+}: RadioTypes) => {
   const subtext = () => {
     let values = { text: undefined, color: undefined };
     (!!error && !!hint) || (!!error && !hint)
