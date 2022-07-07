@@ -1,5 +1,6 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
+import { Text } from "@components/common";
 import { useMedia, useWindowSize } from "react-use";
 import {
   Modal,
@@ -11,6 +12,33 @@ import {
 // import Image from "next/image";
 import Swiper from "@components/common/swiper";
 
+const LeftWrapper = styled("div", {
+  "@min1024": {
+    gridColumn: "2 / span 7",
+  },
+  "@min1440": {
+    gridColumn: "1 / span 8",
+  },
+  "@min1920": {
+    gridColumn: "2 / span 7",
+  },
+  boxSizing: "border-box",
+});
+
+const RightWrapper = styled("div", {
+  boxSizing: "border-box",
+  "@min1024": {
+    gridColumn: "9 / span 3",
+  },
+});
+
+const CaptionWrapper = styled("div", {
+  pt: 8,
+  "@min1024": {
+    pt: 16,
+  },
+});
+
 const ImageLeft = styled("div", {
   position: "relative",
   width: "100%",
@@ -21,15 +49,12 @@ const ImageLeft = styled("div", {
   },
   "@min1024": {
     maxHeight: 465,
-    gridColumn: "2 / span 7",
   },
   "@min1440": {
     maxHeight: 520,
-    gridColumn: "1 / span 8",
   },
   "@min1920": {
     maxHeight: 600,
-    gridColumn: "2 / span 7",
   },
   boxSizing: "border-box",
 });
@@ -42,7 +67,6 @@ const ImageRight = styled("div", {
   justifyContent: "center",
   overflow: "hidden",
   "@min1024": {
-    gridColumn: "9 / span 3",
     alignSelf: "end",
     maxHeight: 336,
   },
@@ -95,42 +119,60 @@ const TwoUpModule = ({ __typename, image1, image2, ...props }) => {
         </Modal>
       )}
       <ConditionalWrapper>
-        <ImageLeft ref={Primary}>
-          {__typename === "generalComponents_images2upVideo_BlockType" && (
-            <VideoPlayCTA
-              onClick={() => setModalActive(!modalActive)}
-              label={"Watch our latest video"}
-            />
+        <LeftWrapper>
+          <ImageLeft ref={Primary}>
+            {__typename === "generalComponents_images2upVideo_BlockType" && (
+              <VideoPlayCTA
+                onClick={() => setModalActive(!modalActive)}
+                label={"Watch our latest video"}
+              />
+            )}
+            {image1src?.url && (
+              <Image
+                alt={props.captionImage1}
+                src={image1src.url}
+                width={image1src.width}
+                height={image1src.height}
+                enableSkeleton={true}
+                layout="responsive"
+                objectFit="cover"
+              />
+            )}
+          </ImageLeft>
+          {props.captionImage1 && (
+            <CaptionWrapper>
+              <Text css={{ color: "$navy700" }} variant="Body-xxSmall">
+                {props.captionImage1}
+              </Text>
+            </CaptionWrapper>
           )}
-          {image1src?.url && (
-            <Image
-              alt={props.captionImage1}
-              src={image1src.url}
-              width={image1src.width}
-              height={image1src.height}
-              enableSkeleton={true}
-              layout="responsive"
-              objectFit="cover"
-            />
+        </LeftWrapper>
+        <RightWrapper>
+          <ImageRight
+            css={{
+              maxHeight: isMobile && primaryDimensions.height,
+            }}
+          >
+            {image2src?.url && (
+              <Image
+                alt={props.captionImage2}
+                src={image2src.url}
+                width={image2src.width}
+                height={image2src.height}
+                enableSkeleton={true}
+                layout="responsive"
+                objectFit="cover"
+              />
+            )}
+          </ImageRight>
+          {props.captionImage2 && (
+            <CaptionWrapper>
+              <Text css={{ color: "$navy700" }} variant="Body-xxSmall">
+                {props.captionImage2}
+              </Text>
+            </CaptionWrapper>
           )}
-        </ImageLeft>
-        <ImageRight
-          css={{
-            maxHeight: isMobile && primaryDimensions.height,
-          }}
-        >
-          {image2src?.url && (
-            <Image
-              alt={props.captionImage2}
-              src={image2src.url}
-              width={image2src.width}
-              height={image2src.height}
-              enableSkeleton={true}
-              layout="responsive"
-              objectFit="cover"
-            />
-          )}
-        </ImageRight>
+        </RightWrapper>
       </ConditionalWrapper>
     </Container>
   );

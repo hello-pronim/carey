@@ -26,6 +26,15 @@ export const Wrapper = styled("div", {
       bg: "$crestYellow",
     },
   },
+  variants: {
+    hasCaptions: {
+      true: {
+        ".swiper-pagination": {
+          bottom: "44px !important",
+        },
+      },
+    },
+  },
 });
 export const Track = styled("div", {
   display: "grid",

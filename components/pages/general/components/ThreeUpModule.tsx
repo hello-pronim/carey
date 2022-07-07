@@ -1,24 +1,54 @@
 import React, { useMemo, useState, Fragment, useRef, useEffect } from "react";
 import { styled } from "@styles/stitches";
 import { useMedia, useWindowSize } from "react-use";
-import { Container, Modal, Video, VideoPlayCTA } from "@components/common";
+import {
+  Container,
+  Modal,
+  Video,
+  VideoPlayCTA,
+  Text,
+} from "@components/common";
 import Image from "next/image";
 import Swiper from "@components/common/swiper";
 
-const ImageLeft = styled("div", {
+const LeftWrapper = styled("div", {
   position: "relative",
-  width: "100%",
-  overflow: "hidden",
   "@min1024": {
     gridColumn: "2 / span 5",
     transform: "translateY(50%)",
-    maxHeight: 480,
   },
   "@min1440": {
     gridColumn: "1 / span 6",
   },
   "@min1920": {
     gridColumn: "2 / span 5",
+  },
+  boxSizing: "border-box",
+});
+
+const RightWrapper = styled("div", {
+  boxSizing: "border-box",
+  alignSelf: "flex-end",
+  "@min1024": {
+    gridColumn: "7 / span 5",
+  },
+});
+
+const CaptionWrapper = styled("div", {
+  pt: 8,
+  "@min1024": {
+    pt: 16,
+  },
+});
+
+const ImageLeft = styled("div", {
+  position: "relative",
+  width: "100%",
+  overflow: "hidden",
+  "@min1024": {
+    maxHeight: 480,
+  },
+  "@min1920": {
     maxHeight: 640,
   },
   "> span": {
@@ -40,7 +70,6 @@ const ImageRight = styled("div", {
     span: { height: "100% !important" },
   },
   "@min1024": {
-    gridColumn: "7 / span 5",
     maxHeight: 480,
   },
   "@min1920": {
@@ -65,7 +94,6 @@ const ImageRightLower = styled("div", {
     maxHeight: 460,
   },
   "@min1024": {
-    gridColumn: "7 / span 5",
     alignSelf: "end",
     paddingRight: "5em",
     maxHeight: 480,
@@ -129,51 +157,85 @@ const ThreeUpModule = ({ __typename, image1, image2, image3, ...props }) => {
         </Modal>
       )}
       <ConditionalWrapper>
-        <ImageLeft ref={Primary}>
-          {__typename ===
-            "generalComponents_inlineGallery3upVideo_BlockType" && (
-            <VideoPlayCTA
-              onClick={() => setModalActive(!modalActive)}
-              label={"Watch our latest video"}
+        <LeftWrapper>
+          <ImageLeft ref={Primary}>
+            {__typename ===
+              "generalComponents_inlineGallery3upVideo_BlockType" && (
+              <VideoPlayCTA
+                onClick={() => setModalActive(!modalActive)}
+                label={"Watch our latest video"}
+              />
+            )}
+            <Image
+              alt={props.captionImage1}
+              src={image1src.url}
+              width={image1src.width}
+              height={image1src.height}
+              layout="responsive"
+              objectFit="cover"
             />
+          </ImageLeft>
+          {props.captionImage1 && (
+            <CaptionWrapper
+              css={{
+                "@min1024": {
+                  position: "absolute",
+                  bottom: !props.captionImage2 && -32,
+                },
+              }}
+            >
+              <Text css={{ color: "$navy700" }} variant="Body-xxSmall">
+                {props.captionImage1}
+              </Text>
+            </CaptionWrapper>
           )}
-          <Image
-            alt={props.captionImage1}
-            src={image1src.url}
-            width={image1src.width}
-            height={image1src.height}
-            layout="responsive"
-            objectFit="cover"
-          />
-        </ImageLeft>
-        <ImageRight
-          css={{
-            maxHeight: isMobile && primaryDimensions.height,
-          }}
-        >
-          <Image
-            alt={props.captionImage2}
-            src={image2src.url}
-            width={image2src.width}
-            height={image2src.height}
-            layout="responsive"
-            objectFit="cover"
-          />
-        </ImageRight>
-        <ImageRightLower
-          css={{
-            maxHeight: isMobile && primaryDimensions.height,
-          }}
-        >
-          <Image
-            alt={props.captionImage3}
-            src={image3src.url}
-            width={image3src.width}
-            height={image3src.height}
-            layout="responsive"
-            objectFit="cover"
-          />
-        </ImageRightLower>
+        </LeftWrapper>
+        <RightWrapper>
+          <ImageRight
+            css={{
+              maxHeight: isMobile && primaryDimensions.height,
+            }}
+          >
+            <Image
+              alt={props.captionImage2}
+              src={image2src.url}
+              width={image2src.width}
+              height={image2src.height}
+              layout="responsive"
+              objectFit="cover"
+            />
+          </ImageRight>
+          {props.captionImage2 && (
+            <CaptionWrapper>
+              <Text css={{ color: "$navy700" }} variant="Body-xxSmall">
+                {props.captionImage2}
+              </Text>
+            </CaptionWrapper>
+          )}
+        </RightWrapper>
+        <RightWrapper>
+          <ImageRightLower
+            css={{
+              maxHeight: isMobile && primaryDimensions.height,
+            }}
+          >
+            <Image
+              alt={props.captionImage3}
+              src={image3src.url}
+              width={image3src.width}
+              height={image3src.height}
+              layout="responsive"
+              objectFit="cover"
+            />
+          </ImageRightLower>
+          {props.captionImage3 && (
+            <CaptionWrapper>
+              <Text css={{ color: "$navy700" }} variant="Body-xxSmall">
+                {props.captionImage3}
+              </Text>
+            </CaptionWrapper>
+          )}
+        </RightWrapper>
       </ConditionalWrapper>
     </Container>
   );
