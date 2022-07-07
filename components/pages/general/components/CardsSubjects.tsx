@@ -6,20 +6,24 @@ const CardsSubjects = (props) => {
   const ContentContainer = styled("div", {
     display: "grid",
     gap: "24px",
-    gridTemplateColumns: "1fr 1fr",
+    "@max480": {
+      gap: "16px",
+      gridTemplateColumns: "1fr 1fr",
+      gridColumn: "1 / span 6",
+    },
     "@min480": {
       gap: "16px",
       gridTemplateColumns: "1fr 1fr 1fr",
+      gridColumn: "1 / span 6",
     },
-    gridColumn: "1 / span 1",
     "@min1024": {
-      gridColumn: "2 / span 4",
+      gridColumn: "2 / span 6",
     },
     "@min1440": {
-      gridColumn: "1 / span 4",
+      gridColumn: "1 / span 6",
     },
     "@min1920": {
-      gridColumn: "2 / span 4",
+      gridColumn: "2 / span 5",
     },
 
     [`> ${Text}`]: {
@@ -29,14 +33,8 @@ const CardsSubjects = (props) => {
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-
-      width: "220.67px",
       height: "148px",
       color: "black",
-      "@max768": {
-        width: "156px",
-        height: "148px",
-      },
     },
   });
 
