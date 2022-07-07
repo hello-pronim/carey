@@ -86,6 +86,7 @@ const CareyConnection = ({}) => {
                     control={control}
                     name="previouslyAppliedAnotherChildForCary"
                     label="Have you previously applied for another Child to attend Carey?"
+                    outerCSS={{ flexDirection: "row", columnGap: 20 }}
                     items={[
                       { value: "yes", label: "Yes" },
                       { value: "no", label: "No" },
@@ -101,6 +102,7 @@ const CareyConnection = ({}) => {
                     control={control}
                     name="haveChildrenCurrentStudentsAtCarey"
                     label="Do you have other children who are current students at Carey?"
+                    outerCSS={{ flexDirection: "row", columnGap: 20 }}
                     items={[
                       { value: "yes", label: "Yes" },
                       { value: "no", label: "No" },
@@ -116,6 +118,7 @@ const CareyConnection = ({}) => {
                     control={control}
                     name="haveChildrenPreviouslyAttendingCarey"
                     label="Have you had children previously attending Carey?"
+                    outerCSS={{ flexDirection: "row", columnGap: 20 }}
                     items={[
                       { value: "yes", label: "Yes" },
                       { value: "no", label: "No" },
@@ -145,6 +148,7 @@ const CareyConnection = ({}) => {
                     control={control}
                     name="areYouPastStudentOfCarey"
                     label="Are you a past student of Carey?"
+                    outerCSS={{ flexDirection: "row", columnGap: 20 }}
                     items={[
                       { value: "yes", label: "Yes" },
                       { value: "no", label: "No" },
@@ -173,6 +177,7 @@ const CareyConnection = ({}) => {
                   control={control}
                   name="areYouCurrentStaffMemberAtCarey"
                   label="Are you a current staff member at Carey?"
+                  outerCSS={{ flexDirection: "row", columnGap: 20 }}
                   items={[
                     { value: "yes", label: "Yes" },
                     { value: "no", label: "No" },
@@ -188,6 +193,7 @@ const CareyConnection = ({}) => {
                   control={control}
                   name="permanentFulltimeContract"
                   label="Permanent Fulltime or Contract / Casual?"
+                  outerCSS={{ flexDirection: "row", columnGap: 20 }}
                   items={[
                     { value: "permanent", label: "Permanent" },
                     {

@@ -48,18 +48,6 @@ const TextField = ({
         )}
         <InputWrapper>
           {type === "email" && (
-            // <Input
-            //   type={handleType(type)}
-            //   placeholder={!!placeholder ? placeholder : null}
-            //   error={!!error}
-            //   disabled={disabled}
-            //   {...register(name, {
-            //     required: required,
-            //     pattern: {
-            //       value: /\S+@\S+\.\S+/,
-            //     },
-            //   })}
-            // />
             <Controller
               control={control}
               name={name}
@@ -85,16 +73,6 @@ const TextField = ({
             />
           )}
           {type !== "email" && (
-            // <Input
-            //   type={handleType(type)}
-            //   placeholder={!!placeholder ? placeholder : null}
-            //   error={!!error}
-            //   disabled={disabled}
-            //   {...register(name, {
-            //     required: required,
-            //     message: `${name} is required`,
-            //   })}
-            // />
             <Controller
               control={control}
               name={name}

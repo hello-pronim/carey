@@ -5,7 +5,9 @@ import { useAppContext } from "@contexts/AppContext";
 import TextField from "@components/common/forms/fields/text";
 import Select from "@components/common/forms/fields/select";
 import RadioGroup from "@components/common/forms/fields/radio";
+import Checkbox from "@components/common/forms/fields/checkbox";
 import DateField from "@components/common/forms/fields/date";
+import TextArea from "@components/common/forms/fields/textArea";
 import { Text } from "@components/common";
 import { Button } from "@components/common";
 import { PlusIcon, Cross1Icon, CaretLeftIcon } from "@radix-ui/react-icons";
@@ -180,6 +182,24 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                         items={gender}
                       />
                     )}
+
+                    <TextField
+                      control={control}
+                      required
+                      error={
+                        errors[`selfDescribe${student}`] &&
+                        "Self-describe is required"
+                      }
+                      placeholder="|"
+                      name={`selfDescribe${student}`}
+                      label="Self-describe"
+                      type="text"
+                      color="$navy"
+                      outerCSS={{
+                        mb: 24,
+                        gridColumn: "3",
+                      }}
+                    />
                   </Div>
                   <Divider />
                   <Div
@@ -226,43 +246,80 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                       columnGap: 15,
                     }}
                   >
+                    <Div
+                      css={{
+                        pb: 30,
+                      }}
+                    >
+                      <RadioGroup
+                        outerCSS={{ flexDirection: "row", columnGap: 20 }}
+                        control={control}
+                        name={`isAustralianCitizen${student}`}
+                        required
+                        error={
+                          errors[`isAustralianCitizen${student}`] &&
+                          "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                        }
+                        label="Is the student an Australian citizen?"
+                        items={[
+                          { value: "yes", label: "Yes" },
+                          { value: "no", label: "No" },
+                        ]}
+                      />
+                    </Div>
                     <Div>
-                      <Div
-                        css={{
-                          pb: 30,
-                        }}
-                      >
-                        <RadioGroup
-                          control={control}
-                          name={`isAustralianCitizen${student}`}
-                          required
-                          error={
-                            errors[`isAustralianCitizen${student}`] &&
-                            "Is the student of Aboriginal or Torres Strait Islander origin is required"
-                          }
-                          label="Is the student an Australian citizen?"
-                          items={[
-                            { value: "yes", label: "Yes" },
-                            { value: "no", label: "No" },
-                          ]}
-                        />
-                      </Div>
-                      <Div>
-                        <RadioGroup
-                          control={control}
-                          name={`languageOtherThanEnglish${student}`}
-                          required
-                          error={
-                            errors[`languageOtherThanEnglish${student}`] &&
-                            "Is the student of Aboriginal or Torres Strait Islander origin is required"
-                          }
-                          label="Does the student speak a language other the English at home?"
-                          items={[
-                            { value: "yes", label: "Yes" },
-                            { value: "no", label: "No" },
-                          ]}
-                        />
-                      </Div>
+                      <Select
+                        outerCSS={{ mb: 30 }}
+                        control={control}
+                        searchable
+                        required
+                        error={
+                          errors[`languageAtHome${student}`] &&
+                          "Language at home is required"
+                        }
+                        name={`languageAtHome${student}`}
+                        label="Language at home"
+                        placeholder="Select"
+                        items={[
+                          { value: "language", label: "language" },
+                          { value: "language", label: "language" },
+                        ]}
+                      />
+                    </Div>
+                    <Div>
+                      <RadioGroup
+                        outerCSS={{ flexDirection: "row", columnGap: 20 }}
+                        control={control}
+                        name={`languageOtherThanEnglish${student}`}
+                        required
+                        error={
+                          errors[`languageOtherThanEnglish${student}`] &&
+                          "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                        }
+                        label="Does the student speak a language other the English at home?"
+                        items={[
+                          { value: "yes", label: "Yes" },
+                          { value: "no", label: "No" },
+                        ]}
+                      />
+                    </Div>
+                    <Div>
+                      <Select
+                        control={control}
+                        searchable
+                        required
+                        error={
+                          errors[`nationality${student}`] &&
+                          "Nationality is required"
+                        }
+                        name={`nationality${student}`}
+                        label="Nationality"
+                        placeholder="Select"
+                        items={[
+                          { value: "nationality", label: "nationality" },
+                          { value: "nationality", label: "nationality" },
+                        ]}
+                      />
                     </Div>
                   </Div>
                   <Divider />
@@ -273,25 +330,77 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                       columnGap: 15,
                     }}
                   >
+                    <Div
+                      css={{
+                        pb: 30,
+                      }}
+                    >
+                      <RadioGroup
+                        outerCSS={{ flexDirection: "row", columnGap: 20 }}
+                        control={control}
+                        name={`additionalRequirement${student}`}
+                        required
+                        error={
+                          errors[`additionalRequirement${student}`] &&
+                          "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                        }
+                        label="Does the student have additional requirements (Medical, Learning or Language)?"
+                        items={[
+                          { value: "yes", label: "Yes" },
+                          { value: "no", label: "No" },
+                        ]}
+                      />
+                    </Div>
+
                     <Div>
                       <Div
                         css={{
-                          pb: 30,
+                          display: "grid",
+                          gridTemplateColumns: "repeat(2, 1fr)",
+                          columnGap: 15,
                         }}
                       >
-                        <RadioGroup
+                        <Text
+                          css={{ mb: 10, gridColumn: "1 / span 2" }}
+                          variant="Body-xSmall"
+                        >
+                          Select their requirements below
+                        </Text>
+                        <Checkbox
                           control={control}
-                          name={`additionalRequirement${student}`}
+                          name={`medicalSupport${student}`}
+                          outerCSS={{ mb: 20 }}
+                          label="Medical support"
+                        />
+                        <Checkbox
+                          control={control}
+                          name="learningSupport"
+                          outerCSS={{ mb: 20 }}
+                          label="Learning support"
+                        />
+                        <Checkbox
+                          control={control}
+                          name="englishAsSecondLanguage"
+                          outerCSS={{ mb: 20 }}
+                          label="English as second language"
+                        />
+                        <Checkbox
+                          control={control}
+                          name="other"
+                          outerCSS={{ mb: 30 }}
+                          label="Other"
+                        />
+                      </Div>
+                      <Div>
+                        <TextArea
+                          control={control}
+                          name={`studentAdditionalRequirements${student}`}
                           required
                           error={
-                            errors[`additionalRequirement${student}`] &&
-                            "Is the student of Aboriginal or Torres Strait Islander origin is required"
+                            errors[`studentAdditionalRequirements${student}`] &&
+                            "Details is required"
                           }
-                          label="Does the student have additional requirements (Medical, Learning or Language)?"
-                          items={[
-                            { value: "yes", label: "Yes" },
-                            { value: "no", label: "No" },
-                          ]}
+                          label="Please provide details"
                         />
                       </Div>
                     </Div>
@@ -349,7 +458,7 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                   <Text
                     css={{ mb: 30, mt: 30 }}
                     as="h3"
-                    variant="Heading-xSmall"
+                    variant="Heading-Small"
                   >
                     First Preference for Entry
                   </Text>
@@ -362,6 +471,7 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                       control={control}
                       name={`campus${student}`}
                       label="Which campus do you prefer?"
+                      outerCSS={{ flexDirection: "row", columnGap: 20 }}
                       items={[
                         {
                           value: "Kew Campus (ELC — Year 12)",
@@ -377,18 +487,47 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                   <Divider />
                   <Div
                     css={{
-                      pb: 30,
+                      display: "grid",
+                      gridTemplateColumns: "repeat(2, 1fr)",
+                      columnGap: 15,
                     }}
                   >
-                    <RadioGroup
-                      control={control}
-                      name={`appliedToOtherSchools${student}`}
-                      label="Has the student applied to other schools?"
-                      items={[
-                        { value: "yes", label: "Yes" },
-                        { value: "no", label: "No" },
-                      ]}
-                    />
+                    <Div
+                      css={{
+                        pb: 30,
+                      }}
+                    >
+                      <RadioGroup
+                        outerCSS={{ flexDirection: "row", columnGap: 20 }}
+                        control={control}
+                        name={`appliedToOtherSchools${student}`}
+                        label="Has the student applied to other schools?"
+                        items={[
+                          { value: "yes", label: "Yes" },
+                          { value: "no", label: "No" },
+                        ]}
+                      />
+                    </Div>
+
+                    <Div>
+                      <TextField
+                        control={control}
+                        required
+                        error={
+                          errors[`whichSchool${student}`] &&
+                          "Which schools is required"
+                        }
+                        placeholder="|"
+                        name={`whichSchool${student}`}
+                        label="Which schools"
+                        type="text"
+                        color="$navy"
+                        outerCSS={{
+                          mb: 24,
+                          gridColumn: "3",
+                        }}
+                      />
+                    </Div>
                   </Div>
                   <Divider />
                   <Div
@@ -423,7 +562,7 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                   <Text
                     css={{ mb: 30, mt: 30 }}
                     as="h3"
-                    variant="Heading-xSmall"
+                    variant="Heading-Small"
                   >
                     Second Preference for Entry
                   </Text>
@@ -446,6 +585,7 @@ const StudentDetails = ({ gender, religion, country }: StudentDetailsProps) => {
                           label: "Donvale Campus (ELC — Year 6)",
                         },
                       ]}
+                      outerCSS={{ flexDirection: "row", columnGap: 20 }}
                     />
                   </Div>
                 </StyledContent>
