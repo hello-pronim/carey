@@ -60,10 +60,28 @@ const Button = styled("div", {
   transform: "rotate(270deg)",
   [`> ${Text}`]: {
     color: "white",
+    fontSize: "$bodyXSmall",
+    lineHeight: "$large",
+    fontWeight: "$medium",
     whiteSpace: "nowrap",
-    paddingLeft: "20px",
     textTransform: "uppercase",
     letterSpacing: "0.145em",
+    paddingLeft: "20px",
+    "@min1024": {
+      fontSize: "$bodySmall",
+      lineHeight: "$large",
+      paddingLeft: "24px",
+    },
+    "@min1440": {
+      fontSize: "$buttonRegular",
+      lineHeight: "$large",
+      paddingLeft: "24px",
+    },
+    "@min1920": {
+      fontSize: "$buttonRegular",
+      lineHeight: "$large",
+      paddingLeft: "32px",
+    },
   },
   svg: {
     transform: "rotate(90deg)",
