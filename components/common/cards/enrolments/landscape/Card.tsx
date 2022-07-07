@@ -23,12 +23,11 @@ const LandscapeCard = ({
   backgroundImage,
   studentImage,
   href,
-  size,
 }) => {
   return (
-    <Card size={size} css={{ backgroundImage: `url(${backgroundImage})` }}>
+    <Card css={{ backgroundImage: `url(${backgroundImage})` }}>
       <LeftWrapper>
-        <LeftContainer size={size}>
+        <LeftContainer>
           <CMarkImage />
           <ImageWrapper>
             <Image
@@ -45,11 +44,11 @@ const LandscapeCard = ({
         </LeftContainer>
       </LeftWrapper>
       <RightWrapper>
-        <RightContainer size={size}>
-          <HeadingWrapper size={size}>
+        <RightContainer>
+          <HeadingWrapper>
             <Heading>{title}</Heading>
             <DescriptionWrapper>
-              <Description size={size}>{description}</Description>
+              <Description>{description}</Description>
             </DescriptionWrapper>
           </HeadingWrapper>
           <ActionWrapper>
