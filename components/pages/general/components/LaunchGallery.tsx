@@ -36,13 +36,7 @@ const LaunchGallery = (props) => {
     <Container>
       <ContentContainer>
         <Text variant={"Heading-Large"}>{props?.galleryTitle}</Text>
-        <Button
-          arrow
-          label={props?.buttonLabel}
-          type="outline"
-          scale="md"
-          href={"/"}
-        />
+        <Button arrow label={props?.buttonLabel} type="outline" scale="md" />
       </ContentContainer>
     </Container>
   );
