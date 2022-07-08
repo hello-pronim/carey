@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import { Text, Button, Container } from "@components/common";
 import { styled } from "@styles/stitches";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const QuickLinksMenu = ({ jumpToBlock }) => {
   const JumpTo = styled("div", {
@@ -48,8 +48,9 @@ const QuickLinksMenu = ({ jumpToBlock }) => {
     padding: "16px 0",
     "> a": {
       paddingLeft: 0,
+      textDecoration: "none",
     },
-    "> a, > button": {
+    button: {
       flexDirection: "row-reverse",
       px: 0,
       justifyContent: "start",
@@ -71,7 +72,7 @@ const QuickLinksMenu = ({ jumpToBlock }) => {
           {jumpToBlock?.map((item, index) => {
             return (
               <JumpToListItem key={index}>
-                <Link href={`#${item?.anchorSlug}`} passHref>
+                <AnchorLink offset="100" href={`#${item?.anchorSlug}`}>
                   <Button
                     arrow
                     theme="transparent"
@@ -79,7 +80,7 @@ const QuickLinksMenu = ({ jumpToBlock }) => {
                     scale="md"
                     label={item.title}
                   />
-                </Link>
+                </AnchorLink>
               </JumpToListItem>
             );
           })}
