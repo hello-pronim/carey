@@ -232,7 +232,7 @@ export const GeneralPageQuery = gql`
             headline
             bodyText
           }
-          ... on generalComponents_whyCarey_BlockType {
+          ... on generalComponents_generalScriptImage_BlockType {
             image {
               url
             }

@@ -37,7 +37,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
   const heroTypes = [
     "generalComponents_generalSideImage_BlockType",
     "generalComponents_generalSideCareyBrand_BlockType",
-    "generalComponents_whyCarey_BlockType",
+    "generalComponents_generalScriptImage_BlockType",
   ];
 
   const getHeroType = (type) => {
@@ -46,7 +46,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
         return "general";
       case "generalComponents_generalSideCareyBrand_BlockType":
         return "plain";
-      case "generalComponents_whyCarey_BlockType":
+      case "generalComponents_generalScriptImage_BlockType":
         return "display";
       default:
         return null;
