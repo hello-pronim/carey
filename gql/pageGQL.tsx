@@ -432,6 +432,31 @@ export const GeneralPageQuery = gql`
               anchorSlug
             }
           }
+          ... on generalComponents_launchGallery_BlockType {
+            galleryTitle
+            buttonLabel
+            gallery {
+              ... on gallery_default_Entry {
+                title
+                gallerySchool {
+                  title
+                  uri
+                }
+                galleryCampus {
+                  title
+                  uri
+                }
+                galleryImages {
+                  ... on galleryImages_BlockType {
+                    galleryImage {
+                      url
+                    }
+                    imageCaption
+                  }
+                }
+              }
+            }
+          }
           ... on generalComponents_sessionTimeTable_BlockType {
             title: tableTitle
             ctaTitle

@@ -27,6 +27,7 @@ import CardsSubjects from "./components/CardsSubjects";
 import CardsOverview from "./components/CardsOverview";
 import CardsCampuses from "./components/CardsCampuses";
 import QuickLinksMenu from "./components/JumpTo";
+import LaunchGallery from "./components/LaunchGallery";
 
 const General = ({ pageData, slug, navigation, applyNow }) => {
   const router = useRouter();
@@ -90,6 +91,7 @@ const General = ({ pageData, slug, navigation, applyNow }) => {
     [ModuleType("cardsSectionOverview"), CardsOverview],
     [ModuleType("cardsCampuses"), CardsCampuses],
     [ModuleType("jumpTo"), QuickLinksMenu],
+    [ModuleType("launchGallery"), LaunchGallery],
   ]);
   // Ignoring ts error on map for now as I couldn't find
   // an instance where the pageUri was ever not in an array
